@@ -1,0 +1,429 @@
+body{
+  background-image:url("https://pl.sterlingcdn.com/wp-content/uploads/sites/3/2018/07/blackjack-classic-background.jpg");
+  color: #333;
+  font: 100% Lato, Arial, Sans Serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+  }
+  
+  #Abord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left:200px;
+  margin-top:-370px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 4px 4px #666;
+  border-radius: 25px;
+  background-color: white;  
+  }
+
+  #Bbord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left: 340px;
+  margin-top:-170px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 4px 4px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+
+  #Cbord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left: 480px;
+  margin-top:-170px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 4px 4px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+
+  #Dbord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left: 620px;
+  margin-top:-170px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 4px 4px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+
+  #Ebord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left: 760px;
+  margin-top:-170px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 4px 4px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+  
+  
+  h1{
+  margin-left:60px;
+  margin-top:30px;
+  font-size: 35px;
+  }
+  
+  h2{
+  margin-top:0px;
+  margin-left:10px;
+  font-size:30px;
+  }
+
+  h3{
+  margin-left:35px;
+  font-size: 40px;
+  margin-top: 10px;
+  
+  }
+  hr.type_7 {
+  border: 0;
+  height: 55px;
+  background-image: url(https://www.formget.com/wp-content/uploads/2014/12/type_7.png);
+  background-repeat: no-repeat;
+  margin-left: 237px;
+  }
+  
+  #A1bord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left:200px;
+  margin-top:-20px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 5px 5px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+
+  #B1bord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left: 340px;
+  margin-top:-170px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 5px 5px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+
+  #C1bord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left: 480px;
+  margin-top:-170px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 5px 5px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+
+  #D1bord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left: 620px;
+  margin-top:-170px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 5px 5px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+
+  #E1bord{
+  width: 100px;
+  height: 170px;
+  border: 1px solid white;
+  margin-left: 760px;
+  margin-top:-170px;
+  text-shadow:2px 2px #A4A4A4;
+  box-shadow: 5px 5px #666;
+  border-radius: 25px;
+  background-color: white;
+  }
+
+  .round1{
+  text-align: center;
+  height: 50px;
+  width: 100px;  
+  }
+
+  .round1:hover{
+  transform: rotate( 180deg);
+  }
+
+  #c1{
+  text-align: center;
+  font-size: 30px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-top: 150px;
+  margin-left: 1160px;
+  border: 8px dashed darkred;
+  color: darkred;
+  text-shadow: 1px 1px black;
+  box-shadow: 3px 3px 3px 3px black;
+  background-color: #FCDFFF;
+  }
+  
+  #c2{
+  text-align: center;
+  font-size: 30px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-left: 1100px;
+  margin-top: 20px;
+  border: 8px dashed blue;
+  color: blue;
+  text-shadow: 1px 1px black;
+  box-shadow: 3px 3px 3px 3px black;
+  
+  }
+  #c3{
+  text-align: center;
+  font-size: 30px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-left: 20px;
+  margin-top: -30px;
+  border: 8px dashed darkgreen;
+  color: darkgreen;
+  text-shadow: 1px 1px black;
+  box-shadow: 3px 3px 3px 3px black;
+  
+  }
+  
+  #Deal{
+  text-align: center;
+  
+  height: 40px;
+  width: 100px;
+  margin-left: 545px;
+  margin-top: 40px;
+  box-shadow: 3px 3px gray;
+  border-radius: 20px;
+  background-image: url(https://images.assetsdelivery.com/compings_v2/wetzkaz/wetzkaz1606/wetzkaz160600958.jpg);
+  background-size: cover;
+  margin-top: 55px;
+  
+  }
+  
+  #Hit{
+  text-align: center;
+  
+  height: 40px;
+  width: 100px;
+  margin-left: 33px;
+  box-shadow: 3px 3px gray;
+  border-radius: 20px;
+  background-image: url(https://greatambitionscosmetology.com/wp-content/uploads/2014/11/Background-184x184.jpg);
+  background-size: cover;
+  margin-top: 55px;
+  }
+  
+  #Stand{
+  text-align: center;
+  height: 40px;
+  width: 100px;
+  margin-left: 30px;
+  box-shadow: 3px 3px gray;
+  border-radius: 20px;
+  background-image: url(https://greatambitionscosmetology.com/wp-content/uploads/2014/11/Background-184x184.jpg);
+  background-size: cover;
+  margin-top: 55px;
+  }
+
+  .D{
+  font-size: 23px;
+  text-align: center;
+  margin-top: 1px;
+  color: black;
+  font-family: 'Playfair Display', serif;
+  }
+  
+  
+  @charset "utf-8";
+  
+  .round1{
+  
+  margin:0px 0px 0px 0px;
+  -webkit-animation:r1 4s linear infinite;
+  animation:r1 4s linear infinite;
+  position: relative;
+  animation: spin 3s linear infinite;
+  
+  }
+  @keyframes r1{
+  0%{transform:rotate(360deg)};
+  10%{transform: rotate(0deg);};
+  
+  }
+  
+  .round1 > span {
+  display: block;
+  animation: no-spin 3s linear infinite;
+  }
+  @keyframes spin {
+  0% {
+  transform: rotate(0deg);
+  }
+  100% {
+  transform: rotate(360deg);
+  }
+  }
+  @keyframes no-spin {
+  0% {
+  transform: rotate(360deg);
+  }
+  100% {
+  transform: rotate(0deg);
+  }
+  }
+  
+  .B
+  {animation: 3s b infinite;}
+  {animation:3s b infinite;}
+  @-webkit-keyframes b{
+  0%{box-shadow: 0 0 4px cyan , 0 0 0px cyan ; color: #044;}
+  50%{box-shadow: 0 0 4px cyan , 0 0 40px cyan; color:#000;}
+  100%{box-shadow: 0 0 4px cyan , 0 0 0px cyan ; color: #044;}
+  }
+
+  #overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(https://images8.alphacoders.com/747/thumb-1920-747950.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .bal{
+    width: 250px;
+    height: 35px;
+    margin-left: 1100px;
+    border-radius: 25px;
+    box-shadow: 3px 3px grey;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTsm-rWSMBctNJRxp1tZwyH1wl0f7-YF_Ou_g&usqp=CAU);
+    background-size: cover;
+  }
+  #Balance{
+    font-size: 22px;
+    margin-left: 25px;
+    margin-top: -5px;
+    color: #FFD700;
+  }
+
+  .bet{
+    width: 250px;
+    height: 35px;
+    margin-left: 600px;
+    margin-top: -33px;
+    border-radius: 25px;
+    box-shadow: 3px 3px grey;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTsm-rWSMBctNJRxp1tZwyH1wl0f7-YF_Ou_g&usqp=CAU);
+    background-size: cover;
+  }
+  #abc{
+    font-size: 22px;
+    margin-left: 25px;
+    margin-top: -5px;
+    color: #FFD700;
+  }
+
+  #def{
+    font-size: 22px;
+    margin-left: 25px;
+    margin-top: -5px;
+    color: #FFD700;
+  }
+
+  #overlay1{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+#win{
+  font-size: large;
+}
+
+#over{
+  font-size: 30px;
+  height: 60px;
+  width: 200px;
+  border-radius: 30px;
+  margin-top: 10%;
+  margin-left: 40%;
+  background: linear-gradient(to bottom right , brown , darkorange);
+  font-family: 'Grenze Gotisch', cursive;
+}
+
+#ov{
+  font-family: 'Dancing Script', cursive;
+  font-size: 150px;
+  animation: example 1s infinite;
+  margin-top: 6%;
+  margin-left: 350px;
+}
+
+@keyframes example {
+  0% {color: orange}
+  20%{color: peru;  }
+  40% {color: darkgoldenrod;}
+  60% {color: brown;}
+  80% {color: #FF9933;}
+  100% {color: darkorange;}
+}
+
+#over:hover{
+  font-size: 40px;
+  width: 250px;
+  height: 70px;
+  font-family: 'Indie Flower', cursive;
+  animation: f 1s infinite;
+}
+
+@keyframes f{
+  0% {color: black}
+  20%{color:cyan;  }
+  40% {color: lightpink;}
+  60% {color:lime;}
+  80% {color: lightseagreen;}
+  100% {color: lightskyblue;}
+}
+
