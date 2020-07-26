@@ -32,6 +32,7 @@ function off1()
     document.getElementById("overlay1").style.display = "none";
     location.reload();
     a = localStorage.getItem("money1");
+    localStorage.setItem("money",a);
     Balance.innerHTML = a;
 }
 
@@ -103,10 +104,9 @@ function insert(d_p,c)
         }
     }    
 }
-
+3000
 function game_start() 
 {
-    Balance.innerHTML = localStorage.getItem("money");
     const deal1 = d1.children;
     var x = shuffled_cards.pop();
     insert(deal1,x);
@@ -380,7 +380,6 @@ function winner()
 
 var bet_player = document.getElementById("bet1");
 var bal = document.getElementById("Balance");
-localStorage.setItem("money","3000");
 var x = localStorage.getItem("money");
 bal.innerHTML = x;
 var total_bet = 0;
