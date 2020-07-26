@@ -8,7 +8,6 @@ body{
   overflow-x: hidden;
   background-repeat: no-repeat;
   background-size: cover;
- 
   }
   
   #Abord{
@@ -16,7 +15,7 @@ body{
   height: 170px;
   border: 1px solid white;
   margin-left:200px;
-  margin-top:-370px;
+  margin-top: -320px;
   text-shadow:2px 2px #A4A4A4;
   box-shadow: 4px 4px #666;
   border-radius: 25px;
@@ -97,7 +96,7 @@ body{
   background-repeat: no-repeat;
   margin-left: 237px;
   }
-  
+
   #A1bord{
   width: 100px;
   height: 170px;
@@ -319,40 +318,43 @@ body{
     bottom: 0;
     background-image: url(https://images8.alphacoders.com/747/thumb-1920-747950.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     z-index: 2;
     cursor: pointer;
   }
 
   .bal{
-    width: 250px;
+    position: absolute;
+    width: 200px;
     height: 35px;
-    margin-left: 1100px;
+    margin-left: 50px;
+    margin-top: 200px;
     border-radius: 25px;
     box-shadow: 3px 3px grey;
     background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTsm-rWSMBctNJRxp1tZwyH1wl0f7-YF_Ou_g&usqp=CAU);
     background-size: cover;
   }
   #Balance{
-    font-size: 22px;
+    font-size: 17px;
     margin-left: 25px;
     margin-top: -5px;
     color: #FFD700;
   }
 
   .bet{
-    width: 250px;
+    position: absolute;
+    width: 200px;
     height: 35px;
-    margin-left: 600px;
-    margin-top: -33px;
+    margin-left: 50px;
+    margin-top: 300px;
     border-radius: 25px;
     box-shadow: 3px 3px grey;
     background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTsm-rWSMBctNJRxp1tZwyH1wl0f7-YF_Ou_g&usqp=CAU);
     background-size: cover;
   }
   #abc{
-    font-size: 22px;
-    margin-left: 25px;
+    font-size: 18px;
+    margin-left: 15px;
     margin-top: -5px;
     color: #FFD700;
   }

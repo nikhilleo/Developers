@@ -19,6 +19,8 @@ function off()
     document.getElementById("overlay").style.display = "none";
 }
 
+var a = 0;
+
 function off1() 
 {
     score_p = [];
@@ -29,7 +31,7 @@ function off1()
     sum_dealer = 0;    
     document.getElementById("overlay1").style.display = "none";
     location.reload();
-    var a = window.localStorage.getItem("money1");
+    a = localStorage.getItem("money1");
     Balance.innerHTML = a;
 }
 
@@ -104,7 +106,7 @@ function insert(d_p,c)
 
 function game_start() 
 {
-    Balance.innerHTML = localStorage.getItem("money1");
+    Balance.innerHTML = localStorage.getItem("money");
     const deal1 = d1.children;
     var x = shuffled_cards.pop();
     insert(deal1,x);
@@ -373,11 +375,12 @@ function winner()
     start.hidden = false;
     document.getElementById("overlay1").style.display = "block";
     var mon = Number(bal.innerText);
-    window.localStorage.setItem("money1",mon);
+    localStorage.setItem("money1",mon);
 }
 
 var bet_player = document.getElementById("bet1");
 var bal = document.getElementById("Balance");
+localStorage.setItem("money","3000");
 var x = localStorage.getItem("money");
 bal.innerHTML = x;
 var total_bet = 0;
@@ -392,4 +395,3 @@ function bet(n)
     var org_bal = bal.innerText;
     bal.innerText = Number(org_bal) - n;
 }
-
