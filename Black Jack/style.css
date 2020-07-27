@@ -375,9 +375,10 @@ body{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
     z-index: 2;
     cursor: pointer;
+
   }
 
 #win{
@@ -429,3 +430,26 @@ body{
   100% {color: lightskyblue;}
 }
 
+@keyframes f1{
+  0% {color: black}
+  20%{color: pink;}
+  40% {color:orange;}
+  60% {color:tan;}
+  80% {color: tomato;}
+  100% {color: turquoise;}
+}
+
+#win{
+  font-size: 75px;
+  animation: f 1s infinite;
+  font-family:'Dancing Script', cursive;
+  margin-left: 30%;
+  margin-top: 15%;
+}
+
+#bet_won{
+  font-size: 75px;
+  animation: f1 1s infinite;
+  font-family:'Dancing Script', cursive;
+  margin-left: 30%;
+}
