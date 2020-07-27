@@ -10,7 +10,8 @@ var p3 = document.getElementById("C1bord");
 var p4 = document.getElementById("D1bord");
 var p5 = document.getElementById("E1bord");
 
-
+var win = document.getElementById("win");
+var bet_won = document.getElementById("bet_won");
 
 document.getElementById("overlay").style.display = "block";
 
@@ -20,6 +21,11 @@ function off()
 }
 
 var a = 0;
+
+if(localStorage.length==0)
+{
+    localStorage.setItem("money",3000);
+}
 
 function off1() 
 {
@@ -35,8 +41,6 @@ function off1()
     localStorage.setItem("money",a);
     Balance.innerHTML = a;
 }
-
-
 
 var d = true;
 var p = false;
@@ -104,7 +108,7 @@ function insert(d_p,c)
         }
     }    
 }
-3000
+
 function game_start() 
 {
     const deal1 = d1.children;
@@ -115,7 +119,6 @@ function game_start()
     console.log(x);
     cnt1++;
     score();
-    //sum_dealer = x.weight;
 
     const play1 = p1.children;
     var x1 = shuffled_cards.pop();
@@ -137,6 +140,8 @@ function game_start()
     cnt = 2;
     sum_player = x1.weight + x2.weight;
     if(sum_player==21)
+    winner();
+    if(sum_player>21)
     winner();
 }
 
@@ -194,7 +199,8 @@ hit_btn.addEventListener("click",function()
     {
         if(sum_player>21)
         {
-        console.log("Winner Is Dealer");  
+        win.innerHTML = "Winner Is Dealer";
+        bet_won.innerHTML = "You've Lost $" + total_bet;
         document.getElementById("overlay1").style.display = "block"; 
         }
     },1000);
@@ -202,7 +208,8 @@ hit_btn.addEventListener("click",function()
     {
      if(sum_player==21)
         {
-        console.log("Winner Is Player"); 
+        win.innerHTML = "Winner Is Player";
+        bet_won.innerHTML = "You've Won $" + total_bet;
         document.getElementById("overlay1").style.display = "block";  
         }
     },1000);
@@ -347,29 +354,33 @@ function winner()
     b = sum_dealer; 
     if(a>b && a<=21)
     {
-        console.log("Winner IS Player");
+        win.innerHTML = "Winner Is Player";
         bal.innerText = Number(bal.innerText) + (total_bet * 2);
+        bet_won.innerHTML = "You've Won $" + total_bet;
         bet_player.innerText = 0;
     }
     else if(b>a && b<=21)
     {
-        console.log("Winner Is Dealer");
+        win.innerHTML = "Winner Is Dealer";
+        bet_won.innerHTML = "You've Lost $" + total_bet;
     }
     else if(a==b)
     {
-        console.log("Its A Tie");
+        win.innerHTML = "It's A Tie";
         bal.innerText = Number(bal.innerText) + total_bet;
         bet_player.innerText = 0;
     }
     
     if(a>21)
     {
-        console.log("Winner Is Dealer");
+        win.innerHTML = "Winner Is Dealer";
+        bet_won.innerHTML = "You've Lost $" + total_bet;
     }
     if(b>21)
     {
-        console.log("Winner Is Player");
+        win.innerHTML = "Winner Is Player";
         bal.innerText = Number(bal.innerText) + (total_bet * 2);
+        bet_won.innerHTML = "You've Won $" + total_bet;
         bet_player.innerText = 0;
     }
     start.hidden = false;
