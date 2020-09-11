@@ -8,7 +8,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 function Header() {
     return (
         <div className="header">
-            <img className="header__logo" src="http://pngimg.com/uploads/amazon/amazon_PNG25.png" alt=""/>
+            <img className="header__logo" src="https://www.freepnglogos.com/uploads/amazon-png-logo-vector/amazon-symbol-png-logo-vector-9.png" alt=""/>
             
             <div className="header__search">
                 <input className="header__searchInput" type="text" /> 
