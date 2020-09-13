@@ -102,7 +102,7 @@ function Home() {
                     title="LG 195 cms (77 inches) 4K Ultra HD Smart OLED TV OLED77C9PTA | With Built-in Alexa (Dark Meteo Titanium) (2019 Model)" 
                     rating={5}
                     price={9999.99} 
-                    image="https://images-na.ssl-images-amazon.com/images/I/A1rIJ07utiL._SL1500_.jpg" 
+                    image="https://images-na.ssl-images-amazon.com/images/I/81s0JxBkzRL._SL1500_.jpg" 
                     />
                 </div>
            </div>
