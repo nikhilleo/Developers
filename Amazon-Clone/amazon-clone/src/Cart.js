@@ -4,7 +4,7 @@ import { useStateValue } from './StateProvider';
 
 function Cart() {
 
-    const [{cart}, dispatch] = useStateValue();
+    const [{cart}] = useStateValue();
     const arr = cart;
     console.log(arr);
     return (

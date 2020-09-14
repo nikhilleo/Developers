@@ -9,7 +9,7 @@ import { useStateValue } from './StateProvider';
 
 function Header() {
 
-    const [{cart}, dispatch] = useStateValue();
+    const [{cart}] = useStateValue();
 
     return (
         <div className="header">

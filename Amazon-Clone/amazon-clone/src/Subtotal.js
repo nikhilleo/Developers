@@ -6,7 +6,7 @@ import { useStateValue } from './StateProvider';
 
 function SubTotal() {
 
-    const [{cart}, dispatch] = useStateValue();
+    const [{cart}] = useStateValue();
 
     var sum = 0;
     const arr = cart;
