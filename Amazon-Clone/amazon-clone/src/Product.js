@@ -4,7 +4,7 @@ import { useStateValue } from './StateProvider'
 
 
 
-function Product({title , price , image , rating}) {
+function Product({ id ,title , price , image , rating}) {
    
     const [{cart}, dispatch] = useStateValue();
 
@@ -14,6 +14,7 @@ function Product({title , price , image , rating}) {
         dispatch({
             type:"ADD_TO_CART",
             item : {
+                id:id,
                 title:title,
                 image:image,
                 price:price,

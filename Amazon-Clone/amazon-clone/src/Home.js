@@ -1,5 +1,4 @@
 import React from 'react'
-//import "./Home.$(selector).css(propertyName);
 import "./Home_style.css"
 import Product from "./Product";
 
@@ -14,12 +13,14 @@ function Home() {
             
                 <div className="home__row">
                     <Product 
+                    id="1"
                     title="MEN'S ADIDAS FOOTBALL MESSI CLUB BALL" 
                     rating={5}
                     price={19.99} 
                     image="https://content.adidas.co.in/static/Product-FL7026/MEN_FOOTBALL_BALLS_FL7026_1.jpg.zoom" 
                     />
-                    <Product 
+                    <Product
+                    id="2"
                     title="LIONEL MESSI BARCELONA 20/21 AWAY JERSEY BY NIKE" 
                     rating={5}
                     price={99.99} 
@@ -29,7 +30,8 @@ function Home() {
                 </div>
 
                 <div className="home__row">
-                    <Product 
+                    <Product
+                    id="3"
                     title="Echo Dot (3rd Gen) – New and improved smart speaker with Alexa (Black)" 
                     rating={3}
                     price={59.99} 
@@ -37,6 +39,7 @@ function Home() {
                     />
                     
                     <Product 
+                    id="4"
                     title="Lenovo IdeaPad S540 81XA002SIN 13.3-inch QHD Ultra Thin and Light Laptop,Light Silver" 
                     rating={4}
                     price={1249.99} 
@@ -44,6 +47,7 @@ function Home() {
                     />
                     
                     <Product 
+                    id="5"
                     title="LG Ultragear 27 240Hz, 1ms, G-Sync Compatible, HDR 10, IPS Display Gaming Monitor" 
                     rating={4}
                     price={449.99} 
@@ -52,7 +56,8 @@ function Home() {
                 </div>
 
                 <div className="home__row">
-                    <Product 
+                    <Product
+                    id="6"
                     title="TP-Link Archer C6 Gigabit MU-MIMO Wireless Router" 
                     rating={5}
                     price={159.99} 
@@ -60,6 +65,7 @@ function Home() {
                     />
 
                      <Product 
+                    id="7"
                     title="Hugo Analog Black Dial Men's Watch-1530132" 
                     rating={4}
                     price={230.99} 
@@ -69,13 +75,15 @@ function Home() {
 
                 <div className="home__row">
                     <Product 
+                    id="8"
                     title="JBL C105TWS True Wireless in-Ear Headphones with 17 Hours Playtime" 
                     rating={4}
                     price={79.99} 
                     image="https://images-na.ssl-images-amazon.com/images/I/71r44%2BPoAZL._SL1500_.jpg" 
                     />
                     
-                    <Product 
+                    <Product
+                    id="9"
                     title="JBL Tune 600 BTNC On-Ear Wireless Bluetooth Noise Canceling Headphones (Pink)" 
                     rating={4}
                     price={95.99} 
@@ -83,6 +91,7 @@ function Home() {
                     />  
                     
                     <Product 
+                    id="10"
                     title="Dymatize Elite 100% Whey Protein Supplement Powder, 5 lbs, 2.26 kg, Café Mocha" 
                     rating={4}
                     price={129.99} 
@@ -91,7 +100,8 @@ function Home() {
                 </div>
 
                 <div className="home__row">
-                    <Product 
+                    <Product
+                    id="11"
                     title="Amazon Brand - Solimo Non-Washable N95 Anti-Pollution Mask, Set of 5" 
                     rating={5}
                     price={11.99} 
@@ -99,6 +109,7 @@ function Home() {
                     />
 
                     <Product 
+                    id="12"
                     title="LG 195 cms (77 inches) 4K Ultra HD Smart OLED TV OLED77C9PTA | With Built-in Alexa (Dark Meteo Titanium) (2019 Model)" 
                     rating={5}
                     price={9999.99} 
