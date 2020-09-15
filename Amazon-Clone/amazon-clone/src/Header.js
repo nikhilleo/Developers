@@ -31,10 +31,11 @@ function Header() {
                     <span className="header__optionLineOne">
                         Hello User
                     </span>
-                    
-                    <span className="header__optionLineTwo">
-                        Sign In
-                    </span>
+                    <Link to="/login">
+                        <span className="header__optionLineTwo header__signin">
+                            Sign In
+                        </span>
+                    </Link>
                 </div>
                 
                 <div className="header__option">

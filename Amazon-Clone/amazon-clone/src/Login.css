@@ -1,0 +1,14 @@
+
+
+*{
+    background-color: white;
+}
+
+
+
+.login__image{
+    height: 100px;
+    margin-left: 35%;
+    margin-top: 30px;
+    padding: 10px;
+}

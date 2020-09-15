@@ -8,7 +8,6 @@ function CheckoutProduct({id,image,title,price,rating}) {
 
     
     const removeFromCart = () =>{
-        alert("removed")
         dispatch({
             type:"REMOVE_FROM_CART",
             title:title
