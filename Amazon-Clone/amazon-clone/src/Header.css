@@ -52,12 +52,13 @@
 
 
 .header__optionLineOne{
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .header__optionLineTwo{
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 900;
     color: white;
 }
 

@@ -16,11 +16,18 @@
 
 .checkout__title{
     margin-left: 10%;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 25px;
     margin-right: 10px;
     padding: 10px;
     border-bottom: 1px solid lightgray;
+}
+
+.checkout__title1{
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 10px;
 }
 
 

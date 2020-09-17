@@ -7,9 +7,9 @@ import { useStateValue } from './StateProvider'
 
 function Checkout() {
 
-    const [{cart}] = useStateValue();
+    const [{cart , user}] = useStateValue();
 
-
+    
     return (
 
         <div className="checkout">
@@ -19,8 +19,8 @@ function Checkout() {
                 src="https://images-eu.ssl-images-amazon.com/images/G/31/checkout/assets/TM_desktop._CB443006202_.png" 
                 alt="" />
 
+                <h2 className="checkout__title1">Hello {user?.email}</h2>
                 <h2 className="checkout__title">Your Shopping Cart</h2>
-
 
                 {cart.map(item => (
                     <CheckoutProduct 
