@@ -37,24 +37,26 @@ exports.createCart = (req,res) =>{
 }
 
 
-// exports.getItemsFromCart =  (req,res) =>{
-//   const cart = Cart.find({})
-//   try {
-//     res.send(cart);
-//   } catch (error) {
-//     res.send(error.message);
-//   }
-// }
-
-
-
 exports.getItemsFromCart = (req, res) => {
-  Cart.find().exec((err,cart) => {
+  Cart.find().exec((err,items) => {
     if (err) {
       return res.status(400).json({
         error: "NO Items In Cart"
       });
     }
-    res.json(cart);
+    res.json(items);
   });
 };
+
+
+exports.removeItemFromCart = (req,res)=>{
+    Cart.findOneAndRemove({_id:req.body.id}).exec((err,item) => {
+        if(err)
+        {
+          return res.status(400).json({
+            error:"Failed To Remove Item From Cart"
+          })
+        }
+        res.json(item);
+    });
+}
