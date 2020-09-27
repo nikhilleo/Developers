@@ -31,9 +31,13 @@ exports.createProduct = (req, res) => {
     const { name, description, price, category, stock } = fields;
 
     if (!name || !description || !price || !category || !stock) {
-      return res.status(400).json({
-        error: "Please include all fields"
-      });
+      try {
+        console.log("success");
+      } catch (error) {
+        return res.status(400).json({
+        error: error.message
+        }); 
+      }
     }
 
     let product = new Product(fields);
