@@ -1,0 +1,12 @@
+.p {
+  position: relative;
+  left: 5vw;
+  margin-top: 8vh !important;
+}
+
+#alread {
+  color: blue;
+  position: relative;
+  top: 2vh;
+  left: 19vw;
+}
