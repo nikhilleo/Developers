@@ -2,7 +2,7 @@
 
 
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+const Camper_user = require("../models/camper");
 
 const auth = async(req,res,next)=>{
     try {
@@ -14,7 +14,7 @@ const auth = async(req,res,next)=>{
     console.log(token);
     const user_with_token = jwt.verify(token,process.env.JWT_KEY);
     console.log(user_with_token);
-    const user = await User.findOne({displayName:user_with_token.displayName});
+    const user = await Camper_user.findOne({firstname:user_with_token.firstname});
     req.profile = user;
     next();
     } catch (error) {

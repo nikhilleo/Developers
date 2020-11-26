@@ -1,14 +1,13 @@
 {
-  "name": "slack",
+  "name": "lamp_a_camp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Camping And Trekking Backend API",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
+    "dev":"nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -22,5 +21,12 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
-  }
+  },
+  "keywords": [
+    "Camping",
+    "Trekking",
+    "Bookings"
+  ],
+  "author": "Nik Jayanth Ameya Prathmesh",
+  "license": "ISC"
 }

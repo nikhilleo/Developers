@@ -11,7 +11,7 @@ const user_routes = require("./routes/user");
 app.use(cors());
 
 app.use(morgan("dev"));
-// app.use(bodyParser.json()); prathmesh
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
