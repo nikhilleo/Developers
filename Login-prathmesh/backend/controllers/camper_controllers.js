@@ -44,25 +44,40 @@ exports.auth = async (req, res) => {
 exports.update = async (req,res)=>{
   try {
   const user = req.profile;
-  // console.log("HELLO FROM CONTROLLERS",user);
-  const u =  await Camp_User.findOneAndUpdate({_id:user._id},req.body);//finding and updating
-  const updated = await Camp_User.findById({_id:user.id});//finding Updated User
-  const token = await updated.genAuthToken();
-  res.json({updated,token});
+  if(user)
+  {
+    console.log("FrOM UPDATE",user)
+    const u =  await Camp_User.findById({_id:user._id});//finding and updating
+    await u.updateOne(req.body);
+    await u.save();
+    const updated = await Camp_User.findById({_id:user.id});//finding Updated User
+    const token = await updated.genAuthToken();
+    res.json({updated,token});
+  }
+  else{
+    throw new Error("No User Found");
+  }
   } catch (error) {
-    res.send(error.message);
+    console.log(error);
+    res.send(error);
   }
 }
 
 exports.updatePassword = async(req,res)=>{
   try {
     const user = req.profile;
-    const newPassword = req.body.password;
-    console.log(user.password);
-    const u =  await Camp_User.findOneAndUpdate({_id:user._id},req.body);//finding and updating
-    const updated = await Camp_User.findById({_id:user.id});//finding Updated User
-    await updated.save();
-    res.send(updated);
+    if(user)
+    {
+      const newPassword = req.body.password;
+      console.log(user.password);
+      const u =  await Camp_User.findOneAndUpdate({_id:user._id},req.body);
+      const updated = await Camp_User.findById({_id:user.id});
+      await updated.save();
+      res.send(updated);
+    }
+    else{
+      throw new Error("No User Found");
+    }
   }
    catch (error) {
     res.send(error.message);
@@ -77,6 +92,7 @@ exports.delete_user = async(req,res)=>{
     {
       const del_user = await Camp_User.findByIdAndRemove({_id:user._id});
       console.log(del_user);
+      res.send("Deleted");
     }
     else{
       res.send("No User Found")

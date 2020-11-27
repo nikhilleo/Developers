@@ -67,7 +67,7 @@ camperSchema.pre("save", async function (next) {
 
 
 camperSchema.pre('findOneAndUpdate', async function () {
-  this._update.password = await bcrypt.hash(this._update.password, 10)
+  this._update.password = await bcrypt.hash(this._update.password, 14)
 })
 
 camperSchema.methods.genAuthToken = async function () {
