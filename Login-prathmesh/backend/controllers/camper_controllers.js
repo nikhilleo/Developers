@@ -36,3 +36,53 @@ exports.login = async (req, res) => {
 exports.auth = async (req, res) => {
   res.send(req.profile);
 };
+
+
+exports.update = async (req,res)=>{
+  try {
+  const user = req.profile;
+  // console.log("HELLO FROM CONTROLLERS",user);
+  const u =  await Camp_User.findOneAndUpdate({_id:user._id},req.body);//finding and updating
+  const updated = await Camp_User.findById({_id:user.id});//finding Updated User
+  const token = await updated.genAuthToken();
+  res.json({updated,token});
+  } catch (error) {
+    res.send(error.message);
+  }
+}
+
+// exports.updatePassword = async(req,res)=>{
+//   try {
+//     const user = req.profile;
+//     const newPassword = req.body.newPass;
+//     const Old_Is_New = bcrypt.compare(newPassword,user.password)
+//       if(Old_Is_New)
+//       {
+//         throw new Error("New Password Cannot Be Same As Old Password")
+//       }
+//       else
+//       {
+//         console.log("In ELSE");
+//         const u = await Camp_User.findOneAndUpdate({_id:user._id},req.body)
+//         const updated = await Camp_User.findById({_id:user.id});
+//         res.json({"message":"Password Updated"})
+//       }
+//     catch (error) {
+//     res.send(error.message)
+//   }
+// }
+
+exports.updatePassword = async(req,res)=>{
+  try {
+    const user = req.profile;
+    const newPassword = req.body.password;
+    console.log(user.password);
+    const u =  await Camp_User.findOneAndUpdate({_id:user._id},req.body);//finding and updating
+    const updated = await Camp_User.findById({_id:user.id});//finding Updated User
+    await updated.save();
+    res.send(updated);
+  }
+   catch (error) {
+    res.send(error.message);
+  }
+}

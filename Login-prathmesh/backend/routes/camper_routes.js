@@ -2,13 +2,17 @@
 
 const express = require("express");
 const router = express.Router();
-const user_controllers = require("../controllers/camper_controllers")
+const camper_controller = require("../controllers/camper_controllers")
 const auth = require("../middleware/authorization");
 
-router.post('/signup',user_controllers.signup)
+router.post('/signup',camper_controller.signup)
 
-router.post('/login', user_controllers.login);
+router.post('/login', camper_controller.login);
 
-router.get('/auth', auth , user_controllers.auth);
+router.get('/auth', auth , camper_controller.auth);
+
+router.put('/update_profile', auth ,camper_controller.update);
+
+router.put('/update_password',auth,camper_controller.updatePassword);
 
 module.exports = router;
