@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
 
 html {
-  min-height: 100% !important;
   height: 100% !important;
+  margin: 0;
 }
 
 body {
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

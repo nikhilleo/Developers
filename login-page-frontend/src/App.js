@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
-import Main from "./MyForm/Main";
-import Login from "./MyForm/Login";
+import Form from "./MyForm/";
+import SelectUser from "./SelectUser/";
 
 function App() {
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path="/" component={Main} />
-          <Route exact path="/login__main" component={Login} />
+          <Route exact path="/" component={Form} />
+          <Route exact path="/login__main" component={SelectUser} />
         </Switch>
       </Router>
     </>
