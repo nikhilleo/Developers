@@ -3,7 +3,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const camperSchema = new mongoose.Schema(
+const campOwnerSchema = new mongoose.Schema(
   {
     firstname: {
       type: String,
@@ -51,11 +51,19 @@ const camperSchema = new mongoose.Schema(
       maxlength: 500,
       trim: true,
     },
+    campsListed:[
+        {
+            camp:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:Camps
+            }
+        }
+    ]
   },
   { timestamp: true }
 );
 
-camperSchema.pre("save", async function (next) {
+campOwnerSchema.pre("save", async function (next) {
   const user = this;
   console.log("HELLO", user);
   if (user.isModified("password")) {
@@ -64,14 +72,14 @@ camperSchema.pre("save", async function (next) {
   next();
 });
 
-camperSchema.methods.genAuthToken = async function () {
+campOwnerSchema.methods.genAuthToken = async function () {
   const user = this;
   console.log(user);
   const token = await jwt.sign({firstname: user.firstname },process.env.JWT_KEY,{ expiresIn: 3600 });
   return token;
 };
 
-camperSchema.statics.findByCredentials = async function (email, pass) {
+campOwnerSchema.statics.findByCredentials = async function (email, pass) {
   const user = await Camper.findOne({ email: email });
   if (!user) {
     throw new Error("No User Found");
@@ -87,5 +95,5 @@ camperSchema.statics.findByCredentials = async function (email, pass) {
   }
 };
 
-const Camper = mongoose.model("Camper", camperSchema);
-module.exports = Camper;
+const CampOwner = mongoose.model("CampOwner", campOwnerSchema);
+module.exports = CampOwner;

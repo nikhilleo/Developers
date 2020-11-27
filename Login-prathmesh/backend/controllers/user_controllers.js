@@ -9,6 +9,7 @@ exports.signup = async (req, res) => {
       const newUser = await new Camp_User(req.body);
       const gentoken = await newUser.genAuthToken();
       console.log("gentoken", gentoken);
+      await newUser.save();
       res.status(201).json({
         message: "User Created",
         user: newUser,
