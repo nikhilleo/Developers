@@ -6,7 +6,7 @@ require("dotenv").config();
 require("./Database/database");
 var cors = require("cors");
 const port = process.env.PORT;
-const user_routes = require("./routes/user");
+const user_routes = require("./routes/camper_routes");
 
 app.use(cors());
 

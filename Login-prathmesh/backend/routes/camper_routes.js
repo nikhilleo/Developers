@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const user_controllers = require("../controllers/user_controllers")
+const user_controllers = require("../controllers/camper_controllers")
 const auth = require("../middleware/authorization");
 
 router.post('/signup',user_controllers.signup)
