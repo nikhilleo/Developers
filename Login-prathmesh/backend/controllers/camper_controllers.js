@@ -3,6 +3,8 @@
 const Camp_User = require("../models/camper");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { findByIdAndRemove } = require("../models/camper");
+const e = require("express");
 
 exports.signup = async (req, res) => {
   try {
@@ -26,10 +28,11 @@ exports.login = async (req, res) => {
     let eMail = req.body.email;
     let passWord = req.body.password;
     const user = await Camp_User.findByCredentials(eMail,passWord);
+    console.log("agsasgasgasgasg",user);
     const token = await user.genAuthToken();
     res.status(200).json({ Message: "Login Successfully", token });
   } catch (error) {
-    res.status(500).send(error.message);
+    res.send(error.message);
   }
 };
 
@@ -51,27 +54,6 @@ exports.update = async (req,res)=>{
   }
 }
 
-// exports.updatePassword = async(req,res)=>{
-//   try {
-//     const user = req.profile;
-//     const newPassword = req.body.newPass;
-//     const Old_Is_New = bcrypt.compare(newPassword,user.password)
-//       if(Old_Is_New)
-//       {
-//         throw new Error("New Password Cannot Be Same As Old Password")
-//       }
-//       else
-//       {
-//         console.log("In ELSE");
-//         const u = await Camp_User.findOneAndUpdate({_id:user._id},req.body)
-//         const updated = await Camp_User.findById({_id:user.id});
-//         res.json({"message":"Password Updated"})
-//       }
-//     catch (error) {
-//     res.send(error.message)
-//   }
-// }
-
 exports.updatePassword = async(req,res)=>{
   try {
     const user = req.profile;
@@ -83,6 +65,23 @@ exports.updatePassword = async(req,res)=>{
     res.send(updated);
   }
    catch (error) {
+    res.send(error.message);
+  }
+}
+
+
+exports.delete_user = async(req,res)=>{
+  try {
+    const user = req.profile;
+    if(user)
+    {
+      const del_user = await Camp_User.findByIdAndRemove({_id:user._id});
+      console.log(del_user);
+    }
+    else{
+      res.send("No User Found")
+    }
+  } catch (error) {
     res.send(error.message);
   }
 }
