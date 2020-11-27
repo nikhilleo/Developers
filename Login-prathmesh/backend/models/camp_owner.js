@@ -72,6 +72,10 @@ campOwnerSchema.pre("save", async function (next) {
   next();
 });
 
+campOwnerSchema.pre('findOneAndUpdate', async function () {
+  this._update.password = await bcrypt.hash(this._update.password, 10);
+})
+
 campOwnerSchema.methods.genAuthToken = async function () {
   const user = this;
   console.log(user);
@@ -85,7 +89,7 @@ campOwnerSchema.statics.findByCredentials = async function (email, pass) {
     throw new Error("No User Found");
   }
   else{
-    const match = bcrypt.compare(pass, user.password);
+    const match = await bcrypt.compare(pass, user.password);
     if (!match) {
       throw new Error("Invalid Credentials");
     }

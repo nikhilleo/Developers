@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const e = require("express");
 
 const camperSchema = new mongoose.Schema(
   {
@@ -64,6 +65,12 @@ camperSchema.pre("save", async function (next) {
   next();
 });
 
+
+camperSchema.pre('findOneAndUpdate', async function () {
+  this._update.password = await bcrypt.hash(this._update.password, 10)
+});
+
+
 camperSchema.methods.genAuthToken = async function () {
   const user = this;
   console.log(user);
@@ -71,21 +78,22 @@ camperSchema.methods.genAuthToken = async function () {
   return token;
 };
 
-camperSchema.statics.findByCredentials = async function (email, pass) {
-  const user = await Camper.findOne({ email: email });
-  if (!user) {
+
+camperSchema.statics.findByCredentials = async function(email,pass){
+  const user = await Camper.findOne({email:email});
+  if(!user){
     throw new Error("No User Found");
   }
   else{
-    const match = bcrypt.compare(pass, user.password);
-    if (!match) {
-      throw new Error("Invalid Credentials");
-    }
-    else{
+    const match = await bcrypt.compare(pass, user.password) 
+    if(match){
       return user;
     }
+    else{
+      throw new Error("Invalid Credentials")
+    }
   }
-};
+}
 
 const Camper = mongoose.model("Camper", camperSchema);
 module.exports = Camper;

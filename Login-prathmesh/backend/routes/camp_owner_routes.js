@@ -9,6 +9,10 @@ router.post('/login', owner_controllers.login);
 
 router.get('/auth', auth , owner_controllers.auth);
 
-router.post('/updateuser', owner_controllers.updateuser);
+router.put('/updateuser', auth , owner_controllers.update);
+
+router.put('/updatepassword', auth , owner_controllers.updatePassword);
+
+router.delete('/delete_user', auth , owner_controllers.delete_user);
 
 module.exports = router;

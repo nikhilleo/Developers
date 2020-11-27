@@ -27,7 +27,7 @@ exports.login = async (req, res) => {
     const token = await user.genAuthToken();
     res.status(200).json({ Message: "Login Successfully", token });
   } catch (error) {
-    res.status(500).send(error.message);
+    res.send(error.message);
   }
 };
 
@@ -36,11 +36,66 @@ exports.auth = async (req, res) => {
 };
 
 
-exports.updateuser = async (req, res) =>{
+exports.update = async (req,res)=>{
   try {
-    const user = await Camp_Owner.findByIdAndUpdate(req.body);
-    await user.save();
+  const user = req.profile;
+  if(user)
+  {
+    const u =  await Camp_Owner.findById({_id:user._id});//finding and updating
+    await u.updateOne(req.body);
+    await u.save();
+    const updated = await Camp_Owner.findById({_id:user.id});//finding Updated User
+    const token = await updated.genAuthToken();
+    res.json({updated,token}); 
+  }
+  else
+  {
+    throw new Error("No user Found");
+  }
   } catch (error) {
-    res.status(500).send(error.message);
+    res.send(error.message);
   }
 }
+
+exports.updatePassword = async(req,res)=>{
+  try {
+    const user = req.profile;
+    if(user)
+    {
+      const newPassword = req.body.password;
+      console.log(user.password);
+      const u =  await Camp_Owner.findOneAndUpdate({_id:user._id},req.body);//finding and updating
+      const updated = await Camp_Owner.findById({_id:user.id});//finding Updated User
+      await updated.save();
+      res.send(updated);
+    }
+    else
+    {
+      throw new Error("No user found")
+    }
+  }
+   catch (error) {
+    res.send(error.message);
+  }
+}
+
+
+exports.delete_user = async(req,res)=>{
+  try {
+    const user = req.profile;
+    if(user)
+    {
+      const del_user = await Camp_Owner.findByIdAndRemove({_id:user._id});
+      console.log(del_user);
+      res.json({
+        message:"user deleted"
+      })
+    }
+    else{
+      res.send("No User Found")
+    }
+  } catch (error) {
+    res.send(error.message);
+  }
+}
+
