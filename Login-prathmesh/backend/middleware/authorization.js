@@ -14,7 +14,7 @@ const auth = async(req,res,next)=>{
     console.log(token);
     const user_with_token = jwt.verify(token,process.env.JWT_KEY);
     console.log(user_with_token);
-    const user = await Camper_user.findOne({firstname:user_with_token.firstname});
+    const user = await Camper_user.findOne({_id:user_with_token._id});
     req.profile = user;
     next();
     } catch (error) {

@@ -7,6 +7,7 @@ require("./Database/database");
 var cors = require("cors");
 const port = process.env.PORT;
 const user_routes = require("./routes/camper_routes");
+const owner_routes = require("./routes/camp_owner_routes");
 
 app.use(cors());
 
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(user_routes);
+app.use('/owner',owner_routes);
 
 app.listen(port, () => {
   console.log(`Server started http://localhost:${port}`);

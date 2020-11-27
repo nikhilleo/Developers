@@ -67,7 +67,7 @@ camperSchema.pre("save", async function (next) {
 camperSchema.methods.genAuthToken = async function () {
   const user = this;
   console.log(user);
-  const token = await jwt.sign({firstname: user.firstname },process.env.JWT_KEY,{ expiresIn: 3600 });
+  const token = await jwt.sign({_id: user._id },process.env.JWT_KEY,{ expiresIn: 3600 });
   return token;
 };
 
