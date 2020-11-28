@@ -17,4 +17,6 @@ router.put('/update_password',auth,camper_controller.updatePassword);
 
 router.delete('/delete_user', auth , camper_controller.delete_user);
 
+router.get('/getuser', auth , camper_controller.find_specific_user);
+
 module.exports = router;

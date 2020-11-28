@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const e = require("express");
 
 const camperSchema = new mongoose.Schema(
   {
@@ -93,6 +92,7 @@ camperSchema.statics.findByCredentials = async function(email,pass){
     }
   }
 }
+
 
 const Camper = mongoose.model("Camper", camperSchema);
 module.exports = Camper;

@@ -102,3 +102,19 @@ exports.delete_user = async(req,res)=>{
     res.send(error.message);
   }
 }
+
+exports.find_specific_user = async function(req,res){
+  try {
+    const user = req.profile;
+    if(user){
+      res.send(user);
+    }
+    else{
+      res.send({
+        message:'user not exits'
+      })
+    }
+  } catch (error) {
+    res.send(error.message);
+  }
+}
