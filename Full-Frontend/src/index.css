@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
 
-html,
-body {
+html {
+  height: 100% !important;
   margin: 0;
 }
 

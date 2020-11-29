@@ -1,0 +1,69 @@
+.navbar__span {
+  font-size: 1.5rem;
+}
+.navbar__menu {
+  margin-left: 18vw;
+}
+.navbar__container__home {
+  width: 100vw;
+  height: auto;
+  line-height: 80px;
+  position: fixed;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  bottom: 91vh;
+  left: 0vw;
+}
+
+.navbar__container__home .navbar__menu__home {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+}
+.navbar__container__home .navbar__menu__home .navbar__li {
+  list-style: none;
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+.navbar__container__home .navbar__menu__home .navbar__li .navbar__span {
+  color: #1d1f20;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.navbar__container__home .navbar__menu__home .navbar__li:hover .navbar__span {
+  color: #f23b26;
+}
+.navbar__container__home .navbar__menu__home .navbar__line {
+  position: absolute;
+  height: 5px;
+  width: 20%;
+  background: #f23b26;
+  left: 12vw;
+  bottom: 0;
+  transition: all 0.3s ease;
+}
+.navbar__container__home
+  .navbar__menu__home
+  .navbar__li:nth-child(2):hover
+  ~ .navbar__line {
+  left: 38vw;
+}
+.navbar__container__home
+  .navbar__menu__home
+  .navbar__li:nth-child(3):hover
+  ~ .navbar__line {
+  left: 66vw;
+}
+.navbar__container__home
+  .navbar__menu__home
+  .navbar__li:nth-child(4):hover
+  ~ .navbar__line {
+  left: 60%;
+}
+.navbar__container__home
+  .navbar__menu__home
+  .navbar__li:nth-child(5):hover
+  ~ .navbar__line {
+  left: 80%;
+}
