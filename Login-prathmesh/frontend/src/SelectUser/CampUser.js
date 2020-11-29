@@ -80,8 +80,8 @@ function Index(props) {
           history.push("/loggedInUser");
         })
         .catch((err) => {
-          console.log(err.response);
-          alert(err.response);
+          console.log(err.response.data);
+          alert(err.response.data);
         });
     }
     setInput({

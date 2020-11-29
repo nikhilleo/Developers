@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Style.css";
+import { connect } from "react-redux";
+import actions from "../Redux/Action";
 import axios from "../axios";
 
-function Index() {
+const { setOwner } = actions;
+
+function Index(props) {
   const history = useHistory();
   const handleClicks = () => {
     // var blur = document.getElementById("select__user__blur");
@@ -49,20 +53,35 @@ function Index() {
     e.preventDefault();
     if (type === "signUp") {
       await axios
-        .post("/signup", input)
+        .post("/owner/signup", input)
         .then((res) => {
           console.log(res);
+          props.setOwner(res.data.user);
+          localStorage.setItem("auth-token", res.data.token);
+          alert(res.data.message);
+          history.push("/loggedInUser");
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response);
         });
     }
     if (type === "signIn") {
       let { eMail, Password } = input;
-      let res = await axios.post("/login", {
-        email: eMail,
-        password: Password,
-      });
+      let res = await axios
+        .post("/owner/login", {
+          email: eMail,
+          password: Password,
+        })
+        .then((res) => {
+          console.log(res);
+          props.setOwner(res.data.user);
+          localStorage.setItem("auth-token", res.data.token);
+          alert(res.data.Message);
+          history.push("/loggedInUser");
+        })
+        .catch((err) => {
+          alert(err.response);
+        });
       console.log(res);
     }
     setInput({
@@ -267,4 +286,19 @@ function Index() {
   );
 }
 
-export default Index;
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    owner: state.owner,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setOwner: (data) => {
+      dispatch(setOwner(data));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

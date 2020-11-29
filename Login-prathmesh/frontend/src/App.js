@@ -57,7 +57,8 @@ function App(props) {
             exact
             path="/loggedInUser"
             render={() => {
-              if (props.user) {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                console.log(props);
                 return <Home />;
               } else {
                 return <Redirect to="/" />;
@@ -74,6 +75,8 @@ function mapStateToProps(state) {
   console.log(state);
   return {
     user: state.user,
+    admin: state.admin,
+    owner: state.owner,
   };
 }
 
