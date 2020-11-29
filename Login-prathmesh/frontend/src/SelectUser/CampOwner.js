@@ -99,21 +99,21 @@ function Index() {
                   <a
                     className="select__user__a"
                     href="#"
-                    class="select__user__social"
+                    class="select__user__social__a"
                   >
                     <i class="fab fa-facebook-f"></i>
                   </a>
                   <a
                     className="select__user__a"
                     href="#"
-                    class="select__user__social"
+                    class="select__user__social__a"
                   >
                     <i class="fab fa-google-plus-g"></i>
                   </a>
                   <a
                     className="select__user__a"
                     href="#"
-                    class="select__user__social"
+                    class="select__user__social__a"
                   >
                     <i class="fab fa-linkedin-in"></i>
                   </a>
@@ -229,10 +229,9 @@ function Index() {
             <div class="select__user__overlay-container">
               <div class="select__owner__overlay">
                 <div class="select__user__overlay-panel select__user__overlay-left">
-                  <h1 className="select__user__h1">Welcome Back!</h1>
+                  <h1 className="select__user__h1">Welcome To Lamp-Camp!</h1>
                   <p className="select__user__p">
-                    To keep connected with us please login with your personal
-                    info
+                    Please enter your valid email address and mobile number.
                   </p>
                   <button
                     class="select__user__button select__user__ghost"
@@ -245,9 +244,9 @@ function Index() {
                   </button>
                 </div>
                 <div class="select__user__overlay-panel select__user__overlay-right">
-                  <h1 className="select__user__h1">Hello, Friend!</h1>
+                  <h1 className="select__user__h1">Welcome To Lamp-Camp!</h1>
                   <p className="select__user__p">
-                    Enter your personal details and start journey with us
+                    Please enter your Email address and Password.
                   </p>
                   <button
                     class="select__user__button select__user__ghost"
