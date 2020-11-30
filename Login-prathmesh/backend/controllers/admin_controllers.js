@@ -2,6 +2,7 @@ const Admin = require("../models/admin");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Camp_Owner = require("../models/camp_owner");
+const validate = require("validator")
 
 exports.signup = async (req, res) => {
   try {
