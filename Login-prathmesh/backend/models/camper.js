@@ -3,6 +3,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+
 const camperSchema = new mongoose.Schema(
   {
     firstname: {

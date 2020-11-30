@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { findByIdAndRemove } = require("../models/camper");
 const e = require("express");
+// const { default: validator } = require("validator");
+const validate = require("validator")
 
 exports.signup = async (req, res) => {
   try {
@@ -19,7 +21,21 @@ exports.signup = async (req, res) => {
       });
     }
   catch (error) {
-    res.status(500).send(error.message);
+    console.log(error);
+    const msg = error.message;
+    const msg_splitted = msg.split(" ");
+    console.log("Conflict",msg_splitted[11]);
+    if(msg_splitted[11]=="mobile:")
+    {
+      res.status(409).send("Mobile Number Already Exist Please Try New Credentials");
+    }
+    else if(msg_splitted[11]=="email:")
+    {
+      res.status(409).send("Email Already Exist Please Try New Credentials");
+    }
+    else{
+      res.status(409).send(error.message);
+    }
   }
 };
 
@@ -31,7 +47,10 @@ exports.login = async (req, res) => {
     const token = await user.genAuthToken();
     res.status(200).json({ Message: "Login Successfully", token });
   } catch (error) {
-    res.send(error.message);
+    if(error.message=="No User Found")
+    {
+      res.status(404).send(error.message + " With Given Credentials");
+    }
   }
 };
 
@@ -42,23 +61,71 @@ exports.auth = async (req, res) => {
 
 exports.update = async (req,res)=>{
   try {
-  const user = req.profile;
-  if(user)
-  {
-    console.log("FrOM UPDATE",user)
-    const u =  await Camp_User.findById({_id:user._id});//finding and updating
-    await u.updateOne(req.body);
-    await u.save();
-    const updated = await Camp_User.findById({_id:user.id});//finding Updated User
-    const token = await updated.genAuthToken();
-    res.json({updated,token});
-  }
-  else{
-    throw new Error("No User Found");
-  }
+    const user = req.profile;
+    if(user)
+    {
+      const email = req.body.email;
+      if(email)
+      {
+        if (!validate.isEmail(email)) 
+        {
+          throw new Error("Invalid Email");
+        }
+      }
+      const phone = req.body.mobile;
+      if(phone)
+      { 
+        if(!validate.isMobilePhone(phone,"en-IN"))
+        {
+          throw new Error("Invalid Mobile Number");
+        }
+      }
+      const mobile_already = await Camp_User.find({mobile:req.body.mobile});
+      if(mobile_already[0])
+      {
+        console.log("-------------------------------------------------------",mobile_already);
+        throw new Error("Mobile Number Already Exist")
+      }
+      const email_already = await Camp_User.find({email:req.body.email})
+      {
+        if(email_already[0])
+        {
+          console.log("-------------------------------------------------------",email_already);
+          throw new Error("Email Already Exist")
+        }
+      }
+      console.log("FrOM UPDATE",user)
+      const u =  await Camp_User.findById({_id:user._id});//finding and updating
+      console.log(u);
+      await u.updateOne(req.body,{runValidators:true});
+      await u.save();
+     
+      const updated = await Camp_User.findById({_id:user.id});//finding Updated User
+      const token = await updated.genAuthToken();
+      res.json({updated,token});
+    }
+    else{
+      throw new Error("No User Found");
+    }
   } catch (error) {
+    if(error.message == "Invalid Mobile Number")
+    {
+      res.status(409).send(error.message);
+    }
+    else if(error.message == "Invalid Emai")
+    {
+      res.status(409).send(error.message); 
+    }
+    else if(error.message=="Mobile Number Already Exist")
+    {
+      res.status(409).send("Mobile Number Already Exist Try Other To Update");
+    }
+    else if(error.message =="Email Already Exist")
+    {
+      res.status(409).send("Email Already Exist Try Other To Update");
+    }
     console.log(error);
-    res.send(error);
+    res.send(error.message);
   }
 }
 
@@ -79,7 +146,10 @@ exports.updatePassword = async(req,res)=>{
     }
   }
    catch (error) {
-    res.send(error.message);
+    if(error.message="No User Found")
+    {
+      res.status(404).send(error.message);
+    }
   }
 }
 
@@ -96,10 +166,13 @@ exports.delete_user = async(req,res)=>{
       })
     }
     else{
-      res.send("No User Found")
+      throw new Error("No User To Delete")
     }
   } catch (error) {
-    res.send(error.message);
+    if(error.message="No User To Delete")
+    {
+      res.status(404).send(error.message);
+    }
   }
 }
 
@@ -110,11 +183,40 @@ exports.find_specific_user = async function(req,res){
       res.send(user);
     }
     else{
-      res.send({
-        message:'user not exits'
-      })
+      throw new Error("No User Found")
     }
   } catch (error) {
-    res.send(error.message);
+    if(error.message="No User Found")
+    {
+      res.status(404).send(error.message);
+    }
   }
 }
+
+//DONT TRY THIS
+
+
+// const check = user.mobile; 
+      // const check1 = user.email;
+      // const mobile_already = await Camp_User.distinct("mobile");
+      // console.log("All Mobiles:",mobile_already);
+      // for(let i=0;i<mobile_already.length;i++)
+      // {
+      //   if(mobile_already.includes(check))
+      //   {
+      //     throw new Error("Mobile Number Already Exist")
+      //   }
+      // }
+      
+  
+      
+  // https://stackoverflow.com/questions/13580589/mongoose-unique-validation-error-type
+
+
+  // await Camp_User.findOneAndUpdate(
+      //   {_id:user._id},
+      //   req.body,
+      //   { runValidators: true , context: 'query'}
+      // ,(err)=>{
+      //   console.log(err);
+      // })
