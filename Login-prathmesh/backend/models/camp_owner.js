@@ -32,7 +32,7 @@ const campOwnerSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minLength: 7,
+      minlength:7
     },
     mobile: {
       type: String,

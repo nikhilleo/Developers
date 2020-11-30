@@ -5,16 +5,21 @@ const validate = require("validator")
 
 exports.signup = async (req, res) => {
   try {
-      const newUser = await new Camp_Owner(req.body);
-      const gentoken = await newUser.genAuthToken();
-      console.log("gentoken", gentoken);
-      await newUser.save();
-      res.status(201).json({
-        message: "User Created",
-        user: newUser,
-        token: gentoken,
-      });
+    const pass = req.body.password;
+    if(pass.length<7)
+    {
+      throw new Error("Password Invalid")
     }
+    const newUser = await new Camp_Owner(req.body);
+    const gentoken = await newUser.genAuthToken();
+    console.log("gentoken", gentoken);
+    await newUser.save();
+    res.status(201).json({
+      message: "User Created",
+      user: newUser,
+      token: gentoken,
+    });
+  }
    catch (error) {
     console.log(error);
     const msg = error.message;
@@ -27,6 +32,10 @@ exports.signup = async (req, res) => {
     else if(msg_splitted[11]=="email:")
     {
       res.status(409).send("Email Already Exist Please Try New Credentials");
+    }
+    else if(error.message=="Password Invalid")
+    {
+      res.status(409).send("Password Length Must Be Atleast 7 Characters");
     }
     else{
       res.status(409).send(error.message);
@@ -131,6 +140,11 @@ exports.update = async (req,res)=>{
 exports.updatePassword = async(req,res)=>{
   try {
     const user = req.profile;
+    const pass = req.body.password;
+    if(pass.length < 7)
+    {
+      throw new Error("Password Invalid")
+    }
     if(user)
     {
       const newPassword = req.body.password;
@@ -149,6 +163,13 @@ exports.updatePassword = async(req,res)=>{
     if(error.message="No User Found")
     {
       res.status(404).send(error.message);
+    }
+    else if(error.message=="Password Invalid")
+    {
+      res.status(409).send("Password Length Must Be Atleast 7 Characters");
+    }
+    else{
+      res.status(500).send(error.message);
     }
   }
 }
