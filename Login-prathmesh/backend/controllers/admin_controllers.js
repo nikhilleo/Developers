@@ -40,6 +40,11 @@ exports.login = async (req, res) => {
     let eMail = req.body.email;
     let passWord = req.body.password;
     const user = await Admin.findByCredentials(eMail,passWord);
+    if(!user)
+    {
+      throw new Error("No User Found")
+    }
+    console.log(user);
     const token = await user.genAuthToken();
     res.status(200).json({ Message: "Login Successfully", token });
   } catch (error) {

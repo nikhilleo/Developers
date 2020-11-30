@@ -1,27 +1,41 @@
 const axios = require("axios")
 require("dotenv").config();
+const Admin = require("../models/admin");
 
 exports.admin_2fa = async (req, res, next) => {
-    const options = {
-        method: 'POST',
-        url: 'https://d7-verify.p.rapidapi.com/send',
-        headers: {
-            "content-type": process.env.content_type || application / json,
-            "authorization": process.env.authorization,
-            "x-rapidapi-key": process.env.x_rapidapi_key,
-            "x-rapidapi-host": process.env.x_rapidapi_host
-        },
-        data: {
-            expiry: 900,
-            message: 'Your otp code is {code}',
-            mobile: req.body.mobile,
-            sender_id: 'LAMP_A_CAMP'
+    try {
+        let eMail = req.body.email;
+        let passWord = req.body.password;
+        const admin_user = await Admin.findByCredentials(eMail, passWord);
+        if (!admin_user) {
+            throw new Error("No User Found");
         }
-    };
-    var data = {};
-    data = await sendOTP(options, next, res);
-    console.log("IN REQ", data.data);
-    res.send(data.data);
+        const options = {
+            method: 'POST',
+            url: 'https://d7-verify.p.rapidapi.com/send',
+            headers: {
+                "content-type": process.env.content_type || application / json,
+                "authorization": process.env.authorization,
+                "x-rapidapi-key": process.env.x_rapidapi_key,
+                "x-rapidapi-host": process.env.x_rapidapi_host
+            },
+            data: {
+                expiry: 900,
+                message: 'Your otp code is {code}',
+                mobile: req.body.mobile,
+                sender_id: 'LAMP_A_CAMP'
+            }
+        };
+        var data = {};
+        data = await sendOTP(options, next, res);
+        console.log("IN REQ", data.data);
+        res.send(data.data);
+    } catch (error) {
+        if(error.message == "No User Found")
+        {
+            res.status(404).send("No User Found");
+        }
+    }
 }
 
 async function sendOTP(options, next, res) {
