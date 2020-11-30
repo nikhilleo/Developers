@@ -165,7 +165,10 @@ exports.delete_user = async(req,res)=>{
       res.send("No User Found")
     }
   } catch (error) {
-    res.send(error.message);
+    if(error.message="No User To Delete")
+    {
+      res.status(404).send(error.message);
+    }
   }
 }
 
@@ -180,8 +183,12 @@ exports.find_specific_user = async function(req,res){
       res.send({
         message:'user not exits'
       })
+      throw new Error("No User Found")
     }
   } catch (error) {
-    res.send(error.message);
+    if(error.message="No User Found")
+    {
+      res.status(404).send(error.message);
+    }
   }
 }

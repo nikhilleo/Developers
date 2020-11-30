@@ -16,9 +16,23 @@ exports.signup = async (req, res) => {
         token: gentoken,
       });
     }
-  catch (error) {
-    res.status(500).send(error.message);
-  }
+    catch (error) {
+      console.log(error);
+      const msg = error.message;
+      const msg_splitted = msg.split(" ");
+      console.log("Conflict",msg_splitted[11]);
+      if(msg_splitted[11]=="mobile:")
+      {
+        res.status(409).send("Mobile Number Already Exist Please Try New Credentials");
+      }
+      else if(msg_splitted[11]=="email:")
+      {
+        res.status(409).send("Email Already Exist Please Try New Credentials");
+      }
+      else{
+        res.status(409).send(error.message);
+      }
+    }
 };
 
 exports.login = async (req, res) => {
@@ -29,7 +43,10 @@ exports.login = async (req, res) => {
     const token = await user.genAuthToken();
     res.status(200).json({ Message: "Login Successfully", token });
   } catch (error) {
-    res.send(error.message);
+    if(error.message=="No User Found")
+    {
+      res.status(404).send(error.message + " With Given Credentials");
+    }
   }
 };
 
