@@ -105,6 +105,24 @@ body {
   border-color: #ffffff;
 }
 
+.select__user__bodys {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  color: white !important;
+}
+
+.select__user__body {
+  background-image: url("https://images.wallpaperscraft.com/image/tent_camping_travel_135562_1280x720.jpg");
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .select__user__form {
   background-color: #ffffff;
   display: flex;
@@ -126,9 +144,9 @@ body {
 }
 
 .select__user__container {
-  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
   position: relative;
   overflow: hidden;
   width: 768px;
@@ -200,8 +218,7 @@ body {
 }
 
 .select__user__overlay {
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background-image: url(https://images4.alphacoders.com/797/thumb-1920-797952.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -291,13 +308,15 @@ body {
 
 .select__user__button_container {
   background-color: #fff;
+  background-color: rgb(0, 0, 0) !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  position: relative;
   overflow: hidden;
   width: 454px;
   max-width: 100%;
   min-height: 325px;
+  position: absolute !important;
 }
 
 .select__user__description,
@@ -334,6 +353,7 @@ body {
 .select__user__btn .select__user__span {
   position: relative;
   z-index: 1;
+  color: white;
 }
 
 .select__user__btn:hover {

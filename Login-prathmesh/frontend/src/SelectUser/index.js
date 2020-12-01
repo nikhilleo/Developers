@@ -12,7 +12,8 @@ function Index() {
     history.push("/CampUser");
   };
   return (
-    <div>
+    <div className="select__user__bodys">
+      <div className="select__user__body"></div>
       <div class="select__user__button_container" id="select__user__blur">
         <div class="select__user__select__container">
           <h1 className="select__user__description select__user__h1">

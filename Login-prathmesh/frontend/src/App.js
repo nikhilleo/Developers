@@ -27,6 +27,7 @@ import OwnerAccountSettings from "./Owner/OwnerAccountSettings";
 import OwnerInteresteUser from "./Owner/OwnerIntrestedUser";
 import OwnerNavbar from "./Owner/OwnerNavbar";
 import OwnerOrganizedCamps from "./Owner/OwnerOrganizedCamps";
+import Practice from "./Practice";
 
 const { setUser, setOwner, setAdmin } = actions;
 
@@ -86,6 +87,9 @@ const App = (props) => {
               }
             }}
           />
+          <Route exact path="/practice">
+            <Practice />
+          </Route>
           <Route
             exact
             path="/User__Account__settings"
@@ -168,7 +172,7 @@ const App = (props) => {
           />
           <Route
             exact
-            path="/Owner__Organized__Camps"
+            path="/Owner__Created__Camps"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (

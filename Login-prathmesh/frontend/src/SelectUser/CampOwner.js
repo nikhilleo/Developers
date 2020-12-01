@@ -83,7 +83,7 @@ function Index(props) {
           props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.Message);
-          history.push("/Owner__Organized__Camps");
+          history.push("/Owner__Created__Camps");
         })
         .catch((err) => {
           console.log(err.response);

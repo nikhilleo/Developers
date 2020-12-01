@@ -9,10 +9,10 @@ function Navbar() {
           <div className="navbar__menu__home">
             <li className="navbar__li">
               <Link
-                to="/Owner__Organized__Camps"
+                to="/Owner__Created__Camps"
                 style={{ textDecoration: "none" }}
               >
-                <span className="navbar__span">Booking</span>
+                <span className="navbar__span">Create Camps</span>
               </Link>
             </li>
             <li className="navbar__li">
@@ -20,7 +20,7 @@ function Navbar() {
                 to="Owner__Intrested__User"
                 style={{ textDecoration: "none" }}
               >
-                <span className="navbar__span">Created Camp Sites</span>
+                <span className="navbar__span">Intreasted People</span>
               </Link>
             </li>
             <li className="navbar__li">
