@@ -249,3 +249,19 @@ exports.create_a_camp = async(req,res)=>{
     }
   }
 }
+
+// exports.upload  = async (req,res) =>{   
+//   const name = uuid;                        
+//   const user = req.profile;
+//   if(req.file.mimetype=="image/jpeg"){                  //same ass video story but this is for image type story  
+//     const pic_story = new Story({
+//         title:req.file.originalname                       
+//     })
+//     user.stories.push(pic_story._id);
+//     user.save();
+//     pic_story.save();
+//     res.json({"message":"Uploaded","Image":req.file});
+// }
+// }
+
+
