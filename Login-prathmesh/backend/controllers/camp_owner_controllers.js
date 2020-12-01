@@ -3,6 +3,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const validate = require("validator")
 const Camps = require("../models/camps");
+const imgbbUploader = require('imgbb-uploader');
+const fs = require("fs")
+
 
 
 exports.signup = async (req, res) => {
@@ -45,6 +48,8 @@ exports.signup = async (req, res) => {
   }
 };
 
+
+
 exports.login = async (req, res) => {
   try {
     let eMail = req.body.email;
@@ -64,9 +69,12 @@ exports.login = async (req, res) => {
   }
 };
 
+
+
 exports.auth = async (req, res) => {
   res.send(req.profile);
 };
+
 
 
 exports.update = async (req,res)=>{
@@ -139,6 +147,8 @@ exports.update = async (req,res)=>{
   }
 }
 
+
+
 exports.updatePassword = async(req,res)=>{
   try {
     const user = req.profile;
@@ -177,6 +187,7 @@ exports.updatePassword = async(req,res)=>{
 }
 
 
+
 exports.delete_user = async(req,res)=>{
   try {
     const user = req.profile;
@@ -200,6 +211,7 @@ exports.delete_user = async(req,res)=>{
 }
 
 
+
 exports.find_specific_user = async function(req,res){
   try {
     const user = req.profile;
@@ -219,6 +231,8 @@ exports.find_specific_user = async function(req,res){
     }
   }
 }
+
+
 
 exports.create_a_camp = async(req,res)=>{
   try {
@@ -250,18 +264,42 @@ exports.create_a_camp = async(req,res)=>{
   }
 }
 
-// exports.upload  = async (req,res) =>{   
-//   const name = uuid;                        
-//   const user = req.profile;
-//   if(req.file.mimetype=="image/jpeg"){                  //same ass video story but this is for image type story  
-//     const pic_story = new Story({
-//         title:req.file.originalname                       
-//     })
-//     user.stories.push(pic_story._id);
-//     user.save();
-//     pic_story.save();
-//     res.json({"message":"Uploaded","Image":req.file});
-// }
-// }
 
 
+exports.upload_image =  async(req, res) => {
+  // console.log(req.file);
+  // console.log(path)
+  try {
+  // const c_name = req.body.camp_name;
+  // const camp = await Camps.findOne({camp_name:c_name});
+  const camp = await Camps.findOne({camp_name:"jAYS Camp"});
+  // console.log(camp);
+  const path = req.file.path
+  const result = await imgbbUploader(process.env.IMGBB_API_KEY,path)
+  console.log(result)
+  for(let i=0;i<camp.camp_images.length;i++)
+  {
+    if(camp.camp_images[i]==result.url)
+    {
+      throw new Error("Image Already Uploaded Try Another Image");
+    }  
+  }
+  camp.camp_images.push(result.url);
+  await camp.save();
+  fs.unlink(path, (error) => {
+    if (error) {
+      console.error(err.message)
+      res.send(err.message);
+    }    
+  })
+  res.send("upload")
+  } catch (error) {
+    if(error.message=="Image Already Uploaded Try Another Image")
+    {
+      res.status(409).send("Image Already Uploaded Try Another Image");
+    }
+    else{
+      res.send(error.message);
+    }
+  }
+}

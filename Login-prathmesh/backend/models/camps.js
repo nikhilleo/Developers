@@ -72,7 +72,6 @@ const campSchema = new mongoose.Schema({
     camp_owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Camp_Owner",
-        default:""
     },
     camp_images:{
         type:Array,
