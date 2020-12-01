@@ -1,0 +1,46 @@
+.verfiy__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 44vh;
+  width: 55%;
+  border-radius: 38px;
+  text-align: center;
+  background: white;
+}
+
+.verfiy__form > span {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.verfiy__form > span > input {
+  width: 71%;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.verfiy__form > button {
+  align-self: center;
+  border-radius: 20px;
+  border: 1px solid #2fd398;
+  background-color: #2fd398;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  text-align: center !important;
+}
+
+.verfiy__form > button:hover {
+  background: transparent;
+  color: black;
+  border: 1px solid;
+}

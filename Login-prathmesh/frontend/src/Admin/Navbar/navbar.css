@@ -1,18 +1,78 @@
-.navbar__span {
-  font-size: 1.5rem;
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:700);
+body {
+  background-color: #f0f0f0;
+  font-family: "Ubuntu", sans-serif;
 }
-.navbar__menu {
-  margin-left: 18vw;
+ul {
+  list-style-type: none;
+  margin: 0;
+  text-align: center;
+  margin-top: 10%;
 }
+ul li {
+  display: inline-block;
+  margin: 0 20px;
+}
+a {
+  font-size: 20px;
+  color: #584e4a;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-bottom: 8px;
+}
+a:before,
+a:after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: black;
+  color: red;
+}
+.navbar__container__home .navbar__menu__home .navbar__li:hover .navbar__span {
+  color: black;
+}
+
+a:before {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s;
+}
+a:after {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.2s;
+}
+a:hover:before,
+a:focus:before,
+a:hover:after,
+a:focus:after {
+  opacity: 1;
+  transform: translateY(0);
+}
+a:hover:before,
+a:focus:before {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.2s;
+}
+a:hover:after,
+a:focus:after {
+  transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0s 0.2s;
+}
+
 .navbar__container__home {
-  width: 100vw;
+  width: 80%;
   height: auto;
   line-height: 80px;
   position: fixed;
-  background: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-  bottom: 91vh;
-  left: 0vw;
+  background: var(--background-color);
+  bottom: 76vh;
+  text-decoration: none;
 }
 
 .navbar__container__home .navbar__menu__home {
@@ -26,44 +86,9 @@
   cursor: pointer;
   user-select: none;
 }
+
 .navbar__container__home .navbar__menu__home .navbar__li .navbar__span {
-  color: #1d1f20;
+  color: white;
   font-weight: bold;
   transition: color 0.3s ease;
-}
-.navbar__container__home .navbar__menu__home .navbar__li:hover .navbar__span {
-  color: #f23b26;
-}
-.navbar__container__home .navbar__menu__home .navbar__line {
-  position: absolute;
-  height: 5px;
-  width: 20%;
-  background: #f23b26;
-  left: 12vw;
-  bottom: 0;
-  transition: all 0.3s ease;
-}
-.navbar__container__home
-  .navbar__menu__home
-  .navbar__li:nth-child(2):hover
-  ~ .navbar__line {
-  left: 38vw;
-}
-.navbar__container__home
-  .navbar__menu__home
-  .navbar__li:nth-child(3):hover
-  ~ .navbar__line {
-  left: 66vw;
-}
-.navbar__container__home
-  .navbar__menu__home
-  .navbar__li:nth-child(4):hover
-  ~ .navbar__line {
-  left: 60%;
-}
-.navbar__container__home
-  .navbar__menu__home
-  .navbar__li:nth-child(5):hover
-  ~ .navbar__line {
-  left: 80%;
 }

@@ -6,7 +6,7 @@
   background: none;
   color: black;
   padding: 6px;
-  width: 17vw;
+  width: 7vw;
   margin: 1vh;
 }
 
@@ -36,7 +36,7 @@
   padding-bottom: 12px;
 }
 
-#Account__setting__popup {
+#popup {
   position: fixed;
   top: 40%;
   left: 50%;
@@ -47,18 +47,7 @@
   transition: 0.5s;
 }
 
-#confirm__delete__popup {
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.5s;
-}
-
-#Account__setting__popup.active {
+#popup.active {
   background-color: white;
   top: 50%;
   visibility: visible;
@@ -67,29 +56,7 @@
   padding: 49px;
 }
 
-.confirm__delete > span {
-  font-size: 20px;
-  font-weight: bolder;
-}
-
-.selected__input__form__button {
-  background: none;
-  color: black;
-  padding: 6px;
-  width: 17vw;
-  margin: 1vh;
-}
-
-#confirm__delete__popup.active__delete {
-  background-color: white;
-  top: 50%;
-  visibility: visible;
-  opacity: 1;
-  transition: 0.5s;
-  padding: 49px;
-}
-
-.sub__setting#Account__setting__blur.active {
+.sub__setting#blur.active {
   filter: blur(20px);
   pointer-events: none;
   user-select: none;

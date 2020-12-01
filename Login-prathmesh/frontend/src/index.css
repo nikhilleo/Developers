@@ -5,6 +5,10 @@ body {
   margin: 0;
 }
 
+:root {
+  --background-color: #5e5e80;
+  --nav-line: 10vw;
+}
 body {
   margin: 0 !important;
   padding: 0 !important;

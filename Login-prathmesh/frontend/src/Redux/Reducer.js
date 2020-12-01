@@ -5,7 +5,6 @@ const initialUserState = {
   user: undefined,
 };
 const user_reducer = (state = initialUserState, actions) => {
-  console.log(actions.payload);
   switch (actions.type) {
     case action.SET_USER:
       return {
@@ -13,7 +12,27 @@ const user_reducer = (state = initialUserState, actions) => {
       };
     case action.CLEAR_USER:
       return {
+        user: undefined,
         ...state,
+      };
+    default:
+      return state;
+  }
+};
+
+const initialCurrentUserState = {
+  current__user: undefined,
+};
+const current__user__reducer = (state = initialCurrentUserState, actions) => {
+  console.log(actions);
+  switch (actions.type) {
+    case action.CURRENT__USER:
+      return {
+        user: actions.payload,
+      };
+    case action.CLEAR__CURRENT__USER:
+      return {
+        current__user: undefined,
       };
     default:
       return state;
@@ -24,7 +43,6 @@ const initialAdminState = {
   admin: undefined,
 };
 const admin_reducer = (state = initialAdminState, actions) => {
-  console.log(actions.payload);
   switch (actions.type) {
     case action.SET_ADMIN:
       return {
@@ -32,6 +50,7 @@ const admin_reducer = (state = initialAdminState, actions) => {
       };
     case action.CLEAR_ADMIN:
       return {
+        admin: undefined,
         ...state,
       };
     default:
@@ -43,7 +62,6 @@ const initialOwnerState = {
   owner: undefined,
 };
 const owner_reducer = (state = initialOwnerState, actions) => {
-  console.log(actions.payload);
   switch (actions.type) {
     case action.SET_OWNER:
       return {
@@ -51,6 +69,7 @@ const owner_reducer = (state = initialOwnerState, actions) => {
       };
     case action.CLEAR_OWNER:
       return {
+        owner: undefined,
         ...state,
       };
     default:
@@ -62,6 +81,7 @@ const rootReducer = combineReducers({
   user: user_reducer,
   admin: admin_reducer,
   owner: owner_reducer,
+  current__user: current__user__reducer,
 });
 
 export default rootReducer;

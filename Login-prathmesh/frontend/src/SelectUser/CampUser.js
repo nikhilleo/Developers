@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import actions from "../Redux/Action";
 import axios from "../axios";
 
-const { setUser } = actions;
+const { setUser, setCurrentUser } = actions;
 
 function Index(props) {
   const history = useHistory();
@@ -59,10 +59,11 @@ function Index(props) {
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.message);
-          history.push("/loggedInUser");
+          history.push("/User__Booking");
         })
         .catch((err) => {
           console.log("errordas", err.response);
+          alert(err.response.data);
         });
     }
     if (type === "signIn") {
@@ -77,10 +78,10 @@ function Index(props) {
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.Message);
-          history.push("/loggedInUser");
+          history.push("/User__Booking");
         })
         .catch((err) => {
-          console.log(err.response.data);
+          console.log(err.response);
           alert(err.response.data);
         });
     }

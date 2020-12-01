@@ -1,11 +1,12 @@
-const Camp_Owner = require("../models/camp_owner");
+const Admin = require("../models/admin");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Camp_Owner = require("../models/camp_owner");
 const validate = require("validator");
 
 exports.signup = async (req, res) => {
   try {
-    const newUser = await new Camp_Owner(req.body);
+    const newUser = await new Admin(req.body);
     const gentoken = await newUser.genAuthToken();
     console.log("gentoken", gentoken);
     await newUser.save();
@@ -24,6 +25,7 @@ exports.signup = async (req, res) => {
         .status(409)
         .send("Mobile Number Already Exist Please Try New Credentials");
     } else if (msg_splitted[11] == "email:") {
+      console.log("executed2");
       res.status(409).send("Email Already Exist Please Try New Credentials");
     } else {
       res.status(409).send(error.message);
@@ -35,10 +37,11 @@ exports.login = async (req, res) => {
   try {
     let eMail = req.body.email;
     let passWord = req.body.password;
-    const user = await Camp_Owner.findByCredentials(eMail, passWord);
+    const user = await Admin.findByCredentials(eMail, passWord);
     if (!user) {
       throw new Error("No User Found");
     }
+    console.log(user);
     const token = await user.genAuthToken();
     res.status(200).json({ Message: "Login Successfully", token, user: user });
   } catch (error) {
@@ -68,7 +71,7 @@ exports.update = async (req, res) => {
           throw new Error("Invalid Mobile Number");
         }
       }
-      const mobile_already = await Camp_Owner.find({ mobile: req.body.mobile });
+      const mobile_already = await Admin.find({ mobile: req.body.mobile });
       if (mobile_already[0]) {
         console.log(
           "-------------------------------------------------------",
@@ -76,7 +79,7 @@ exports.update = async (req, res) => {
         );
         throw new Error("Mobile Number Already Exist");
       }
-      const email_already = await Camp_Owner.find({ email: req.body.email });
+      const email_already = await Admin.find({ email: req.body.email });
       {
         if (email_already[0]) {
           console.log(
@@ -87,12 +90,12 @@ exports.update = async (req, res) => {
         }
       }
       console.log("FrOM UPDATE", user);
-      const u = await Camp_Owner.findById({ _id: user._id }); //finding and updating
+      const u = await Admin.findById({ _id: user._id }); //finding and updating
       console.log(u);
       await u.updateOne(req.body, { runValidators: true });
       await u.save();
 
-      const updated = await Camp_Owner.findById({ _id: user.id }); //finding Updated User
+      const updated = await Admin.findById({ _id: user.id }); //finding Updated User
       const token = await updated.genAuthToken();
       res.json({ updated, token });
     } else {
@@ -119,8 +122,8 @@ exports.updatePassword = async (req, res) => {
     if (user) {
       const newPassword = req.body.password;
       console.log(user.password);
-      const u = await Camp_Owner.findOneAndUpdate({ _id: user._id }, req.body); //finding and updating
-      const updated = await Camp_Owner.findById({ _id: user.id }); //finding Updated User
+      const u = await Admin.findOneAndUpdate({ _id: user._id }, req.body); //finding and updating
+      const updated = await Admin.findById({ _id: user.id }); //finding Updated User
       await updated.save();
       res.send(updated);
     } else {
@@ -133,39 +136,24 @@ exports.updatePassword = async (req, res) => {
   }
 };
 
-exports.delete_user = async (req, res) => {
+exports.getallcamp_owners = async function (req, res) {
   try {
-    const user = req.profile;
-    if (user) {
-      const del_user = await Camp_Owner.findByIdAndRemove({ _id: user._id });
-      console.log(del_user);
-      res.json({
-        message: "user deleted",
-      });
-    } else {
-      res.send("No User Found");
-    }
+    const users = await Camp_Owner.find({});
+    res.send(users);
   } catch (error) {
-    if ((error.message = "No User To Delete")) {
-      res.status(404).send(error.message);
-    }
+    res.send(error.message);
   }
 };
 
-exports.find_specific_user = async function (req, res) {
+exports.delete_camp_owner = async function (req, res) {
   try {
-    const user = req.profile;
-    if (user) {
-      res.send(user);
-    } else {
-      res.send({
-        message: "user not exits",
-      });
-      throw new Error("No User Found");
-    }
+    const _id = req.body._id;
+    const deleted = await Camp_Owner.findByIdAndRemove(_id);
+    deleted.save();
+    res.json({
+      message: "camp owner deleted",
+    });
   } catch (error) {
-    if ((error.message = "No User Found")) {
-      res.status(404).send(error.message);
-    }
+    res.send(error.message);
   }
 };

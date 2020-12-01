@@ -12,9 +12,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-
   opacity: 0;
   transition: 0.5s;
+}
+
+#form__verify {
+  display: flex;
+  justify-content: center;
 }
 
 #select__user__popups {

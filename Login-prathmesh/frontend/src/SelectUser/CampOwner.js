@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import actions from "../Redux/Action";
 import axios from "../axios";
 
-const { setOwner } = actions;
+const { setOwner, setCurrentUser } = actions;
 
 function Index(props) {
   const history = useHistory();
@@ -26,6 +26,7 @@ function Index(props) {
     mobile: "",
     eMail: "",
     Password: "",
+    cycling: "",
   });
 
   const handleClick = (e, type) => {
@@ -57,12 +58,15 @@ function Index(props) {
         .then((res) => {
           console.log(res);
           props.setOwner(res.data.user);
+          console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
+          props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.message);
-          history.push("/loggedInUser");
+          history.push("/Owner__Organized__Camps");
         })
         .catch((err) => {
           console.log(err.response);
+          alert(err.response.data);
         });
     }
     if (type === "signIn") {
@@ -75,12 +79,15 @@ function Index(props) {
         .then((res) => {
           console.log(res);
           props.setOwner(res.data.user);
+          console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
+          props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.Message);
-          history.push("/loggedInUser");
+          history.push("/Owner__Organized__Camps");
         })
         .catch((err) => {
-          alert(err.response);
+          console.log(err.response);
+          alert(err.response.data);
         });
       console.log(res);
     }
@@ -140,6 +147,7 @@ function Index(props) {
                 <span className="select__user__span">
                   or use your email for registration
                 </span>
+                <input type="checkbox" name="cycling" onChange={handleChange} />
                 <input
                   className="select__user__input"
                   type="text"
@@ -297,6 +305,9 @@ function mapDispatchToProps(dispatch) {
   return {
     setOwner: (data) => {
       dispatch(setOwner(data));
+    },
+    setCurrentUser: (data) => {
+      dispatch(setCurrentUser(data));
     },
   };
 }

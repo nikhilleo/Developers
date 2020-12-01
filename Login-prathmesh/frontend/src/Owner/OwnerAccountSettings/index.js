@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
 import { connect } from "react-redux";
 import actions from "../../Redux/Action";
 import axios from "../../axios";
+import "./style.css";
 
 const { clearUser, clearOwner, clearAdmin } = actions;
 
@@ -271,6 +271,7 @@ function Index(props) {
         <button id="logout" onClick={handleLogOut}>
           logout
         </button>
+
         <br />
         <label>First Name</label>
         <br />

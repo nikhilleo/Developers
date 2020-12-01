@@ -15,4 +15,6 @@ router.put('/updatepassword', auth , owner_controllers.updatePassword);
 
 router.delete('/delete_user', auth , owner_controllers.delete_user);
 
+router.get('/getuser', auth , owner_controllers.find_specific_user);
+
 module.exports = router;

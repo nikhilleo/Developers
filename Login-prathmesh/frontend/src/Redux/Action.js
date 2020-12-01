@@ -8,6 +8,9 @@ const actions = {
   SET_OWNER: "SET_OWNER",
   CLEAR_OWNER: "CLEAR_OWNER",
 
+  CURRENT__USER: "CURRENT__USER",
+  CLEAR__CURRENT__USER: "CLEAR__CURRENT__USER",
+
   setUser: (data) => {
     return {
       type: actions.SET_USER,
@@ -15,9 +18,22 @@ const actions = {
     };
   },
 
-  clearUser: (data) => {
+  clearUser: () => {
     return {
       type: actions.SET_USER,
+    };
+  },
+
+  setCurrentUser: (data) => {
+    return {
+      type: actions.CURRENT__USER,
+      payload: data,
+    };
+  },
+
+  clearCurrentUser: () => {
+    return {
+      type: actions.CURRENT__USER,
     };
   },
 
@@ -28,7 +44,7 @@ const actions = {
     };
   },
 
-  clearOwner: (data) => {
+  clearOwner: () => {
     return {
       type: actions.SET_OWNER,
     };
@@ -41,7 +57,7 @@ const actions = {
     };
   },
 
-  clearAdmin: (data) => {
+  clearAdmin: () => {
     return {
       type: actions.SET_ADMIN,
     };

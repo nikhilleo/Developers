@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background: url("https://images6.alphacoders.com/708/708939.jpg");
+}
+
 #select__user__popup {
   position: fixed;
   top: 40%;
@@ -118,6 +122,7 @@ body {
   margin: 8px 0;
   width: 92%;
   border-radius: 20px;
+  text-align: center;
 }
 
 .select__user__container {

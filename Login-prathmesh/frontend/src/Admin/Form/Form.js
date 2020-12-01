@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Form.css";
 import axios from "../../axios";
+import { connect } from "react-redux";
+import actions from "../../Redux/Action";
 
-function Index() {
+const { setAdmin } = actions;
+
+function Index(props) {
   const history = useHistory();
   const handleClicks = () => {
     // var blur = document.getElementById("select__user__blur");
@@ -49,21 +53,48 @@ function Index() {
     e.preventDefault();
     if (type === "signUp") {
       await axios
-        .post("/signup", input)
+        .post("/admin/signup", input)
         .then((res) => {
           console.log(res);
+          props.setAdmin(res.data.user);
+          localStorage.setItem("auth-token", res.data.token);
+          alert(res.data.message);
+          history.push("/Admin__Booking");
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response);
+          alert(err.response.data);
         });
     }
     if (type === "signIn") {
       let { eMail, Password } = input;
-      let res = await axios.post("/login", {
-        email: eMail,
-        password: Password,
-      });
-      console.log(res);
+
+      history.push("/Verifying");
+      await axios
+        .post("/admin/login", {
+          email: eMail,
+          password: Password,
+          mobile: "918421723980",
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.status == "open") {
+            props.setAdmin({
+              email: eMail,
+              password: Password,
+              otp_id: res.data.otp_id,
+            });
+            history.push("/Verifying");
+          }
+          // props.setAdmin(res.data.user);
+          // localStorage.setItem("auth-token", res.data.token);
+          // alert(res.data.message);
+          // history.push("/loggedInUser");
+        })
+        .catch((err) => {
+          console.log(err.response);
+          alert(err.response.data);
+        });
     }
     setInput({
       firstname: "",
@@ -267,4 +298,19 @@ function Index() {
   );
 }
 
-export default Index;
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    admin: state.admin,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setAdmin: (data) => {
+      dispatch(setAdmin(data));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

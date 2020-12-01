@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
 import { connect } from "react-redux";
 import actions from "../../Redux/Action";
+import { Link, useHistory } from "react-router-dom";
 import axios from "../../axios";
+import "./style.css";
 
 const { clearUser, clearOwner, clearAdmin } = actions;
 
@@ -11,6 +12,8 @@ function Index(props) {
   const [confirm, setConfirm] = useState();
   var [change, setChange] = useState("");
   var [client, setClient] = useState();
+
+  const history = useHistory();
 
   useEffect(() => {
     if (props.admin.user) {
@@ -260,148 +263,153 @@ function Index(props) {
     props.clearAdmin();
     props.clearOwner();
     props.clearUser();
+    history.push("/");
   };
 
   return (
-    <div className="Account__setting">
-      <div className="sub__setting" id="Account__setting__blur">
-        <span style={{ fontSize: 20, fontWeight: "bolder" }}>
-          Account Setting
-        </span>
-        <button id="logout" onClick={handleLogOut}>
-          logout
-        </button>
-        <br />
-        <label>First Name</label>
-        <br />
-        <input
-          value={client?.user?.firstname}
-          name="firstname"
-          onChange={handleChange}
-        />
-        <button onClick={(e) => handleClick(e, "firstname")}>change</button>
-        <br />
-        <label>Last Name</label>
-        <br />
-        <input
-          value={client?.user?.lastname}
-          name="lastname"
-          onChange={handleChange}
-        />
-        <button onClick={(e) => handleClick(e, "lastname")}>change</button>
-        <br />
-        <label>Email</label>
-        <br />
-        <input
-          value={client?.user?.email}
-          name="email"
-          onChange={handleChange}
-        />
-        <button onClick={(e) => handleClick(e, "email")}>change</button>
-        <br />
-        <label>Password</label>
-        <br />
-        <input type="password" value={"password"} />
-        <button onClick={(e) => handleClick(e, "password")}>change</button>
-        <br />
-        <label>Mobile no</label>
-        <br />
-        <input
-          value={client?.user?.mobile}
-          name="mobile"
-          onChange={handleChange}
-        />
-        <button onClick={(e) => handleClick(e, "mobile")}>change</button>
-        <br />
-        <label>Address</label>
-        <br />
-        <input
-          value={client?.user?.address}
-          name="address"
-          onChange={handleChange}
-        />
-        <button onClick={(e) => handleClick(e, "address")}>change</button>
-        <br />
-        <button id="delete" onClick={handleDeleteClick}>
-          Delete My Account
-        </button>
-      </div>
-      <div className="selected__input" id="Account__setting__popup">
-        {change ? (
-          <>
-            <form className="selected__input__form" onSubmit={handleSubmit}>
-              <span
-                onClick={(e) => {
-                  handleClick(e, "close__update__form");
-                }}
+    <div>
+      <div className="Account__setting">
+        <div className="sub__setting" id="Account__setting__blur">
+          <span style={{ fontSize: 20, fontWeight: "bolder" }}>
+            Account Setting
+          </span>
+          <button id="logout" onClick={handleLogOut}>
+            logout
+          </button>
+
+          <br />
+          <label>First Name</label>
+          <br />
+          <input
+            value={client?.user?.firstname}
+            name="firstname"
+            onChange={handleChange}
+          />
+          <button onClick={(e) => handleClick(e, "firstname")}>change</button>
+          <br />
+          <label>Last Name</label>
+          <br />
+          <input
+            value={client?.user?.lastname}
+            name="lastname"
+            onChange={handleChange}
+          />
+          <button onClick={(e) => handleClick(e, "lastname")}>change</button>
+          <br />
+          <label>Email</label>
+          <br />
+          <input
+            value={client?.user?.email}
+            name="email"
+            onChange={handleChange}
+          />
+          <button onClick={(e) => handleClick(e, "email")}>change</button>
+          <br />
+          <label>Password</label>
+          <br />
+          <input type="password" value={"password"} />
+          <button onClick={(e) => handleClick(e, "password")}>change</button>
+          <br />
+          <label>Mobile no</label>
+          <br />
+          <input
+            value={client?.user?.mobile}
+            name="mobile"
+            onChange={handleChange}
+          />
+          <button onClick={(e) => handleClick(e, "mobile")}>change</button>
+          <br />
+          <label>Address</label>
+          <br />
+          <input
+            value={client?.user?.address}
+            name="address"
+            onChange={handleChange}
+          />
+          <button onClick={(e) => handleClick(e, "address")}>change</button>
+          <br />
+          <button id="delete" onClick={handleDeleteClick}>
+            Delete My Account
+          </button>
+        </div>
+        <div className="selected__input" id="Account__setting__popup">
+          {change ? (
+            <>
+              <form className="selected__input__form" onSubmit={handleSubmit}>
+                <span
+                  onClick={(e) => {
+                    handleClick(e, "close__update__form");
+                  }}
+                  style={{ fontWeight: "bolder", fontSize: "20px" }}
+                >
+                  X{" "}
+                </span>
+                <label>enter new {change}</label>
+                <br />
+                <input
+                  value={input.firstname}
+                  type="text"
+                  name="firstname"
+                  onChange={handleChange}
+                />
+                <br />
+                <br />
+                <button className="selected__input__form__button" type="submit">
+                  update
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <form
+                className="selected__input__form"
+                onSubmit={handlePasswordSubmit}
               >
-                X{" "}
-              </span>
-              <label>enter new {change}</label>
-              <br />
-              <input
-                value={input.firstname}
-                type="text"
-                name="firstname"
-                onChange={handleChange}
-              />
-              <br />
-              <br />
-              <button className="selected__input__form__button" type="submit">
-                update
-              </button>
-            </form>
-          </>
-        ) : (
-          <>
-            <form
-              className="selected__input__form"
-              onSubmit={handlePasswordSubmit}
-            >
-              <span onClick={handleClick}>X </span>
+                <span onClick={handleClick}>X </span>
 
-              <br />
-              <label>enter new Password</label>
-              <br />
-              <input
-                type="password"
-                name="password"
-                onChange={(e) => {
-                  handlePasswordChange(e, 1);
-                }}
-                // value={input.password}
-              />
-              <br />
-              <label>confirm the password</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                onChange={(e) => {
-                  handlePasswordChange(e, 2);
-                }}
-                // value={input.confirmPassword}
-              />
-              <br />
+                <br />
+                <label>enter new Password</label>
+                <br />
+                <input
+                  type="password"
+                  name="password"
+                  onChange={(e) => {
+                    handlePasswordChange(e, 1);
+                  }}
+                  // value={input.password}
+                />
+                <br />
+                <label>confirm the password</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  onChange={(e) => {
+                    handlePasswordChange(e, 2);
+                  }}
+                  // value={input.confirmPassword}
+                />
+                <br />
 
-              <button className="selected__input__form__button" type="submit">
-                change password
-              </button>
-            </form>
-          </>
-        )}
-      </div>
-      <div className="confirm__delete" id="confirm__delete__popup">
-        <span onClick={handleDeleteClick}>X </span>
-        <h1>CONFIRM DELETE ACCOUNT</h1>
-        <br />
-        <label>This will erase all your data from our server, Confirm?</label>
-        <button
-          className="selected__input__form__button"
-          onClick={deleteAccount}
-          type="submit"
-        >
-          delete
-        </button>
+                <button className="selected__input__form__button" type="submit">
+                  change password
+                </button>
+              </form>
+            </>
+          )}
+        </div>
+        <div className="confirm__delete" id="confirm__delete__popup">
+          <span onClick={handleDeleteClick}>X </span>
+          <h1>CONFIRM DELETE ACCOUNT</h1>
+          <br />
+          <label>This will erase all your data from our server, Confirm?</label>
+          <button
+            className="selected__input__form__button"
+            onClick={deleteAccount}
+            type="submit"
+          >
+            delete
+          </button>
+        </div>
       </div>
     </div>
   );

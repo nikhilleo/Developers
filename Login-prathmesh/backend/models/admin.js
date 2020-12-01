@@ -3,8 +3,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
-const camperSchema = new mongoose.Schema(
+const adminSchema = new mongoose.Schema(
   {
     firstname: {
       type: String,
@@ -46,18 +45,12 @@ const camperSchema = new mongoose.Schema(
         }
       },
     },
-    address: {
-      type: String,
-      required: true,
-      maxlength: 500,
-      trim: true,
-    },
   },
   { timestamp: true }
 );
 
-camperSchema.pre("save", async function (next) {
-  const user = this;
+adminSchema.pre("save", async function (next) {
+const user = this;
   console.log("HELLO", user);
   if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 14);
@@ -66,11 +59,11 @@ camperSchema.pre("save", async function (next) {
 });
 
 
-camperSchema.pre('findOneAndUpdate', async function () {
+adminSchema.pre('findOneAndUpdate', async function () {
   this._update.password = await bcrypt.hash(this._update.password, 10)
 });
 
-camperSchema.methods.genAuthToken = async function () {
+adminSchema.methods.genAuthToken = async function () {
   const user = this;
   console.log(user);
   const token = await jwt.sign({_id: user._id },process.env.JWT_KEY,{ expiresIn: 3600 });
@@ -78,8 +71,8 @@ camperSchema.methods.genAuthToken = async function () {
 };
 
 
-camperSchema.statics.findByCredentials = async function(email,pass){
-  const user = await Camper.findOne({email:email});
+adminSchema.statics.findByCredentials = async function(email,pass){
+  const user = await Admin.findOne({email:email});
   if(!user){
     throw new Error("No User Found");
   }
@@ -94,6 +87,5 @@ camperSchema.statics.findByCredentials = async function(email,pass){
   }
 }
 
-
-const Camper = mongoose.model("Camper", camperSchema);
-module.exports = Camper;
+const Admin = mongoose.model("Admin", adminSchema);
+module.exports = Admin;

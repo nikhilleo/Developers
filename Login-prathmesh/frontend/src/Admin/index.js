@@ -5,12 +5,7 @@ import Footer from "./Footer/Footer";
 import "./style.css";
 
 function Index() {
-  return (
-    <div>
-      <Home />
-      <Footer />
-    </div>
-  );
+  return <div>hello</div>;
 }
 
 export default Index;
