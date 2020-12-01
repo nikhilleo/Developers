@@ -2,6 +2,8 @@ const Camp_Owner = require("../models/camp_owner");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const validate = require("validator")
+const Camps = require("../models/camps");
+
 
 exports.signup = async (req, res) => {
   try {
@@ -214,6 +216,36 @@ exports.find_specific_user = async function(req,res){
     if(error.message="No User Found")
     {
       res.status(404).send(error.message);
+    }
+  }
+}
+
+exports.create_a_camp = async(req,res)=>{
+  try {
+    const camp_o = req.profile
+    if(!camp_o)
+    {
+      throw new Error("No User Found")
+    }
+    req.body.camp_owner = camp_o._id
+    const camp = await new Camps(req.body)
+    await camp.save();
+    res.status(201).json({
+      message:"Camp Created",
+      camp
+    });
+  } 
+  catch (error) {
+    if(error.message=="No User Found")
+    {
+      res.status(404).send("No Owner Found");
+    }
+    else if(error.message == "Camps validation failed: camp_desc: Path `camp_desc` (`aaaa`) is shorter than the minimum allowed length (50).")
+    {
+      res.status(409).send("Description Must Be Atleast 50 Characters")
+    }
+    else{
+      res.status(409).send(error.message);
     }
   }
 }

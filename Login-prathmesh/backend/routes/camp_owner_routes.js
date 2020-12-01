@@ -17,4 +17,6 @@ router.delete('/delete_user', auth , owner_controllers.delete_user);
 
 router.get('/getuser', auth , owner_controllers.find_specific_user);
 
+router.post('/create_camp',auth , owner_controllers.create_a_camp);
+
 module.exports = router;
