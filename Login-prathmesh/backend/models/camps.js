@@ -52,10 +52,9 @@ const campSchema = new mongoose.Schema({
         default:[]
 
     },
-    accomodations: {
-        type:Array,
-        default:[]
-    },
+    accomodations: [{
+        type:Object,
+    }],
     camp_owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Camp_Owner",
@@ -71,6 +70,21 @@ const campSchema = new mongoose.Schema({
         required: true
     },
     manger_contact:{
+        type:String,
+        trim:true,
+        required:true
+    },
+    check_in:{
+        type:String,
+        trim:true,
+        required:true
+    },
+    check_out:{
+        type:String,
+        trim:true,
+        required:true
+    },
+    cancellation_policy:{
         type:String,
         trim:true,
         required:true
