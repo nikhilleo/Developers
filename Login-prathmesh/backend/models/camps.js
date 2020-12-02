@@ -52,23 +52,10 @@ const campSchema = new mongoose.Schema({
         default:[]
 
     },
-    accomodations: [{
-        type_of_acc: {
-            type: String,
-            trim: true,
-            required: true
-        },
-        avail:{
-            type:String,
-            trim:true,
-            required:true,
-        },
-        price:{
-            type:String,
-            trim:true,
-            required:true,
-        }
-    }],
+    accomodations: {
+        type:Array,
+        default:[]
+    },
     camp_owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Camp_Owner",
@@ -87,6 +74,11 @@ const campSchema = new mongoose.Schema({
         type:String,
         trim:true,
         required:true
+    },
+    status_of_camp:{
+        type:String,
+        trim:true,
+        default:"Pending"
     }
 })
 
