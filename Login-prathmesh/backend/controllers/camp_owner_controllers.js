@@ -316,61 +316,70 @@ exports.create_a_camp = async(req,res)=>{
 
 
 exports.upload_image =  async(req, res) => {
-  // console.log(req.file);
+  console.log(req.files);
+  // res.send("All Files");
   // console.log(path)
+for(let i=0;i<req.files.length;i++)
+{
   try {
-  // const c_name = req.body.camp_name;
-  // const camp = await Camps.findOne({camp_name:c_name});
-  const camp = await Camps.findOne({camp_name:"dadaa3113gags1"});
-  // console.log(camp);
-  if(!camp)
-  {
-    throw new Error("null");
-  }
-  const path = req.file.path
-  const result = await imgbbUploader(process.env.IMGBB_API_KEY,path)
-  console.log(result)
-  for(let i=0;i<camp.camp_images.length;i++)
-  {
-    if(camp.camp_images[i]==result.url)
+    // const c_name = req.body.camp_name;
+    // const camp = await Camps.findOne({camp_name:c_name});
+    const camp = await Camps.findOne({camp_name:"dadaagags1"});
+    // console.log(camp);
+    if(!camp)
     {
-      throw new Error("Image Already Uploaded Try Another Image");
-    }  
-  }
-  camp.camp_images.push(result.url);
-  await camp.save();
-  fs.unlink(path, (error) => {
-    if (error) {
-      console.error(err.message)
-      res.send(err.message);
-    }    
-  })
+      throw new Error("null");
+    }
+    const path = req.files[i].path
+    console.log(path)
+    const result = await imgbbUploader(process.env.IMGBB_API_KEY,path)
+    console.log(result)
+    for(let i=0;i<camp.camp_images.length;i++)
+    {
+      if(camp.camp_images[i]==result.url)
+      {
+        throw new Error("Image Already Uploaded Try Another Image");
+      }  
+    }
+    camp.camp_images.push(result.url);
+    await camp.save();
+    fs.unlink(path, (error) => {
+      if (error) {
+        console.error(err.message)
+        res.send(err.message);
+      }
+      else
+      {
+        console.log("deleted ",path)
+      }   
+    })
+    } catch (error) 
+    {
+      const path = req.files[i].path
+      if(error.message=="Image Already Uploaded Try Another Image")
+      {
+        fs.unlink(path, (error) => {
+          if (error) {
+            console.error(err.message)
+            res.send(err.message);
+          }    
+        })
+        res.status(409).send("Image Already Uploaded Try Another Image");
+      }
+      else if(error.message=="null")
+      {
+        fs.unlink(path, (error) => {
+          if (error) {
+            console.error(err.message)
+            res.send(err.message);
+          }    
+        })
+        res.status(404).send("Camp Not Found")
+      }
+      else{
+        res.send(error.message);
+      }
+    }
+}
   res.send("upload")
-  } catch (error) 
-  {
-    const path = req.file.path
-    if(error.message=="Image Already Uploaded Try Another Image")
-    {
-      fs.unlink(path, (error) => {
-        if (error) {
-          console.error(err.message)
-          res.send(err.message);
-        }    
-      })
-      res.status(409).send("Image Already Uploaded Try Another Image");
-    }
-    else if(error.message=="null")
-    {
-      fs.unlink(path, (error) => {
-        if (error) {
-          console.error(err.message)
-          res.send(err.message);
-        }    
-      })
-      res.status(404).send("Camp Not Found")
-    }
-    else{
-      res.send(error.message);
-    }
-  }
 }

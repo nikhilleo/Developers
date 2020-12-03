@@ -39,6 +39,6 @@ router.get('/getuser', auth , owner_controllers.find_specific_user);
 
 router.post('/create_camp',auth , owner_controllers.create_a_camp);
 
-router.post('/upload/image',upload.single('image'), owner_controllers.upload_image)
+router.post('/upload/image',upload.array('image'), owner_controllers.upload_image)
 
 module.exports = router;
