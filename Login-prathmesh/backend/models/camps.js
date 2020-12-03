@@ -9,6 +9,12 @@ const campSchema = new mongoose.Schema({
         trim: true,
         unique:true
     },
+    interesting_name:{
+        type: String,
+        required: true,
+        trim: true,
+        unique:true
+    },
     camp_desc: {
         type: String,
         required: true,
@@ -20,14 +26,14 @@ const campSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    map_coordinates: {
+    camp_location: {
         type: String,
         // required: true,
         trim: true
     },
     tags: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     land_type: {
@@ -52,9 +58,9 @@ const campSchema = new mongoose.Schema({
         default:[]
 
     },
-    accomodations: [{
-        type:Object,
-    }],
+    accomodations: {
+        type:Object
+    },
     camp_owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Camp_Owner",
@@ -64,12 +70,22 @@ const campSchema = new mongoose.Schema({
         default:[],
         // required:true
     },
-    manger_name: {
+    manager_name: {
         type: String,
         trim: true,
         required: true
     },
-    manger_contact:{
+    manager_contact:{
+        type:String,
+        trim:true,
+        required:true
+    },
+    manager_email:{
+        type:String,
+        trim:true,
+        required:true
+    },
+    manager_phone:{
         type:String,
         trim:true,
         required:true

@@ -4,7 +4,8 @@ const jwt = require("jsonwebtoken");
 const validate = require("validator")
 const Camps = require("../models/camps");
 const imgbbUploader = require('imgbb-uploader');
-const fs = require("fs")
+const fs = require("fs");
+const e = require("express");
 
 
 
@@ -237,12 +238,50 @@ exports.find_specific_user = async function(req,res){
 exports.create_a_camp = async(req,res)=>{
   try {
     const camp_o = req.profile
+    const interesting_name = req.body.campDetails.interestingName;
+    const camp_name = req.body.campDetails.originalName;
+    const camp_desc = req.body.campDetails.campDescription;
+    const camp_state = req.body.campDetails.state;
+    const camp_location = req.body.campDetails.location;
+    const accessibility_by = req.body.campDetails.accessibleBy;
+    const land_type = req.body.campDetails.landType;
+    const activities = req.body.campActivities;
+    const accomodations = req.body.campAccomodation;
+    const animities = req.body.campAmenities;
+    const manager_name = req.body.campOwner.managerName;
+    const manager_contact = req.body.campOwner.managerNumber;
+    const manager_email = req.body.campOwner.managerEmail;
+    const manager_phone = req.body.campOwner.managerLandline;
+    const check_in = req.body.campExtraDetails.checkInTime;
+    const check_out = req.body.campExtraDetails.checkOutTime;
+    const cancellation_policy = req.body.campExtraDetails.policy;
+    console.log(Object.keys(req.body.campAccomodation).length);
+    console.log(req.body.campActivities)
     if(!camp_o)
     {
       throw new Error("No User Found")
     }
-    req.body.camp_owner = camp_o._id
-    const camp = await new Camps(req.body)
+    const camp_owner = camp_o._id
+    const camp = await new Camps({
+      interesting_name,
+      camp_name,
+      camp_desc,
+      camp_state,
+      camp_location,
+      accessibility_by,
+      land_type,
+      activities,
+      accomodations,
+      animities,
+      manager_name,
+      camp_owner,
+      manager_contact,
+      manager_email,
+      manager_phone,
+      check_in,
+      check_out,
+      cancellation_policy
+    });
     await camp.save()
     res.status(201).json({
       message:"Camp Created",
@@ -250,11 +289,21 @@ exports.create_a_camp = async(req,res)=>{
     });
   } 
   catch (error) {
+    const splitted_error = error.message.split(" ");
+    console.log(splitted_error);
     if(error.message=="No User Found")
     {
       res.status(404).send("No Owner Found");
     }
-    else if(error.message == "Camps validation failed: camp_desc: Path `camp_desc` (`aaaa`) is shorter than the minimum allowed length (50).")
+    else if(splitted_error[1]=="duplicate" && splitted_error[11]=="camp_name:")
+    {
+      res.status(409).send("Camp Name Already Used")
+    }
+    else if(splitted_error[1]=="duplicate" && splitted_error[11]=="interesting_name:")
+    {
+      res.status(409).send("Interesting Name Already Used")
+    }
+    else if(splitted_error[3] == "camp_desc:")
     {
       res.status(409).send("Description Must Be Atleast 50 Characters")
     }
@@ -272,8 +321,12 @@ exports.upload_image =  async(req, res) => {
   try {
   // const c_name = req.body.camp_name;
   // const camp = await Camps.findOne({camp_name:c_name});
-  const camp = await Camps.findOne({camp_name:"jAYS Camp"});
+  const camp = await Camps.findOne({camp_name:"dadaa3113gags1"});
   // console.log(camp);
+  if(!camp)
+  {
+    throw new Error("null");
+  }
   const path = req.file.path
   const result = await imgbbUploader(process.env.IMGBB_API_KEY,path)
   console.log(result)
@@ -293,10 +346,28 @@ exports.upload_image =  async(req, res) => {
     }    
   })
   res.send("upload")
-  } catch (error) {
+  } catch (error) 
+  {
+    const path = req.file.path
     if(error.message=="Image Already Uploaded Try Another Image")
     {
+      fs.unlink(path, (error) => {
+        if (error) {
+          console.error(err.message)
+          res.send(err.message);
+        }    
+      })
       res.status(409).send("Image Already Uploaded Try Another Image");
+    }
+    else if(error.message=="null")
+    {
+      fs.unlink(path, (error) => {
+        if (error) {
+          console.error(err.message)
+          res.send(err.message);
+        }    
+      })
+      res.status(404).send("Camp Not Found")
     }
     else{
       res.send(error.message);
