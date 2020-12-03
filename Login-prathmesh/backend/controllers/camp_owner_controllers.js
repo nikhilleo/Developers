@@ -243,7 +243,7 @@ exports.create_a_camp = async(req,res)=>{
     }
     req.body.camp_owner = camp_o._id
     const camp = await new Camps(req.body)
-    await camp.save();
+    await camp.save()
     res.status(201).json({
       message:"Camp Created",
       camp

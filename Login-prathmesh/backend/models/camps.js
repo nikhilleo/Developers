@@ -1,5 +1,4 @@
 
-
 const mongoose = require('mongoose');
 const Camp_Owner = require("../models/camp_owner")
 
@@ -7,7 +6,8 @@ const campSchema = new mongoose.Schema({
     camp_name: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique:true
     },
     camp_desc: {
         type: String,
