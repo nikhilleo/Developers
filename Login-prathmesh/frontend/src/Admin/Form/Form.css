@@ -46,16 +46,6 @@ a {
   opacity: 1;
   transition: 0.5s;
 }
-body {
-  background: #f6f5f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Montserrat", sans-serif;
-  height: 100vh;
-  margin: -20px 0 50px;
-}
 
 .select__user__h1 {
   font-weight: bold;
@@ -120,7 +110,7 @@ body {
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
-  width: 92%;
+  width: 75%;
   border-radius: 20px;
 }
 
@@ -130,9 +120,9 @@ body {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
-  width: 768px;
+  width: 42vw;
   max-width: 100%;
-  min-height: 573px;
+  min-height: 63vh;
 }
 
 .select__user__form-container {

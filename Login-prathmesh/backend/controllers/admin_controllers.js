@@ -6,6 +6,10 @@ const validate = require("validator");
 
 exports.signup = async (req, res) => {
   try {
+    const pass = req.body.password;
+    if (pass.length < 7) {
+      throw new Error("Password Invalid");
+    }
     const newUser = await new Admin(req.body);
     const gentoken = await newUser.genAuthToken();
     console.log("gentoken", gentoken);
@@ -25,8 +29,9 @@ exports.signup = async (req, res) => {
         .status(409)
         .send("Mobile Number Already Exist Please Try New Credentials");
     } else if (msg_splitted[11] == "email:") {
-      console.log("executed2");
       res.status(409).send("Email Already Exist Please Try New Credentials");
+    } else if (error.message == "Password Invalid") {
+      res.status(409).send("Password Length Must Be Atleast 7 Characters");
     } else {
       res.status(409).send(error.message);
     }
@@ -119,6 +124,10 @@ exports.update = async (req, res) => {
 exports.updatePassword = async (req, res) => {
   try {
     const user = req.profile;
+    const pass = req.body.password;
+    if (pass.length < 7) {
+      throw new Error("Password Invalid");
+    }
     if (user) {
       const newPassword = req.body.password;
       console.log(user.password);
@@ -132,6 +141,10 @@ exports.updatePassword = async (req, res) => {
   } catch (error) {
     if ((error.message = "No User Found")) {
       res.status(404).send(error.message);
+    } else if (error.message == "Password Invalid") {
+      res.status(409).send("Password Length Must Be Atleast 7 Characters");
+    } else {
+      res.status(500).send(error.message);
     }
   }
 };

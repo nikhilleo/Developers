@@ -2,9 +2,17 @@ const Camp_Owner = require("../models/camp_owner");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const validate = require("validator");
+const Camps = require("../models/camps");
+const imgbbUploader = require("imgbb-uploader");
+const fs = require("fs");
+const e = require("express");
 
 exports.signup = async (req, res) => {
   try {
+    const pass = req.body.password;
+    if (pass.length < 7) {
+      throw new Error("Password Invalid");
+    }
     const newUser = await new Camp_Owner(req.body);
     const gentoken = await newUser.genAuthToken();
     console.log("gentoken", gentoken);
@@ -25,6 +33,8 @@ exports.signup = async (req, res) => {
         .send("Mobile Number Already Exist Please Try New Credentials");
     } else if (msg_splitted[11] == "email:") {
       res.status(409).send("Email Already Exist Please Try New Credentials");
+    } else if (error.message == "Password Invalid") {
+      res.status(409).send("Password Length Must Be Atleast 7 Characters");
     } else {
       res.status(409).send(error.message);
     }
@@ -116,6 +126,10 @@ exports.update = async (req, res) => {
 exports.updatePassword = async (req, res) => {
   try {
     const user = req.profile;
+    const pass = req.body.password;
+    if (pass.length < 7) {
+      throw new Error("Password Invalid");
+    }
     if (user) {
       const newPassword = req.body.password;
       console.log(user.password);
@@ -129,6 +143,10 @@ exports.updatePassword = async (req, res) => {
   } catch (error) {
     if ((error.message = "No User Found")) {
       res.status(404).send(error.message);
+    } else if (error.message == "Password Invalid") {
+      res.status(409).send("Password Length Must Be Atleast 7 Characters");
+    } else {
+      res.status(500).send(error.message);
     }
   }
 };
@@ -168,4 +186,138 @@ exports.find_specific_user = async function (req, res) {
       res.status(404).send(error.message);
     }
   }
+};
+
+exports.create_a_camp = async (req, res) => {
+  try {
+    const camp_o = req.profile;
+    console.log(camp_o);
+    const interesting_name = req.body.campDetails.interestingName;
+    const camp_name = req.body.campDetails.originalName;
+    const camp_desc = req.body.campDetails.campDescription;
+    const camp_state = req.body.campDetails.state;
+    const camp_location = req.body.campDetails.location;
+    const accessibility_by = req.body.campDetails.accessibleBy;
+    const land_type = req.body.campDetails.landType;
+    const activities = req.body.campActivities;
+    const accomodations = req.body.campAccomodation;
+    const animities = req.body.campAmenities;
+    const manager_name = req.body.campOwner.managerName;
+    const manager_contact = req.body.campOwner.managerNumber;
+    const manager_email = req.body.campOwner.managerEmail;
+    const manager_phone = req.body.campOwner.managerLandline;
+    const check_in = req.body.campExtraDetails.checkInTime;
+    const check_out = req.body.campExtraDetails.checkOutTime;
+    const cancellation_policy = req.body.campExtraDetails.policy;
+    console.log(Object.keys(req.body.campAccomodation).length);
+    console.log(req.body.campActivities);
+    // if (!camp_o) {
+    //   throw new Error("No User Found");
+    // }
+    const camp_owner = camp_o._id;
+
+    const camp = await new Camps({
+      interesting_name,
+      camp_name,
+      camp_desc,
+      camp_state,
+      camp_location,
+      accessibility_by,
+      land_type,
+      activities,
+      accomodations,
+      animities,
+      manager_name,
+      camp_owner,
+      manager_contact,
+      manager_email,
+      manager_phone,
+      check_in,
+      check_out,
+      cancellation_policy,
+    });
+    await camp.save();
+    res.status(201).json({
+      message: "Camp Created",
+      camp,
+    });
+  } catch (error) {
+    const splitted_error = error.message.split(" ");
+    console.log(splitted_error);
+    if (error.message == "No User Found") {
+      res.status(404).send("No Owner Found");
+    } else if (
+      splitted_error[1] == "duplicate" &&
+      splitted_error[11] == "camp_name:"
+    ) {
+      res.status(409).send("Camp Name Already Used");
+    } else if (
+      splitted_error[1] == "duplicate" &&
+      splitted_error[11] == "interesting_name:"
+    ) {
+      res.status(409).send("Interesting Name Already Used");
+    } else if (splitted_error[3] == "camp_desc:") {
+      res.status(409).send("Description Must Be Atleast 50 Characters");
+    } else {
+      res.status(409).send(error.message);
+    }
+  }
+};
+
+exports.upload_image = async (req, res) => {
+  console.log(req.files);
+  // res.send("All Files");
+  // console.log(path)
+  for (let i = 0; i < req.files.length; i++) {
+    try {
+      // const c_name = req.body.camp_name;
+      // const camp = await Camps.findOne({camp_name:c_name});
+      const camp = await Camps.findOne({ camp_name: "Delhi camp" });
+      // console.log(camp);
+      if (!camp) {
+        throw new Error("null");
+      }
+      const path = req.files[i].path;
+      console.log(path);
+      const result = await imgbbUploader(process.env.IMGBB_API_KEY, path);
+      console.log(result);
+      for (let i = 0; i < camp.camp_images.length; i++) {
+        if (camp.camp_images[i] == result.url) {
+          throw new Error("Image Already Uploaded Try Another Image");
+        }
+      }
+      camp.camp_images.push(result.url);
+      await camp.save();
+      fs.unlink(path, (error) => {
+        if (error) {
+          console.error(err.message);
+          res.send(err.message);
+        } else {
+          console.log("deleted ", path);
+        }
+      });
+    } catch (error) {
+      const path = req.files[i].path;
+      if (error.message == "Image Already Uploaded Try Another Image") {
+        fs.unlink(path, (error) => {
+          if (error) {
+            console.error(err.message);
+            res.send(err.message);
+          }
+        });
+        res.status(409).send("Image Already Uploaded Try Another Image");
+      } else if (error.message == "null") {
+        fs.unlink(path, (error) => {
+          if (error) {
+            console.error(err.message);
+            res.send(err.message);
+          }
+        });
+        res.status(404).send("Camp Not Found");
+      } else {
+        res.send(error.message);
+      }
+    }
+  }
+  res.send("upload");
 };

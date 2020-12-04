@@ -6,10 +6,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background: url("https://images6.alphacoders.com/708/708939.jpg");
-}
-
 #select__user__popup {
   position: fixed;
   top: 40%;
@@ -19,6 +15,10 @@ body {
   visibility: hidden;
   opacity: 0;
   transition: 0.5s;
+}
+
+#Camp__Owner__popup {
+  position: absolute;
 }
 
 #select__user__popups {
@@ -45,16 +45,6 @@ button a {
   visibility: visible;
   opacity: 1;
   transition: 0.5s;
-}
-body {
-  background: #f6f5f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Montserrat", sans-serif;
-  height: 100vh;
-  margin: -20px 0 50px;
 }
 
 .select__user__h1 {
@@ -115,7 +105,7 @@ body {
 }
 
 .select__user__body {
-  background-image: url("https://images.wallpaperscraft.com/image/tent_camping_travel_135562_1280x720.jpg");
+  background-image: url(https://images.wallpaperscraft.com/image/tent_camping_mountains_166927_1280x720.jpg);
   height: 100vh;
   width: 100vw;
   background-position: center;
@@ -217,8 +207,25 @@ body {
   transform: translateX(-100%);
 }
 
+.Camp__owner__main__body {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.Camp__owner__body {
+  background-image: url(https://images.wallpaperscraft.com/image/tent_camping_mountains_166927_1280x720.jpg);
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .select__user__overlay {
-  background-image: url(https://images4.alphacoders.com/797/thumb-1920-797952.jpg);
+  background-image: url(https://images2.alphacoders.com/683/thumb-350-683713.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

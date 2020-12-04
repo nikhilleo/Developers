@@ -30,7 +30,6 @@ input:focus {
   color: #202020;
 }
 footer {
-  position: fixed;
   bottom: 0px;
   height: 43%;
   width: 100%;
@@ -136,7 +135,7 @@ footer {
 
 .right form .btn button {
   height: 40px;
-  width: 60%;
+  width: 15vw;
   border-radius: 20px;
   border: none;
   outline: none;

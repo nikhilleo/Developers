@@ -11,6 +11,85 @@ const actions = {
   CURRENT__USER: "CURRENT__USER",
   CLEAR__CURRENT__USER: "CLEAR__CURRENT__USER",
 
+  CAMP__DETAILS: "CAMP__DETAILS",
+
+  CAMP__ACTIVITIES: "ACTIVITIES",
+
+  CAMP__ACCOMODATION: "CAMP__ACCOMODATION",
+
+  CAMP__AMENITIES: "CAMP__AMENITIES",
+
+  CAMP__MANAGER: "CAMP__MANAGER",
+
+  CAMP__OWNER: "CAMP__OWNER",
+
+  CAMP__EXTRA__DETAILS: "CAMP__EXTRA__DETAILS",
+
+  SPECIFIC__CAMP__DETAILS: "SPECIFIC__CAMP__DETAILS",
+
+  setSpecific: (data) => {
+    return {
+      type: actions.SPECIFIC__CAMP__DETAILS,
+      payload: data,
+    };
+  },
+
+  setCampDetails: (data) => {
+    console.log(data);
+    return {
+      type: actions.CAMP__DETAILS,
+      payload: data,
+    };
+  },
+  setCampOwnerDetails: (data) => {
+    return {
+      type: actions.CAMP__OWNER,
+      payload: data,
+    };
+  },
+  setCampManagerDetails: (data) => {
+    return {
+      type: actions.CAMP__MANAGER,
+      payload: data,
+    };
+  },
+  setCampExtraDetails: (data) => {
+    console.log(data);
+    return {
+      type: actions.CAMP__EXTRA__DETAILS,
+      payload: data,
+    };
+  },
+
+  setCampAmenities: (data) => {
+    return {
+      type: actions.CAMP__AMENITIES,
+      payload: data,
+    };
+  },
+
+  setCampActivities: (data) => {
+    return {
+      type: actions.CAMP__ACTIVITIES,
+      payload: data,
+    };
+  },
+
+  setCampAccomodation: (data) => {
+    console.log(data);
+    return {
+      type: actions.CAMP__ACCOMODATION,
+      payload: data,
+    };
+  },
+
+  setCampManager: (data) => {
+    return {
+      type: actions.CAMP__MANAGER,
+      payload: data,
+    };
+  },
+
   setUser: (data) => {
     return {
       type: actions.SET_USER,

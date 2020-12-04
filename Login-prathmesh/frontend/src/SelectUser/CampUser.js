@@ -59,7 +59,7 @@ function Index(props) {
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.message);
-          history.push("/User__Booking");
+          history.push("/");
         })
         .catch((err) => {
           console.log("errordas", err.response);
@@ -78,7 +78,7 @@ function Index(props) {
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.Message);
-          history.push("/User__Booking");
+          history.push("/");
         })
         .catch((err) => {
           console.log(err.response);
@@ -96,6 +96,7 @@ function Index(props) {
   };
   return (
     <div id="campUser1">
+      <div className="camp__user__body"></div>
       <div id="Camp__user__popup" className="Camp__user__active">
         <form className="select__user__form">
           <div

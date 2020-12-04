@@ -62,7 +62,7 @@ function Index(props) {
           props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.message);
-          history.push("/Owner__Organized__Camps");
+          history.push("/");
         })
         .catch((err) => {
           console.log(err.response);
@@ -83,7 +83,7 @@ function Index(props) {
           props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.Message);
-          history.push("/Owner__Created__Camps");
+          history.push("/");
         })
         .catch((err) => {
           console.log(err.response);
@@ -101,7 +101,8 @@ function Index(props) {
     });
   };
   return (
-    <div>
+    <div className="Camp__owner__main__body">
+      <div className="Camp__owner__body"></div>
       <div id="Camp__Owner__popup">
         <form className="select__user__form">
           <div class="select__user__container" id="select__user__container">
@@ -147,7 +148,6 @@ function Index(props) {
                 <span className="select__user__span">
                   or use your email for registration
                 </span>
-                <input type="checkbox" name="cycling" onChange={handleChange} />
                 <input
                   className="select__user__input"
                   type="text"

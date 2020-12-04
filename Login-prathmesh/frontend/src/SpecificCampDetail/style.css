@@ -1,0 +1,68 @@
+.react-calendar__month-view__days__day--weekend {
+  color: #d10000;
+}
+
+.react-calendar button {
+  background: none;
+  border: none;
+  padding: 13px;
+}
+
+.react-calendar button:hover {
+  background: #dfe1e2;
+}
+
+#calender {
+  visibility: hidden;
+}
+
+#calender.active {
+  visibility: visible;
+}
+
+.active {
+}
+
+button:focus {
+  outline: none;
+}
+.Showcase .react-component {
+  width: calc(100% - 10%);
+  max-width: 1110px;
+  margin-top: -136px;
+  margin-bottom: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  color: #dfe1e2;
+  font-size: 19px;
+}
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.75em;
+  color: #dfe1e2;
+  cursor: auto;
+}
+
+.react-calendar {
+  border-radius: 4px;
+  width: 350px;
+  max-width: 100%;
+  background: white;
+  font: inherit;
+  line-height: 1.125em;
+  border: 0;
+  overflow: hidden;
+}
+.react-calendar__navigation button {
+  background: none;
+  border: none;
+}
+.react-calendar__tile--active {
+  background: #006edc !important;
+  color: white;
+}

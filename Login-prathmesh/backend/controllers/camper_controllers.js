@@ -1,4 +1,5 @@
 const Camp_User = require("../models/camper");
+const Camp = require("../models/camps");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { findByIdAndRemove } = require("../models/camper");
@@ -8,6 +9,10 @@ const validate = require("validator");
 
 exports.signup = async (req, res) => {
   try {
+    const pass = req.body.password;
+    if (pass.length < 7) {
+      throw new Error("Password Invalid");
+    }
     const newUser = await new Camp_User(req.body);
     const gentoken = await newUser.genAuthToken();
     console.log("gentoken", gentoken);
@@ -21,21 +26,15 @@ exports.signup = async (req, res) => {
     console.log(error);
     const msg = error.message;
     const msg_splitted = msg.split(" ");
-    console.log("Conflict", msg_splitted);
+    console.log("Conflict", msg_splitted[11]);
     if (msg_splitted[11] == "mobile:") {
-      console.log("executed1");
       res
         .status(409)
         .send("Mobile Number Already Exist Please Try New Credentials");
     } else if (msg_splitted[11] == "email:") {
-      console.log("executed2");
       res.status(409).send("Email Already Exist Please Try New Credentials");
-    } else if (msg_splitted[3] == "email:") {
-      console.log("executed3");
-      res.status(409).send("Email is not valid");
-    } else if (msg_splitted[3] == "mobile:") {
-      console.log("executed3");
-      res.status(409).send("Mobile is not valid");
+    } else if (error.message == "Password Invalid") {
+      res.status(409).send("Password Length Must Be Atleast 7 Characters");
     } else {
       res.status(409).send(error.message);
     }
@@ -127,6 +126,10 @@ exports.update = async (req, res) => {
 exports.updatePassword = async (req, res) => {
   try {
     const user = req.profile;
+    const pass = req.body.password;
+    if (pass.length < 7) {
+      throw new Error("Password Invalid");
+    }
     if (user) {
       const newPassword = req.body.password;
       console.log(user.password);
@@ -140,6 +143,10 @@ exports.updatePassword = async (req, res) => {
   } catch (error) {
     if ((error.message = "No User Found")) {
       res.status(404).send(error.message);
+    } else if (error.message == "Password Invalid") {
+      res.status(409).send("Password Length Must Be Atleast 7 Characters");
+    } else {
+      res.status(500).send(error.message);
     }
   }
 };
@@ -174,6 +181,29 @@ exports.find_specific_user = async function (req, res) {
   } catch (error) {
     if ((error.message = "No User Found")) {
       res.status(404).send(error.message);
+    }
+  }
+};
+
+exports.get_a_camp = async (req, res) => {
+  console.log(req);
+  try {
+    const user = req.profile;
+    if (!req.headers.camp_name) {
+      throw new Error("Camp Name Required");
+    }
+    const camp = await Camp.findOne({ camp_name: req.headers.camp_name });
+    if (!camp) {
+      throw new Error("No Camp Found");
+    }
+    res.status(200).send(camp);
+  } catch (error) {
+    if (error.message == "No Camp Found") {
+      res.status(404).send("No Camp Found With Given Name");
+    } else if (error.message == "Camp Name Required") {
+      res.status(409).send("Camp Name Required");
+    } else {
+      res.status(400).send(error.message);
     }
   }
 };

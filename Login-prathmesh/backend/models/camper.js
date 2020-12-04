@@ -33,7 +33,7 @@ const camperSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minLength: 7,
+      minLength: 70,
     },
     mobile: {
       type: String,

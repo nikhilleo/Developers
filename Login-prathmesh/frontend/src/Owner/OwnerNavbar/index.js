@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./navbar.css";
 
 function Navbar() {
   return (
     <div>
+      <div className="owner__dashboard__body__navbar"></div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="navbar__container__home">
           <div className="navbar__menu__home">

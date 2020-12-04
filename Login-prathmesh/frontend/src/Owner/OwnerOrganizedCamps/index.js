@@ -24,6 +24,7 @@ function Index() {
   };
   return (
     <div className="owner__Create__Camps">
+      <div className="owner__dashboard__body"></div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input type="file" />
         <button type="submit">upload</button>
