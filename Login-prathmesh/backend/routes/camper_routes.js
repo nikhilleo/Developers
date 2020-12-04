@@ -19,4 +19,6 @@ router.delete('/delete_user', auth , camper_controller.delete_user);
 
 router.get('/getuser', auth , camper_controller.find_specific_user);
 
+router.get('/get_a_camp',auth,camper_controller.get_a_camp);
+
 module.exports = router;

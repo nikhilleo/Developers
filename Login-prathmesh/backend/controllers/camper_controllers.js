@@ -1,6 +1,7 @@
 
 
 const Camp_User = require("../models/camper");
+const Camp = require("../models/camps");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { findByIdAndRemove } = require("../models/camper");
@@ -214,6 +215,35 @@ exports.find_specific_user = async function(req,res){
     if(error.message="No User Found")
     {
       res.status(404).send(error.message);
+    }
+  }
+}
+
+
+exports.get_a_camp = async(req,res)=>{
+  try {
+    const user = req.profile;
+    if(!req.body.camp_name)
+    {
+      throw new Error("Camp Name Required");
+    }
+    const camp = await Camp.findOne({camp_name:req.body.camp_name});
+    if(!camp)
+    {
+      throw new Error("No Camp Found");
+    }
+    res.status(200).send(camp);
+  } catch (error) {
+    if(error.message == "No Camp Found")
+    {
+      res.status(404).send("No Camp Found With Given Name");
+    }
+    else if(error.message=="Camp Name Required")
+    {
+      res.status(409).send("Camp Name Required")
+    }
+    else{
+      res.status(400).send(error.message);
     }
   }
 }
