@@ -1,4 +1,4 @@
-const e = require('express');
+
 const  Camp = require('./../models/camps');
 
 exports.accept_a_camp = async (req,res)=>{
@@ -12,6 +12,7 @@ exports.accept_a_camp = async (req,res)=>{
             if(accept_camp[0].status_of_camp == "Pending")
             {
                 accept_camp[0].status_of_camp = "Accepted";
+                accept_camp[0].state_of_camp = "Active"
                 await accept_camp[0].save();
                 res.send(accept_camp[0]);
             }
@@ -19,7 +20,8 @@ exports.accept_a_camp = async (req,res)=>{
         else{
             throw new Error('no camp found')
         }
-    } catch (error) {
+    } 
+    catch (error) {
         if(error.message=="no camp found")
         {
             res.status(404).send(error.message)
@@ -141,6 +143,28 @@ exports.get_pending_camps = async (req, res) => {
         if(error.message=="no camp found")
         {
             res.status(404).send(error.message);
+        }
+        else{
+            res.status(400).send(error.message)
+        }
+    }
+}
+
+exports.get_active_camps = async(req,res)=>{
+    try {
+        const camps = await Camp.find({status_of_camp:"Active"});
+        if(camps.length==0)
+        {
+            throw new Error("No Active Camps Found");
+        }
+        else
+        {
+            res.status(200).send(camp);
+        }
+    } catch (error) {
+        if(error.message=="No Active Camps Found")
+        {
+            res.status(404).send("No Active Camps Found");
         }
         else{
             res.status(400).send(error.message)
