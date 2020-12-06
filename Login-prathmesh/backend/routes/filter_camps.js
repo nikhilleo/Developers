@@ -10,7 +10,7 @@ router.get("/filter_by_activities",filter_controllers.filter_by_activities)
 
 router.get("/filter_by_accommodations",filter_controllers.filter_by_accommodations)
 
-router.get("/filter_by_amenities",)
+router.get("/filter_by_amenities",filter_controllers.filter_by_amenities)
 
 router.get("/filter_by_terran",)
 
