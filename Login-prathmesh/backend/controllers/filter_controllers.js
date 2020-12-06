@@ -1,4 +1,4 @@
-const e = require("express");
+
 const Camp = require("../models/camps");
 
 exports.filter_by_price = async (req, res) => {
