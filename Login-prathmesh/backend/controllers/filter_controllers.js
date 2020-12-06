@@ -4,11 +4,13 @@ const Camp = require("../models/camps");
 exports.filter_by_price = async (req, res) => {
     const min_price = req.body.min;
     const max_price = req.body.max;
-    // console.log(Object.keys(accomodations));
-    const camps = await Camp.find({}).where(Object.keys(Camp.distinct("accomodations")).pricePerNight = "232");
-    // console.log(camps)
-    res.send(camps);
-    // res.send("Done");
+    const camps = await Camp.find({});
+    const arr = [];
+    camps.forEach(function(element){
+        if(element.accomodations.Tent.pricePerNight == 321)
+        arr.push(element);
+    })
+    res.send(arr);
 }
 
 exports.filter_by_activities = async (req, res) => {
