@@ -86,7 +86,7 @@ function Home() {
           xs={2}
           style={{
             background: "white",
-            height: "36vh",
+            height: "27rem",
             borderRadius: "20px",
             boxShadow: "rgba(0,0,0,1) 1px 0px 10px -1px",
           }}
@@ -165,7 +165,7 @@ function Home() {
           xs={2}
           style={{
             background: "white",
-            height: "16vh",
+            height: "11rem",
             borderRadius: "20px",
             boxShadow: "rgba(0,0,0,1) 1px 0px 10px -1px",
           }}
@@ -203,7 +203,7 @@ function Home() {
             xs={12}
             style={{
               background: "white",
-              height: "16vh",
+              height: "11rem",
               borderRadius: "20px",
               boxShadow: "rgba(0,0,0,1) 1px 0px 10px -1px",
             }}
