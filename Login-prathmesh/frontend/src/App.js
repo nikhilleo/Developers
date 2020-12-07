@@ -47,6 +47,7 @@ import AdminHeader from "./Header/admin";
 import UserHeader from "./Header/user";
 import OwnerHeader from "./Header/owner";
 import HomeNavbar from "./Header/home";
+import Practice1 from "./Practice";
 
 const { setUser, setOwner, setAdmin } = actions;
 
@@ -106,6 +107,9 @@ const App = (props) => {
     <>
       <Router>
         <Switch>
+          {/* <Route exact path="/">
+            <Practice1 />
+          </Route> */}
           <Route
             exact
             path="/"
@@ -146,7 +150,12 @@ const App = (props) => {
             path="/CampUserForm1"
             render={() => {
               if (props?.owner?.user) {
-                return <CampUserForm1 />;
+                return (
+                  <>
+                    <OwnerHeader />
+                    <CampUserForm1 />
+                  </>
+                );
               } else {
                 return <Redirect to="/" />;
               }
@@ -159,7 +168,12 @@ const App = (props) => {
             path="/CampUserForm2"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
-                return <CampUserForm2 />;
+                return (
+                  <>
+                    <OwnerHeader />
+                    <CampUserForm2 />
+                  </>
+                );
               } else {
                 return <Redirect to="/" />;
               }
@@ -170,7 +184,12 @@ const App = (props) => {
             path="/CampUserForm3"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
-                return <CampUserForm3 />;
+                return (
+                  <>
+                    <OwnerHeader />
+                    <CampUserForm3 />
+                  </>
+                );
               } else {
                 return <Redirect to="/" />;
               }
@@ -181,7 +200,12 @@ const App = (props) => {
             path="/CampUserForm4"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
-                return <CampUserForm4 />;
+                return (
+                  <>
+                    <OwnerHeader />
+                    <CampUserForm4 />
+                  </>
+                );
               } else {
                 return <Redirect to="/" />;
               }
@@ -192,7 +216,12 @@ const App = (props) => {
             path="/CampUserForm5"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
-                return <CampUserForm5 />;
+                return (
+                  <>
+                    <OwnerHeader />
+                    <CampUserForm5 />
+                  </>
+                );
               } else {
                 return <Redirect to="/" />;
               }

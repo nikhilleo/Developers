@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -68,38 +68,87 @@ function CampUserForm5() {
       {" "}
       <Grid container className="Owner__Camp__Container" justify="center">
         <Grid container xs={3} justify="center">
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}>
-            1.Basic Details
-          </span>
+          <Link to="/CampUserForm1" style={{ textDecoration: "none" }}>
+            <span
+              style={{
+                fontSize: 20,
+                cursor: "pointer",
+                color: "black",
+              }}
+            >
+              {" "}
+              1 Basic Details{" "}
+            </span>
+          </Link>
         </Grid>
         <Grid container xs={2}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}>
-            2.Activities
-          </span>
+          <Link to="/CampUserForm2" style={{ textDecoration: "none" }}>
+            <span
+              style={{
+                fontSize: 20,
+                cursor: "pointer",
+                color: "black",
+              }}
+            >
+              {" "}
+              2.Activities{" "}
+            </span>
+          </Link>{" "}
         </Grid>
         <Grid container xs={2}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}>
-            3.Booking Details
-          </span>
+          <Link to="/CampUserForm3" style={{ textDecoration: "none" }}>
+            {" "}
+            <span
+              style={{
+                fontSize: 20,
+                cursor: "pointer",
+                color: "black",
+              }}
+            >
+              {" "}
+              3.Accomodation{" "}
+            </span>
+          </Link>{" "}
         </Grid>
         <Grid container xs={2}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}>4.Manager </span>
+          <Link to="/CampUserForm4" style={{ textDecoration: "none" }}>
+            {" "}
+            <span
+              style={{
+                fontSize: 20,
+                cursor: "pointer",
+                color: "black",
+              }}
+            >
+              {" "}
+              4.Manager{" "}
+            </span>{" "}
+          </Link>
         </Grid>
         <Grid container xs={2}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}> 5.Images </span>
+          <Link
+            to="/CampUserForm5"
+            style={{ textDecoration: "none", fontWeight: "bolder" }}
+          >
+            {" "}
+            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
+              {" "}
+              5.Images{" "}
+            </span>{" "}
+          </Link>
         </Grid>
-        <Grid container xs={1}></Grid>
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
+        <Grid container style={{ visibility: "hidden" }}>
           .
-        </Grid>{" "}
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
-          .
-        </Grid>{" "}
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
-          .
         </Grid>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={10}>
+        <Grid container>
+          <Grid item align="center" xs={12}>
+            <p style={{ fontSize: 20, fontWeight: "bolder" }}>
+              Upload Photos of Your Camps
+            </p>
+          </Grid>
+        </Grid>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={9}>
           <p style={{ fontSize: 20 }}>
             Add photographs ( NOTE: first image of the box will automatically
             selected as banner image of your camp )
@@ -134,7 +183,11 @@ function CampUserForm5() {
           .
         </Grid>{" "}
         <Grid
-          style={{ height: "18vh", width: "58vw", border: "1px solid #ccc8c8" }}
+          style={{
+            height: "14rem",
+            width: "58vw",
+            border: "1px solid #ccc8c8",
+          }}
         >
           <Input
             type="file"
@@ -160,7 +213,7 @@ function CampUserForm5() {
                     src={img}
                     key={index}
                     style={{
-                      height: "9vh",
+                      height: "12rem",
                       border: "1px solid",
                       minWidth: "5vw",
                       maxWidth: "5vw",
@@ -174,7 +227,7 @@ function CampUserForm5() {
               item
               xs={1}
               style={{
-                height: "9vh",
+                height: "7rem",
                 border: "1px solid",
                 minWidth: "5vw",
                 maxWidth: "5vw",
@@ -186,7 +239,7 @@ function CampUserForm5() {
                 document.getElementById("selectFile").click();
               }}
             >
-              <h1 style={{ fontSize: "3.5rem", padding: 6 }}> +</h1>{" "}
+              <span style={{ fontSize: "4rem" }}> +</span>{" "}
             </Grid>
           </Grid>
         </Grid>

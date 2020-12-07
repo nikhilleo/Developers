@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import Footer from "../Admin/Footer/Footer";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import actions from "../Redux/Action";
 import axios from "../axios";
 import "./style.css";
@@ -79,16 +79,57 @@ function Index(props) {
     <div className="CampUserForm">
       <Grid container className="Owner__Camp__Container" justify="center">
         <Grid container xs={3} justify="center">
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}> 1 </span>
+          <Link to="/CampUserForm1" style={{ textDecoration: "none" }}>
+            <span
+              style={{
+                fontWeight: "bolder",
+                fontSize: 20,
+                cursor: "pointer",
+                color: "black",
+              }}
+            >
+              {" "}
+              1 Basic Details{" "}
+            </span>
+          </Link>
         </Grid>
-        <Grid container xs={3}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}> 2 </span>
+        <Grid container xs={2}>
+          <Link to="/CampUserForm2" style={{ textDecoration: "none" }}>
+            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
+              {" "}
+              2.Activities{" "}
+            </span>
+          </Link>{" "}
         </Grid>
-        <Grid container xs={3}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}> 3 </span>
+        <Grid container xs={2}>
+          <Link to="/CampUserForm3" style={{ textDecoration: "none" }}>
+            {" "}
+            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
+              {" "}
+              3.Accomodation{" "}
+            </span>
+          </Link>{" "}
         </Grid>
-        <Grid container xs={3}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}> 4 </span>
+        <Grid container xs={2}>
+          <Link to="/CampUserForm4" style={{ textDecoration: "none" }}>
+            {" "}
+            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
+              {" "}
+              4.Manager{" "}
+            </span>{" "}
+          </Link>
+        </Grid>
+        <Grid container xs={2}>
+          <Link to="/CampUserForm5" style={{ textDecoration: "none" }}>
+            {" "}
+            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
+              {" "}
+              5.Images{" "}
+            </span>{" "}
+          </Link>
+        </Grid>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
         </Grid>
         <Grid container>
           <Grid item align="center" xs={12}>

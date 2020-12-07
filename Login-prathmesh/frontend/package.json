@@ -16,6 +16,7 @@
     "google-maps-react": "^2.0.6",
     "history": "^5.0.0",
     "libphonenumber-js": "^1.9.4",
+    "mdbreact": "^5.0.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-calendar": "^3.2.1",

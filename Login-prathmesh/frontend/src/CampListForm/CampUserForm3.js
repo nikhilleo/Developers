@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -76,35 +76,76 @@ function Index(props) {
     <div>
       <Grid container className="Owner__Camp__Container" justify="center">
         <Grid container xs={3} justify="center">
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}>
-            1.Basic Details
-          </span>
+          <Link to="/CampUserForm1" style={{ textDecoration: "none" }}>
+            <span
+              style={{
+                fontSize: 20,
+                cursor: "pointer",
+                color: "black",
+              }}
+            >
+              {" "}
+              1 Basic Details{" "}
+            </span>
+          </Link>
         </Grid>
         <Grid container xs={2}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}>
-            2.Activities
-          </span>
+          <Link to="/CampUserForm2" style={{ textDecoration: "none" }}>
+            <span
+              style={{
+                fontSize: 20,
+                cursor: "pointer",
+                color: "black",
+              }}
+            >
+              {" "}
+              2.Activities{" "}
+            </span>
+          </Link>{" "}
         </Grid>
         <Grid container xs={2}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}>
-            3.Booking Details
-          </span>
+          <Link to="/CampUserForm3" style={{ textDecoration: "none" }}>
+            {" "}
+            <span
+              style={{
+                fontSize: 20,
+                cursor: "pointer",
+                color: "black",
+                fontWeight: "bolder",
+              }}
+            >
+              {" "}
+              3.Accomodation{" "}
+            </span>
+          </Link>{" "}
         </Grid>
         <Grid container xs={2}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}>4.Manager </span>
+          <Link to="/CampUserForm4" style={{ textDecoration: "none" }}>
+            {" "}
+            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
+              {" "}
+              4.Manager{" "}
+            </span>{" "}
+          </Link>
         </Grid>
         <Grid container xs={2}>
-          <span style={{ fontWeight: "bolder", fontSize: 20 }}> 5.Images </span>
+          <Link to="/CampUserForm5" style={{ textDecoration: "none" }}>
+            {" "}
+            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
+              {" "}
+              5.Images{" "}
+            </span>{" "}
+          </Link>
         </Grid>
-        <Grid container xs={1}></Grid>
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
+        <Grid container style={{ visibility: "hidden" }}>
           .
-        </Grid>{" "}
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
-          .
-        </Grid>{" "}
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
-          .
+        </Grid>
+        <Grid container>
+          <Grid item align="center" xs={12}>
+            <p style={{ fontSize: 20, fontWeight: "bolder" }}>
+              Enter Camp Accomodation
+            </p>
+          </Grid>
         </Grid>
         <Grid container spacing={0}>
           <Grid item xs={2}></Grid>
