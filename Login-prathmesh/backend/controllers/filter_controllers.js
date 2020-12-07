@@ -60,8 +60,6 @@ exports.filter_by_price = async (req, res) => {
             res.status(400).send(error.message)
         }
     }
-
-    res.send("Done");
 }
 
 exports.filter_by_activities = async (req, res) => {
