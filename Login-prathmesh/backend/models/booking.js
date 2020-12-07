@@ -20,7 +20,7 @@ const bookingSchema = new mongoose.Schema({
     payment_id:{
         type:String,
         trim:true,
-        unique:true
+        default:""
     },
     payment_status:{
         type:String,
