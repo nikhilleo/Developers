@@ -12,22 +12,25 @@ import CampOwner from "./SelectUser/CampOwner";
 import CampUser from "./SelectUser/CampUser";
 import { connect } from "react-redux";
 import actions from "./Redux/Action";
-import AdminNavbar from "./Admin/Navbar/Navbar";
 import UserBooking from "./User/UserBooking/";
 import UserCampSites from "./User/UserCampSites";
 import UserNavbar from "./User/UserNavbar";
 import Footer from "./Admin/Footer/Footer";
-import Booking__Admin from "./Admin/Home/Booking";
-import Delete__Camp__Admin from "./Admin/Home/DeleteCamp";
-import Account__Setting__Admin from "./Admin/Home/Account_setting";
+import Booking__Admin from "./Admin/Home/Dashboard/Booking/Pending";
+import Active__Camps from "./Admin/Home/Dashboard/DeleteCamps/ActiveCamps";
+import Deleted__Camps from "./Admin/Home/Dashboard/DeleteCamps/DeletedCamps";
+import Account__Setting__Admin from "./Admin/Home/Dashboard/AccountSetting";
 import Form from "./Admin/Form/Form";
 import VerifyOtp from "./Admin/Form/VerifyOtp";
 import axios from "./axios";
 import UserSetting from "./User/UserSetting";
-import OwnerAccountSettings from "./Owner/OwnerAccountSettings";
-import OwnerInteresteUser from "./Owner/OwnerIntrestedUser";
-import OwnerNavbar from "./Owner/OwnerNavbar";
-import OwnerOrganizedCamps from "./Owner/OwnerOrganizedCamps";
+import OwnerAccountSettings from "./Owner/OwnerAccountSettings/OwnerAccount";
+import OwnerBankDetails from "./Owner/OwnerAccountSettings/OwnerBankDetails";
+import OwnerPaymentPending from "./Owner/OwnerBookings/PaymentPending";
+import OwnerBookingPending from "./Owner/OwnerBookings/BookingPending";
+import OwnerApproved from "./Owner/OwnerBookings/Approved";
+import OwnerEarning from "./Owner/OwnerEarning/TotalEarning";
+import OwnerPaymentHistory from "./Owner/OwnerEarning/PaymentHistory";
 import CampUserForm1 from "./CampListForm/CampUserForm1";
 import CampUserForm2 from "./CampListForm/CampUserForm2";
 import CampUserForm3 from "./CampListForm/CampUserForm3";
@@ -36,8 +39,14 @@ import CampUserForm5 from "./CampListForm/CampUserForm5";
 import Maps from "./GoogleMap";
 import HomePage from "./HomePage";
 import SpecificCamp from "./SpecificCampDetail";
-import UserNavbarHome from "./HomePage/Navbar/userNavbar";
-import Navbar from "./HomePage/Navbar/";
+import Pending from "./Admin/Home/Dashboard/Booking/Pending";
+import Accepted from "./Admin/Home/Dashboard/Booking/Accepted";
+import Rejected from "./Admin/Home/Dashboard/Booking/Rejected";
+import Icons from "./SpecificCampDetail/icons/icons";
+import AdminHeader from "./Header/admin";
+import UserHeader from "./Header/user";
+import OwnerHeader from "./Header/owner";
+import HomeNavbar from "./Header/home";
 
 const { setUser, setOwner, setAdmin } = actions;
 
@@ -97,18 +106,53 @@ const App = (props) => {
     <>
       <Router>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              if (props?.owner?.user) {
+                return (
+                  <>
+                    <OwnerHeader />
+                    <HomePage />
+                  </>
+                );
+              } else if (props?.user?.user) {
+                return (
+                  <>
+                    <UserHeader />
+                    <HomePage />
+                  </>
+                );
+              } else if (props?.admin?.user) {
+                return (
+                  <>
+                    <AdminHeader />
+                    <HomePage />
+                  </>
+                );
+              } else {
+                return (
+                  <>
+                    <HomeNavbar />
+                    <HomePage />
+                  </>
+                );
+              }
+            }}
+          />
           <Route
             exact
             path="/CampUserForm1"
             render={() => {
-              if (props.user.user || props.owner.user || props.admin.user) {
+              if (props?.owner?.user) {
                 return <CampUserForm1 />;
               } else {
                 return <Redirect to="/" />;
               }
             }}
           />
+          <Route exact path="/icons" component={Icons} />
           <Route exact path="/SpecificCamp" component={SpecificCamp} />
           <Route
             exact
@@ -204,13 +248,35 @@ const App = (props) => {
           />
           <Route
             exact
-            path="/Owner__Account__settings"
+            path="/Owner__Bookings/Account__Settings"
+            render={() => {
+              return (
+                <>
+                  <OwnerAccountSettings />
+                </>
+              );
+            }}
+          />
+
+          <Route
+            exact
+            path="/Owner__Bookings/Bank__Details"
+            render={() => {
+              return (
+                <>
+                  <OwnerBankDetails />
+                </>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/Owner__Bookings/PaymentPending"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <OwnerNavbar />
-                    <OwnerAccountSettings />
+                    <OwnerPaymentPending />
                   </>
                 );
               } else {
@@ -220,13 +286,12 @@ const App = (props) => {
           />
           <Route
             exact
-            path="/Owner__Intrested__User"
+            path="/Owner__Bookings/BookingPending"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <OwnerNavbar />
-                    <OwnerInteresteUser />
+                    <OwnerBookingPending />
                   </>
                 );
               } else {
@@ -236,13 +301,12 @@ const App = (props) => {
           />
           <Route
             exact
-            path="/Owner__Created__Camps"
+            path="/Owner__Bookings/Approved"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <OwnerNavbar />
-                    <OwnerOrganizedCamps />
+                    <OwnerApproved />
                   </>
                 );
               } else {
@@ -252,13 +316,12 @@ const App = (props) => {
           />
           <Route
             exact
-            path="/Admin__Booking"
+            path="/Owner__Bookings/Total__Earnings"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <AdminNavbar />
-                    <Booking__Admin />
+                    <OwnerEarning />
                   </>
                 );
               } else {
@@ -268,13 +331,87 @@ const App = (props) => {
           />
           <Route
             exact
-            path="/Delete__Admin__camp"
+            path="/Owner__Bookings/Payment__History"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <AdminNavbar />
-                    <Delete__Camp__Admin />
+                    <OwnerPaymentHistory />
+                  </>
+                );
+              } else {
+                return <SelectUser />;
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/Admin__Booking/Pending"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <Pending />
+                  </>
+                );
+              } else {
+                return <SelectUser />;
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/Admin__Booking/Accepted"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <Accepted />
+                  </>
+                );
+              } else {
+                return <SelectUser />;
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/Admin__Booking/Rejected"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <Rejected />
+                  </>
+                );
+              } else {
+                return <SelectUser />;
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/Delete__Admin__camp/Active__Camps"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <Active__Camps />
+                  </>
+                );
+              } else {
+                return <SelectUser />;
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/Delete__Admin__camp/Deleted__Camps"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <Deleted__Camps />
                   </>
                 );
               } else {
@@ -289,7 +426,6 @@ const App = (props) => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <AdminNavbar />
                     <Account__Setting__Admin />
                   </>
                 );

@@ -17,7 +17,7 @@ function Index(props) {
   var [campDetails, setCampDetails] = useState([]);
   useEffect(() => {
     axios
-      .get("/camp/get_all_camps")
+      .get("/admin/get_pending_camps")
       .then((res) => {
         setCampDetails(res.data);
       })
@@ -55,8 +55,6 @@ function Index(props) {
   console.log(campDetails);
   return (
     <div>
-      {" "}
-      <Navbar />
       <Grid container>
         <Grid item xs={2}></Grid>
         <Grid item xs={10}>

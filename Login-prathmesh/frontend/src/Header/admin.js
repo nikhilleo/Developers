@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Nabar() {
+function Navbar() {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-light"
+        style={{ padding: "2vh" }}
+      >
         <button
           class="navbar-toggler"
           type="button"
@@ -24,6 +27,17 @@ function Nabar() {
               </a>
             </li>
 
+            <li class="nav-item active mr-2 ">
+              <Link to="/CampUserForm1" class="nav-link">
+                Create Camp
+              </Link>
+            </li>
+
+            <li class="nav-item active mr-5">
+              <a class="nav-link " href="#">
+                Admin
+              </a>
+            </li>
             <li class="nav-item dropdown mr-5  active">
               <a
                 class="nav-link dropdown mr-5"
@@ -55,4 +69,4 @@ function Nabar() {
   );
 }
 
-export default Nabar;
+export default Navbar;

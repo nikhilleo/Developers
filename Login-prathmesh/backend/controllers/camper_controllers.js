@@ -186,7 +186,6 @@ exports.find_specific_user = async function (req, res) {
 };
 
 exports.get_a_camp = async (req, res) => {
-  console.log(req);
   try {
     const user = req.profile;
     if (!req.headers.camp_name) {

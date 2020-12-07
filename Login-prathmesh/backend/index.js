@@ -9,7 +9,8 @@ const port = process.env.PORT;
 const user_routes = require("./routes/camper_routes");
 const owner_routes = require("./routes/camp_owner_routes");
 const admin_routes = require("./routes/admin_routes");
-const camp_routes = require("./routes/camp_routes");
+// const camp_routes = require("./routes/camp_routes");
+const filter_routes = require("./routes/filter_camps");
 
 app.use(cors());
 
@@ -22,9 +23,10 @@ app.get("/", (req, res) => {
 });
 
 app.use(user_routes);
-app.use("/owner", owner_routes);
-app.use("/admin", admin_routes);
-app.use("/camp", camp_routes);
+app.use('/owner',owner_routes);
+app.use('/admin',admin_routes);
+app.use("/camps/filter/",filter_routes);
+// app.use('/camp',camp_routes);
 
 app.listen(port, () => {
   console.log(`Server started http://localhost:${port}`);

@@ -13,7 +13,6 @@ a {
   font-size: 20px;
   color: #584e4a;
   position: relative;
-  text-transform: uppercase;
   text-decoration: none;
   padding-bottom: 8px;
 }
@@ -65,7 +64,6 @@ a:focus:after {
   width: 80%;
   height: auto;
   line-height: 80px;
-  position: fixed;
   background: var(--background-color);
   bottom: 76vh;
   text-decoration: none;

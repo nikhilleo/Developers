@@ -12,12 +12,20 @@
   background: #dfe1e2;
 }
 
-#calender {
-  visibility: hidden;
+#calenderCheckIn {
+  display: none;
 }
 
-#calender.active {
-  visibility: visible;
+#calenderCheckIn.active {
+  display: block;
+}
+
+#calenderCheckOut {
+  display: none;
+}
+
+#calenderCheckOut.active {
+  display: block;
 }
 
 .active {

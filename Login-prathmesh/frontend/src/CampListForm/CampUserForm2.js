@@ -27,32 +27,32 @@ function Index(props) {
 
   var [activities, setActivities] = useState({
     Trekking: false,
-    off_Roading: false,
+    "Off Roading": false,
     Climbing: false,
-    White_water_rafting: false,
-    Wildlife_Watching: false,
+    "White Water Rafting": false,
+    "Wildlife Watching": false,
     Swimming: false,
     Cycling: false,
   });
 
   var [Amenities, setAmenities] = useState({
-    Pets_allowed: false,
+    "Pets Allowed": false,
     Toilet: false,
     Shower: false,
     Campfire: false,
-    Covered_Area: false,
-    Charging_points: false,
-    Drinking_water: false,
+    "Covered Area": false,
+    "Charging Points": false,
+    "Drinking water": false,
   });
 
   var [Accommodation, setAccommodation] = useState({
     Dorm: false,
-    Farm_Cottage: false,
-    Mud_House: false,
+    "Farm Cottage": false,
+    "Mud House": false,
     Villas: false,
-    Tree_House: false,
+    "Tree House": false,
     Tent: false,
-    Park_N_Camp: false,
+    "Park N Camp": false,
   });
 
   useEffect(() => {
@@ -171,7 +171,7 @@ function Index(props) {
                 <Checkbox
                   checked={activities.off_Roading}
                   onChange={handleChange}
-                  name="off_Roading"
+                  name="Off Roading"
                 />
               }
               label="Off-roading"
@@ -196,10 +196,10 @@ function Index(props) {
                 <Checkbox
                   checked={activities.White_water_rafting}
                   onChange={handleChange}
-                  name="White_water_rafting"
+                  name="White Water Rafting"
                 />
               }
-              label="White-water-rafting"
+              label="White Water Rafting"
             />
           </Grid>
           <Grid item xs={0} sm={2}></Grid>
@@ -209,7 +209,7 @@ function Index(props) {
                 <Checkbox
                   checked={activities.Wildlife_Watching}
                   onChange={handleChange}
-                  name="Wildlife_Watching"
+                  name="Wildlife Watching"
                 />
               }
               label="Wildlife-Watching"
@@ -264,7 +264,7 @@ function Index(props) {
                 <Checkbox
                   checked={Amenities.Drinking_water}
                   onChange={handleAmenitiesChange}
-                  name="Drinking_water"
+                  name="Drinking Water"
                 />
               }
               label="Drinking water"
@@ -276,7 +276,7 @@ function Index(props) {
                 <Checkbox
                   checked={Amenities.Charging_points}
                   onChange={handleAmenitiesChange}
-                  name="Charging_points"
+                  name="Charging Points"
                 />
               }
               label="Charging points"
@@ -289,7 +289,7 @@ function Index(props) {
                 <Checkbox
                   checked={Amenities.Covered_Area}
                   onChange={handleAmenitiesChange}
-                  name="Covered_Area"
+                  name="Covered Area"
                 />
               }
               label="Covered Area"
@@ -339,7 +339,7 @@ function Index(props) {
                 <Checkbox
                   checked={Amenities.Pets_allowed}
                   onChange={handleAmenitiesChange}
-                  name="Pets_allowed"
+                  name="Pets Allowed"
                 />
               }
               label="Pets allowed"
@@ -382,7 +382,7 @@ function Index(props) {
                 <Checkbox
                   checked={Accommodation.Tree_House}
                   onChange={handleAccommodationChange}
-                  name="Tree_House"
+                  name="Tree House"
                 />
               }
               label="Tree House"
@@ -407,7 +407,7 @@ function Index(props) {
                 <Checkbox
                   checked={Accommodation.Mud_House}
                   onChange={handleAccommodationChange}
-                  name="Mud_House"
+                  name="Mud House"
                 />
               }
               label="Mud House"
@@ -432,7 +432,7 @@ function Index(props) {
                 <Checkbox
                   checked={Accommodation.Farm_Cottage}
                   onChange={handleAccommodationChange}
-                  name="Farm_Cottage"
+                  name="Farm Cottage"
                 />
               }
               label="Farm Cottage"
@@ -445,7 +445,7 @@ function Index(props) {
                 <Checkbox
                   checked={Accommodation.Park_N_Camp}
                   onChange={handleAccommodationChange}
-                  name="Park_N_Camp"
+                  name="Park N Camp"
                 />
               }
               label="Park N Camp"

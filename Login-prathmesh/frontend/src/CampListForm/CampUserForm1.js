@@ -53,7 +53,9 @@ function Index(props) {
 
   useEffect(() => {
     const data = localStorage.getItem("campUserForm1");
-    if (data) {
+    console.log(data);
+    if (data == undefined) return 0;
+    else if (!data == undefined) {
       setCamp(JSON.parse(data));
     }
   }, []);
@@ -180,86 +182,96 @@ function Index(props) {
               .
             </Grid>
             <Grid container>
-              <Grid item sm={3} xs={0}></Grid>
-              <Grid item xs={2}>
+              <Grid item xs={3}></Grid>
+              <Grid item xs={9}>
                 <p style={{ fontWeight: "bolder" }}>Select State</p>
               </Grid>
-              <Grid item sm={2} xs={0}></Grid>
-              <Grid item xs={4}>
-                <p style={{ fontWeight: "bolder" }}>Select Location</p>
+              <Grid item sm={3} xs={0}></Grid>
+              <Grid item xs={9} sm={6}>
+                <FormControl variant="outlined" fullWidth>
+                  <InputLabel id="demo-simple-select-outlined-label">
+                    State
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={camp?.state}
+                    name="state"
+                    onChange={handleChange}
+                    label="Age"
+                  >
+                    <MenuItem value="Andhra Pradesh">Andhra Pradesh</MenuItem>
+                    <MenuItem value="Andaman and Nicobar Islands">
+                      Andaman and Nicobar Islands
+                    </MenuItem>
+                    <MenuItem value="Arunachal Pradesh">
+                      Arunachal Pradesh
+                    </MenuItem>
+                    <MenuItem value="Assam">Assam</MenuItem>
+                    <MenuItem value="Bihar">Bihar</MenuItem>
+                    <MenuItem value="Chandigarh">Chandigarh</MenuItem>
+                    <MenuItem value="Chhattisgarh">Chhattisgarh</MenuItem>
+                    <MenuItem value="Dadar and Nagar Haveli">
+                      Dadar and Nagar Haveli
+                    </MenuItem>
+                    <MenuItem value="Daman and Diu">Daman and Diu</MenuItem>
+                    <MenuItem value="Delhi">Delhi</MenuItem>
+                    <MenuItem value="Lakshadweep">Lakshadweep</MenuItem>
+                    <MenuItem value="Puducherry">Puducherry</MenuItem>
+                    <MenuItem value="Goa">Goa</MenuItem>
+                    <MenuItem value="Gujarat">Gujarat</MenuItem>
+                    <MenuItem value="Haryana">Haryana</MenuItem>
+                    <MenuItem value="Himachal Pradesh">
+                      Himachal Pradesh
+                    </MenuItem>
+                    <MenuItem value="Jammu and Kashmir">
+                      Jammu and Kashmir
+                    </MenuItem>
+                    <MenuItem value="Jharkhand">Jharkhand</MenuItem>
+                    <MenuItem value="Karnataka">Karnataka</MenuItem>
+                    <MenuItem value="Kerala">Kerala</MenuItem>
+                    <MenuItem value="Madhya Pradesh">Madhya Pradesh</MenuItem>
+                    <MenuItem value="Maharashtra">Maharashtra</MenuItem>
+                    <MenuItem value="Manipur">Manipur</MenuItem>
+                    <MenuItem value="Meghalaya">Meghalaya</MenuItem>
+                    <MenuItem value="Mizoram">Mizoram</MenuItem>
+                    <MenuItem value="Nagaland">Nagaland</MenuItem>
+                    <MenuItem value="Odisha">Odisha</MenuItem>
+                    <MenuItem value="Punjab">Punjab</MenuItem>
+                    <MenuItem value="Rajasthan">Rajasthan</MenuItem>
+                    <MenuItem value="Sikkim">Sikkim</MenuItem>
+                    <MenuItem value="Tamil Nadu">Tamil Nadu</MenuItem>
+                    <MenuItem value="Telangana">Telangana</MenuItem>
+                    <MenuItem value="Tripura">Tripura</MenuItem>
+                    <MenuItem value="Uttar Pradesh">Uttar Pradesh</MenuItem>
+                    <MenuItem value="Uttarakhand">Uttarakhand</MenuItem>
+                    <MenuItem value="West Bengal">West Bengal</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
             </Grid>
-            <Grid item sm={3} xs={0}></Grid>
-            <Grid item xs={12} sm={2}>
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  State
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
-                  value={camp?.state}
-                  name="state"
-                  onChange={handleChange}
-                  label="Age"
-                >
-                  <MenuItem value="Andhra Pradesh">Andhra Pradesh</MenuItem>
-                  <MenuItem value="Andaman and Nicobar Islands">
-                    Andaman and Nicobar Islands
-                  </MenuItem>
-                  <MenuItem value="Arunachal Pradesh">
-                    Arunachal Pradesh
-                  </MenuItem>
-                  <MenuItem value="Assam">Assam</MenuItem>
-                  <MenuItem value="Bihar">Bihar</MenuItem>
-                  <MenuItem value="Chandigarh">Chandigarh</MenuItem>
-                  <MenuItem value="Chhattisgarh">Chhattisgarh</MenuItem>
-                  <MenuItem value="Dadar and Nagar Haveli">
-                    Dadar and Nagar Haveli
-                  </MenuItem>
-                  <MenuItem value="Daman and Diu">Daman and Diu</MenuItem>
-                  <MenuItem value="Delhi">Delhi</MenuItem>
-                  <MenuItem value="Lakshadweep">Lakshadweep</MenuItem>
-                  <MenuItem value="Puducherry">Puducherry</MenuItem>
-                  <MenuItem value="Goa">Goa</MenuItem>
-                  <MenuItem value="Gujarat">Gujarat</MenuItem>
-                  <MenuItem value="Haryana">Haryana</MenuItem>
-                  <MenuItem value="Himachal Pradesh">Himachal Pradesh</MenuItem>
-                  <MenuItem value="Jammu and Kashmir">
-                    Jammu and Kashmir
-                  </MenuItem>
-                  <MenuItem value="Jharkhand">Jharkhand</MenuItem>
-                  <MenuItem value="Karnataka">Karnataka</MenuItem>
-                  <MenuItem value="Kerala">Kerala</MenuItem>
-                  <MenuItem value="Madhya Pradesh">Madhya Pradesh</MenuItem>
-                  <MenuItem value="Maharashtra">Maharashtra</MenuItem>
-                  <MenuItem value="Manipur">Manipur</MenuItem>
-                  <MenuItem value="Meghalaya">Meghalaya</MenuItem>
-                  <MenuItem value="Mizoram">Mizoram</MenuItem>
-                  <MenuItem value="Nagaland">Nagaland</MenuItem>
-                  <MenuItem value="Odisha">Odisha</MenuItem>
-                  <MenuItem value="Punjab">Punjab</MenuItem>
-                  <MenuItem value="Rajasthan">Rajasthan</MenuItem>
-                  <MenuItem value="Sikkim">Sikkim</MenuItem>
-                  <MenuItem value="Tamil Nadu">Tamil Nadu</MenuItem>
-                  <MenuItem value="Telangana">Telangana</MenuItem>
-                  <MenuItem value="Tripura">Tripura</MenuItem>
-                  <MenuItem value="Uttar Pradesh">Uttar Pradesh</MenuItem>
-                  <MenuItem value="Uttarakhand">Uttarakhand</MenuItem>
-                  <MenuItem value="West Bengal">West Bengal</MenuItem>
-                </Select>
-              </FormControl>
+          </Grid>
+          <Grid container>
+            <Grid container xs={12} style={{ visibility: "hidden" }}>
+              .
+            </Grid>{" "}
+            <Grid container xs={12} style={{ visibility: "hidden" }}>
+              .
             </Grid>
-            <Grid item sm={2} xs={0}></Grid>
-            <Grid item xs={12} sm={2}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={9}>
+              <p style={{ fontWeight: "bolder" }}>Select Location</p>
+            </Grid>
+            <Grid item sm={3} xs={0}></Grid>
+            <Grid item xs={9} sm={6}>
               <TextField
-                fullWidth
                 id="outlined-search"
-                name="location"
                 value={camp?.location}
+                name="location"
                 onChange={handleChange}
                 type="search"
                 variant="outlined"
+                fullWidth
               />
             </Grid>
           </Grid>
@@ -311,7 +323,7 @@ function Index(props) {
                   onChange={handleChange}
                 >
                   <MenuItem value="Road">Road</MenuItem>
-                  <MenuItem value=">Rail-Way">Rail-Way</MenuItem>
+                  <MenuItem value="Rail-Way">Rail-Way</MenuItem>
                   <MenuItem value="Driv-I">Driv-In</MenuItem>
                   <MenuItem value="4*4 only">4*4 only</MenuItem>
                   <MenuItem value="Boat only">Boat only</MenuItem>

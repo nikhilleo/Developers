@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Nabar() {
+function Navbar() {
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,4 +55,4 @@ function Nabar() {
   );
 }
 
-export default Nabar;
+export default Navbar;

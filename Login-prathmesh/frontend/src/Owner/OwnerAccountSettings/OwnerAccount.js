@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import actions from "../../Redux/Action";
 import axios from "../../axios";
+import Navbar from "../../Header/owner";
+import OwnerNavbar from "../OwnerNavbar/Navbar";
 import "./style.css";
+import { Divider, Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const { clearUser, clearOwner, clearAdmin } = actions;
 
@@ -263,14 +267,70 @@ function Index(props) {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div className="owner__dashboard__body"></div>
+    <>
+      <Navbar />
+      <OwnerNavbar />
+      <Grid container style={{ visibility: "hidden" }}>
+        .
+      </Grid>
+      <Grid container style={{ visibility: "hidden" }}>
+        .
+      </Grid>
+      <Grid container xs={12} align="center">
+        <Grid item xs={12}>
+          <p
+            style={{ fontSize: "23px", color: "#5e5e80", fontWeight: "bolder" }}
+          >
+            Account Setting
+          </p>
+        </Grid>
+      </Grid>
+      <Grid container style={{ visibility: "hidden" }}>
+        .
+      </Grid>
+      <Grid container style={{ visibility: "hidden" }}>
+        .
+      </Grid>{" "}
+      <Grid container xs={12} align="center">
+        <Grid item xs={4}></Grid>
+        <Grid item xs={2}>
+          <Link
+            to="/Owner__Bookings/Account__Settings"
+            style={{ textDecoration: "none" }}
+          >
+            <span
+              style={{
+                cursor: "pointer",
+                color: "black",
+                fontSize: "18px",
+                fontWeight: "bolder",
+              }}
+            >
+              Account Settings
+            </span>
+          </Link>
+        </Grid>
+        <Grid item xs={2}>
+          <Link
+            to="/Owner__Bookings/Bank__Details"
+            style={{ textDecoration: "none" }}
+          >
+            <span
+              style={{ cursor: "pointer", color: "black", fontSize: "18px" }}
+            >
+              Bank Details
+            </span>
+          </Link>
+        </Grid>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+      </Grid>
+      <Divider style={{ color: "black" }} />
+      <Grid container xs={12} style={{ visibility: "hidden" }}>
+        .
+      </Grid>
+      <Grid item xs={1}></Grid>
       <div className="Account__setting">
         <div className="sub__setting" id="Account__setting__blur">
           <span style={{ fontSize: 20, fontWeight: "bolder" }}>
@@ -279,7 +339,6 @@ function Index(props) {
           <button id="logout" onClick={handleLogOut}>
             logout
           </button>
-
           <br />
           <label>First Name</label>
           <br />
@@ -346,7 +405,7 @@ function Index(props) {
                 >
                   X{" "}
                 </span>
-                <label>enter new {change}</label>
+                <label>Enter New {change}</label>
                 <br />
                 <input
                   value={input.firstname}
@@ -401,7 +460,7 @@ function Index(props) {
         </div>
         <div className="confirm__delete" id="confirm__delete__popup">
           <span onClick={handleDeleteClick}>X </span>
-          <h1>CONFIRM DELETE ACCOUNT</h1>
+          <h1>Confirm Delete Account</h1>
           <br />
           <label>This will erase all your data from our server, Confirm?</label>
           <button
@@ -413,7 +472,7 @@ function Index(props) {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

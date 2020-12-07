@@ -189,9 +189,9 @@ exports.find_specific_user = async function (req, res) {
 };
 
 exports.create_a_camp = async (req, res) => {
+  console.log(req.body);
   try {
     const camp_o = req.profile;
-    console.log(camp_o);
     const interesting_name = req.body.campDetails.interestingName;
     const camp_name = req.body.campDetails.originalName;
     const camp_desc = req.body.campDetails.campDescription;
@@ -211,11 +211,10 @@ exports.create_a_camp = async (req, res) => {
     const cancellation_policy = req.body.campExtraDetails.policy;
     console.log(Object.keys(req.body.campAccomodation).length);
     console.log(req.body.campActivities);
-    // if (!camp_o) {
-    //   throw new Error("No User Found");
-    // }
+    if (!camp_o) {
+      throw new Error("No User Found");
+    }
     const camp_owner = camp_o._id;
-
     const camp = await new Camps({
       interesting_name,
       camp_name,
@@ -272,7 +271,7 @@ exports.upload_image = async (req, res) => {
     try {
       // const c_name = req.body.camp_name;
       // const camp = await Camps.findOne({camp_name:c_name});
-      const camp = await Camps.findOne({ camp_name: "Delhi camp" });
+      const camp = await Camps.findOne({ camp_name: "Punjab Camp" });
       // console.log(camp);
       if (!camp) {
         throw new Error("null");

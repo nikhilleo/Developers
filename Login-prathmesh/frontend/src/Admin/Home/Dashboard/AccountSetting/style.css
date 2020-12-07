@@ -19,6 +19,12 @@
   min-width: 487px;
 }
 
+.sub__setting {
+  background: #e2e2e2;
+  padding: 3vw;
+  border-radius: 28px;
+}
+
 .selected__input > label {
   font-weight: bolder;
 }
@@ -64,6 +70,7 @@
   visibility: visible;
   opacity: 1;
   transition: 0.5s;
+  border-radius: 25px;
   padding: 49px;
 }
 
@@ -84,6 +91,7 @@
   background-color: white;
   top: 50%;
   visibility: visible;
+  border-radius: 26px;
   opacity: 1;
   transition: 0.5s;
   padding: 49px;
@@ -110,6 +118,10 @@ select:focus {
 }
 
 .Account__setting {
-  position: relative;
-  top: 10vh;
+  position: relative !important;
+  top: 10vh !important;
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  background: white !important;
 }

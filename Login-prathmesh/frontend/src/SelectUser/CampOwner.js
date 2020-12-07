@@ -5,7 +5,14 @@ import { connect } from "react-redux";
 import actions from "../Redux/Action";
 import axios from "../axios";
 
-const { setOwner, setCurrentUser } = actions;
+const {
+  setOwner,
+  setCurrentUser,
+  clearUser,
+  clearCurrentUser,
+  clearOwner,
+  clearAdmin,
+} = actions;
 
 function Index(props) {
   const history = useHistory();
@@ -57,6 +64,9 @@ function Index(props) {
         .post("/owner/signup", input)
         .then((res) => {
           console.log(res);
+          props.clearUser();
+          props.clearAdmin();
+          props.clearCurrentUser();
           props.setOwner(res.data.user);
           console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
           props.setCurrentUser(res.data.user);
@@ -78,6 +88,9 @@ function Index(props) {
         })
         .then((res) => {
           console.log(res);
+          props.clearUser();
+          props.clearAdmin();
+          props.clearCurrentUser();
           props.setOwner(res.data.user);
           console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
           props.setCurrentUser(res.data.user);
@@ -308,6 +321,15 @@ function mapDispatchToProps(dispatch) {
     },
     setCurrentUser: (data) => {
       dispatch(setCurrentUser(data));
+    },
+    clearAdmin: () => {
+      dispatch(clearAdmin());
+    },
+    clearCurrentUser: () => {
+      dispatch(clearCurrentUser());
+    },
+    clearUser: () => {
+      dispatch(clearUser());
     },
   };
 }
