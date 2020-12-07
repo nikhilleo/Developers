@@ -271,7 +271,7 @@ exports.upload_image = async (req, res) => {
     try {
       // const c_name = req.body.camp_name;
       // const camp = await Camps.findOne({camp_name:c_name});
-      const camp = await Camps.findOne({ camp_name: "Punjab Camp" });
+      const camp = await Camps.findOne({ camp_name: "ansgujasnguasgnasugnasugnga" });
       // console.log(camp);
       if (!camp) {
         throw new Error("null");
