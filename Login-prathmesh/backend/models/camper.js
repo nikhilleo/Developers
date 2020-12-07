@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const Bookings = require("../models/booking");
 
 const camperSchema = new mongoose.Schema(
   {
@@ -52,6 +52,12 @@ const camperSchema = new mongoose.Schema(
       maxlength: 500,
       trim: true,
     },
+    bookings_made:[
+      {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Bookings"
+      }
+    ]
   },
   { timestamp: true }
 );

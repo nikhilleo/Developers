@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const Camper = require("../models/camper");
+const Camp = require("../models/camps");
 
 const bookingSchema = new mongoose.Schema({
     a_details:{
@@ -13,9 +14,19 @@ const bookingSchema = new mongoose.Schema({
         trim:true,
         default:""
     },
+    camp:{
+        type:mongoose.Schema.Types.ObjectId,
+        trim:true,
+        ref:"Camps"
+    },
     camper_details:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Camper"
+    },
+    status:{
+        type:String,
+        trim:true,
+        default:"Pending For Confirmation"
     },
     payment_id:{
         type:String,
