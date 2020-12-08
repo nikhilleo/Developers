@@ -240,6 +240,7 @@ exports.create_a_camp = async(req,res)=>{
     const camp_o = req.profile
     const interesting_name = req.body.campDetails.interestingName;
     const camp_name = req.body.campDetails.originalName;
+    const describe_in_255chars = req.body.describe_in_255chars;
     const camp_desc = req.body.campDetails.campDescription;
     const camp_state = req.body.campDetails.state;
     const camp_location = req.body.campDetails.location;
@@ -268,6 +269,7 @@ exports.create_a_camp = async(req,res)=>{
       camp_desc,
       camp_state,
       camp_location,
+      describe_in_255chars,
       accessibility_by,
       land_type,
       activities,
@@ -283,6 +285,8 @@ exports.create_a_camp = async(req,res)=>{
       cancellation_policy
     });
     await camp.save()
+    camp_o.campsListed.push(camp._id);
+    await camp_o.save();
     res.status(201).json({
       message:"Camp Created",
       camp

@@ -5,6 +5,7 @@ const router = express.Router();
 const camper_controller = require("../controllers/camper_controllers")
 const camp_controller = require("../controllers/camp_controllers");
 const auth = require("../middleware/authorization");
+const booking_controller = require("../controllers/booking_controllers");
 
 router.post('/signup',camper_controller.signup)
 
@@ -25,5 +26,11 @@ router.get('/get_a_camp',auth,camper_controller.get_a_camp);
 router.get('/get_recent_camps', camp_controller.get_recent_camps);
 
 router.get('/get_trending_camps', camp_controller.get_trending_camps);
+
+router.get('/get_all_pending_bookings',auth ,booking_controller.get_all_pending_bookings);
+
+router.get('/get_all_accepted_bookings',auth,booking_controller.get_all_accepted_bookings);
+
+router.get('/get_all_rejected_bookings',auth,booking_controller.get_all_rejected_bookings);
 
 module.exports = router;

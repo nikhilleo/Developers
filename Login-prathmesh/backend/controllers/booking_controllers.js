@@ -122,7 +122,7 @@ exports.reject_a_booking = async(req,res)=>{
     }
 }
 
-
+// camper
 exports.get_all_pending_bookings = async(req,res)=>{
     try {
         const user = req.profile;
@@ -217,3 +217,4 @@ exports.get_all_rejected_bookings = async(req,res)=>{
         }
     }
 }
+

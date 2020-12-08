@@ -51,14 +51,14 @@ const campOwnerSchema = new mongoose.Schema(
       maxlength: 500,
       trim: true,
     },
-    // campsListed:[
-    //     {
-    //         camp:{
-    //             type:mongoose.Schema.Types.ObjectId,
-    //             ref:Camps
-    //         }
-    //     }
-    // ]
+    campsListed:[
+        {
+            camp:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:"Camps"
+            }
+        }
+    ],
     camp_booking:[
       {
         booking:{
