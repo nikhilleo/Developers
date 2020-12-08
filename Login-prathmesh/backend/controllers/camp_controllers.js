@@ -171,3 +171,47 @@ exports.get_active_camps = async(req,res)=>{
         }
     }
 }
+
+exports.get_recent_camps = async (req, res) => {
+    try {
+        const camps = await Camp.find({}).limit(6);
+        if(camps.length >=1)
+        {
+            res.send(camps);
+        }
+        else
+        {
+            throw ('No Recent camps');
+        }
+    } catch (error) {
+        if(error.message=="No Recent camps")
+        {
+            res.status(404).send("No Recent camps");
+        }
+        else{
+            res.status(400).send(error.message)
+        }
+    }
+}
+
+exports.get_trending_camps = async (req, res) => {
+    try {
+        const camps = await Camp.find({}).sort({createdAt:-1}).limit(6);
+        if(camps.length >=1)
+        {
+            res.send(camps);
+        }
+        else
+        {
+            throw ('No trending camps');
+        }
+    } catch (error) {
+        if(error.message=="No trending camps")
+        {
+            res.status(404).send("No trending camps");
+        }
+        else{
+            res.status(400).send(error.message)
+        }
+    }
+}

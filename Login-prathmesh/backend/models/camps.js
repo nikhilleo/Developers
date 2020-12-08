@@ -115,7 +115,7 @@ const campSchema = new mongoose.Schema({
         trim:true,
         default:"Pending"
     }
-})
+},{timestamps: true})
 
 
 const Camps = mongoose.model("Camps",campSchema);
