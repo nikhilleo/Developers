@@ -61,10 +61,8 @@ const campOwnerSchema = new mongoose.Schema(
     ],
     camp_booking:[
       {
-        booking:{
-          type:mongoose.Schema.Types.ObjectId,
-          ref:"Bookings"
-        }
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Bookings"
       }
     ]
   },

@@ -9,7 +9,7 @@ exports.create_a_booking = async(req,res)=>{
         const camp_user = req.profile;
         const a_details = req.body.a_details;
         var total=0;
-        for(let i=0;i< a_details.length;i++)
+        for(let i=0;i< a_details.length-1;i++)
         {
             total += a_details[i].totalPrice
         }
@@ -194,9 +194,9 @@ exports.get_all_rejected_bookings = async(req,res)=>{
         {
             throw new Error("No User Found")
         }
-        const bookings = await Camper.findOne({_id:user._id}).populate({
-            path : "bookings_made",
-            match: { status: "Rejected By Owner" }
+        const bookings = await CampOwner.findOne({_id:user._id}).populate({
+            path:"bookings_made",
+            match: { status: "Pending For Confirmation" }
         });
         if(bookings.bookings_made.length<1)
         {
