@@ -15,6 +15,11 @@ const campSchema = new mongoose.Schema({
         trim: true,
         unique:true
     },
+    describe_in_255chars:{
+        type:String,
+        trim:true,
+        required:true
+    },
     camp_desc: {
         type: String,
         required: true,
@@ -115,8 +120,7 @@ const campSchema = new mongoose.Schema({
         trim:true,
         default:"Pending"
     }
-})
-
+},{timestamps: true})
 
 const Camps = mongoose.model("Camps",campSchema);
 module.exports = Camps;
