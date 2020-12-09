@@ -269,7 +269,68 @@ function Index(props) {
   return (
     <>
       <Navbar />
-      <OwnerNavbar />
+      <div className="ownerMAinBody">
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className="navbar__container__home">
+            <div className="navbar__menu__home">
+              <li className="navbar__li">
+                <Link
+                  to="/Owner__Bookings/BookingPending"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button
+                    className="navbar__span"
+                    style={{
+                      height: "8vh",
+                      width: "12vw",
+                      background: "transparent",
+                      borderRadius: "34px",
+                    }}
+                  >
+                    BOOKING
+                  </button>
+                </Link>
+              </li>
+              <li className="navbar__li">
+                <Link
+                  to="../Owner__Bookings/Total__Earnings"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button
+                    className="navbar__span"
+                    style={{
+                      height: "8vh",
+                      width: "12vw",
+                      background: "transparent",
+                      borderRadius: "34px",
+                    }}
+                  >
+                    EARNINGS
+                  </button>
+                </Link>
+              </li>
+              <li className="navbar__li">
+                <Link
+                  to="../Owner__Bookings/Account__Settings"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button
+                    className="navbar__span"
+                    style={{
+                      height: "8vh",
+                      width: "12vw",
+                      background: "#e43655",
+                      borderRadius: "34px",
+                    }}
+                  >
+                    ACCOUNT SETTING
+                  </button>
+                </Link>
+              </li>
+            </div>
+          </div>
+        </div>
+      </div>
       <Grid container style={{ visibility: "hidden" }}>
         .
       </Grid>

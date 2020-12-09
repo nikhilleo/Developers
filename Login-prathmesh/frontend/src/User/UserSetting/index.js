@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import actions from "../../Redux/Action";
 import { Link, useHistory } from "react-router-dom";
+import Navbar from "../../Header/owner";
 import axios from "../../axios";
 import "./style.css";
 
@@ -268,6 +269,66 @@ function Index(props) {
 
   return (
     <div>
+      <Navbar />
+      <div className="ownerMAinBody">
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className="navbar__container__home">
+            <div className="navbar__menu__home">
+              <li className="navbar__li">
+                <Link
+                  to="/User__Booking__Sent"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button
+                    className="navbar__span"
+                    style={{
+                      height: "8vh",
+                      width: "12vw",
+                      background: "transparent",
+                      borderRadius: "34px",
+                    }}
+                  >
+                    BOOKING
+                  </button>
+                </Link>
+              </li>
+              <li className="navbar__li">
+                <Link to="/User__Wishlist" style={{ textDecoration: "none" }}>
+                  <button
+                    className="navbar__span"
+                    style={{
+                      height: "8vh",
+                      width: "12vw",
+                      background: "transparent",
+                      borderRadius: "34px",
+                    }}
+                  >
+                    WishList
+                  </button>
+                </Link>
+              </li>
+              <li className="navbar__li">
+                <Link
+                  to="/User__Account__settings"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button
+                    className="navbar__span"
+                    style={{
+                      height: "8vh",
+                      width: "12vw",
+                      background: "#e43655",
+                      borderRadius: "34px",
+                    }}
+                  >
+                    ACCOUNT SETTING
+                  </button>
+                </Link>
+              </li>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="Account__setting">
         <div className="sub__setting" id="Account__setting__blur">
           <span style={{ fontSize: 20, fontWeight: "bolder" }}>

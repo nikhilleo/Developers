@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import actions from "../Redux/Action";
 import { connect } from "react-redux";
+import "./style.css";
 
 const { clearCurrentUser, clearUser } = actions;
 
@@ -18,7 +19,7 @@ function Navbar(props) {
   return (
     <div>
       <nav
-        class="navbar navbar-expand-lg navbar-light bg-light"
+        class="navbar navbar-expand-lg navbar-light bg-light cao"
         style={{ padding: "2vh" }}
       >
         <button
@@ -35,19 +36,27 @@ function Navbar(props) {
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active mr-2">
-              <a class="nav-link " href="#">
+              <a class="nav-link " href="#" style={{ color: "white" }}>
                 Blog <span class="sr-only">(current)</span>
               </a>
             </li>
 
             <li class="nav-item active mr-2 ">
-              <Link to="/CampUserForm1" class="nav-link">
+              <Link
+                to="/CampUserForm1"
+                class="nav-link"
+                style={{ color: "white" }}
+              >
                 Create Camp
               </Link>
             </li>
 
             <li class="nav-item active mr-5">
-              <Link to="/Owner__Bookings/BookingPending" class="nav-link">
+              <Link
+                to="/Owner__Bookings/BookingPending"
+                class="nav-link"
+                style={{ color: "black", color: "white" }}
+              >
                 Dashboard
               </Link>
             </li>
@@ -63,13 +72,13 @@ function Navbar(props) {
                 {props?.user?.user?.firstname}
               </a>
               <div
-                class="dropdown-menu  "
+                class="dropdown-menu"
                 style={{ marginRight: 10 }}
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <span
                   class="dropdown-item  "
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "white" }}
                   onClick={handleClick}
                 >
                   Logout

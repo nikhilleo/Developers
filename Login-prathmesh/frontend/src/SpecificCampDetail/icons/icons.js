@@ -81,7 +81,7 @@ function Icons(props) {
         console.log("yes");
         return <HouseOutlinedIcon />;
       }
-      case "Villas": {
+      case "Tent": {
         console.log("yes");
         return <AccountBalanceIcon />;
       }
@@ -90,7 +90,7 @@ function Icons(props) {
         return <LocalParkingIcon />;
       }
       default: {
-        return <NotListedLocationIcon />;
+        return null;
       }
     }
   };

@@ -134,7 +134,9 @@ function Index(props) {
                 X
               </span>
               <form className="select__user__form" action="#">
-                <h1 className="select__user__h1">Create Account</h1>
+                <h1 className="select__user__h1" style={{ color: "black" }}>
+                  Create Account
+                </h1>
                 <div class="select__user__social-container">
                   <a
                     className="select__user__a"
@@ -227,7 +229,9 @@ function Index(props) {
                 X
               </span>
               <form className="select__user__form" action="#">
-                <h1 className="select__user__h1">Sign in</h1>
+                <h1 className="select__user__h1" style={{ color: "black" }}>
+                  Sign in
+                </h1>
                 <div class="select__user__social-container">
                   <a className="select__user__a select__user__social" href="#">
                     <i class="fab fa-facebook-f"></i>

@@ -1,3 +1,127 @@
+.camp-block {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: -33px;
+  z-index: 2;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+  min-height: 230px;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+user agent stylesheet div {
+  display: block;
+}
+.fixed-pos {
+  position: fixed;
+  top: 79px;
+  width: 360px;
+}
+.camp-booking-block {
+  position: absolute;
+  background-color: #ffffff;
+  width: 461px;
+  float: right;
+  z-index: 2;
+  top: -33px;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.user agent stylesheet div {
+  display: block;
+}
+.Amenities {
+  margin-top: 250px;
+}
+
+.work {
+  font-size: 15px;
+  margin: 10px;
+  width: 68.5%;
+  z-index: 2;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+}
+.Description {
+  z-index: 2;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+}
+.work1 {
+  font-size: 15px;
+
+  margin: 10px;
+  z-index: 2;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+}
+.work2 {
+  margin: 10px;
+  z-index: 2;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+}
+.work4 {
+  font-size: 15px;
+  z-index: 2;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+}
+.work5 {
+  font-size: 15px;
+  z-index: 2;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
+}
+.all {
+  margin-top: 220px;
+}
+.main1 {
+  background-color: lightgray !important;
+}
+.dd {
+  background-color: lightblue !important;
+}
+.s12 {
+  font-size: 50px;
+  margin-top: -10px;
+  margin-left: 20px;
+}
+.s123 {
+  font-size: 45px;
+  margin-top: -10px;
+  margin-left: 40px;
+}
+
 .react-calendar__month-view__days__day--weekend {
   color: #d10000;
 }

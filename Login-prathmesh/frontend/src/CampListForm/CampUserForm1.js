@@ -15,6 +15,8 @@ import actions from "../Redux/Action";
 import axios from "../axios";
 import "./style.css";
 import Alert from "@material-ui/lab/Alert";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const { setCampDetails } = actions;
 
@@ -52,6 +54,7 @@ function Index(props) {
   console.log(camp);
 
   useEffect(() => {
+    console.log(props.campDetails);
     const data = localStorage.getItem("campUserForm1");
     console.log(data);
     if (data == undefined) return 0;
@@ -64,68 +67,48 @@ function Index(props) {
     setSelect(e.target.value);
   };
   const handleSubmit = () => {
-    if (handleValidation()) {
-      alert("Basic Camp Details Updated");
+    console.log(camp);
+    if (!handleValidation()) {
+      return 0;
     } else {
-      alert("Please fill every field");
+      localStorage.setItem("campUserForm1", JSON.stringify(camp));
+
+      props.setCampDetails(camp);
+      history.push("/CampUserForm2");
     }
-
-    localStorage.setItem("campUserForm1", JSON.stringify(camp));
-
-    props.setCampDetails(camp);
-    history.push("/CampUserForm2");
   };
   return (
-    <div className="CampUserForm">
+    <div className="CampUserForm formBody">
       <Grid container className="Owner__Camp__Container" justify="center">
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
         <Grid container xs={3} justify="center">
-          <Link to="/CampUserForm1" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontWeight: "bolder",
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              1 Basic Details{" "}
-            </span>
+          <Link to="/CampUserForm1" className="link1">
+            <span className="mainHeader"> 1 Basic Details </span>
           </Link>
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm2" style={{ textDecoration: "none" }}>
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              2.Activities{" "}
-            </span>
+            <span className="subHeader"> 2.Activities </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm3" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              3.Accomodation{" "}
-            </span>
+            <span className="subHeader"> 3.Accomodation </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm4" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              4.Manager{" "}
-            </span>{" "}
+            <span className="subHeader"> 4.Manager </span>{" "}
           </Link>
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm5" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              5.Images{" "}
-            </span>{" "}
+            <span className="subHeader"> 5.Images </span>{" "}
           </Link>
         </Grid>
         <Grid container style={{ visibility: "hidden" }}>
@@ -162,6 +145,10 @@ function Index(props) {
                 variant="outlined"
                 value={camp?.interestingName}
                 fullWidth
+                style={{
+                  border: "3px solid white",
+                  borderRadius: "17px",
+                }}
               />
             </Grid>
           </Grid>
@@ -188,6 +175,10 @@ function Index(props) {
                 type="search"
                 variant="outlined"
                 fullWidth
+                style={{
+                  border: "3px solid white",
+                  borderRadius: "17px",
+                }}
               />
             </Grid>
           </Grid>
@@ -204,7 +195,7 @@ function Index(props) {
             </Grid>
             <Grid item sm={3} xs={0}></Grid>
             <Grid item xs={9} sm={6}>
-              <TextField
+              {/* <TextField
                 id="outlined-search"
                 value={camp?.campDescription}
                 name="campDescription"
@@ -212,6 +203,22 @@ function Index(props) {
                 type="search"
                 variant="outlined"
                 fullWidth
+              /> */}
+              <CKEditor
+                editor={ClassicEditor}
+                onChange={(event, editor) => {
+                  const data = editor.getData("text/plain");
+                  var result = data.substring(3, data.length - 4);
+                  setCamp((prevState) => ({
+                    ...prevState,
+                    ["campDescription"]: result,
+                  }));
+                }}
+                style={{
+                  border: "3px solid white",
+                  borderRadius: "17px",
+                }}
+                name="campDescription"
               />
             </Grid>
           </Grid>
@@ -230,7 +237,10 @@ function Index(props) {
               <Grid item sm={3} xs={0}></Grid>
               <Grid item xs={9} sm={6}>
                 <FormControl variant="outlined" fullWidth>
-                  <InputLabel id="demo-simple-select-outlined-label">
+                  <InputLabel
+                    id="demo-simple-select-outlined-label"
+                    style={{ color: "white" }}
+                  >
                     State
                   </InputLabel>
                   <Select
@@ -240,6 +250,10 @@ function Index(props) {
                     name="state"
                     onChange={handleChange}
                     label="Age"
+                    style={{
+                      border: "3px solid white",
+                      borderRadius: "17px",
+                    }}
                   >
                     <MenuItem value="Andhra Pradesh">Andhra Pradesh</MenuItem>
                     <MenuItem value="Andaman and Nicobar Islands">
@@ -313,6 +327,10 @@ function Index(props) {
                 type="search"
                 variant="outlined"
                 fullWidth
+                style={{
+                  border: "3px solid white",
+                  borderRadius: "17px",
+                }}
               />
             </Grid>
           </Grid>
@@ -333,7 +351,10 @@ function Index(props) {
             <Grid item sm={3} xs={0}></Grid>
             <Grid item xs={12} sm={2}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel
+                  id="demo-simple-select-outlined-label"
+                  style={{ color: "white" }}
+                >
                   Type
                 </InputLabel>
                 <Select
@@ -343,6 +364,10 @@ function Index(props) {
                   name="landType"
                   onChange={handleChange}
                   label="Age"
+                  style={{
+                    border: "3px solid white",
+                    borderRadius: "17px",
+                  }}
                 >
                   <MenuItem value="Government">Government</MenuItem>
                   <MenuItem value="Private">Private</MenuItem>
@@ -353,7 +378,10 @@ function Index(props) {
             <Grid item sm={2} xs={0}></Grid>
             <Grid item xs={12} sm={2}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel
+                  id="demo-simple-select-outlined-label"
+                  style={{ color: "white" }}
+                >
                   Accessable by
                 </InputLabel>
                 <Select
@@ -362,6 +390,10 @@ function Index(props) {
                   value={camp?.accessibleBy}
                   name="accessibleBy"
                   onChange={handleChange}
+                  style={{
+                    border: "3px solid white",
+                    borderRadius: "17px",
+                  }}
                 >
                   <MenuItem value="Road">Road</MenuItem>
                   <MenuItem value="Rail-Way">Rail-Way</MenuItem>
@@ -384,7 +416,11 @@ function Index(props) {
             </Button>
           </Grid>
         </Grid>
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
       </Grid>
+      <Footer />
     </div>
   );
 }

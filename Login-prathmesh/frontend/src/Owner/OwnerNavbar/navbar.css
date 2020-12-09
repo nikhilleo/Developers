@@ -53,6 +53,14 @@ a:focus:before {
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     opacity 0.2s;
 }
+
+a:hover:before,
+a:focus:before,
+a:hover:after,
+a:focus:after {
+  opacity: 0;
+  transform: none;
+}
 a:hover:after,
 a:focus:after {
   transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
@@ -60,10 +68,11 @@ a:focus:after {
 }
 
 .navbar__container__home {
-  width: 80%;
+  width: 83%;
   height: auto;
   line-height: 80px;
-  background: var(--background-color);
+  background: transparent;
+  border: none;
   bottom: 76vh;
   text-decoration: none;
 }

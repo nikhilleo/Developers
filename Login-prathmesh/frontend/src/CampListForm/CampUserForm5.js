@@ -22,6 +22,7 @@ import Footer from "../Admin/Footer/Footer";
 var imagePreview = [];
 
 function CampUserForm5() {
+  const history = useHistory();
   var [imagePreviewUrl, setImagePreviewUrl] = useState([]);
 
   var [files, setFiles] = useState([]);
@@ -49,7 +50,7 @@ function CampUserForm5() {
   };
 
   if (imagePreviewUrl) {
-    imagePreview.push(<img style={{ height: "9vh" }} src={imagePreviewUrl} />);
+    imagePreview.push(<img style={{ height: "7rem" }} src={imagePreviewUrl} />);
   }
 
   const handleSubmit = async () => {
@@ -61,68 +62,36 @@ function CampUserForm5() {
     }
     await data.append("image", files);
     axios.post("/owner/upload/image", data);
+    history.push("/");
   };
 
   return (
-    <div>
+    <div className="formBody">
       {" "}
       <Grid container className="Owner__Camp__Container" justify="center">
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
         <Grid container xs={3} justify="center">
           <Link to="/CampUserForm1" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              1 Basic Details{" "}
-            </span>
+            <span className="subHeader"> 1 Basic Details </span>
           </Link>
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm2" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              2.Activities{" "}
-            </span>
+            <span className="subHeader"> 2.Activities </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm3" style={{ textDecoration: "none" }}>
             {" "}
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              3.Accomodation{" "}
-            </span>
+            <span className="subHeader"> 3.Accomodation </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm4" style={{ textDecoration: "none" }}>
             {" "}
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              4.Manager{" "}
-            </span>{" "}
+            <span className="subHeader"> 4.Manager </span>{" "}
           </Link>
         </Grid>
         <Grid container xs={2}>
@@ -131,10 +100,7 @@ function CampUserForm5() {
             style={{ textDecoration: "none", fontWeight: "bolder" }}
           >
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              5.Images{" "}
-            </span>{" "}
+            <span className="mainHeader"> 5.Images </span>{" "}
           </Link>
         </Grid>
         <Grid container style={{ visibility: "hidden" }}>
@@ -213,7 +179,7 @@ function CampUserForm5() {
                     src={img}
                     key={index}
                     style={{
-                      height: "12rem",
+                      height: "7rem",
                       border: "1px solid",
                       minWidth: "5vw",
                       maxWidth: "5vw",

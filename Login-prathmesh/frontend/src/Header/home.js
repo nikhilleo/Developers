@@ -1,58 +1,91 @@
-import React from "react";
+import React, { Component } from "react";
+import {
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavItem,
+  MDBNavLink,
+  MDBNavbarToggler,
+  MDBCollapse,
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
+  MDBIcon,
+} from "mdbreact";
+import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./style.css";
 
-function Navbar() {
-  return (
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+class NavbarPage extends Component {
+  state = {
+    isOpen: false,
+  };
+
+  toggleCollapse = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  render() {
+    return (
+      <Router>
+        <MDBNavbar
+          color="default-color"
+          className="cao"
+          dark
+          expand="md"
+          style={{
+            padding: "17px",
+          }}
         >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active mr-2">
-              <a class="nav-link " href="#">
-                Blog <span class="sr-only">(current)</span>
-              </a>
-            </li>
-
-            <li class="nav-item dropdown mr-5  active">
-              <a
-                class="nav-link dropdown mr-5"
-                href="#"
-                id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Login
-              </a>
-              <div
-                class="dropdown-menu  "
-                style={{ marginRight: 10 }}
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <Link class="dropdown-item  " to="/campUser">
-                  Camper Login
+          <MDBNavbarBrand>
+            <strong className="white-text">Lamp A Camp</strong>
+          </MDBNavbarBrand>
+          <MDBNavbarToggler onClick={this.toggleCollapse} />
+          <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+            <MDBNavbarNav left>
+              <MDBNavItem active>
+                <Link to="/CampUser" style={{ color: "white" }}>
+                  Home
                 </Link>
-                <Link class="dropdown-item  " to="/campOwner">
-                  Campowner Login
-                </Link>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  );
+              </MDBNavItem>
+            </MDBNavbarNav>
+            <MDBNavbarNav right>
+              <MDBNavItem>
+                <MDBDropdown>
+                  <MDBDropdownToggle nav caret>
+                    <MDBIcon icon="user" style={{ color: "white" }} />
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu className="dropdown-default">
+                    <MDBDropdownItem href="/CampUser">
+                      {/* <Link style={{ color: "black ", textDecoration: "none" }}> */}
+                      Camper Login
+                      {/* </Link> */}
+                    </MDBDropdownItem>
+                    <MDBDropdownItem href="/CampOwner">
+                      {/* <Link style={{ color: "black ", textDecoration: "none" }}> */}
+                      Campe Owner Logins
+                      {/* </Link> */}
+                    </MDBDropdownItem>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBNavLink className="waves-effect waves-light" to="#!">
+                  <MDBIcon fab icon="twitter" />
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBNavLink className="waves-effect waves-light" to="#!">
+                  <MDBIcon fab icon="google-plus-g" />
+                </MDBNavLink>
+              </MDBNavItem>
+            </MDBNavbarNav>
+          </MDBCollapse>
+        </MDBNavbar>
+      </Router>
+    );
+  }
 }
 
-export default Navbar;
+export default NavbarPage;

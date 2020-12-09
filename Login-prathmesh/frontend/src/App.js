@@ -12,9 +12,7 @@ import CampOwner from "./SelectUser/CampOwner";
 import CampUser from "./SelectUser/CampUser";
 import { connect } from "react-redux";
 import actions from "./Redux/Action";
-import UserBooking from "./User/UserBooking/";
-import UserCampSites from "./User/UserCampSites";
-import UserNavbar from "./User/UserNavbar";
+
 import Footer from "./Admin/Footer/Footer";
 import Booking__Admin from "./Admin/Home/Dashboard/Booking/Pending";
 import Active__Camps from "./Admin/Home/Dashboard/DeleteCamps/ActiveCamps";
@@ -31,6 +29,12 @@ import OwnerBookingPending from "./Owner/OwnerBookings/BookingPending";
 import OwnerApproved from "./Owner/OwnerBookings/Approved";
 import OwnerEarning from "./Owner/OwnerEarning/TotalEarning";
 import OwnerPaymentHistory from "./Owner/OwnerEarning/PaymentHistory";
+import UserBookingApproved from "./User/UserBooking/BookingApproved";
+import UserBookingSent from "./User/UserBooking/BookingSent";
+import UserPaymentPending from "./User/UserBooking/PaymentPending";
+import UserWishlist from "./User/UserWishList/index";
+import UserAccountSetting from "./User/UserSetting/index";
+import UserNavbar from "./User/UserNavbar";
 import CampUserForm1 from "./CampListForm/CampUserForm1";
 import CampUserForm2 from "./CampListForm/CampUserForm2";
 import CampUserForm3 from "./CampListForm/CampUserForm3";
@@ -149,15 +153,13 @@ const App = (props) => {
             exact
             path="/CampUserForm1"
             render={() => {
-              if (props?.owner?.user) {
+              if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
                     <OwnerHeader />
                     <CampUserForm1 />
                   </>
                 );
-              } else {
-                return <Redirect to="/" />;
               }
             }}
           />
@@ -174,8 +176,6 @@ const App = (props) => {
                     <CampUserForm2 />
                   </>
                 );
-              } else {
-                return <Redirect to="/" />;
               }
             }}
           />
@@ -190,8 +190,6 @@ const App = (props) => {
                     <CampUserForm3 />
                   </>
                 );
-              } else {
-                return <Redirect to="/" />;
               }
             }}
           />
@@ -206,8 +204,6 @@ const App = (props) => {
                     <CampUserForm4 />
                   </>
                 );
-              } else {
-                return <Redirect to="/" />;
               }
             }}
           />
@@ -222,8 +218,6 @@ const App = (props) => {
                     <CampUserForm5 />
                   </>
                 );
-              } else {
-                return <Redirect to="/" />;
               }
             }}
           />
@@ -234,8 +228,7 @@ const App = (props) => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <UserNavbar />
-                    <UserSetting />
+                    <UserAccountSetting />
                   </>
                 );
               } else {
@@ -245,13 +238,12 @@ const App = (props) => {
           />
           <Route
             exact
-            path="/User__Booking"
+            path="/User__Booking__Sent"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <UserNavbar />
-                    <UserBooking />
+                    <UserBookingSent />
                   </>
                 );
               } else {
@@ -261,13 +253,42 @@ const App = (props) => {
           />
           <Route
             exact
-            path="/User__Camp__Sites"
+            path="/User__Payment__Pending"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
                 return (
                   <>
-                    <UserNavbar />
-                    <UserCampSites />
+                    <UserPaymentPending />
+                  </>
+                );
+              } else {
+                return <SelectUser />;
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/User__Wishlist"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <UserWishlist />
+                  </>
+                );
+              } else {
+                return <SelectUser />;
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/User__Booking__Approved"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <UserBookingApproved />
                   </>
                 );
               } else {

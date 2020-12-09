@@ -15,6 +15,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import actions from "../Redux/Action";
+import Footer from "../Admin/Footer/Footer";
 
 const {
   setCampAmenities,
@@ -42,7 +43,7 @@ function Index(props) {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.log(props.campDetails);
+    console.log(bookingDetails);
     console.log(props.campDetails);
   };
 
@@ -74,67 +75,40 @@ function Index(props) {
 
   return (
     <div>
-      <Grid container className="Owner__Camp__Container" justify="center">
+      <Grid
+        container
+        className="Owner__Camp__Container formBody"
+        justify="center"
+      >
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
         <Grid container xs={3} justify="center">
           <Link to="/CampUserForm1" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              1 Basic Details{" "}
-            </span>
+            <span className="subHeader"> 1 Basic Details </span>
           </Link>
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm2" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              2.Activities{" "}
-            </span>
+            <span className="subHeader"> 2.Activities </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm3" style={{ textDecoration: "none" }}>
             {" "}
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-                fontWeight: "bolder",
-              }}
-            >
-              {" "}
-              3.Accomodation{" "}
-            </span>
+            <span className="mainHeader"> 3.Accomodation </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm4" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              4.Manager{" "}
-            </span>{" "}
+            <span className="subHeader"> 4.Manager </span>{" "}
           </Link>
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm5" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              5.Images{" "}
-            </span>{" "}
+            <span className="subHeader"> 5.Images </span>{" "}
           </Link>
         </Grid>
         <Grid container style={{ visibility: "hidden" }}>
@@ -156,36 +130,103 @@ function Index(props) {
           </Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={5}>
-            <p style={{ fontSize: 14, color: "#a08c8c" }}>
+            <p
+              style={{
+                fontSize: 14,
+                color: "#a08c8c",
+                color: "white",
+                fontWeight: "bolder",
+              }}
+            >
               Check in time (In 24 hour format)
             </p>
           </Grid>
           <Grid item xs={5}>
-            <p style={{ fontSize: 14, color: "#a08c8c" }}>
+            <p style={{ fontSize: 14, color: "white", fontWeight: "bolder" }}>
               Check out time (In 24 hour format)
             </p>
           </Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={3}>
-            <TextField
-              id="filled-basic"
-              label="Like 11:00"
-              variant="filled"
-              fullWidth
-              name="checkInTime"
-              onChange={handleChange}
-            />
+            <FormControl variant="outlined" fullWidth>
+              <Select
+                style={{
+                  border: "3px solid white",
+                  borderRadius: "17px",
+                }}
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                name="checkInTime"
+                onChange={handleChange}
+                label="Age"
+              >
+                <MenuItem value="0">12:00 am</MenuItem>
+                <MenuItem value="1">1:00 am</MenuItem>
+                <MenuItem value="2">2:00 am</MenuItem>
+                <MenuItem value="3">3:00 am</MenuItem>
+                <MenuItem value="4">4:00 am</MenuItem>
+                <MenuItem value="5">5:00 am</MenuItem>
+                <MenuItem value="6">6:00 am</MenuItem>
+                <MenuItem value="7">7:00 am</MenuItem>
+                <MenuItem value="8">8:00 am</MenuItem>
+                <MenuItem value="9">9:00 am</MenuItem>
+                <MenuItem value="10">10:00 am</MenuItem>
+                <MenuItem value="11">11:00 am</MenuItem>
+                <MenuItem value="12">12:00 pm</MenuItem>
+                <MenuItem value="13">1:00 pm</MenuItem>
+                <MenuItem value="14">2:00 pm</MenuItem>
+                <MenuItem value="15">3:00 pm</MenuItem>
+                <MenuItem value="16">4:00 pm</MenuItem>
+                <MenuItem value="17">5:00 pm</MenuItem>
+                <MenuItem value="18">6:00 pm</MenuItem>
+                <MenuItem value="19">7:00 pm</MenuItem>
+                <MenuItem value="20">8:00 pm</MenuItem>
+                <MenuItem value="21">9:00 pm</MenuItem>
+                <MenuItem value="22">10:00 pm</MenuItem>
+                <MenuItem value="23">11:00 pm</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={3}>
-            <TextField
-              id="filled-basic"
-              label="Like 11:00"
-              variant="filled"
-              name="checkOutTime"
-              onChange={handleChange}
-              fullWidth
-            />
+            <FormControl variant="outlined" fullWidth>
+              <Select
+                style={{
+                  border: "3px solid white",
+                  borderRadius: "17px",
+                }}
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                name="checkOutTime"
+                onChange={handleChange}
+                label="Age"
+              >
+                <MenuItem value="0">12:00 am</MenuItem>
+                <MenuItem value="1">1:00 am</MenuItem>
+                <MenuItem value="2">2:00 am</MenuItem>
+                <MenuItem value="3">3:00 am</MenuItem>
+                <MenuItem value="4">4:00 am</MenuItem>
+                <MenuItem value="5">5:00 am</MenuItem>
+                <MenuItem value="6">6:00 am</MenuItem>
+                <MenuItem value="7">7:00 am</MenuItem>
+                <MenuItem value="8">8:00 am</MenuItem>
+                <MenuItem value="9">9:00 am</MenuItem>
+                <MenuItem value="10">10:00 am</MenuItem>
+                <MenuItem value="11">11:00 am</MenuItem>
+                <MenuItem value="12">12:00 pm</MenuItem>
+                <MenuItem value="13">1:00 pm</MenuItem>
+                <MenuItem value="14">2:00 pm</MenuItem>
+                <MenuItem value="15">3:00 pm</MenuItem>
+                <MenuItem value="16">4:00 pm</MenuItem>
+                <MenuItem value="17">5:00 pm</MenuItem>
+                <MenuItem value="18">6:00 pm</MenuItem>
+                <MenuItem value="19">7:00 pm</MenuItem>
+                <MenuItem value="20">8:00 pm</MenuItem>
+                <MenuItem value="21">9:00 pm</MenuItem>
+                <MenuItem value="22">10:00 pm</MenuItem>
+                <MenuItem value="23">11:00 pm</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           <Grid container xs={12} style={{ visibility: "hidden" }}>
             .
@@ -232,10 +273,13 @@ function Index(props) {
                   <Grid item xs={2}>
                     <TextField
                       id="outlined-number"
-                      label="Number"
                       type="number"
                       InputLabelProps={{
                         shrink: true,
+                      }}
+                      style={{
+                        border: "3px solid white",
+                        borderRadius: "17px",
                       }}
                       name="totalCapacity"
                       onChange={(e) => {
@@ -247,10 +291,13 @@ function Index(props) {
                   <Grid item xs={2}>
                     <TextField
                       id="outlined-number"
-                      label="Number"
                       type="number"
                       InputLabelProps={{
                         shrink: true,
+                      }}
+                      style={{
+                        border: "3px solid white",
+                        borderRadius: "17px",
                       }}
                       name="numberOfPeopleAllowed"
                       onChange={(e) => {
@@ -262,11 +309,14 @@ function Index(props) {
                   <Grid item xs={2}>
                     <TextField
                       id="outlined-number"
-                      label="Number"
                       type="number"
                       name="pricePerNight"
                       onChange={(e) => {
                         handlePriceChange(e, item);
+                      }}
+                      style={{
+                        border: "3px solid white",
+                        borderRadius: "17px",
                       }}
                       InputLabelProps={{
                         shrink: true,
@@ -307,7 +357,10 @@ function Index(props) {
             <Grid item xs={2}></Grid>
             <Grid item xs={3}>
               <FormControl variant="filled" style={{ minWidth: "100%" }}>
-                <InputLabel id="demo-simple-select-outlined-label">
+                <InputLabel
+                  id="demo-simple-select-outlined-label"
+                  style={{ color: "white" }}
+                >
                   Select Policy
                 </InputLabel>
                 <Select
@@ -317,9 +370,13 @@ function Index(props) {
                   name="policy"
                   onChange={handleChange}
                   label="Age"
+                  style={{
+                    border: "3px solid white",
+                    borderRadius: "17px",
+                  }}
                 >
                   <MenuItem value="Super Flexible">Super Flexible</MenuItem>
-                  <MenuItem value="Super Flexible">Flexible</MenuItem>
+                  <MenuItem value="Flexible">Flexible</MenuItem>
                   <MenuItem value="Moderate">Moderate</MenuItem>
                   <MenuItem value="Strict">Strict</MenuItem>
                   <MenuItem value="Super Strict">Super Strict</MenuItem>
@@ -335,10 +392,47 @@ function Index(props) {
           </Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={10}>
-            <p>
-              If you cancel anytime before your check in day and time, you’ll
-              receive a full refund (minus Campmonk fees).
-            </p>
+            {bookingDetails?.policy == "Super Flexible" ? (
+              <p>
+                If you cancel anytime before your check in day and time, you’ll
+                receive a full refund (minus Campmonk fees).
+              </p>
+            ) : bookingDetails?.policy == "Flexible" ? (
+              <p>
+                If you cancel at least 24 hours before your check in day and
+                time, you’ll receive a full refund (minus Campmonk fees). If you
+                cancel less than 24 hours before check in, there will be no
+                refund.
+              </p>
+            ) : bookingDetails?.policy == "Moderate" ? (
+              <p>
+                If you cancel at least 3 days before your check in day and time,
+                you’ll receive a full refund (minus Campmonk fees). If you
+                cancel within the 3 days before check in, there will be no
+                refund.
+              </p>
+            ) : bookingDetails?.policy == "Strict" ? (
+              <p>
+                If you cancel at least 1 week before your check in day and time,
+                you’ll receive a full refund (minus Campmonk fees). If you
+                cancel within the 1 week before check in, there will be no
+                refund.
+              </p>
+            ) : bookingDetails?.policy == "Super Strict" ? (
+              <p>
+                If you cancel at least 1 week before your check in day and time,
+                you’ll receive a 50% refund (minus Campmonk fees). If you cancel
+                within 1 week before check in, there will be no refund.
+              </p>
+            ) : bookingDetails?.policy == "Super Strict(30 days)" ? (
+              <p>
+                If you cancel at least 30 days before your check in day and
+                time, you’ll receive a 50% refund (minus Campmonk fees). If you
+                cancel within 30 days before check in, there will be no refund.
+              </p>
+            ) : (
+              <p></p>
+            )}
           </Grid>
           <Grid container spacing={10}>
             <Grid item xs={0} sm={9} align="flex-end"></Grid>
@@ -353,7 +447,32 @@ function Index(props) {
             </Grid>
           </Grid>
         </Grid>
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
       </Grid>
+      <Footer />
     </div>
   );
 }

@@ -1,3 +1,96 @@
 .Owner__Camp__Item {
   padding: 10px !important;
 }
+
+.MuiCheckbox-colorSecondary.Mui-checked {
+  color: #dddddd !important;
+}
+
+.MuiTypography-body1 {
+  font-size: 1.4rem !important;
+  font-weight: bolder !important;
+}
+
+.MuiSvgIcon-root {
+  border: 1px solid #e0e0e0 !important;
+  padding: 0 !important;
+}
+
+.MuiSvgIcon-root:focus {
+  border: none;
+}
+
+.formBody {
+  background-image: url(https://images7.alphacoders.com/101/thumb-1920-1011523.jpg);
+  color: #babec4;
+  font-size: 21px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.formBody > input {
+  border: 3px solid white !important;
+  border-radius: 17px;
+  color: white !important;
+}
+
+.MuiInputBase-root {
+  color: white !important;
+}
+
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+  border-color: var(--ck-color-base-border);
+  background: transparent !important;
+  color: white !important;
+}
+
+.ck.ck-reset_all,
+.ck.ck-reset_all * {
+  color: white !important;
+}
+
+.ck.ck-toolbar {
+  background: none !important;
+  color: white !important;
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+  background: none !important;
+  color: white !important;
+}
+
+.mainHeader {
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+  background: linear-gradient(45deg, #ffffff, #c4c4c4);
+  padding: 13px;
+  border-radius: 24px;
+  border: 1px solid black;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+.link1:focus:hover:visited:link:active,
+.link1 {
+  text-decoration: none;
+}
+
+.subHeader {
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  background: transparent;
+  padding: 13px;
+  border-radius: 24px;
+  border: 1px solid white;
+}
+
+.subHeader:hover {
+  background: linear-gradient(45deg, #ffffff, #c4c4c4);
+
+  border: 1px solid black;
+  color: black;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}

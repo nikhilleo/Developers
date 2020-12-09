@@ -111,62 +111,37 @@ function Index(props) {
     history.push("/CampUserForm3");
   };
   return (
-    <div className="CampUserForm">
+    <div className="CampUserForm  formBody">
       <Grid container className="Owner__Camp__Container" justify="center">
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
         <Grid container xs={3} justify="center">
           <Link to="/CampUserForm1" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              1 Basic Details{" "}
-            </span>
+            <span className="subHeader"> 1 Basic Details </span>
           </Link>
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm2" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-                fontWeight: "bolder",
-              }}
-            >
-              {" "}
-              2.Activities{" "}
-            </span>
+            <span className="mainHeader"> 2.Activities </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm3" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              3.Accomodation{" "}
-            </span>
+            <span className="subHeader"> 3.Accomodation </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm4" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              4.Manager{" "}
-            </span>{" "}
+            <span className="subHeader"> 4.Manager </span>{" "}
           </Link>
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm5" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              5.Images{" "}
-            </span>{" "}
+            <span className="subHeader"> 5.Images </span>{" "}
           </Link>
         </Grid>
         <Grid container style={{ visibility: "hidden" }}>
@@ -183,7 +158,9 @@ function Index(props) {
         <Grid container spacing={0}>
           <Grid item xs={2}></Grid>
           <Grid item xs={10}>
-            <p style={{ fontSize: 20 }}>Check all fun things to do </p>
+            <p style={{ fontSize: 20, fontWeight: "bolder" }}>
+              Check all fun things to do{" "}
+            </p>
           </Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={10}>
@@ -198,8 +175,9 @@ function Index(props) {
         </Grid>
         <Grid container spacing={0}>
           <Grid item xs={0} sm={2}></Grid>
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={12} sm={5} style={{ fontWeight: "bolder" }}>
             <FormControlLabel
+              style={{ fontWeight: "bolder" }}
               control={
                 <Checkbox
                   checked={activities.Trekking}
@@ -513,7 +491,7 @@ function Index(props) {
           <Grid item xs={6} sm={3}>
             <TextField
               id="outlined-search"
-              label="Search field"
+              label="Feature 1"
               type="search"
               variant="outlined"
               fullWidth
@@ -523,7 +501,7 @@ function Index(props) {
           <Grid item xs={6} sm={3}>
             <TextField
               id="outlined-search"
-              label="Search field"
+              label="Feature 2"
               type="search"
               variant="outlined"
               fullWidth
@@ -550,6 +528,13 @@ function Index(props) {
           </Grid>
         </Grid>
       </Grid>
+      <Grid container xs={12} style={{ visibility: "hidden" }}>
+        .
+      </Grid>{" "}
+      <Grid container xs={12} style={{ visibility: "hidden" }}>
+        .
+      </Grid>{" "}
+      <Footer />
     </div>
   );
 }

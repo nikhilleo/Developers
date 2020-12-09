@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import actions from "../Redux/Action";
 import axios from "../axios";
+import Footer from "../Admin/Footer/Footer";
 
 const {
   setCampAmenities,
@@ -42,7 +43,7 @@ function Index(props) {
     ownerNumber: "8797857854",
   });
 
-  console.log(props.campDetails);
+  console.log(props.owner);
 
   const handleChange = (e) => {
     setContactDetails((prevState) => ({
@@ -74,48 +75,28 @@ function Index(props) {
 
   return (
     <div>
-      <Grid container className="Owner__Camp__Container" justify="center">
+      <Grid
+        container
+        className="Owner__Camp__Container formBody"
+        justify="center"
+      >
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
         <Grid container xs={3} justify="center">
           <Link to="/CampUserForm1" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              1 Basic Details{" "}
-            </span>
+            <span className="subHeader"> 1 Basic Details </span>
           </Link>
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm2" style={{ textDecoration: "none" }}>
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              2.Activities{" "}
-            </span>
+            <span className="subHeader"> 2.Activities </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
           <Link to="/CampUserForm3" style={{ textDecoration: "none" }}>
             {" "}
-            <span
-              style={{
-                fontSize: 20,
-                cursor: "pointer",
-                color: "black",
-              }}
-            >
-              {" "}
-              3.Accomodation{" "}
-            </span>
+            <span className="subHeader"> 3.Accomodation </span>
           </Link>{" "}
         </Grid>
         <Grid container xs={2}>
@@ -128,6 +109,7 @@ function Index(props) {
                 color: "black",
                 fontWeight: "bolder",
               }}
+              className="mainHeader"
             >
               {" "}
               4.Manager{" "}
@@ -137,10 +119,7 @@ function Index(props) {
         <Grid container xs={2}>
           <Link to="/CampUserForm5" style={{ textDecoration: "none" }}>
             {" "}
-            <span style={{ fontSize: 20, cursor: "pointer", color: "black" }}>
-              {" "}
-              5.Images{" "}
-            </span>{" "}
+            <span className="subHeader"> 5.Images </span>{" "}
           </Link>
         </Grid>
         <Grid container style={{ visibility: "hidden" }}>
@@ -168,24 +147,30 @@ function Index(props) {
             <TextField
               id="outlined-search"
               onChange={handleChange}
-              defaultValue="Prathmesh"
+              defaultValue={props?.owner?.user?.firstname}
               fullWidth
               type="search"
               variant="outlined"
-              label="Owner Name"
               name="ownerName"
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
             />
           </Grid>
           <Grid item xs={0} sm={3}></Grid>
           <Grid item xs={12} sm={2}>
             <TextField
               id="outlined-search"
-              defaultValue="prathmeshKulkarni@gmail.com"
+              defaultValue={props?.owner?.user?.email}
               fullWidth
               type="search"
               onChange={handleChange}
-              label="Email"
               name="email"
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
               variant="outlined"
             />
           </Grid>
@@ -207,12 +192,15 @@ function Index(props) {
           <Grid item xs={12} sm={2}>
             <TextField
               id="outlined-search"
-              defaultValue="8797857854"
+              defaultValue={props?.owner?.user?.mobile}
               name="ownerNumber"
               fullWidth
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
               onChange={handleChange}
               type="search"
-              label="Contact Number"
               variant="outlined"
             />
           </Grid>
@@ -220,12 +208,14 @@ function Index(props) {
           <Grid item xs={12} sm={2}>
             <TextField
               id="outlined-search"
-              defaultValue="0241-2426325"
               onChange={handleChange}
               name="ownerLandline"
               fullWidth
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
               type="search"
-              label="Landline Number"
               variant="outlined"
             />
           </Grid>
@@ -257,11 +247,14 @@ function Index(props) {
             <TextField
               id="outlined-search"
               onChange={handleChange}
-              label="Camp Manager Name"
               fullWidth
               defaultValue={contactDetails.managerName}
               name="managerName"
               type="search"
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
               variant="outlined"
             />
           </Grid>
@@ -271,9 +264,12 @@ function Index(props) {
               id="outlined-search"
               onChange={handleChange}
               defaultValue={contactDetails.managerEmail}
-              label="Camp Manager Email"
               name="managerEmail"
               fullWidth
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
               type="search"
               variant="outlined"
             />
@@ -300,7 +296,10 @@ function Index(props) {
               defaultValue={contactDetails.managerNumber}
               name="managerNumber"
               fullWidth
-              label="Camp Manager Number"
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
               type="search"
               variant="outlined"
             />
@@ -312,8 +311,11 @@ function Index(props) {
               defaultValue={contactDetails.managerLandline}
               id="outlined-search"
               onChange={handleChange}
-              label="Camp Manager landline"
               fullWidth
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
               type="search"
               variant="outlined"
             />
@@ -335,10 +337,13 @@ function Index(props) {
               id="outlined-search"
               name="link"
               onChange={handleChange}
-              label="Link"
               fullWidth
               type="search"
               variant="outlined"
+              style={{
+                border: "3px solid white",
+                borderRadius: "17px",
+              }}
             />
           </Grid>
         </Grid>
@@ -354,7 +359,14 @@ function Index(props) {
             </Button>
           </Grid>
         </Grid>
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>{" "}
       </Grid>
+      <Footer />
     </div>
   );
 }
@@ -365,7 +377,7 @@ function mapStateToProps(state) {
     campAccomodation: state.campAccomodation,
     campAmenities: state.campAmenities,
     campDetails: state.campDetails,
-    campOwner: state.campOwner,
+    owner: state.owner,
   };
 }
 
