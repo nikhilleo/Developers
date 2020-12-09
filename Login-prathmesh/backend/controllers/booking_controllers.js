@@ -217,4 +217,3 @@ exports.get_all_rejected_bookings = async(req,res)=>{
         }
     }
 }
-

@@ -41,4 +41,6 @@ router.post('/create_camp',auth , owner_controllers.create_a_camp);
 
 router.post('/upload/image',upload.array('image'), owner_controllers.upload_image)
 
+router.get('/pending_camps', auth , owner_controllers.get_pending_camps );
+
 module.exports = router;

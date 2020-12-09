@@ -387,3 +387,28 @@ for(let i=0;i<req.files.length;i++)
 }
   res.send("upload")
 }
+
+exports.get_pending_camps = async (req, res) => {
+  try {
+    const user = req.profile;
+    if(user){
+      const bookings = await Camp_Owner.findOne({_id:user._id}).populate({
+        path:"camp_booking",
+        match: { status: "Pending For Confirmation" }
+      });
+      res.send(bookings);
+    }
+    else
+    {
+      throw ("No User Found");
+    }
+  } catch (error) {
+    if(error.message == "No User Found")
+    {
+      res.status(404).send("No user found");
+    }
+    else{
+      res.status(404).send(error.message)
+    }
+  }
+}
