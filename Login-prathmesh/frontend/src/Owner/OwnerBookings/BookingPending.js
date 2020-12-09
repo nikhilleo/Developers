@@ -12,11 +12,17 @@ import "../style.css";
 function Home() {
   var [campDetails, setCampDetails] = useState();
   useEffect(() => {
+    let token = localStorage.getItem("auth-token");
     axios
-      .get("/get_recent_camps")
+      .get("/owner/pending_camps", {
+        method: "GET",
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((res) => {
         console.log(res);
-        setCampDetails(res.data);
+        setCampDetails(res.data.camp_booking);
       })
       .catch((err) => {
         console.log(err.response);
@@ -29,7 +35,7 @@ function Home() {
       <div
         style={{
           background:
-            "url(https://cdn.pixabay.com/photo/2020/02/11/04/00/moon-4838249_960_720.jpg)",
+            "url(https://images7.alphacoders.com/101/thumb-1920-1011523.jpg)",
           height: "auto",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -47,23 +53,7 @@ function Home() {
                     to="/Owner__Bookings/BookingPending"
                     style={{ textDecoration: "none" }}
                   >
-                    <button
-                      style={{
-                        height: "5rem",
-                        width: "12rem",
-                        backgroundImage:
-                          "url(https://cdn.pixabay.com/photo/2016/11/22/21/33/bonfire-1850646_960_720.jpg)",
-                        borderRadius: "34px",
-                        backgroundSize: "cover",
-                        color: "white",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        fontWeight: "bolder",
-                        fontSize: "1.8rem",
-                      }}
-                    >
-                      BOOKING
-                    </button>
+                    <span className="mainHeader">BOOKING</span>
                   </Link>
                 </li>
                 <li className="navbar__li">
@@ -71,23 +61,7 @@ function Home() {
                     to="../Owner__Bookings/Total__Earnings"
                     style={{ textDecoration: "none" }}
                   >
-                    <button
-                      style={{
-                        height: "5rem",
-                        width: "12rem",
-                        backgroundImage:
-                          "url(https://papers.co/wallpaper/papers.co-an56-apple-color-rainbow-dark-spark-ios9-iphone6s-34-iphone6-plus-wallpaper.jpg)",
-                        borderRadius: "34px",
-                        backgroundSize: "cover",
-                        color: "white",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        fontWeight: "bolder",
-                        fontSize: "1.8rem",
-                      }}
-                    >
-                      EARNINGS
-                    </button>
+                    <span className="subHeader">EARNINGS</span>
                   </Link>
                 </li>
                 <li className="navbar__li">
@@ -95,95 +69,84 @@ function Home() {
                     to="../Owner__Bookings/Account__Settings"
                     style={{ textDecoration: "none" }}
                   >
-                    <button
-                      style={{
-                        height: "5rem",
-                        width: "12rem",
-                        backgroundImage:
-                          "url(https://i.pinimg.com/originals/b9/fd/8c/b9fd8c988fd7004861abfb0a342660c6.jpg)",
-                        borderRadius: "34px",
-                        backgroundSize: "cover",
-                        color: "white",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        fontWeight: "bolder",
-                        fontSize: "1.8rem",
-                      }}
-                    >
-                      ACCOUNT
-                    </button>
+                    <span className="subHeader">ACCOUNT</span>
                   </Link>
                 </li>
               </div>
             </div>
           </div>
         </div>
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
+        <Grid container style={{ visibility: "hidden" }}>
           .
         </Grid>
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
-          .
-        </Grid>{" "}
-        <Grid container xs={12} style={{ visibility: "hidden" }}>
+        <Grid container style={{ visibility: "hidden" }}>
           .
         </Grid>
-        <Grid
-          className="ownerDashboardBodys"
-          style={{
-            width: "100vw",
-            display: "flex",
-            justifyContent: "center",
-            margin: "auto",
-          }}
-        >
-          <Grid>
+        <Grid container xs={12} align="center">
+          <Grid item xs={12}>
+            <p
+              style={{
+                fontSize: "27px",
+                color: "white",
+                fontWeight: "bolder",
+              }}
+            >
+              Booking Pending
+            </p>
+          </Grid>
+        </Grid>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+        <Grid container xs={12} className="ownerDashboardBodys" spacing={10}>
+          <Grid item xs={4}></Grid>
+          <Grid item xs={2}>
             <Link
               to="/Owner__Bookings/BookingPending"
               style={{ textDecoration: "none" }}
             >
-              <button
+              <span
                 className="navbar__span"
                 style={{
-                  height: "5rem",
-                  width: "12rem",
                   color: "white",
-                  background: "transparent",
+                  fontWeight: "bolder",
                 }}
               >
-                Booking
-              </button>
+                Booking Pending
+              </span>
             </Link>
+          </Grid>
+          <Grid item xs={2}>
             <Link
-              to="../Owner__Bookings/Total__Earnings"
+              to="../Owner__Bookings/PaymentPending"
               style={{ textDecoration: "none" }}
             >
-              <button
+              <span
                 className="navbar__span"
                 style={{
-                  height: "5rem",
-                  width: "12rem",
                   color: "white",
-                  background: "transparent",
                 }}
               >
-                Earning
-              </button>
+                Payment Pending
+              </span>
             </Link>
+          </Grid>
+          <Grid item xs={2}>
             <Link
-              to="../Owner__Bookings/Account__Settings"
+              to="../Owner__Bookings/Approved"
               style={{ textDecoration: "none" }}
             >
-              <button
+              <span
                 className="navbar__span"
                 style={{
-                  height: "5rem",
-                  width: "12rem",
-                  background: "transparent",
                   color: "white",
                 }}
               >
-                Account Settings
-              </button>
+                Approved
+              </span>
             </Link>
           </Grid>
         </Grid>
@@ -201,7 +164,7 @@ function Home() {
             align: "center",
           }}
         >
-          {campDetails?.map((item, index) => (
+          {campDetails?.map?.((item, index) => (
             <Grid container xs={12}>
               <Grid container xs={12} style={{ visibility: "hidden" }}>
                 .
@@ -210,7 +173,7 @@ function Home() {
               <Grid item xs={2}>
                 <img
                   className="Owner__Dashboard__photos"
-                  src={item?.camp_images[0]}
+                  src={item?.camp_images?.[0]}
                   style={{ marginLeft: "-6vw" }}
                 ></img>
               </Grid>

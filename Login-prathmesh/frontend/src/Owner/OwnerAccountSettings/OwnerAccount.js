@@ -269,64 +269,47 @@ function Index(props) {
   return (
     <>
       <Navbar />
-      <div className="ownerMAinBody">
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <div className="navbar__container__home">
-            <div className="navbar__menu__home">
-              <li className="navbar__li">
-                <Link
-                  to="/Owner__Bookings/BookingPending"
-                  style={{ textDecoration: "none" }}
-                >
-                  <button
-                    className="navbar__span"
-                    style={{
-                      height: "8vh",
-                      width: "12vw",
-                      background: "transparent",
-                      borderRadius: "34px",
-                    }}
+      <div
+        style={{
+          background:
+            "url(https://images7.alphacoders.com/101/thumb-1920-1011523.jpg)",
+          height: "auto",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+        <div className="ownerMAinBody">
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="navbar__container__home">
+              <div className="navbar__menu__home">
+                <li className="navbar__li">
+                  <Link
+                    to="/Owner__Bookings/BookingPending"
+                    style={{ textDecoration: "none" }}
                   >
-                    BOOKING
-                  </button>
-                </Link>
-              </li>
-              <li className="navbar__li">
-                <Link
-                  to="../Owner__Bookings/Total__Earnings"
-                  style={{ textDecoration: "none" }}
-                >
-                  <button
-                    className="navbar__span"
-                    style={{
-                      height: "8vh",
-                      width: "12vw",
-                      background: "transparent",
-                      borderRadius: "34px",
-                    }}
+                    <span className="subHeader">BOOKING</span>
+                  </Link>
+                </li>
+                <li className="navbar__li">
+                  <Link
+                    to="../Owner__Bookings/Total__Earnings"
+                    style={{ textDecoration: "none" }}
                   >
-                    EARNINGS
-                  </button>
-                </Link>
-              </li>
-              <li className="navbar__li">
-                <Link
-                  to="../Owner__Bookings/Account__Settings"
-                  style={{ textDecoration: "none" }}
-                >
-                  <button
-                    className="navbar__span"
-                    style={{
-                      height: "8vh",
-                      width: "12vw",
-                      background: "#e43655",
-                      borderRadius: "34px",
-                    }}
+                    <span className="subHeader">EARNINGS</span>
+                  </Link>
+                </li>
+                <li className="navbar__li">
+                  <Link
+                    to="../Owner__Bookings/Account__Settings"
+                    style={{ textDecoration: "none" }}
                   >
-                    ACCOUNT SETTING
-                  </button>
-                </Link>
-              </li>
+                    <span className="mainHeader">ACCOUNT</span>
+                  </Link>
+                </li>
+              </div>
             </div>
           </div>
         </div>

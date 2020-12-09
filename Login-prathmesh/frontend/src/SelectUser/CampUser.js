@@ -69,6 +69,14 @@ function Index(props) {
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.message);
           history.push("/");
+          setInput({
+            firstname: "",
+            lastname: "",
+            email: "",
+            password: "",
+            address: "",
+            mobile: "",
+          });
         })
         .catch((err) => {
           console.log("errordas", err.response);
@@ -77,7 +85,7 @@ function Index(props) {
     }
     if (type === "signIn") {
       let { eMail, Password } = input;
-      let res = await axios
+      await axios
         .post("/login", {
           email: eMail,
           password: Password,
@@ -90,6 +98,14 @@ function Index(props) {
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           alert(res.data.Message);
+          setInput({
+            firstname: "",
+            lastname: "",
+            email: "",
+            password: "",
+            address: "",
+            mobile: "",
+          });
           history.push("/");
         })
         .catch((err) => {
@@ -97,14 +113,6 @@ function Index(props) {
           alert(err.response.data);
         });
     }
-    setInput({
-      firstname: "",
-      lastname: "",
-      email: "",
-      password: "",
-      address: "",
-      mobile: "",
-    });
   };
   return (
     <div id="campUser1">

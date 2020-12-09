@@ -244,7 +244,7 @@ function Index(props) {
             <p>What would you like to charge campers?</p>
           </Grid>
           <Grid container>
-            {props.campDetails.campAccomodation?.map((item, key) => (
+            {props?.campDetails?.campAccomodation?.map?.((item, key) => (
               <Grid container key={key}>
                 <Grid container>
                   <Grid item xs={2}></Grid>{" "}
@@ -395,40 +395,41 @@ function Index(props) {
             {bookingDetails?.policy == "Super Flexible" ? (
               <p>
                 If you cancel anytime before your check in day and time, you’ll
-                receive a full refund (minus Campmonk fees).
+                receive a full refund (minus Lamp A Camp fees).
               </p>
             ) : bookingDetails?.policy == "Flexible" ? (
               <p>
                 If you cancel at least 24 hours before your check in day and
-                time, you’ll receive a full refund (minus Campmonk fees). If you
-                cancel less than 24 hours before check in, there will be no
+                time, you’ll receive a full refund (minus Lamp A Camp fees). If
+                you cancel less than 24 hours before check in, there will be no
                 refund.
               </p>
             ) : bookingDetails?.policy == "Moderate" ? (
               <p>
                 If you cancel at least 3 days before your check in day and time,
-                you’ll receive a full refund (minus Campmonk fees). If you
+                you’ll receive a full refund (minus Lamp A Camp fees). If you
                 cancel within the 3 days before check in, there will be no
                 refund.
               </p>
             ) : bookingDetails?.policy == "Strict" ? (
               <p>
                 If you cancel at least 1 week before your check in day and time,
-                you’ll receive a full refund (minus Campmonk fees). If you
+                you’ll receive a full refund (minus Lamp A Camp fees). If you
                 cancel within the 1 week before check in, there will be no
                 refund.
               </p>
             ) : bookingDetails?.policy == "Super Strict" ? (
               <p>
                 If you cancel at least 1 week before your check in day and time,
-                you’ll receive a 50% refund (minus Campmonk fees). If you cancel
-                within 1 week before check in, there will be no refund.
+                you’ll receive a 50% refund (minus Lamp A Camp fees). If you
+                cancel within 1 week before check in, there will be no refund.
               </p>
             ) : bookingDetails?.policy == "Super Strict(30 days)" ? (
               <p>
                 If you cancel at least 30 days before your check in day and
-                time, you’ll receive a 50% refund (minus Campmonk fees). If you
-                cancel within 30 days before check in, there will be no refund.
+                time, you’ll receive a 50% refund (minus Lamp A Camp fees). If
+                you cancel within 30 days before check in, there will be no
+                refund.
               </p>
             ) : (
               <p></p>

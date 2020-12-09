@@ -56,6 +56,7 @@ function CampUserForm5() {
   const handleSubmit = async () => {
     // console.log(imagePreviewUrl);
     // axios.post("/owner/upload/image", imagePreviewUrl);
+    console.log();
     const data = new FormData();
     for (var x = 0; x < files.length; x++) {
       data.append("image", files[x]);

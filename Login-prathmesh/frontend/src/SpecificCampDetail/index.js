@@ -69,16 +69,52 @@ function Index(props) {
     console.log(qty);
     let finalObj = qty.map((item, index) => Object.values(item));
 
-    console.log(finalObj);
-    var obj = [{ finalTotal: 0 }];
-    finalObj.map((item, index) => {
-      obj.push(new Object());
-      obj[index].name = item[0];
-      obj[index].qty = item[1];
-      obj[index].noOfPeople = item[2];
-      obj[index].totalPrice = item[3];
-    });
+    console.log(props?.user?.user);
+    console.log(props?.owner?.user);
+
+    var obj = [{}];
+    let token = localStorage.getItem("auth-token");
+    if (props.user.user) {
+      finalObj.map((item, index) => {
+        obj.push(new Object());
+        obj[index].name = item[0];
+        obj[index].qty = item[1];
+        obj[index].noOfPeople = item[2];
+        obj[index].totalPrice = item[3];
+      });
+    } else if (props.owner.user) {
+      finalObj.map((item, index) => {
+        obj.push(new Object());
+        obj[index].name = item[0];
+        obj[index].qty = item[1];
+        obj[index].noOfPeople = item[2];
+        obj[index].totalPrice = item[3];
+      });
+      console.log(obj);
+    } else {
+      alert("sign in first");
+    }
+
     console.log(obj);
+
+    axios
+      .post(
+        "/booking/create_a_booking",
+        {
+          a_details: obj,
+          c_name: props?.specificCamp?.specificCamp?.camp_name,
+        },
+
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 
   return (
@@ -388,7 +424,7 @@ function Index(props) {
                 {" "}
                 <main
                   className="Sample__container__content"
-                  style={{ position: "absolute" }}
+                  style={{ position: "absolute", zIndex: "2" }}
                 >
                   <Calendar onChange={onChangeCheckIn} value={checkInvalue} />
                 </main>
@@ -396,7 +432,7 @@ function Index(props) {
               <div className="Sample__container" id="calenderCheckOut">
                 <main
                   className="Sample__container__content"
-                  style={{ position: "absolute" }}
+                  style={{ position: "absolute", zIndex: "2" }}
                 >
                   {" "}
                   <Calendar
@@ -1253,6 +1289,7 @@ function mapStateToProps(state) {
   return {
     specificCamp: state.specificCampDetails,
     user: state.user,
+    owner: state.owner,
   };
 }
 

@@ -60,6 +60,7 @@ function Index(props) {
       .then((res) => {
         console.log(res);
         props.setSpecific(res.data);
+        localStorage.setItem("specific", props.specificCamp);
         history.push("/specificCamp");
       })
       .catch((err) => {
@@ -83,7 +84,6 @@ function Index(props) {
           <li data-target="#carousel-example-2" data-slide-to="1"></li>
           <li data-target="#carousel-example-2" data-slide-to="2"></li>
           <li data-target="#carousel-example-2" data-slide-to="3"></li>
-          <li data-target="#carousel-example-2" data-slide-to="4"></li>
         </ol>
 
         <div class="carousel-inner" role="listbox">
@@ -91,67 +91,40 @@ function Index(props) {
             <div class="view">
               <img
                 class="d-block w-100"
-                src={trendingCamps[1]?.camp_images[0]}
+                src="https://images.pexels.com/photos/2398220/pexels-photo-2398220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 alt="First slide"
               />
               <div class="mask rgba-black-light"></div>
             </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">
-                {trendingCamps[1]?.interesting_name}
-              </h3>
-              <p>{trendingCamps[1]?.camp_name}</p>
-            </div>
           </div>
           <div class="carousel-item">
             <div class="view">
               <img
                 class="d-block w-100"
-                src={trendingCamps[2]?.camp_images[0]}
+                src="https://images.pexels.com/photos/1539225/pexels-photo-1539225.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 alt="Second slide"
               />
               <div class="mask rgba-black-strong"></div>
             </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">
-                {" "}
-                {trendingCamps[2]?.interesting_name}
-              </h3>
-              <p> {trendingCamps[2]?.camp_name}</p>
-            </div>
           </div>
           <div class="carousel-item">
             <div class="view">
               <img
                 class="d-block w-100"
-                src={trendingCamps[3]?.camp_images[0]}
+                src="https://images.pexels.com/photos/1061640/pexels-photo-1061640.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 alt="Third slide"
               />
               <div class="mask rgba-black-slight"></div>
             </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">
-                {" "}
-                {trendingCamps[3]?.interesting_name}
-              </h3>
-              <p>{trendingCamps[3]?.camp_name}</p>
-            </div>
           </div>
           <div class="carousel-item">
             <div class="view">
               <img
                 class="d-block w-100"
-                src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                src="https://images.pexels.com/photos/2526025/pexels-photo-2526025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 alt="Fourth slide"
               />
               <div class="mask rgba-black-slight"></div>
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">
-                {" "}
-                {trendingCamps[4]?.interesting_name}
-              </h3>
-              <p>{trendingCamps[4]?.camp_name}</p>
             </div>
           </div>
         </div>
@@ -170,7 +143,7 @@ function Index(props) {
                     color: "#e3e0f9",
                   }}
                 >
-                  Popular Camps
+                  Recent Camps
                 </h1>
                 <div class="carousel-item active">
                   <div class="container">
@@ -261,18 +234,14 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card ">
                           <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={recentCamps[3]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
                             <h4 class="card-title">
-                              “Life is better by the camp fire”
+                              {recentCamps[3]?.camp_name}
                             </h4>
-                            <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
-                            </p>
+                            <p class="card-text">{recentCamps[3]?.camp_desc}</p>
                             <button
                               type="button"
                               class="btn btn-warning"
@@ -288,19 +257,21 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card ">
                           <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={recentCamps[4]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
                             <h4 class="card-title">
-                              “Life is better by the camp fire”
+                              {recentCamps[4]?.camp_name}
                             </h4>
-                            <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
-                            </p>
-                            <button type="button" class="btn btn-warning">
+                            <p class="card-text">{recentCamps[4]?.camp_desc}</p>
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              onClick={(e) =>
+                                handleClick(recentCamps[4]?.camp_name)
+                              }
+                            >
                               Read More
                             </button>
                           </div>
@@ -309,19 +280,21 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card ">
                           <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={recentCamps[5]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
                             <h4 class="card-title">
-                              “Life is better by the camp fire”
+                              {recentCamps[5]?.camp_name}
                             </h4>
-                            <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
-                            </p>
-                            <button type="button" class="btn btn-warning">
+                            <p class="card-text">{recentCamps[5]?.camp_desc}</p>
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              onClick={(e) =>
+                                handleClick(recentCamps[5]?.camp_name)
+                              }
+                            >
                               Read More
                             </button>
                           </div>
@@ -354,7 +327,7 @@ function Index(props) {
                     color: "#e3e0f9",
                   }}
                 >
-                  Popular Camps
+                  Trending Camps
                 </h1>
                 <div class="carousel-item active">
                   <div class="container">
@@ -362,20 +335,23 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card">
                           <img
-                            src="https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={trendingCamps[0]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">chennai camp</h4>
+                            <h4 class="card-title">
+                              {trendingCamps[0]?.camp_name}
+                            </h4>
                             <p class="card-text" style={{}}>
-                              Mumbai is the best city,Mumbai is the best
-                              city,Mumbai is Mumbai is the best city,Mumbai is
-                              the best city,Mumbai is Mumbai is the best
-                              city,Mumbai is the best city,Mumbai is Mumbai is
-                              the best city,Mumbai is the best city,Mumbai is
-                              Mumbai is the best city
+                              {trendingCamps[0]?.camp_desc}
                             </p>
-                            <button type="button" class="btn btn-warning">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              onClick={(e) =>
+                                handleClick(trendingCamps[0]?.camp_name)
+                              }
+                            >
                               Read More
                             </button>
                           </div>
@@ -384,20 +360,23 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card">
                           <img
-                            src="https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={trendingCamps[1]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">chennai camp</h4>
+                            <h4 class="card-title">
+                              {trendingCamps[1]?.camp_name}
+                            </h4>
                             <p class="card-text" style={{}}>
-                              Mumbai is the best city,Mumbai is the best
-                              city,Mumbai is Mumbai is the best city,Mumbai is
-                              the best city,Mumbai is Mumbai is the best
-                              city,Mumbai is the best city,Mumbai is Mumbai is
-                              the best city,Mumbai is the best city,Mumbai is
-                              Mumbai is the best city
+                              {trendingCamps[1]?.camp_desc}
                             </p>
-                            <button type="button" class="btn btn-warning">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              onClick={(e) =>
+                                handleClick(trendingCamps[1]?.camp_name)
+                              }
+                            >
                               Read More
                             </button>
                           </div>
@@ -406,20 +385,24 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card">
                           <img
-                            src="https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={trendingCamps[2]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">chennai camp</h4>
+                            <h4 class="card-title">
+                              {" "}
+                              {trendingCamps[2]?.camp_name}
+                            </h4>
                             <p class="card-text" style={{}}>
-                              Mumbai is the best city,Mumbai is the best
-                              city,Mumbai is Mumbai is the best city,Mumbai is
-                              the best city,Mumbai is Mumbai is the best
-                              city,Mumbai is the best city,Mumbai is Mumbai is
-                              the best city,Mumbai is the best city,Mumbai is
-                              Mumbai is the best city
+                              {trendingCamps[2]?.camp_desc}
                             </p>
-                            <button type="button" class="btn btn-warning">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              onClick={(e) =>
+                                handleClick(trendingCamps[2]?.camp_name)
+                              }
+                            >
                               Read More
                             </button>
                           </div>
@@ -434,19 +417,23 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card ">
                           <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={trendingCamps[3]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
                             <h4 class="card-title">
-                              “Life is better by the camp fire”
+                              {trendingCamps[3]?.camp_name}
                             </h4>
                             <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
+                              {trendingCamps[3]?.camp_desc}
                             </p>
-                            <button type="button" class="btn btn-warning">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              onClick={(e) =>
+                                handleClick(trendingCamps[3]?.camp_name)
+                              }
+                            >
                               Read More
                             </button>
                           </div>
@@ -455,19 +442,23 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card ">
                           <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={trendingCamps[4]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
                             <h4 class="card-title">
-                              “Life is better by the camp fire”
+                              {trendingCamps[4]?.camp_name}
                             </h4>
                             <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
+                              {trendingCamps[4]?.camp_desc}
                             </p>
-                            <button type="button" class="btn btn-warning">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              onClick={(e) =>
+                                handleClick(trendingCamps[4]?.camp_name)
+                              }
+                            >
                               Read More
                             </button>
                           </div>
@@ -476,186 +467,23 @@ function Index(props) {
                       <div class="col-sm-12 col-lg-4">
                         <div class="card ">
                           <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            src={trendingCamps[5]?.camp_images[0]}
                             class="card-img-top"
                           />
                           <div class="card-body">
                             <h4 class="card-title">
-                              “Life is better by the camp fire”
+                              {trendingCamps[5]?.camp_name}
                             </h4>
                             <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
+                              {trendingCamps[5]?.camp_desc}
                             </p>
-                            <button type="button" class="btn btn-warning">
-                              Read More
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a href="#inam2" class="carousel-control-prev " data-slide="prev">
-                <span class="carousel-control-prev-icon mr-5"></span>
-              </a>
-              <a href="#inam2" class="carousel-control-next" data-slide="next">
-                <span class="carousel-control-next-icon ml-5 "></span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-fluid mt-5">
-        <div class="row">
-          <div class="col-sm-12">
-            <div id="inam2" class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner">
-                <h1
-                  style={{
-                    marginLeft: "41vw",
-                    fontSize: "48px",
-                    marginBottom: "4vh",
-                    color: "#e3e0f9",
-                  }}
-                >
-                  Popular Camps
-                </h1>
-                <div class="carousel-item active">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-sm-12 col-lg-4">
-                        <div class="card">
-                          <img
-                            src="https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                            class="card-img-top"
-                          />
-                          <div class="card-body">
-                            <h4 class="card-title">mumbai camp</h4>
-                            <p class="card-text" style={{}}>
-                              Mumbai is the best city,Mumbai is the best
-                              city,Mumbai is Mumbai is the best city,Mumbai is
-                              the best city,Mumbai is Mumbai is the best
-                              city,Mumbai is the best city,Mumbai is Mumbai is
-                              the best city,Mumbai is the best city,Mumbai is
-                              Mumbai is the best city
-                            </p>
-                            <button type="button" class="btn btn-warning">
-                              Read More
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-lg-4">
-                        <div class="card">
-                          <img
-                            src="https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                            class="card-img-top"
-                          />
-                          <div class="card-body">
-                            <h4 class="card-title">delhi camp</h4>
-                            <p class="card-text" style={{}}>
-                              Mumbai is the best city,Mumbai is the best
-                              city,Mumbai is Mumbai is the best city,Mumbai is
-                              the best city,Mumbai is Mumbai is the best
-                              city,Mumbai is the best city,Mumbai is Mumbai is
-                              the best city,Mumbai is the best city,Mumbai is
-                              Mumbai is the best city
-                            </p>
-                            <button type="button" class="btn btn-warning">
-                              Read More
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-lg-4">
-                        <div class="card">
-                          <img
-                            src="https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                            class="card-img-top"
-                          />
-                          <div class="card-body">
-                            <h4 class="card-title">chennai camp</h4>
-                            <p class="card-text" style={{}}>
-                              Mumbai is the best city,Mumbai is the best
-                              city,Mumbai is Mumbai is the best city,Mumbai is
-                              the best city,Mumbai is Mumbai is the best
-                              city,Mumbai is the best city,Mumbai is Mumbai is
-                              the best city,Mumbai is the best city,Mumbai is
-                              Mumbai is the best city
-                            </p>
-                            <button type="button" class="btn btn-warning">
-                              Read More
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-sm-12 col-lg-4">
-                        <div class="card ">
-                          <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                            class="card-img-top"
-                          />
-                          <div class="card-body">
-                            <h4 class="card-title">
-                              “Life is better by the camp fire”
-                            </h4>
-                            <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
-                            </p>
-                            <button type="button" class="btn btn-warning">
-                              Read More
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-lg-4">
-                        <div class="card ">
-                          <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                            class="card-img-top"
-                          />
-                          <div class="card-body">
-                            <h4 class="card-title">
-                              “Life is better by the camp fire”
-                            </h4>
-                            <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
-                            </p>
-                            <button type="button" class="btn btn-warning">
-                              Read More
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-lg-4">
-                        <div class="card ">
-                          <img
-                            src="https://images.unsplash.com/photo-1532339142463-fd0a8979791a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                            class="card-img-top"
-                          />
-                          <div class="card-body">
-                            <h4 class="card-title">
-                              “Life is better by the camp fire”
-                            </h4>
-                            <p class="card-text">
-                              Camping is an outdoor activity involving overnight
-                              stays away from home in a shelter, such as a tent
-                              or a recreational vehicle.
-                            </p>
-                            <button type="button" class="btn btn-warning">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              onClick={(e) =>
+                                handleClick(trendingCamps[5]?.camp_name)
+                              }
+                            >
                               Read More
                             </button>
                           </div>
@@ -687,6 +515,7 @@ function Index(props) {
 function mapStateToProps(state) {
   return {
     campAmenities: state.campAmenities,
+    specificCamp: state.specificCamp,
   };
 }
 

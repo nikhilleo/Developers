@@ -139,9 +139,7 @@ function Index(props) {
             <Grid item xs={10} sm={6}>
               <TextField
                 onChange={handleChange}
-                id="outlined-search"
                 name="interestingName"
-                type="search"
                 variant="outlined"
                 value={camp?.interestingName}
                 fullWidth
@@ -237,19 +235,12 @@ function Index(props) {
               <Grid item sm={3} xs={0}></Grid>
               <Grid item xs={9} sm={6}>
                 <FormControl variant="outlined" fullWidth>
-                  <InputLabel
-                    id="demo-simple-select-outlined-label"
-                    style={{ color: "white" }}
-                  >
-                    State
-                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
                     value={camp?.state}
                     name="state"
                     onChange={handleChange}
-                    label="Age"
                     style={{
                       border: "3px solid white",
                       borderRadius: "17px",
@@ -351,12 +342,6 @@ function Index(props) {
             <Grid item sm={3} xs={0}></Grid>
             <Grid item xs={12} sm={2}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel
-                  id="demo-simple-select-outlined-label"
-                  style={{ color: "white" }}
-                >
-                  Type
-                </InputLabel>
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
@@ -378,12 +363,6 @@ function Index(props) {
             <Grid item sm={2} xs={0}></Grid>
             <Grid item xs={12} sm={2}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel
-                  id="demo-simple-select-outlined-label"
-                  style={{ color: "white" }}
-                >
-                  Accessable by
-                </InputLabel>
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"

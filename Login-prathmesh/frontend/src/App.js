@@ -114,41 +114,7 @@ const App = (props) => {
           {/* <Route exact path="/">
             <Practice1 />
           </Route> */}
-          <Route
-            exact
-            path="/"
-            render={() => {
-              if (props?.owner?.user) {
-                return (
-                  <>
-                    <OwnerHeader />
-                    <HomePage />
-                  </>
-                );
-              } else if (props?.user?.user) {
-                return (
-                  <>
-                    <UserHeader />
-                    <HomePage />
-                  </>
-                );
-              } else if (props?.admin?.user) {
-                return (
-                  <>
-                    <AdminHeader />
-                    <HomePage />
-                  </>
-                );
-              } else {
-                return (
-                  <>
-                    <HomeNavbar />
-                    <HomePage />
-                  </>
-                );
-              }
-            }}
-          />
+
           <Route
             exact
             path="/CampUserForm1"
@@ -163,8 +129,41 @@ const App = (props) => {
               }
             }}
           />
-          <Route exact path="/icons" component={Icons} />
-          <Route exact path="/SpecificCamp" component={SpecificCamp} />
+          <Route
+            exact
+            path="/SpecificCamp"
+            render={() => {
+              if (props?.owner?.user) {
+                return (
+                  <>
+                    <OwnerHeader />
+                    <SpecificCamp />
+                  </>
+                );
+              } else if (props?.user?.user?.firstname) {
+                return (
+                  <>
+                    <UserHeader />
+                    <SpecificCamp />
+                  </>
+                );
+              } else if (props?.admin?.user) {
+                return (
+                  <>
+                    <AdminHeader />
+                    <SpecificCamp />
+                  </>
+                );
+              } else {
+                return (
+                  <>
+                    <HomeNavbar />
+                    <SpecificCamp />
+                  </>
+                );
+              }
+            }}
+          />
           <Route
             exact
             path="/CampUserForm2"
@@ -499,6 +498,41 @@ const App = (props) => {
           <Route exact path="/maps">
             <Maps />
           </Route>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              if (props?.owner?.user) {
+                return (
+                  <>
+                    <OwnerHeader />
+                    <HomePage />
+                  </>
+                );
+              } else if (props?.user?.user?.firstname) {
+                return (
+                  <>
+                    <UserHeader />
+                    <HomePage />
+                  </>
+                );
+              } else if (props?.admin?.user) {
+                return (
+                  <>
+                    <AdminHeader />
+                    <HomePage />
+                  </>
+                );
+              } else {
+                return (
+                  <>
+                    <HomeNavbar />
+                    <HomePage />
+                  </>
+                );
+              }
+            }}
+          />
         </Switch>
       </Router>
     </>

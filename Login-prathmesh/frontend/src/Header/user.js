@@ -15,6 +15,7 @@ function Navbar(props) {
     localStorage.clear();
     history.push("/");
   };
+  console.log(props?.user?.user);
 
   return (
     <div>
@@ -36,26 +37,15 @@ function Navbar(props) {
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active mr-2">
-              <a class="nav-link " href="#" style={{ color: "white" }}>
-                Blog <span class="sr-only">(current)</span>
-              </a>
-            </li>
-
-            <li class="nav-item active mr-2 ">
-              <Link
-                to="/CampUserForm1"
-                class="nav-link"
-                style={{ color: "white" }}
-              >
-                Create Camp
+              <Link class="nav-link " to="/" style={{ color: "white" }}>
+                Home <span class="sr-only">(current)</span>
               </Link>
             </li>
-
             <li class="nav-item active mr-5">
               <Link
-                to="/Owner__Bookings/BookingPending"
+                to="/User__Booking__Sent"
                 class="nav-link"
-                style={{ color: "black", color: "white" }}
+                style={{ color: "white" }}
               >
                 Dashboard
               </Link>
@@ -68,6 +58,7 @@ function Navbar(props) {
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                style={{ color: "white" }}
               >
                 {props?.user?.user?.firstname}
               </a>
@@ -78,7 +69,7 @@ function Navbar(props) {
               >
                 <span
                   class="dropdown-item  "
-                  style={{ cursor: "pointer", color: "white" }}
+                  style={{ cursor: "pointer", color: "black" }}
                   onClick={handleClick}
                 >
                   Logout
