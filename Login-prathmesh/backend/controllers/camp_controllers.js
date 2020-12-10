@@ -39,7 +39,7 @@ exports.accept_a_camp = async (req,res)=>{
 
 exports.get_all_camps = async (req, res) => {
     try {
-        const camps = await Camp.find({});
+        const camps = await Camp.find({status_of_camp = "Accepted"});
         if(!camps)
         {
             throw new Error("No Camps Found")
@@ -174,7 +174,7 @@ exports.get_active_camps = async(req,res)=>{
 
 exports.get_recent_camps = async (req, res) => {
     try {
-        const camps = await Camp.find({}).limit(6);
+        const camps = await Camp.find({status_of_camp = "Accepted"}).limit(6);
         if(camps.length >=1)
         {
             res.send(camps);
@@ -196,7 +196,7 @@ exports.get_recent_camps = async (req, res) => {
 
 exports.get_trending_camps = async (req, res) => {
     try {
-        const camps = await Camp.find({}).sort({createdAt:-1}).limit(6);
+        const camps = await Camp.find({status_of_camp = "Accepted"}).sort({createdAt:-1}).limit(6);
         if(camps.length >=1)
         {
             res.send(camps);

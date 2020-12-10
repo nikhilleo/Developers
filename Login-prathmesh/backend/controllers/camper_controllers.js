@@ -228,10 +228,10 @@ exports.get_a_camp = async(req,res)=>{
     {
       throw new Error("Camp Name Required");
     }
-    const camp = await Camp.findOne({camp_name:req.body.camp_name});
+    const camp = await Camp.findOne({camp_name:req.body.camp_name , status_of_camp = "Accepted"});
     if(!camp)
     {
-      throw new Error("No Camp Found");
+      throw new Error("No Camp Found or the camp has not been accepted by the admin yet");
     }
     res.status(200).send(camp);
   } catch (error) {

@@ -118,7 +118,7 @@ const campSchema = new mongoose.Schema({
     state_of_camp:{
         type:String,
         trim:true,
-        default:"Pending"
+        default:""
     }
 },{timestamps: true})
 
