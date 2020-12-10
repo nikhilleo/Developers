@@ -12,6 +12,7 @@ const admin_routes = require("./routes/admin_routes");
 const bookings_routes = require("./routes/booking_routes")
 // const camp_routes = require("./routes/camp_routes");
 const filter_routes = require("./routes/filter_camps");
+const razorpay_routes = require("./routes/razorpay_routes");
 
 app.use(cors());
 
@@ -29,6 +30,7 @@ app.use('/admin',admin_routes);
 app.use("/camps/filter/",filter_routes);
 app.use("/booking",bookings_routes);
 // app.use('/camp',camp_routes);
+app.use('/payment',razorpay_routes);
 
 app.listen(port, () => {
   console.log(`Server started http://localhost:${port}`);
