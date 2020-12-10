@@ -4,6 +4,9 @@ import "./Style.css";
 import { connect } from "react-redux";
 import actions from "../Redux/Action";
 import axios from "../axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const {
   setOwner,
@@ -71,12 +74,18 @@ function Index(props) {
           console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
           props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
-          alert(res.data.message);
+          toast.info(`${res.data.Message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          });
           history.push("/");
         })
         .catch((err) => {
           console.log(err.response);
-          alert(err.response.data);
+          toast.error(`${err.response.data}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          });
         });
     }
     if (type === "signIn") {
@@ -95,12 +104,18 @@ function Index(props) {
           console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
           props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
-          alert(res.data.Message);
+          toast.info(`${res.data.Message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 3000,
+          });
           history.push("/");
         })
         .catch((err) => {
           console.log(err.response);
-          alert(err.response.data);
+          toast.error(`${err.response.data}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          });
         });
       console.log(res);
     }

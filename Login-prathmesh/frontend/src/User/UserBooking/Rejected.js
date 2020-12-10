@@ -7,13 +7,14 @@ import ClearIcon from "@material-ui/icons/Clear";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import axios from "../../axios";
 import "./style.css";
+import BlockIcon from "@material-ui/icons/Block";
 
 function Home() {
   var [campDetails, setCampDetails] = useState();
   useEffect(() => {
     let token = localStorage.getItem("auth-token");
     axios
-      .get("/get_all_pending_bookings", {
+      .get("/get_all_rejected_bookings", {
         method: "GET",
         headers: { Authorization: token },
       })
@@ -25,7 +26,6 @@ function Home() {
         console.log(err.response);
       });
   }, []);
-  console.log(campDetails);
   return (
     <div>
       <Navbar />
@@ -113,7 +113,6 @@ function Home() {
                       cursor: "pointer",
                       color: "white",
                       fontSize: "18px",
-                      fontWeight: "bolder",
                     }}
                     className="navbar__span"
                   >
@@ -165,6 +164,7 @@ function Home() {
                       cursor: "pointer",
                       color: "white",
                       fontSize: "18px",
+                      fontWeight: "bolder",
                     }}
                     className="navbar__span"
                   >
@@ -189,10 +189,7 @@ function Home() {
                     .
                   </Grid>{" "}
                   <Grid item xs={12} align="center">
-                    <Link style={{ textDecoration: "none" }} to="/">
-                      {" "}
-                      <h1>No booking Sent, Search for Some Camps!</h1>
-                    </Link>
+                    <h1>No booking yet, stay tuned!</h1>
                   </Grid>
                 </Grid>
               ) : (
@@ -203,6 +200,14 @@ function Home() {
                     </Grid>{" "}
                     <Grid item xs={1}></Grid>
                     <Grid item xs={2}>
+                      <BlockIcon
+                        style={{
+                          position: "absolute",
+                          width: "15em",
+                          height: "13em",
+                          color: "#e85e5e",
+                        }}
+                      />
                       <img
                         className="Owner__Dashboard__photos"
                         src={item?.camp?.camp_images?.[0]}
@@ -333,7 +338,7 @@ function Home() {
                           style={{
                             height: "10rem",
                             overflow: "hidden",
-                            overflowY: "auto",
+                            overflowY: "scroll",
                           }}
                         >
                           <span className="div">
@@ -378,7 +383,13 @@ function Home() {
                                     {item?.totalPrice}
                                   </span>
                                 </Grid>
-                                <Divider style={{ color: "white" }} />
+                                <Grid
+                                  container
+                                  xs={12}
+                                  style={{ visibility: "hidden" }}
+                                >
+                                  .
+                                </Grid>{" "}
                               </>
                             ))}
                           </span>

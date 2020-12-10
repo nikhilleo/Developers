@@ -5,7 +5,13 @@ import axios from "../axios";
 import Icons from "./icons/icons";
 import { useHistory } from "react-router";
 import { Button, Grid, TextField } from "@material-ui/core";
+import actions from "../Redux/Action";
 import Calendar from "react-calendar";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
+
+const { setCampAmenities, setSpecific } = actions;
 
 function Index(props) {
   var [images, setImages] = useState([]);
@@ -24,6 +30,10 @@ function Index(props) {
 
   useEffect(() => {
     let copy = [...images];
+    localStorage.setItem(
+      "camp_detail_select_name",
+      props.specificCamp?.specificCamp?.camp_name
+    );
     props.specificCamp?.specificCamp?.camp_images?.map((item, index) => {
       console.log(item, index, copy);
       copy[index] = { url: item };
@@ -41,10 +51,28 @@ function Index(props) {
     dynamicAccomodation = Object.entries(
       props?.specificCamp?.specificCamp?.accomodations
     );
-    console.log(dynamicAccomodation);
   } catch {
-    history.push("/");
+    let camp_name = localStorage.getItem("camp_detail_select_name");
+    console.log(camp_name);
+    axios
+      .get("/get_a_camp", {
+        method: "GET",
+        headers: {
+          camp_name: camp_name,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        props.setSpecific(res.data);
+        localStorage.setItem("camp_detail_select_name", props.specificCamp);
+        history.push("/specificCamp");
+        props.setSpecific(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   }
+  console.log(dynamicAccomodation);
 
   var trimCheckInDate = String(checkInvalue);
   var trimCheckOutDate = String(checkOutvalue);
@@ -82,17 +110,13 @@ function Index(props) {
         obj[index].noOfPeople = item[2];
         obj[index].totalPrice = item[3];
       });
-    } else if (props.owner.user) {
-      finalObj.map((item, index) => {
-        obj.push(new Object());
-        obj[index].name = item[0];
-        obj[index].qty = item[1];
-        obj[index].noOfPeople = item[2];
-        obj[index].totalPrice = item[3];
-      });
-      console.log(obj);
     } else {
-      alert("sign in first");
+      toast.error("Sign In As User First", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+      });
+      history.push("/CampUser");
+      return false;
     }
 
     console.log(obj);
@@ -111,6 +135,11 @@ function Index(props) {
       )
       .then((res) => {
         console.log(res);
+        toast.info("Booking Request Sent to Camp Managers", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+        history.push("/User__Booking__Sent");
       })
       .catch((err) => {
         console.log(err.response);
@@ -129,21 +158,21 @@ function Index(props) {
             <div class="carousel-item active">
               <img
                 class="d-block w-100"
-                src={props?.specificCamp?.specificCamp?.camp_images[0]}
+                src={props?.specificCamp?.specificCamp?.camp_images?.[0]}
                 alt="First slide"
               />
             </div>
             <div class="carousel-item">
               <img
                 class="d-block w-100 "
-                src={props?.specificCamp?.specificCamp?.camp_images[1]}
+                src={props?.specificCamp?.specificCamp?.camp_images?.[1]}
                 alt="Second slide"
               />
             </div>
             <div class="carousel-item">
               <img
                 class="d-block w-100"
-                src={props?.specificCamp?.specificCamp?.camp_images[2]}
+                src={props?.specificCamp?.specificCamp?.camp_images?.[2]}
                 alt="Third slide"
               />
             </div>
@@ -292,6 +321,7 @@ function Index(props) {
                             background: "#E2C74C",
                             fontWeight: "bold",
                             padding: 10,
+                            color: "black",
                           }}
                         >
                           <Grid item xs={2} align="center">
@@ -409,6 +439,8 @@ function Index(props) {
                             style={{
                               border: "1px solid",
                               borderRadius: "20px",
+                              background: "rgb(226, 199, 76)",
+                              color: "black",
                             }}
                             onClick={handleSubmit}
                           >
@@ -517,7 +549,8 @@ function Index(props) {
                             <li>
                               <Icons
                                 name={
-                                  props.specificCamp?.specificCamp?.animities[0]
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[0]
                                 }
                               />
                               <span
@@ -526,205 +559,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {props.specificCamp?.specificCamp?.animities[0]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[1]
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[0]
                                 }
-                              />
-                              <span
-                                trim-str="Charging points"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[1]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[2]
-                                }
-                              />
-                              <span
-                                trim-str="Covered Area"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[2]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[3]
-                                }
-                              />
-                              <span
-                                trim-str="Campfire"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[3]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[4]
-                                }
-                              />
-                              <span
-                                trim-str="Shower"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[4]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[5]
-                                }
-                              />
-                              <span
-                                trim-str="Toilet"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[5]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[6]
-                                }
-                              />
-                              <span
-                                trim-str="Pets allowed"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[6]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[7]
-                                }
-                              />
-                              <span
-                                trim-str="Barbeque grills"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[7]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[8]
-                                }
-                              />
-                              <span
-                                trim-str="Meals included"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[8]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
-                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
-                        >
-                          <ul class="">
-                            <li>
-                              <Icons
-                                name={
-                                  props.specificCamp?.specificCamp?.animities[9]
-                                }
-                              />
-                              <span
-                                trim-str="Good for Groups"
-                                trim-str-limit="15"
-                                ng-class="{'strikethrough': !amenity.checked}"
-                                class="ng-binding"
-                              >
-                                {props.specificCamp?.specificCamp?.animities[9]}
                               </span>
                             </li>
                           </ul>
@@ -738,7 +576,241 @@ function Index(props) {
                               <Icons
                                 name={
                                   props.specificCamp?.specificCamp
-                                    ?.animities[10]
+                                    ?.animities?.[1]
+                                }
+                              />
+                              <span
+                                trim-str="Charging points"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[1]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[2]
+                                }
+                              />
+                              <span
+                                trim-str="Covered Area"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[2]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[3]
+                                }
+                              />
+                              <span
+                                trim-str="Campfire"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[3]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[4]
+                                }
+                              />
+                              <span
+                                trim-str="Shower"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[4]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[5]
+                                }
+                              />
+                              <span
+                                trim-str="Toilet"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[5]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[6]
+                                }
+                              />
+                              <span
+                                trim-str="Pets allowed"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[6]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[7]
+                                }
+                              />
+                              <span
+                                trim-str="Barbeque grills"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[7]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[8]
+                                }
+                              />
+                              <span
+                                trim-str="Meals included"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[8]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[9]
+                                }
+                              />
+                              <span
+                                trim-str="Good for Groups"
+                                trim-str-limit="15"
+                                ng-class="{'strikethrough': !amenity.checked}"
+                                class="ng-binding"
+                              >
+                                {
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[9]
+                                }
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          class="col-md-6 col-sm-6 col-xs-6 ng-scope"
+                          ng-repeat="amenity in Campsite.campsite.camp_site_amenities"
+                        >
+                          <ul class="">
+                            <li>
+                              <Icons
+                                name={
+                                  props.specificCamp?.specificCamp
+                                    ?.animities?.[10]
                                 }
                               />
                               <span
@@ -749,7 +821,7 @@ function Index(props) {
                               >
                                 {
                                   props.specificCamp?.specificCamp
-                                    ?.animities[10]
+                                    ?.animities?.[10]
                                 }
                               </span>
                             </li>
@@ -764,7 +836,7 @@ function Index(props) {
                               <Icons
                                 name={
                                   props.specificCamp?.specificCamp
-                                    ?.animities[11]
+                                    ?.animities?.[11]
                                 }
                               />
                               <span
@@ -775,7 +847,7 @@ function Index(props) {
                               >
                                 {
                                   props.specificCamp?.specificCamp
-                                    ?.animities[12]
+                                    ?.animities?.[12]
                                 }
                               </span>
                             </li>
@@ -790,7 +862,7 @@ function Index(props) {
                               <Icons
                                 name={
                                   props.specificCamp?.specificCamp
-                                    ?.animities[13]
+                                    ?.animities?.[13]
                                 }
                               />
                               <span
@@ -801,7 +873,7 @@ function Index(props) {
                               >
                                 {
                                   props.specificCamp?.specificCamp
-                                    ?.animities[14]
+                                    ?.animities?.[14]
                                 }
                               </span>
                             </li>
@@ -816,7 +888,7 @@ function Index(props) {
                               <Icons
                                 name={
                                   props.specificCamp?.specificCamp
-                                    ?.animities[15]
+                                    ?.animities?.[15]
                                 }
                               />
                               <span
@@ -827,7 +899,7 @@ function Index(props) {
                               >
                                 {
                                   props.specificCamp?.specificCamp
-                                    ?.animities[16]
+                                    ?.animities?.[16]
                                 }
                               </span>
                             </li>
@@ -842,7 +914,7 @@ function Index(props) {
                               <Icons
                                 name={
                                   props.specificCamp?.specificCamp
-                                    ?.animities[17]
+                                    ?.animities?.[17]
                                 }
                               />
                               <span
@@ -853,7 +925,7 @@ function Index(props) {
                               >
                                 {
                                   props.specificCamp?.specificCamp
-                                    ?.animities[18]
+                                    ?.animities?.[18]
                                 }
                               </span>
                             </li>
@@ -1293,7 +1365,18 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Index);
+function mapDispatchToProps(dispatch) {
+  return {
+    setCampAmenities: (data) => {
+      dispatch(setCampAmenities(data));
+    },
+    setSpecific: (data) => {
+      dispatch(setSpecific(data));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
 
 // import React, { useEffect, useState } from "react";
 

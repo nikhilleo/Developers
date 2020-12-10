@@ -11,11 +11,6 @@
   font-weight: bolder !important;
 }
 
-.MuiSvgIcon-root {
-  border: 1px solid #e0e0e0 !important;
-  padding: 0 !important;
-}
-
 .MuiSvgIcon-root:focus {
   border: none;
 }

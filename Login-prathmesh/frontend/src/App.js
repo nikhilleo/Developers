@@ -27,7 +27,6 @@ import OwnerBankDetails from "./Owner/OwnerAccountSettings/OwnerBankDetails";
 import OwnerPaymentPending from "./Owner/OwnerBookings/PaymentPending";
 import OwnerBookingPending from "./Owner/OwnerBookings/BookingPending";
 import OwnerApproved from "./Owner/OwnerBookings/Approved";
-import OwnerEarning from "./Owner/OwnerEarning/TotalEarning";
 import OwnerPaymentHistory from "./Owner/OwnerEarning/PaymentHistory";
 import UserBookingApproved from "./User/UserBooking/BookingApproved";
 import UserBookingSent from "./User/UserBooking/BookingSent";
@@ -51,6 +50,7 @@ import AdminHeader from "./Header/admin";
 import UserHeader from "./Header/user";
 import OwnerHeader from "./Header/owner";
 import HomeNavbar from "./Header/home";
+import UserBookingRejected from "./User/UserBooking/Rejected";
 import Practice1 from "./Practice";
 
 const { setUser, setOwner, setAdmin } = actions;
@@ -111,9 +111,9 @@ const App = (props) => {
     <>
       <Router>
         <Switch>
-          {/* <Route exact path="/">
+          <Route exact path="/practice">
             <Practice1 />
-          </Route> */}
+          </Route>
 
           <Route
             exact
@@ -252,6 +252,32 @@ const App = (props) => {
           />
           <Route
             exact
+            path="/Select__Particular__User"
+            render={() => {
+              return (
+                <>
+                  <SelectUser />
+                </>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/User__Booking__Rejected"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <UserBookingRejected />
+                  </>
+                );
+              } else {
+                return <SelectUser />;
+              }
+            }}
+          />
+          <Route
+            exact
             path="/User__Payment__Pending"
             render={() => {
               if (props.user.user || props.owner.user || props.admin.user) {
@@ -363,21 +389,7 @@ const App = (props) => {
               }
             }}
           />
-          <Route
-            exact
-            path="/Owner__Bookings/Total__Earnings"
-            render={() => {
-              if (props.user.user || props.owner.user || props.admin.user) {
-                return (
-                  <>
-                    <OwnerEarning />
-                  </>
-                );
-              } else {
-                return <SelectUser />;
-              }
-            }}
-          />
+
           <Route
             exact
             path="/Owner__Bookings/Payment__History"

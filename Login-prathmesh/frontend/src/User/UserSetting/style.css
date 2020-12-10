@@ -3,12 +3,12 @@
 }
 
 .sub__setting > button {
-  border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: bold;
+  border-radius: 20px !important;
+  border: 1px solid #ff4b2b !important;
+  background-color: #ff4b2b !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
   padding: 12px 45px;
   letter-spacing: 1px;
   cursor: pointer;

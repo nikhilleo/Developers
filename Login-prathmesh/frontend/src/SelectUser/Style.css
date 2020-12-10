@@ -217,7 +217,8 @@ button a {
 
 .Camp__owner__body {
   background-image: url(https://images.wallpaperscraft.com/image/tent_camping_mountains_166927_1280x720.jpg);
-  height: 100vh;
+  min-height: 100vh;
+  height: 45rem;
   width: 100vw;
   background-position: center;
   background-repeat: no-repeat;

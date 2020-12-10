@@ -65,10 +65,8 @@ function Home() {
       </Grid>
       <Grid container xs={12} align="center">
         <Grid item xs={12}>
-          <p
-            style={{ fontSize: "23px", color: "#5e5e80", fontWeight: "bolder" }}
-          >
-            Earnings
+          <p style={{ fontSize: "23px", color: "black", fontWeight: "bolder" }}>
+            Payment History
           </p>
         </Grid>
       </Grid>
@@ -78,51 +76,6 @@ function Home() {
       <Grid container style={{ visibility: "hidden" }}>
         .
       </Grid>
-      <Grid container xs={12} align="center">
-        <Grid item xs={4}></Grid>
-        <Grid item xs={2}>
-          <Link
-            to="/Owner__Bookings/Total__Earnings"
-            style={{ textDecoration: "none" }}
-          >
-            <span
-              style={{
-                cursor: "pointer",
-                color: "black",
-                fontSize: "18px",
-              }}
-            >
-              Total Earning
-            </span>
-          </Link>
-        </Grid>
-        <Grid item xs={2}>
-          <Link
-            to="/Owner__Bookings/Payment__History"
-            style={{ textDecoration: "none" }}
-          >
-            <span
-              style={{
-                cursor: "pointer",
-                color: "black",
-                fontSize: "18px",
-                fontWeight: "bolder",
-              }}
-            >
-              Payment History
-            </span>
-          </Link>
-        </Grid>
-        <Grid container style={{ visibility: "hidden" }}>
-          .
-        </Grid>{" "}
-      </Grid>
-      <Divider style={{ color: "black" }} />
-      <Grid container xs={12} style={{ visibility: "hidden" }}>
-        .
-      </Grid>
-
-      <Grid item xs={1}></Grid>
     </div>
   );
 }

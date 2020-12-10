@@ -46,7 +46,7 @@ function Home() {
                 </li>
                 <li className="navbar__li">
                   <Link
-                    to="../Owner__Bookings/Total__Earnings"
+                    to="../Owner__Bookings/Payment__History"
                     style={{ textDecoration: "none" }}
                   >
                     <span className="subHeader">EARNINGS</span>

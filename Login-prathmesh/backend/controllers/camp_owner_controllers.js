@@ -51,7 +51,7 @@ exports.login = async (req, res) => {
       throw new Error("No User Found");
     }
     const token = await user.genAuthToken();
-    res.status(200).json({ Message: "Login Successfully", token });
+    res.status(200).json({ Message: "Login Successfully", token, user: user });
   } catch (error) {
     if (error.message == "No User Found") {
       res.status(404).send(error.message + " With Given Credentials");
@@ -329,15 +329,10 @@ exports.get_pending_camps = async (req, res) => {
   try {
     const user = req.profile;
     if (user) {
-      const bookings = await Camp_Owner.findOne({ _id: user._id })
-        .populate({
-          path: "camp_booking",
-          match: { status: "Pending For Confirmation" },
-          populate: {
-            path: "camp",
-          },
-        })
-        .populate("camp_booking", "camper_details");
+      const bookings = await Camp_Owner.findOne({ _id: user._id }).populate({
+        path: "camp_booking",
+        match: { status: "Pending For Confirmation" },
+      });
 
       console.log(bookings);
       res.send(bookings);

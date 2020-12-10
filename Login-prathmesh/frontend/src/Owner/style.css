@@ -9,3 +9,7 @@
 .navbar__span:hover {
   color: #d2bfda !important;
 }
+
+.MuiSvgIcon-root {
+  border: none !important;
+}

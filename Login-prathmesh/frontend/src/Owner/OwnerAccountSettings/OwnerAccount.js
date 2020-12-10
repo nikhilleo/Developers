@@ -7,6 +7,8 @@ import OwnerNavbar from "../OwnerNavbar/Navbar";
 import "./style.css";
 import { Divider, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { clearUser, clearOwner, clearAdmin } = actions;
 
@@ -62,14 +64,20 @@ function Index(props) {
           headers: { Authorization: token },
         })
         .then((res) => {
-          alert(`${change} updated`);
+          toast.info(`${change} updated`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          });
           setChange("");
           setInput("");
           handleClick("e", "close__update__form");
         })
         .catch((err) => {
           console.log(err);
-          alert("Something went wrong");
+          toast.error(`Something Went Wrong`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          });
         });
     }
     if (client.type == "owner") {
@@ -81,14 +89,20 @@ function Index(props) {
         })
         .then((res) => {
           console.log(res);
-          alert(`${change} updated`);
+          toast.info(`${change} updated`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          });
           setChange("");
           setInput("");
           handleClick("e", "close__update__form");
         })
         .catch((err) => {
           console.log(err);
-          alert("Something went wrong");
+          toast.error(`Something Went Wrong`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          });
         });
     }
     if (client.type == "admin") {
@@ -100,14 +114,20 @@ function Index(props) {
         })
         .then((res) => {
           console.log(res);
-          alert(`${change} updated`);
+          toast.info(`${change} updated`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          });
           setChange("");
           setInput("");
           handleClick("e", "close__update__form");
         })
         .catch((err) => {
           console.log(err);
-          alert("Something went wrong");
+          toast.error(`Something Went Wrong`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          });
         });
     }
   };
@@ -127,16 +147,25 @@ function Index(props) {
             headers: { Authorization: token },
           })
           .then((res) => {
-            alert("password changed successfully");
+            toast.info(`Password Changed Successfully`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 2000,
+            });
             setChange("");
             setInput("");
             handleClick("e", "close__update__form");
           })
           .catch((err) => {
-            alert("something went wrong");
+            toast.error(`Something Went Wrong`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: false,
+            });
           });
       } else {
-        alert(`password didn't match`);
+        toast.error(`Password didn't match`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
       }
     }
     if (client.type == "owner") {
@@ -149,16 +178,25 @@ function Index(props) {
             headers: { Authorization: token },
           })
           .then((res) => {
-            alert("password changed successfully");
+            toast.info(`Password Changed Successfully`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 2000,
+            });
             setChange("");
             setInput("");
             handleClick("e", "close__update__form");
           })
           .catch((err) => {
-            alert("something went wrong");
+            toast.error(`Something Went Wrong`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: false,
+            });
           });
       } else {
-        alert(`password didn't match`);
+        toast.error(`Password didn't match`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
       }
     }
     if (client.type == "admin") {
@@ -171,16 +209,25 @@ function Index(props) {
             headers: { Authorization: token },
           })
           .then((res) => {
-            alert("password changed successfully");
+            toast.info(`Password Changed Successfully`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 2000,
+            });
             setChange("");
             setInput("");
             handleClick("e", "close__update__form");
           })
           .catch((err) => {
-            alert("something went wrong");
+            toast.error(`Something Went Wrong`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: false,
+            });
           });
       } else {
-        alert(`password didn't match`);
+        toast.error(`Password didn't match`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
       }
     }
   };
@@ -259,13 +306,6 @@ function Index(props) {
     popup__delete.classList.toggle("active__delete");
   };
 
-  const handleLogOut = () => {
-    localStorage.setItem("auth-token", "");
-    props.clearAdmin();
-    props.clearOwner();
-    props.clearUser();
-  };
-
   return (
     <>
       <Navbar />
@@ -295,7 +335,7 @@ function Index(props) {
                 </li>
                 <li className="navbar__li">
                   <Link
-                    to="../Owner__Bookings/Total__Earnings"
+                    to="../Owner__Bookings/Payment__History"
                     style={{ textDecoration: "none" }}
                   >
                     <span className="subHeader">EARNINGS</span>
@@ -380,9 +420,7 @@ function Index(props) {
           <span style={{ fontSize: 20, fontWeight: "bolder" }}>
             Account Setting
           </span>
-          <button id="logout" onClick={handleLogOut}>
-            logout
-          </button>
+
           <br />
           <label>First Name</label>
           <br />

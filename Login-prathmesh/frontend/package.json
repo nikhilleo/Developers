@@ -34,6 +34,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-simple-image-slider": "^2.0.1",
+    "react-toastify": "^6.2.0",
     "redux": "^4.0.5",
     "sweetalert2": "^10.10.1",
     "web-vitals": "^0.2.4",

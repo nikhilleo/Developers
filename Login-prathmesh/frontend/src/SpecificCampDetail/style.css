@@ -6,8 +6,9 @@
   top: -33px;
   z-index: 2;
   padding: 25px 30px;
-  background-color: #ffffff;
+  background: linear-gradient(45deg, black, transparent) 0% 0% / cover;
   border-bottom: 1px solid #dbdbdb;
+  color: white !important;
   -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
   min-height: 230px;
@@ -51,7 +52,8 @@ user agent stylesheet div {
   width: 68.5%;
   z-index: 2;
   padding: 25px 30px;
-  background-color: #ffffff;
+  background: linear-gradient(45deg, black, transparent) 0% 0% / cover !important;
+  color: white !important;
   border-bottom: 1px solid #dbdbdb;
   -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
@@ -70,7 +72,8 @@ user agent stylesheet div {
   margin: 10px;
   z-index: 2;
   padding: 25px 30px;
-  background-color: #ffffff;
+  background: linear-gradient(45deg, black, transparent) 0% 0% / cover !important;
+  color: white !important;
   border-bottom: 1px solid #dbdbdb;
   -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
@@ -79,7 +82,8 @@ user agent stylesheet div {
   margin: 10px;
   z-index: 2;
   padding: 25px 30px;
-  background-color: #ffffff;
+  background: linear-gradient(45deg, black, transparent) 0% 0% / cover !important;
+  color: white !important;
   border-bottom: 1px solid #dbdbdb;
   -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
@@ -88,7 +92,8 @@ user agent stylesheet div {
   font-size: 15px;
   z-index: 2;
   padding: 25px 30px;
-  background-color: #ffffff;
+  background: linear-gradient(45deg, black, transparent) 0% 0% / cover !important;
+  color: white !important;
   border-bottom: 1px solid #dbdbdb;
   -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
@@ -97,7 +102,8 @@ user agent stylesheet div {
   font-size: 15px;
   z-index: 2;
   padding: 25px 30px;
-  background-color: #ffffff;
+  background: linear-gradient(45deg, black, transparent) 0% 0% / cover !important;
+  color: white !important;
   border-bottom: 1px solid #dbdbdb;
   -webkit-box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 22px 0px rgba(0, 0, 0, 0.1);
@@ -106,10 +112,13 @@ user agent stylesheet div {
   margin-top: 220px;
 }
 .main1 {
-  background-color: lightgray !important;
+  background-image: url("https://images7.alphacoders.com/101/thumb-1920-1011523.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .dd {
-  background-color: lightblue !important;
+  background: linear-gradient(45deg, black, transparent) 0% 0% / cover !important;
+  color: white !important;
 }
 .s12 {
   font-size: 50px;

@@ -4,6 +4,8 @@ import "./CampUser.css";
 import { connect } from "react-redux";
 import actions from "../Redux/Action";
 import axios from "../axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const {
   setUser,
@@ -12,6 +14,8 @@ const {
   clearOwner,
   clearAdmin,
 } = actions;
+
+toast.configure();
 
 function Index(props) {
   const history = useHistory();
@@ -67,7 +71,10 @@ function Index(props) {
           props.clearCurrentUser();
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
-          alert(res.data.message);
+          toast.info(`${res.data.Message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 3000,
+          });
           history.push("/");
           setInput({
             firstname: "",
@@ -80,7 +87,10 @@ function Index(props) {
         })
         .catch((err) => {
           console.log("errordas", err.response);
-          alert(err.response.data);
+          toast.error(`${err.response.data}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          });
         });
     }
     if (type === "signIn") {
@@ -97,7 +107,10 @@ function Index(props) {
           props.clearCurrentUser();
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
-          alert(res.data.Message);
+          toast.info(`${res.data.Message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          });
           setInput({
             firstname: "",
             lastname: "",
@@ -110,7 +123,10 @@ function Index(props) {
         })
         .catch((err) => {
           console.log(err.response);
-          alert(err.response.data);
+          toast.error(`${err.response.data}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          });
         });
     }
   };
@@ -161,6 +177,7 @@ function Index(props) {
                   onChange={handleChange}
                   placeholder="First Name"
                   name="firstname"
+                  required
                 />
                 <input
                   className="select__user__input"
@@ -168,6 +185,7 @@ function Index(props) {
                   onChange={handleChange}
                   placeholder="Last Name"
                   name="lastname"
+                  required
                 />
                 <input
                   className="select__user__input"
@@ -175,6 +193,7 @@ function Index(props) {
                   onChange={handleChange}
                   placeholder="E-mail"
                   name="email"
+                  required
                 />
                 <input
                   className="select__user__input"
@@ -182,6 +201,7 @@ function Index(props) {
                   onChange={handleChange}
                   placeholder="Password"
                   name="password"
+                  required
                 />
                 <input
                   className="select__user__input"
@@ -189,6 +209,7 @@ function Index(props) {
                   onChange={handleChange}
                   placeholder="Mobile Number"
                   name="mobile"
+                  required
                 />
                 <input
                   className="select__user__input"
@@ -196,6 +217,7 @@ function Index(props) {
                   onChange={handleChange}
                   placeholder="Address"
                   name="address"
+                  required
                 />
                 <button
                   className="select__user__button"

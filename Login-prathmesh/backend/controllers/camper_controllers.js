@@ -50,7 +50,9 @@ exports.login = async (req, res) => {
       throw new Error("No User Found");
     }
     const token = await user.genAuthToken();
-    res.status(200).json({ Message: "Login Successfully", token: token });
+    res
+      .status(200)
+      .json({ Message: "Login Successfully", token: token, user: user });
     console.log(user);
   } catch (error) {
     if (error.message == "No User Found") {

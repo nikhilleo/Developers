@@ -11,8 +11,12 @@ import "./style.css";
 function Home() {
   var [campDetails, setCampDetails] = useState();
   useEffect(() => {
+    let token = localStorage.getItem("auth-token");
     axios
-      .get("/camp/get_pending_camps")
+      .get("/get_all_pending_bookings", {
+        method: "GET",
+        headers: { Authorization: token },
+      })
       .then((res) => {
         console.log(res);
         setCampDetails(res.data);
@@ -77,7 +81,6 @@ function Home() {
               style={{
                 fontSize: "27px",
                 color: "white",
-                fontWeight: "bolder",
               }}
             >
               Booking Pending
@@ -96,7 +99,7 @@ function Home() {
           </Grid>
           <Grid>
             <Grid container xs={12} align="center">
-              <Grid item xs={3}></Grid>
+              <Grid item xs={2}></Grid>
               <Grid item xs={2}>
                 <Link
                   to="/User__Booking__Sent"
@@ -149,12 +152,29 @@ function Home() {
                   </span>
                 </Link>
               </Grid>
+              <Grid item xs={2}>
+                <Link
+                  to="/User__Booking__Rejected"
+                  style={{ textDecoration: "none" }}
+                >
+                  <span
+                    style={{
+                      cursor: "pointer",
+                      color: "white",
+                      fontSize: "18px",
+                    }}
+                    className="navbar__span"
+                  >
+                    Booking Rejected
+                  </span>
+                </Link>
+              </Grid>
               <Grid container style={{ visibility: "hidden" }}>
                 .
               </Grid>{" "}
             </Grid>
             <Grid>
-              {campDetails?.map((item, index) => (
+              {campDetails?.map?.((item, index) => (
                 <Grid container xs={12}>
                   <Grid container xs={12} style={{ visibility: "hidden" }}>
                     .
