@@ -6,7 +6,7 @@ const Camps = require("../models/camps");
 const imgbbUploader = require('imgbb-uploader');
 const fs = require("fs");
 const e = require("express");
-
+const Booking = require("../models/booking");
 
 
 exports.signup = async (req, res) => {
@@ -328,7 +328,7 @@ for(let i=0;i<req.files.length;i++)
   try {
     // const c_name = req.body.camp_name;
     // const camp = await Camps.findOne({camp_name:c_name});
-    const camp = await Camps.findOne({camp_name:"dadaagags1"});
+    const camp = await Camps.findOne({camp_name:"Jattu1"});
     // console.log(camp);
     if(!camp)
     {
@@ -391,16 +391,19 @@ for(let i=0;i<req.files.length;i++)
 exports.get_pending_camps = async (req, res) => {
   try {
     const user = req.profile;
-    if(user){
-      const bookings = await Camp_Owner.findOne({_id:user._id}).populate({
+    if(user)
+    {
+      const bookings = await Camp_Owner.findOne({_id:user._id})
+      .populate({
         path:"camp_booking",
         match: { status: "Pending For Confirmation" }
       });
+      console.log(bookings)
       res.send(bookings);
     }
     else
     {
-      throw ("No User Found");
+      throw new Error("No User Found");
     }
   } catch (error) {
     if(error.message == "No User Found")
@@ -408,7 +411,7 @@ exports.get_pending_camps = async (req, res) => {
       res.status(404).send("No user found");
     }
     else{
-      res.status(404).send(error.message)
+      res.status(404).send(error)
     }
   }
 }
