@@ -3,17 +3,11 @@
 }
 
 .sub__setting > button {
-  border-radius: 20px !important;
-  border: 1px solid #ff4b2b !important;
-  background-color: #ff4b2b !important;
-  color: #ffffff !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  padding: 12px 45px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: transform 80ms ease-in;
+  padding: 7px !important;
+  width: 8vw !important;
+  border-radius: 22px !important;
+  color: wheat !important;
+  background: linear-gradient(45deg, black, transparent) !important;
 }
 
 .selected__input__form {
@@ -25,7 +19,7 @@
   min-width: 487px;
 }
 .sub__setting {
-  background: #e2e2e2;
+  background: linear-gradient(45deg, black, transparent);
 }
 #delete {
   width: 58%;
@@ -161,11 +155,6 @@ select:focus {
   padding: 12px 15px;
   margin: 8px 0;
   border-radius: 20px;
-}
-
-.sub__setting > button:hover {
-  background: #ff4b2b;
-  color: white;
 }
 
 .Account__setting {

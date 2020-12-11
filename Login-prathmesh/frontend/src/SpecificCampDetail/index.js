@@ -155,27 +155,16 @@ function Index(props) {
           data-ride="carousel"
         >
           <div class="carousel-inner ">
-            <div class="carousel-item active">
-              <img
-                class="d-block w-100"
-                src={props?.specificCamp?.specificCamp?.camp_images?.[0]}
-                alt="First slide"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                class="d-block w-100 "
-                src={props?.specificCamp?.specificCamp?.camp_images?.[1]}
-                alt="Second slide"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                class="d-block w-100"
-                src={props?.specificCamp?.specificCamp?.camp_images?.[2]}
-                alt="Third slide"
-              />
-            </div>
+            {props?.specificCamp?.specificCamp?.camp_images.map((item) => {
+              console.log(item);
+              return (
+                <>
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src={item} alt="First slide" />
+                  </div>
+                </>
+              );
+            })}
           </div>
           <a
             class="carousel-control-prev"
@@ -350,7 +339,12 @@ function Index(props) {
                             >
                               .
                             </Grid>
-                            <Grid container xs={12} justify="space-around">
+                            <Grid
+                              container
+                              xs={12}
+                              justify="space-around"
+                              alignItems="center"
+                            >
                               <Grid item xs={2} align="center">
                                 {item[0]}
                               </Grid>
@@ -416,17 +410,27 @@ function Index(props) {
                               </Grid>
                               <Grid item xs={2} align="center">
                                 {qty[index]?.qty *
-                                  item[1]?.numberOfPeopleAllowed}
+                                  item[1]?.numberOfPeopleAllowed || 0}
                               </Grid>
                               <Grid item xs={2} align="center">
-                                Rs. {qty[index]?.qty * item[1]?.pricePerNight}
+                                Rs.{" "}
+                                {qty[index]?.qty * item[1]?.pricePerNight || 0}
                               </Grid>
                             </Grid>
                           </>
                         ))}
                       </div>
                     </div>
-                    <div ng-if="!Campsite.apiInprocess" class="ng-scope">
+                    <div
+                      ng-if="!Campsite.apiInprocess"
+                      class="ng-scope"
+                      style={{
+                        display: "flex",
+                        width: "100%",
+                        justifyContent: "center",
+                        marginTop: "20px",
+                      }}
+                    >
                       <div
                         ng-if="!Campsite.loadingCampDetails"
                         class="ng-scope"
@@ -1284,62 +1288,6 @@ function Index(props) {
                                 class="ng-binding"
                               >
                                 {dynamicAccomodation?.[2]?.[0]}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-8 col-xs-12">
-                <div class="details-block weather  wdetails-spacing">
-                  <div class="row work2">
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <h4>Important to know</h4>
-                    </div>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                      <div class="row ">
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                          <ul class="work4">
-                            <li class="vibe-card">
-                              <img
-                                src="https://campmonk.com/img/extras/campmonk-hot-thermometer.svg"
-                                class="img-responsive"
-                                alt="name"
-                              />
-                              <p>21.63°C</p>
-                              <span>Light rain today</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                          <ul class="work4">
-                            <li class="vibe-card">
-                              <img
-                                src="https://campmonk.com/img/extras/campmonk-elevator-arrows.svg"
-                                class="img-responsive"
-                                alt="name"
-                              />
-                              <p>1010ft</p>
-                              <span>Listing's elevation</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                          <ul class="work4">
-                            <li class="vibe-card no-info">
-                              <p>
-                                <i
-                                  class="fa fa-exclamation exclamation s12"
-                                  aria-hidden="true"
-                                ></i>
-                              </p>
-                              <span>
-                                Enable location detection to know distance!
                               </span>
                             </li>
                           </ul>

@@ -84,6 +84,13 @@ function CampUserForm5(props) {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
+        localStorage.removeItem("Manager");
+        localStorage.removeItem("activities");
+        localStorage.removeItem("priceDetails");
+        localStorage.removeItem("Amenities");
+        localStorage.removeItem("Accommodation");
+        localStorage.removeItem("campUserForm1");
+        localStorage.removeItem("bookingDetails");
         history.push("/");
       })
       .catch((err) => {

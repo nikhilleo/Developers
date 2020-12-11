@@ -27,42 +27,46 @@ function Index(props) {
 
   var [activities, setActivities] = useState({
     Trekking: false,
-    "Off Roading": false,
+    Off_Roading: false,
     Climbing: false,
-    "White Water Rafting": false,
-    "Wildlife Watching": false,
+    White_Water_Rafting: false,
+    Wildlife_Watching: false,
     Swimming: false,
     Cycling: false,
   });
 
   var [Amenities, setAmenities] = useState({
-    "Pets Allowed": false,
+    Pets_Allowed: false,
     Toilet: false,
     Shower: false,
     Campfire: false,
-    "Covered Area": false,
-    "Charging Points": false,
-    "Drinking water": false,
+    Covered_Area: false,
+    Charging_Points: false,
+    Drinking_water: false,
   });
 
   var [Accommodation, setAccommodation] = useState({
     Dorm: false,
-    "Farm Cottage": false,
-    "Mud House": false,
+    Farm_Cottage: false,
+    Mud_House: false,
     Villas: false,
-    "Tree House": false,
+    Tree_House: false,
     Tent: false,
-    "Park N Camp": false,
+    Park_N_Camp: false,
   });
 
   useEffect(() => {
-    const data = localStorage.getItem("campUserForm2");
-    if (data) {
-      setActivities(JSON.parse(data));
-      setAmenities(JSON.parse(data));
-      setAccommodation(JSON.parse(data));
+    const Accommodation = localStorage.getItem("Accommodation");
+    const Amenities = localStorage.getItem("Amenities");
+    const activities = localStorage.getItem("activities");
+    console.log(Accommodation, Amenities, activities);
+    if (Accommodation || Amenities || activities) {
+      console.log("yes");
+      setActivities(JSON.parse(activities));
+      setAmenities(JSON.parse(Amenities));
+      setAccommodation(JSON.parse(Accommodation));
     }
-  });
+  }, []);
 
   console.log(Accommodation);
   console.log(activities);
@@ -180,7 +184,7 @@ function Index(props) {
               style={{ fontWeight: "bolder" }}
               control={
                 <Checkbox
-                  checked={activities.Trekking}
+                  checked={activities.Trekking ? true : ""}
                   onChange={handleChange}
                   name="Trekking"
                 />
@@ -192,9 +196,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={activities.off_Roading}
+                  checked={activities.Off_Roading ? true : ""}
                   onChange={handleChange}
-                  name="Off Roading"
+                  name="Off_Roading"
                 />
               }
               label="Off-roading"
@@ -205,7 +209,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={activities.Climbing}
+                  checked={activities.Climbing ? true : ""}
                   onChange={handleChange}
                   name="Climbing"
                 />
@@ -217,9 +221,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={activities.White_water_rafting}
+                  checked={activities.White_Water_Rafting ? true : ""}
                   onChange={handleChange}
-                  name="White Water Rafting"
+                  name="White_Water_Rafting"
                 />
               }
               label="White Water Rafting"
@@ -230,9 +234,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={activities.Wildlife_Watching}
+                  checked={activities.Wildlife_Watching ? true : ""}
                   onChange={handleChange}
-                  name="Wildlife Watching"
+                  name="Wildlife_Watching"
                 />
               }
               label="Wildlife-Watching"
@@ -242,7 +246,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={activities.Swimming}
+                  checked={activities.Swimming ? true : ""}
                   onChange={handleChange}
                   name="Swimming"
                 />
@@ -255,7 +259,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={activities.Cycling}
+                  checked={activities.Cycling ? true : ""}
                   onChange={handleChange}
                   name="Cycling"
                 />
@@ -285,9 +289,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Amenities.Drinking_water}
+                  checked={Amenities.Drinking_water ? true : ""}
                   onChange={handleAmenitiesChange}
-                  name="Drinking Water"
+                  name="Drinking_water"
                 />
               }
               label="Drinking water"
@@ -297,9 +301,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Amenities.Charging_points}
+                  checked={Amenities.Charging_Points ? true : ""}
                   onChange={handleAmenitiesChange}
-                  name="Charging Points"
+                  name="Charging_Points"
                 />
               }
               label="Charging points"
@@ -310,9 +314,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Amenities.Covered_Area}
+                  checked={Amenities.Covered_Area ? true : ""}
                   onChange={handleAmenitiesChange}
-                  name="Covered Area"
+                  name="Covered_Area"
                 />
               }
               label="Covered Area"
@@ -322,7 +326,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Amenities.Campfire}
+                  checked={Amenities.Campfire ? true : ""}
                   onChange={handleAmenitiesChange}
                   name="Campfire"
                 />
@@ -335,7 +339,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Amenities.Shower}
+                  checked={Amenities.Shower ? true : ""}
                   onChange={handleAmenitiesChange}
                   name="Shower"
                 />
@@ -347,7 +351,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Amenities.Toilet}
+                  checked={Amenities.Toilet ? true : ""}
                   onChange={handleAmenitiesChange}
                   name="Toilet"
                 />
@@ -360,9 +364,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Amenities.Pets_allowed}
+                  checked={Amenities.Pets_Allowed ? true : ""}
                   onChange={handleAmenitiesChange}
-                  name="Pets Allowed"
+                  name="Pets_Allowed"
                 />
               }
               label="Pets allowed"
@@ -391,7 +395,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Accommodation.Tent}
+                  checked={Accommodation.Tent ? true : ""}
                   onChange={handleAccommodationChange}
                   name="Tent"
                 />
@@ -403,9 +407,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Accommodation.Tree_House}
+                  checked={Accommodation.Tree_House ? true : ""}
                   onChange={handleAccommodationChange}
-                  name="Tree House"
+                  name="Tree_House"
                 />
               }
               label="Tree House"
@@ -416,7 +420,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Accommodation.Villas}
+                  checked={Accommodation.Villas ? true : ""}
                   onChange={handleAccommodationChange}
                   name="Villas"
                 />
@@ -428,9 +432,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Accommodation.Mud_House}
+                  checked={Accommodation.Mud_House ? true : ""}
                   onChange={handleAccommodationChange}
-                  name="Mud House"
+                  name="Mud_House"
                 />
               }
               label="Mud House"
@@ -441,7 +445,7 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Accommodation.Dorm}
+                  checked={Accommodation.Dorm ? true : ""}
                   onChange={handleAccommodationChange}
                   name="Dorm"
                 />
@@ -453,9 +457,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Accommodation.Farm_Cottage}
+                  checked={Accommodation.Farm_Cottage ? true : ""}
                   onChange={handleAccommodationChange}
-                  name="Farm Cottage"
+                  name="Farm_Cottage"
                 />
               }
               label="Farm Cottage"
@@ -466,9 +470,9 @@ function Index(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={Accommodation.Park_N_Camp}
+                  checked={Accommodation.Park_N_Camp ? true : ""}
                   onChange={handleAccommodationChange}
-                  name="Park N Camp"
+                  name="Park_N_Camp"
                 />
               }
               label="Park N Camp"
@@ -490,6 +494,7 @@ function Index(props) {
               variant="contained"
               color="secondary"
               onClick={handleSubmit}
+              type="submit"
             >
               Next
             </Button>

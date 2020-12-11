@@ -145,10 +145,9 @@ function Index(props) {
                   fontSize: 20,
                   fontWeight: "bolder",
                   position: "relative",
-                  top: 8,
+                  top: "10px",
                   cursor: "pointer",
                 }}
-                className="select__user__span"
                 onClick={handleClicks}
               >
                 X

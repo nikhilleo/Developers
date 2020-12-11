@@ -193,14 +193,12 @@ function Index(props) {
                 </span>
                 <input
                   className="select__user__input"
-                  type="text"
                   onChange={handleChange}
                   placeholder="First Name"
                   name="firstname"
                 />
                 <input
                   className="select__user__input"
-                  type="text"
                   onChange={handleChange}
                   placeholder="Last Name"
                   name="lastname"
@@ -221,14 +219,12 @@ function Index(props) {
                 />
                 <input
                   className="select__user__input"
-                  type="text"
                   onChange={handleChange}
                   placeholder="Mobile Number"
                   name="mobile"
                 />
                 <input
                   className="select__user__input"
-                  type="text"
                   onChange={handleChange}
                   placeholder="Address"
                   name="address"

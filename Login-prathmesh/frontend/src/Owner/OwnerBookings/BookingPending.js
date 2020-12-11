@@ -250,7 +250,7 @@ function Home() {
                         padding: "7px",
                         width: "8vw",
                         borderRadius: "22px",
-                        color: "white",
+                        color: "wheat",
                         background: "transparent",
                       }}
                       onClick={() => accpetBooking(item._id)}
@@ -260,8 +260,8 @@ function Home() {
                           cursor: "pointer",
                           color: "green",
                         }}
-                      />
-                      Accept
+                      />{" "}
+                      &ensp; Accept
                     </button>
                     <Grid container xs={12} style={{ visibility: "hidden" }}>
                       .
@@ -270,7 +270,7 @@ function Home() {
                     <button
                       style={{
                         padding: "7px",
-                        color: "white",
+                        color: "wheat",
                         width: "8vw",
                         borderRadius: "22px",
                         background: "transparent",
@@ -283,8 +283,8 @@ function Home() {
                           color: "red",
                           border: "none !important",
                         }}
-                      />
-                      Reject
+                      />{" "}
+                      &ensp; Reject
                     </button>
                     <Grid container xs={12} style={{ visibility: "hidden" }}>
                       .

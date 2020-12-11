@@ -105,7 +105,7 @@ a {
   justify-content: center;
   flex-direction: column;
   height: 100%;
-  text-align: center;
+  text-align: right;
 }
 
 .select__user__input {

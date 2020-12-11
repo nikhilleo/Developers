@@ -123,30 +123,15 @@ select:focus {
   display: flex !important;
   justify-content: center !important;
   width: 100% !important;
-  background: white !important;
+  background: transparent !important;
 }
 
 .sub__setting > label {
   font-size: 12px;
 }
 
-.sub__setting > button {
-  border-radius: 20px !important;
-  border: 1px solid #ff4b2b !important;
-  background-color: white !important;
-  color: black !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  padding: 12px 45px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: transform 80ms ease-in;
-}
-
 .sub__setting > button:hover {
-  background: #ff4b2b !important;
-  color: white;
+  color: white !important;
 }
 
 .selected__input__form {
@@ -295,11 +280,11 @@ select:focus {
   margin: 8px 0;
   border-radius: 20px;
 }
-
+/* 
 .sub__setting > button:hover {
   background: white;
   color: #ff4b2b;
-}
+} */
 
 .Account__setting {
   position: relative;

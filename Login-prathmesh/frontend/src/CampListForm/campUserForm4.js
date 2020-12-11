@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import { Link, useHistory } from "react-router-dom";
@@ -38,10 +38,23 @@ function Index(props) {
     managerLandline: "",
     managerName: "",
     managerNumber: "",
-    ownerLandline: "0241-2426325d",
+    ownerLandline: "",
     ownerName: "Prathmesh",
     ownerNumber: "8797857854",
   });
+
+  var [manager, setManager] = useState();
+
+  useEffect(() => {
+    const managerDetails = localStorage.getItem("Manager");
+    console.log(managerDetails);
+    if (managerDetails) {
+      console.log("yes");
+      setContactDetails(JSON.parse(managerDetails));
+    }
+    console.log(contactDetails);
+  }, []);
+  console.log(contactDetails);
 
   console.log(props.owner);
 
@@ -58,6 +71,8 @@ function Index(props) {
     console.log(props.campDetails);
     let token = localStorage.getItem("auth-token");
     console.log(token);
+
+    localStorage.setItem("Manager", JSON.stringify(contactDetails));
 
     axios
       .post("/owner/create_camp", props.campDetails, {
@@ -208,7 +223,7 @@ function Index(props) {
           <Grid item xs={12} sm={2}>
             <TextField
               id="outlined-search"
-              onChange={handleChange}
+              value={contactDetails ? contactDetails.ownerLandline : ""}
               name="ownerLandline"
               fullWidth
               style={{
@@ -248,7 +263,7 @@ function Index(props) {
               id="outlined-search"
               onChange={handleChange}
               fullWidth
-              defaultValue={contactDetails.managerName}
+              value={contactDetails ? contactDetails.managerName : ""}
               name="managerName"
               type="search"
               style={{
@@ -263,7 +278,7 @@ function Index(props) {
             <TextField
               id="outlined-search"
               onChange={handleChange}
-              defaultValue={contactDetails.managerEmail}
+              value={contactDetails ? contactDetails.managerEmail : ""}
               name="managerEmail"
               fullWidth
               style={{
@@ -293,7 +308,7 @@ function Index(props) {
             <TextField
               onChange={handleChange}
               id="outlined-search"
-              defaultValue={contactDetails.managerNumber}
+              value={contactDetails ? contactDetails.managerNumber : ""}
               name="managerNumber"
               fullWidth
               style={{
@@ -308,7 +323,7 @@ function Index(props) {
           <Grid item xs={12} sm={2}>
             <TextField
               name="managerLandline"
-              defaultValue={contactDetails.managerLandline}
+              value={contactDetails ? contactDetails.managerLandline : ""}
               id="outlined-search"
               onChange={handleChange}
               fullWidth
@@ -323,29 +338,6 @@ function Index(props) {
         </Grid>
         <Grid container xs={12} style={{ visibility: "hidden" }}>
           .
-        </Grid>
-        <Grid container>
-          <Grid item xs={0} sm={2}></Grid>
-          <Grid item xs={12} sm={5}>
-            <p style={{ fontWeight: "bolder" }}>Link / Website</p>
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs={0} sm={2}></Grid>
-          <Grid item xs={12} sm={2}>
-            <TextField
-              id="outlined-search"
-              name="link"
-              onChange={handleChange}
-              fullWidth
-              type="search"
-              variant="outlined"
-              style={{
-                border: "3px solid white",
-                borderRadius: "17px",
-              }}
-            />
-          </Grid>
         </Grid>
         <Grid container spacing={10}>
           <Grid item xs={0} sm={9} align="flex-end"></Grid>

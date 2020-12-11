@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import { Link, useHistory } from "react-router-dom";
@@ -29,12 +29,32 @@ const {
 
 function Index(props) {
   const history = useHistory();
-
   var [bookingDetails, setBookingDetails] = useState({
     policy: "",
   });
 
   var [priceDetails, setPriceDetails] = useState();
+  var [Prices, setPrices] = useState();
+  var [Bookings, setBookings] = useState();
+
+  useEffect(() => {
+    const priceDetails = localStorage.getItem("priceDetails");
+    const bookingDetails = localStorage.getItem("bookingDetails");
+
+    console.log(priceDetails, bookingDetails);
+
+    console.log(priceDetails, bookingDetails);
+    if (priceDetails || bookingDetails) {
+      console.log("yes");
+      if (bookingDetails) {
+        setBookings(JSON.parse(bookingDetails));
+      }
+      if (priceDetails) {
+        setPrices(JSON.parse(priceDetails));
+      }
+    }
+  }, []);
+
   console.log(props.campDetails);
 
   const handleChange = (e) => {
@@ -66,6 +86,9 @@ function Index(props) {
 
   const handleSubmit = async () => {
     console.log(bookingDetails, priceDetails);
+
+    localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
+    localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
 
     await props.setCampAccomodation(priceDetails);
     props.setCampExtraDetails(bookingDetails);
@@ -154,6 +177,7 @@ function Index(props) {
                   border: "3px solid white",
                   borderRadius: "17px",
                 }}
+                value={Bookings ? Bookings.checkInTime : ""}
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 name="checkInTime"
@@ -195,6 +219,7 @@ function Index(props) {
                   border: "3px solid white",
                   borderRadius: "17px",
                 }}
+                value={Bookings ? Bookings.checkOutTime : ""}
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 name="checkOutTime"
@@ -282,6 +307,7 @@ function Index(props) {
                         borderRadius: "17px",
                       }}
                       name="totalCapacity"
+                      value={Prices ? Prices.totalCapacity : ""}
                       onChange={(e) => {
                         handlePriceChange(e, item);
                       }}
@@ -299,6 +325,7 @@ function Index(props) {
                         border: "3px solid white",
                         borderRadius: "17px",
                       }}
+                      value={Prices ? Prices.numberOfPeopleAllowed : ""}
                       name="numberOfPeopleAllowed"
                       onChange={(e) => {
                         handlePriceChange(e, item);
@@ -318,6 +345,7 @@ function Index(props) {
                         border: "3px solid white",
                         borderRadius: "17px",
                       }}
+                      value={Prices ? Prices.pricePerNight : ""}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -366,7 +394,7 @@ function Index(props) {
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
-                  value={bookingDetails.policy}
+                  value={Bookings ? Bookings.policy : ""}
                   name="policy"
                   onChange={handleChange}
                   label="Age"

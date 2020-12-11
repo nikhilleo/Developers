@@ -51,17 +51,17 @@ function Index(props) {
     return formIsValid;
   }
 
-  console.log(camp);
-
-  useEffect(async () => {
+  useEffect(() => {
     console.log(props.campDetails);
     const data = localStorage.getItem("campUserForm1");
     console.log(data);
     if (data == undefined) return 0;
-    else if (!data == undefined) {
-      await setCamp(JSON.parse(data));
+    else if (data) {
+      console.log("yes");
+      setCamp(JSON.parse(data));
     }
-  });
+    console.log(camp);
+  }, []);
 
   const handleSelectChange = (e) => {
     setSelect(e.target.value);
@@ -141,7 +141,7 @@ function Index(props) {
                 onChange={handleChange}
                 name="interestingName"
                 variant="outlined"
-                value={camp?.interestingName}
+                value={camp ? camp.interestingName : ""}
                 fullWidth
                 style={{
                   border: "3px solid white",
@@ -169,7 +169,7 @@ function Index(props) {
                 id="outlined-search"
                 name="originalName"
                 onChange={handleChange}
-                value={camp?.originalName}
+                value={camp ? camp.originalName : ""}
                 type="search"
                 variant="outlined"
                 fullWidth
@@ -202,7 +202,7 @@ function Index(props) {
                 variant="outlined"
                 fullWidth
               /> */}
-              <CKEditor
+              {/* <CKEditor
                 editor={ClassicEditor}
                 onChange={(event, editor) => {
                   const data = editor.getData("text/plain");
@@ -217,7 +217,30 @@ function Index(props) {
                   borderRadius: "17px",
                 }}
                 name="campDescription"
-              />
+                value="prara"
+              /> */}
+
+              <textarea
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                onChange={handleChange}
+                style={{
+                  background: "transparent",
+                  width: " 100%",
+                  color: "white",
+                  padding: "5px",
+                  borderRadius: "20px",
+                  border: "2px solid",
+                }}
+                value={camp ? camp.campDescription : ""}
+                name="campDescription"
+                rows="4"
+                cols="50"
+              >
+                Hello world
+              </textarea>
             </Grid>
           </Grid>
           <Grid container>
@@ -238,7 +261,7 @@ function Index(props) {
                   <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={camp?.state}
+                    value={camp ? camp.state : ""}
                     name="state"
                     onChange={handleChange}
                     style={{
@@ -312,7 +335,7 @@ function Index(props) {
             <Grid item xs={9} sm={6}>
               <TextField
                 id="outlined-search"
-                value={camp?.location}
+                value={camp ? camp.location : ""}
                 name="location"
                 onChange={handleChange}
                 type="search"
@@ -332,6 +355,12 @@ function Index(props) {
             <Grid container xs={12} style={{ visibility: "hidden" }}>
               .
             </Grid>
+            <Grid container xs={12} style={{ visibility: "hidden" }}>
+              .
+            </Grid>
+            <Grid container xs={12} style={{ visibility: "hidden" }}>
+              .
+            </Grid>
             <Grid item sm={3} xs={0}></Grid>
             <Grid item xs={4}>
               <p style={{ fontWeight: "bolder" }}>Land type</p>
@@ -345,7 +374,7 @@ function Index(props) {
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
-                  value={camp?.landType}
+                  value={camp ? camp.landType : ""}
                   name="landType"
                   onChange={handleChange}
                   label="Age"
@@ -366,7 +395,7 @@ function Index(props) {
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
-                  value={camp?.accessibleBy}
+                  value={camp ? camp.accessibleBy : ""}
                   name="accessibleBy"
                   onChange={handleChange}
                   style={{

@@ -258,7 +258,7 @@ function Index(props) {
                               {recentCamps[3]?.camp_name}
                             </h4>{" "}
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ height: "13rem", overflow: "hidden" }}
                             >
                               <p class="card-text">
                                 {recentCamps[3]?.camp_desc}
