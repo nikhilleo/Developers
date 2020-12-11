@@ -29,37 +29,36 @@ const {
 
 function Index(props) {
   const history = useHistory();
-  var [bookingDetails, setBookingDetails] = useState({
-    policy: "",
-  });
+  var [bookingDetails, setBookingDetails] = useState();
 
   var [priceDetails, setPriceDetails] = useState();
   var [Prices, setPrices] = useState();
   var [Bookings, setBookings] = useState();
 
-  useEffect(() => {
-    const priceDetails = localStorage.getItem("priceDetails");
-    const bookingDetails = localStorage.getItem("bookingDetails");
+  // useEffect(() => {
+  //   const priceDetails = localStorage.getItem("priceDetails");
+  //   const bookingDetails = localStorage.getItem("bookingDetails");
 
-    console.log(priceDetails, bookingDetails);
+  //   console.log(priceDetails, bookingDetails);
 
-    console.log(priceDetails, bookingDetails);
-    if (priceDetails || bookingDetails) {
-      console.log("yes");
-      if (bookingDetails) {
-        setBookings(JSON.parse(bookingDetails));
-      }
-      if (priceDetails) {
-        setPrices(JSON.parse(priceDetails));
-      }
-    }
-  }, []);
+  //   console.log(priceDetails, bookingDetails);
+  //   if (priceDetails || bookingDetails) {
+  //     if (bookingDetails) {
+  //       console.log(bookingDetails);
+  //       console.log("yes");
+  //       setBookings(JSON.parse(bookingDetails));
+  //     }
+  //     if (priceDetails) {
+  //       setPrices(JSON.parse(priceDetails));
+  //     }
+  //   }
+  // }, []);
 
-  console.log(props.campDetails);
+  console.log(Bookings);
 
   const handleChange = (e) => {
     console.log(e.target);
-    setBookingDetails((prevState) => ({
+    setBookings((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
@@ -72,7 +71,7 @@ function Index(props) {
     let copy = { ...priceDetails };
     copy = { ...copy, [name]: value };
     console.log(copy);
-    setPriceDetails((prevState) => {
+    setPrices((prevState) => {
       console.log(prevState?.[itemName]);
       return {
         ...prevState,
@@ -219,7 +218,11 @@ function Index(props) {
                   border: "3px solid white",
                   borderRadius: "17px",
                 }}
-                value={Bookings ? Bookings.checkOutTime : ""}
+                value={
+                  Bookings
+                    ? Bookings.checkOutTime
+                    : bookingDetails?.checkOutTime
+                }
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 name="checkOutTime"
@@ -307,7 +310,6 @@ function Index(props) {
                         borderRadius: "17px",
                       }}
                       name="totalCapacity"
-                      value={Prices ? Prices.totalCapacity : ""}
                       onChange={(e) => {
                         handlePriceChange(e, item);
                       }}
@@ -325,7 +327,6 @@ function Index(props) {
                         border: "3px solid white",
                         borderRadius: "17px",
                       }}
-                      value={Prices ? Prices.numberOfPeopleAllowed : ""}
                       name="numberOfPeopleAllowed"
                       onChange={(e) => {
                         handlePriceChange(e, item);
@@ -345,7 +346,6 @@ function Index(props) {
                         border: "3px solid white",
                         borderRadius: "17px",
                       }}
-                      value={Prices ? Prices.pricePerNight : ""}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -420,39 +420,39 @@ function Index(props) {
           </Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={10}>
-            {bookingDetails?.policy == "Super Flexible" ? (
+            {Bookings?.policy == "Super Flexible" ? (
               <p>
                 If you cancel anytime before your check in day and time, you’ll
                 receive a full refund (minus Lamp A Camp fees).
               </p>
-            ) : bookingDetails?.policy == "Flexible" ? (
+            ) : Bookings?.policy == "Flexible" ? (
               <p>
                 If you cancel at least 24 hours before your check in day and
                 time, you’ll receive a full refund (minus Lamp A Camp fees). If
                 you cancel less than 24 hours before check in, there will be no
                 refund.
               </p>
-            ) : bookingDetails?.policy == "Moderate" ? (
+            ) : Bookings?.policy == "Moderate" ? (
               <p>
                 If you cancel at least 3 days before your check in day and time,
                 you’ll receive a full refund (minus Lamp A Camp fees). If you
                 cancel within the 3 days before check in, there will be no
                 refund.
               </p>
-            ) : bookingDetails?.policy == "Strict" ? (
+            ) : Bookings?.policy == "Strict" ? (
               <p>
                 If you cancel at least 1 week before your check in day and time,
                 you’ll receive a full refund (minus Lamp A Camp fees). If you
                 cancel within the 1 week before check in, there will be no
                 refund.
               </p>
-            ) : bookingDetails?.policy == "Super Strict" ? (
+            ) : Bookings?.policy == "Super Strict" ? (
               <p>
                 If you cancel at least 1 week before your check in day and time,
                 you’ll receive a 50% refund (minus Lamp A Camp fees). If you
                 cancel within 1 week before check in, there will be no refund.
               </p>
-            ) : bookingDetails?.policy == "Super Strict(30 days)" ? (
+            ) : Bookings?.policy == "Super Strict(30 days)" ? (
               <p>
                 If you cancel at least 30 days before your check in day and
                 time, you’ll receive a 50% refund (minus Lamp A Camp fees). If

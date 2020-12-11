@@ -226,6 +226,7 @@ function Index(props) {
               value={contactDetails ? contactDetails.ownerLandline : ""}
               name="ownerLandline"
               fullWidth
+              onChange={handleChange}
               style={{
                 border: "3px solid white",
                 borderRadius: "17px",

@@ -578,6 +578,119 @@ function Index(props) {
           </div>
         </div>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <h1
+        style={{
+          marginLeft: "41vw",
+          fontSize: "48px",
+          marginBottom: "4vh",
+          color: "#e3e0f9",
+        }}
+      >
+        Trending Camps
+      </h1>
+      <div style={{ color: "white" }} className="allCamps">
+        <div style={{ display: "flex", width: "59%" }}>
+          <div class="col-sm-12 col-lg-4">
+            <div class="card ">
+              <img
+                src={trendingCamps[5]?.camp_images[0]}
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h4 class="card-title">{trendingCamps[5]?.camp_name}</h4>
+                <div style={{ minHeight: "13rem", overflow: "hidden" }}>
+                  {" "}
+                  <p class="card-text">{trendingCamps[5]?.camp_desc}</p>
+                </div>{" "}
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  style={{ marginTop: "1rem" }}
+                  onClick={(e) => handleClick(trendingCamps[5]?.camp_name)}
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-4">
+            <div class="card ">
+              <img
+                src={trendingCamps[5]?.camp_images[0]}
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h4 class="card-title">{trendingCamps[5]?.camp_name}</h4>
+                <div style={{ minHeight: "13rem", overflow: "hidden" }}>
+                  {" "}
+                  <p class="card-text">{trendingCamps[5]?.camp_desc}</p>
+                </div>{" "}
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  style={{ marginTop: "1rem" }}
+                  onClick={(e) => handleClick(trendingCamps[5]?.camp_name)}
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-4">
+            <div class="card ">
+              <img
+                src={trendingCamps[5]?.camp_images[0]}
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h4 class="card-title">{trendingCamps[5]?.camp_name}</h4>
+                <div style={{ minHeight: "13rem", overflow: "hidden" }}>
+                  {" "}
+                  <p class="card-text">{trendingCamps[5]?.camp_desc}</p>
+                </div>{" "}
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  style={{ marginTop: "1rem" }}
+                  onClick={(e) => handleClick(trendingCamps[5]?.camp_name)}
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-4">
+            <div class="card ">
+              <img
+                src={trendingCamps[5]?.camp_images[0]}
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h4 class="card-title">{trendingCamps[5]?.camp_name}</h4>
+                <div style={{ minHeight: "13rem", overflow: "hidden" }}>
+                  {" "}
+                  <p class="card-text">{trendingCamps[5]?.camp_desc}</p>
+                </div>{" "}
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  style={{ marginTop: "1rem" }}
+                  onClick={(e) => handleClick(trendingCamps[5]?.camp_name)}
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="mt-5">
         <footer>
           <Footer />

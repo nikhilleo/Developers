@@ -19,3 +19,8 @@ h1 {
   color: white;
   font-weight: 600;
 }
+
+.allCamps {
+  display: flex;
+  justify-content: center;
+}
