@@ -24,3 +24,11 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+.row img {
+  width: 100%;
+}
+#spinner {
+  display: flex;
+  justify-content: center;
+}

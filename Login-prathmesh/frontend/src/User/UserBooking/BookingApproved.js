@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     let token = localStorage.getItem("auth-token");
     axios
-      .get("/get_all_pending_bookings", {
+      .get("/get_all_approved_bookings", {
         method: "GET",
         headers: { Authorization: token },
       })

@@ -177,3 +177,30 @@ exports.get_all_rejected_bookings = async (req, res) => {
     }
   }
 };
+
+exports.get_all_approved_bookings = async (req, res) => {
+  console.log(req.body);
+  try {
+    const user = req.profile;
+    if (!user) {
+      throw new Error("No User Found");
+    }
+    const bookings = await Camper.findOne({ _id: user._id }).populate({
+      path: "bookings_made",
+      match: { status: "Approved" },
+    });
+    if (bookings.bookings_made.length < 1) {
+      throw new Error("No Accepted Bookings");
+    }
+    // console.log(bookings.bookings_made)
+    res.send(bookings);
+  } catch (error) {
+    if (error.message == "No User Found") {
+      res.status(404).send(error.message);
+    } else if (error.message == "No Accepted Bookings") {
+      res.status(404).send("No Bookings Found");
+    } else {
+      res.status(400).send(error.message);
+    }
+  }
+};

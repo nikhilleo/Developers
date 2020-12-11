@@ -120,6 +120,15 @@ user agent stylesheet div {
   background: linear-gradient(45deg, black, transparent) 0% 0% / cover !important;
   color: white !important;
 }
+
+#hearts {
+  cursor: pointer;
+}
+
+#hearts:hover {
+  color: #ff006a;
+}
+
 .s12 {
   font-size: 50px;
   margin-top: -10px;

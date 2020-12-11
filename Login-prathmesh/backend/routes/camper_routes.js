@@ -25,18 +25,38 @@ router.get("/get_recent_camps", camp_controller.get_recent_camps);
 
 router.get("/get_trending_camps", camp_controller.get_trending_camps);
 
-router.get("/get_all_pending_bookings", auth, booking_controller.get_all_pending_bookings);
+router.get(
+  "/get_all_pending_bookings",
+  auth,
+  booking_controller.get_all_pending_bookings
+);
 
-router.get("/get_all_accepted_bookings", auth, booking_controller.get_all_accepted_bookings);
+router.get(
+  "/get_all_accepted_bookings",
+  auth,
+  booking_controller.get_all_accepted_bookings
+);
 
-router.get( "/get_all_rejected_bookings", auth, booking_controller.get_all_rejected_bookings);
+router.get(
+  "/get_all_rejected_bookings",
+  auth,
+  booking_controller.get_all_rejected_bookings
+);
 
-router.get('/pending_for_payment', auth , camper_controller.get_pending_for_payment);
+router.get(
+  "/pending_for_payment",
+  auth,
+  camper_controller.get_pending_for_payment
+);
 
-router.get('/approved' , auth , camper_controller.get_payament_success);
+router.get("/approved", auth, camper_controller.get_payament_success);
 
-router.get('/add_to_wishlist',auth,camper_controller.add_to_wishlist);
+router.get("/add_to_wishlist", auth, camper_controller.add_to_wishlist);
 
-router.get('/get_wishlist',auth,camper_controller.get_all_camps_from_wishlist);
+router.get(
+  "/get_wishlist",
+  auth,
+  camper_controller.get_all_camps_from_wishlist
+);
 
 module.exports = router;

@@ -40,7 +40,8 @@ exports.success = async (req, res) => {
     if (booking) {
       (booking.payment_id = razorpayOrderId),
         (booking.payment_status = "success"),
-        await booking.save();
+        (booking.status = "Approved");
+      await booking.save();
     } else {
       throw new Error("No Booking Found");
     }

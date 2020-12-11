@@ -74,6 +74,23 @@ function Index(props) {
   }
   console.log(dynamicAccomodation);
 
+  var handleClick = () => {
+    let token = localStorage.getItem("auth-token");
+    axios
+      .get("/add_to_wishlist", {
+        headers: {
+          Authorization: token,
+          camp_name: props?.specificCamp?.specificCamp?._id,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   var trimCheckInDate = String(checkInvalue);
   var trimCheckOutDate = String(checkOutvalue);
 
@@ -244,6 +261,8 @@ function Index(props) {
                         <i
                           class="fa fa-heart icon-heart"
                           aria-hidden="true"
+                          id="hearts"
+                          onClick={handleClick}
                         ></i>{" "}
                         Wishlist
                       </a>

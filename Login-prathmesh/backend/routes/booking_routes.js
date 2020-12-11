@@ -27,4 +27,10 @@ router.get(
   booking_controllers.get_all_rejected_bookings
 );
 
+router.get(
+  "/get_all_approved_bookings",
+  auth,
+  booking_controllers.get_all_approved_bookings
+);
+
 module.exports = router;
