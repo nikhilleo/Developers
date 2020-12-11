@@ -177,7 +177,8 @@ function Home() {
               </Grid>{" "}
             </Grid>
             <Grid>
-              {campDetails == undefined ? (
+              {campDetails?.bookings_made?.[0] == undefined ||
+              campDetails == [] ? (
                 <Grid container xs={12} justify="center" alignItems="center">
                   <Grid container xs={12} style={{ visibility: "hidden" }}>
                     .
@@ -256,7 +257,9 @@ function Home() {
                           ,
                         </Grid>
                         <Grid item xs={12}>
-                          <span>User Address </span>
+                          <span style={{ color: "white" }}>
+                            {item?.camp?.camp_location}{" "}
+                          </span>
                         </Grid>
                         <Grid item xs={4} style={{ visibility: "hidden" }}>
                           ,

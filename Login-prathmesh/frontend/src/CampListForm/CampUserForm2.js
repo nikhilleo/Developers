@@ -476,38 +476,6 @@ function Index(props) {
           </Grid>
         </Grid>
         <Divider style={{ color: "black", width: "80vw" }} />
-        <Grid container spacing={0}>
-          <Grid item xs={2}></Grid>
-          <Grid item xs={10}>
-            <p style={{ fontSize: 20 }}>What makes your campsite awesome?</p>
-          </Grid>
-          <Grid item xs={2}></Grid>
-          <Grid item xs={10}>
-            <p style={{ fontSize: 14, color: "#a08c8c" }}>
-              Do you have cool features that we have not already listed?
-            </p>
-          </Grid>
-          <Grid item xs={2} sm={0}></Grid>
-          <Grid item xs={6} sm={3}>
-            <TextField
-              id="outlined-search"
-              label="Feature 1"
-              type="search"
-              variant="outlined"
-              fullWidth
-            />
-          </Grid>
-          <Grid item sm={2}></Grid>
-          <Grid item xs={6} sm={3}>
-            <TextField
-              id="outlined-search"
-              label="Feature 2"
-              type="search"
-              variant="outlined"
-              fullWidth
-            />
-          </Grid>
-        </Grid>
         <Grid container xs={12} style={{ visibility: "hidden" }}>
           .
         </Grid>

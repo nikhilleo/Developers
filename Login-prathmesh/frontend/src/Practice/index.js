@@ -7,7 +7,7 @@ toast.configure();
 function index() {
   return (
     <div className="mainPractice">
-      <div class="box">
+      <div class="boxPractice ">
         <h2>
           4<span class="zero"></span>4{" "}
         </h2>

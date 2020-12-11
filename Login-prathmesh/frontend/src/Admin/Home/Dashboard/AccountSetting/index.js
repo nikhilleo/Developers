@@ -3,7 +3,8 @@ import "../../../style.css";
 import { connect } from "react-redux";
 import actions from "../../../../Redux/Action";
 import axios from "../../../../axios";
-import Navbar from "../../../../HomePage/Navbar/index";
+import Navbar from "../../../../Header/admin";
+import { Link } from "react-router-dom";
 import AdminNavbar from "../../../Navbar/Navbar";
 import "./style.css";
 import { Divider, Grid } from "@material-ui/core";
@@ -310,7 +311,54 @@ function Index(props) {
   return (
     <>
       <Navbar />
-      <AdminNavbar />
+      <div
+        style={{
+          background:
+            "url(https://images7.alphacoders.com/101/thumb-1920-1011523.jpg)",
+        }}
+      >
+        <Grid container xs={12} style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+        <div className="ownerMAinBody">
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="navbar__container__home">
+              <div className="navbar__menu__home">
+                <li className="navbar__li">
+                  <Link
+                    to="/Admin__Booking/Pending"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <span className="subHeader">BOOKING</span>
+                  </Link>
+                </li>
+                <li className="navbar__li">
+                  <Link
+                    to="/Delete__Admin__camp/Active__Camps"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <span className="subHeader">Delete Camps</span>
+                  </Link>
+                </li>
+                <li className="navbar__li">
+                  <Link
+                    to="/Admin__Account__settings"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <span className="mainHeader">ACCOUNT</span>
+                  </Link>
+                </li>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+      </div>
       <Grid container style={{ visibility: "hidden" }}>
         .
       </Grid>

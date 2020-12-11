@@ -43,4 +43,9 @@ router.post('/upload/image',upload.array('image'), owner_controllers.upload_imag
 
 router.get('/pending_camps', auth , owner_controllers.get_pending_camps );
 
+router.get('/pending_for_payment',auth , owner_controllers.get_pending_for_payment);
+
+router.get('/approved',auth ,owner_controllers.get_payament_success);
+
+
 module.exports = router;

@@ -7,7 +7,7 @@ router.post("/create_a_booking", auth, booking_controllers.create_a_booking);
 
 router.get("/accept_a_booking", booking_controllers.accept_a_booking);
 
-router.get("/reject_a_booking", auth, booking_controllers.reject_a_booking);
+router.get("/reject_a_booking", booking_controllers.reject_a_booking);
 
 router.get(
   "/get_all_pending_bookings",

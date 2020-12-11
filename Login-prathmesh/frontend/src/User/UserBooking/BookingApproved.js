@@ -33,6 +33,7 @@ function Home() {
           background:
             "url(https://images7.alphacoders.com/101/thumb-1920-1011523.jpg)",
           height: "auto",
+          minHeight: "100vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
@@ -174,149 +175,222 @@ function Home() {
               </Grid>{" "}
             </Grid>
             <Grid>
-              {campDetails?.map?.((item, index) => (
-                <Grid container xs={12}>
+              {campDetails?.camp_booking?.[0] == undefined ||
+              campDetails == [] ? (
+                <Grid container xs={12} justify="center" alignItems="center">
                   <Grid container xs={12} style={{ visibility: "hidden" }}>
                     .
                   </Grid>{" "}
-                  <Grid item xs={1}></Grid>
-                  <Grid item xs={2}>
-                    <img
-                      className="Owner__Dashboard__photos"
-                      src={item?.camp_images[0]}
-                    ></img>
-                  </Grid>
-                  <Grid item xs={1}></Grid>
-                  <Grid item xs={1}></Grid>
-                  <Grid container xs={2}>
-                    <Grid item xs={12}>
-                      <Grid item xs={12}>
-                        <span
-                          style={{
-                            fontWeight: "bolder",
-                            fontSize: "34px",
-                            color: "white",
-                          }}
-                        >
-                          {item?.camp_name}
-                        </span>
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span>Location (Maharashtra)</span>
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span
-                          style={{
-                            fontWeight: "bolder",
-                            fontSize: "34px",
-                            color: "white",
-                          }}
-                        >
-                          User Full Name{" "}
-                        </span>
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span>User Address </span>
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span>User Mobile Number </span>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={1}></Grid>
-                  <Grid container xs={2}>
-                    <Grid item xs={12}>
-                      <Grid item xs={12}>
-                        <span
-                          style={{
-                            fontWeight: "bolder",
-                            fontSize: "34px",
-                            color: "white",
-                          }}
-                        >
-                          Camping Dates
-                        </span>
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span style={{ fontWeight: "bolder", color: "white" }}>
-                          Check In Date: &emsp;&ensp;
-                        </span>
-                        <span>Dec 20 2020</span>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span style={{ fontWeight: "bolder", color: "white" }}>
-                          Check Out Date: &ensp;
-                        </span>
-                        <span> Dec 20 2020 </span>
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-
-                      <Grid item xs={12}>
-                        <span
-                          style={{
-                            fontWeight: "bolder",
-                            fontSize: "34px",
-                            color: "white",
-                          }}
-                        >
-                          Selected Types
-                        </span>
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span style={{ fontWeight: "bolder", color: "white" }}>
-                          Type: &emsp; &emsp; &emsp; &emsp; &emsp;
-                        </span>
-                        <span>Farm Cottage </span>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span style={{ fontWeight: "bolder", color: "white" }}>
-                          No. Of People: &emsp; &ensp;
-                        </span>
-                        <span>2 </span>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span style={{ fontWeight: "bolder", color: "white" }}>
-                          Total Price:&emsp; &ensp; &ensp;&ensp;&ensp;
-                        </span>
-                        <span>7323</span>
-                      </Grid>
-                    </Grid>
-                  </Grid>
                   <Grid container xs={12} style={{ visibility: "hidden" }}>
                     .
                   </Grid>{" "}
-                  <Divider style={{ color: "black" }} />
+                  <Grid container xs={12} style={{ visibility: "hidden" }}>
+                    .
+                  </Grid>{" "}
+                  <Grid item xs={12} align="center">
+                    <Link style={{ textDecoration: "none" }} to="/">
+                      {" "}
+                      <h1>No booking Sent, Search for Some Camps!</h1>
+                    </Link>
+                  </Grid>
                 </Grid>
-              ))}
+              ) : (
+                campDetails?.bookings_made?.map?.((item, index) => (
+                  <Grid container xs={12}>
+                    <Grid container xs={12} style={{ visibility: "hidden" }}>
+                      .
+                    </Grid>{" "}
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={2}>
+                      <img
+                        className="Owner__Dashboard__photos"
+                        src={item?.camp?.camp_images?.[0]}
+                      ></img>
+                    </Grid>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={1}></Grid>
+                    <Grid container xs={2}>
+                      <Grid item xs={12}>
+                        <Grid item xs={12}>
+                          <span
+                            style={{
+                              fontWeight: "bolder",
+                              fontSize: "34px",
+                              color: "white",
+                            }}
+                          >
+                            {item?.camp?.camp_name}
+                          </span>
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid item xs={12}>
+                          <span style={{ color: "white" }}>
+                            {item?.camp?.camp_location} (
+                            {item?.camp?.camp_state})
+                          </span>
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid item xs={12}>
+                          <span
+                            style={{
+                              fontWeight: "bolder",
+                              fontSize: "34px",
+                              color: "white",
+                            }}
+                          >
+                            {item?.camp?.manager_name}
+                          </span>
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid item xs={12}>
+                          <span>User Address </span>
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid item xs={12}>
+                          <span style={{ color: "white", fontSize: "20px" }}>
+                            {item?.camp?.manager_phone}{" "}
+                          </span>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    <Grid item xs={1}></Grid>
+                    <Grid container xs={2}>
+                      <Grid item xs={12}>
+                        <Grid item xs={12}>
+                          <span
+                            style={{
+                              fontWeight: "bolder",
+                              fontSize: "34px",
+                              color: "white",
+                            }}
+                          >
+                            Camping Dates
+                          </span>
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid item xs={12}>
+                          <span
+                            style={{ fontWeight: "bolder", color: "white" }}
+                          >
+                            Check In Date: &emsp;&ensp;
+                          </span>
+                          <span style={{ color: "white" }}>
+                            {item?.camp?.check_in}
+                          </span>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <span
+                            style={{ fontWeight: "bolder", color: "white" }}
+                          >
+                            Check Out Date: &ensp;
+                          </span>
+                          <span style={{ color: "white" }}>
+                            {" "}
+                            {item?.camp?.check_out}{" "}
+                          </span>
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+
+                        <Grid item xs={12}>
+                          <span
+                            style={{
+                              fontWeight: "bolder",
+                              fontSize: "34px",
+                              color: "white",
+                            }}
+                          >
+                            Selected Types
+                          </span>
+                        </Grid>
+                        <Grid item xs={4} style={{ visibility: "hidden" }}>
+                          ,
+                        </Grid>
+                        <Grid
+                          item
+                          xs={12}
+                          style={{
+                            height: "10rem",
+                            overflow: "hidden",
+                            overflowY: "auto",
+                          }}
+                        >
+                          <span className="div">
+                            {item?.a_details?.map((item, index) => (
+                              <>
+                                <Grid item xs={12}>
+                                  <span
+                                    style={{
+                                      fontWeight: "bolder",
+                                      color: "white",
+                                    }}
+                                  >
+                                    Type: &emsp; &emsp; &emsp; &emsp; &emsp;
+                                  </span>
+                                  <span style={{ color: "white" }}>
+                                    {item?.name}{" "}
+                                  </span>
+                                </Grid>
+                                <Grid item xs={12}>
+                                  <span
+                                    style={{
+                                      fontWeight: "bolder",
+                                      color: "white",
+                                    }}
+                                  >
+                                    No. Of People: &emsp; &ensp;
+                                  </span>
+                                  <span style={{ color: "white" }}>
+                                    {item?.noOfPeople}{" "}
+                                  </span>
+                                </Grid>
+                                <Grid item xs={12}>
+                                  <span
+                                    style={{
+                                      fontWeight: "bolder",
+                                      color: "white",
+                                    }}
+                                  >
+                                    Total Price:&emsp; &ensp; &ensp;&ensp;&ensp;
+                                  </span>
+                                  <span style={{ color: "white" }}>
+                                    {item?.totalPrice}
+                                  </span>
+                                </Grid>
+                                <Divider style={{ color: "white" }} />
+                              </>
+                            ))}
+                          </span>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    <Grid container xs={12} style={{ visibility: "hidden" }}>
+                      .
+                    </Grid>{" "}
+                    <Divider style={{ color: "black" }} />
+                  </Grid>
+                ))
+              )}
             </Grid>
           </Grid>
 

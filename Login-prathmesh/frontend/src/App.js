@@ -83,7 +83,8 @@ const App = (props) => {
             headers: { Authorization: token },
           });
           type = "owner";
-        } else if (tokenRes.data === "") {
+        }
+        if (tokenRes.data === "") {
           tokenRes = await axios.get("/admin/auth", {
             headers: { Authorization: token },
           });

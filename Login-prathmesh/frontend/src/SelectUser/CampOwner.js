@@ -74,7 +74,7 @@ function Index(props) {
           console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
           props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
-          toast.info(`${res.data.Message}`, {
+          toast.info(`${res.data.message}`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
           });

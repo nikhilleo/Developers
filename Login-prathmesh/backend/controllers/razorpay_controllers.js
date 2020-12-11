@@ -1,15 +1,17 @@
 require("dotenv").config();
 const Razorpay = require("razorpay");
+const Bookings = require("../models/booking")
 
 exports.orders = async (req, res) => {
   try {
+    const booking = await Bookings.findOne({_id:req.body.booking_id});
     const instance = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID,
       key_secret: process.env.RAZORPAY_SECRET,
     });
 
     const options = {
-      amount: 50000, // amount in smallest currency unit
+      amount: booking.total_amount, // amount in smallest currency unit
       currency: "INR",
       receipt: "receipt_order_74394",
     };
@@ -26,36 +28,23 @@ exports.orders = async (req, res) => {
 
 exports.success = async (req, res) => {
   try {
-    // getting the details back from our font-end
-    const {
-      orderCreationId,
-      razorpayPaymentId,
-      razorpayOrderId,
-      razorpaySignature,
-    } = req.body;
-
-    // Creating our own digest
-    // The format should be like this:
-    // digest = hmac_sha256(orderCreationId + "|" + razorpayPaymentId, secret);
-    // const shasum = crypto.createHmac("sha256", "w2lBtgmeuDUfnJVp43UpcaiT");
-
-    // shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
-
-    // const digest = shasum.digest("hex");
-
-    // comaparing our digest with the actual signature
-    // if (digest !== razorpaySignature)
-    //     return res.status(400).json({ msg: "Transaction not legit!" });
-
-    // THE PAYMENT IS LEGIT & VERIFIED
-    // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
-
+    const {orderCreationId,razorpayPaymentId,razorpayOrderId,razorpaySignature} = req.body;
+    const booking = await Bookings.findOne({_id:req.body.booking_id});
+    if(booking){
+      booking.payment_id = razorpayOrderId,
+      booking.payment_status = "success",
+      await booking.save();
+    }
+    else{
+      throw new Error("No Booking Found")
+    }
     res.json({
       msg: "success",
       orderId: razorpayOrderId,
       paymentId: razorpayPaymentId,
     });
-  } catch (error) {
+  } 
+  catch (error) {
     res.status(500).send(error);
   }
 };

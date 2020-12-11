@@ -487,20 +487,20 @@ function Index(props) {
                         class="desc-content hide-content"
                         ng-class="{'hide-content': hideMore}"
                       >
-                        <Grid item xs={5} align="center">
+                        <Grid item xs={12} align="left">
                           <Grid item xs={12}>
                             <p style={{ fontWeight: "bold" }}>
                               Please read the description carefully for
                               information -
                             </p>
-                            <p
+                            <div
                               style={{
                                 textOverflow: "inherit",
                                 overflowWrap: "anywhere",
                               }}
                             >
                               {props.specificCamp?.specificCamp?.camp_desc}{" "}
-                            </p>
+                            </div>
                           </Grid>
                         </Grid>
 

@@ -18,10 +18,24 @@ import {
 import actions from "../Redux/Action";
 import axios from "../axios";
 import Footer from "../Admin/Footer/Footer";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
+
+const {
+  setCampAmenities,
+  setCampActivities,
+  setCampAccomodation,
+  setCampDetails,
+  setCampOwnerDetails,
+  setCampManagerDetails,
+  setCampExtraDetails,
+} = actions;
 
 var imagePreview = [];
 
-function CampUserForm5() {
+function CampUserForm5(props) {
+  var campName = props?.campDetails?.campDetails?.originalName;
   const history = useHistory();
   var [imagePreviewUrl, setImagePreviewUrl] = useState([]);
 
@@ -62,8 +76,23 @@ function CampUserForm5() {
       data.append("image", files[x]);
     }
     await data.append("image", files);
-    axios.post("/owner/upload/image", data);
-    history.push("/");
+    axios
+      .post("/owner/upload/image", data, { headers: { camp_name: campName } })
+      .then((res) => {
+        console.log(res);
+        toast.info("Camp Created Successfully", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err?.response);
+        toast.error(`${err?.response?.message}`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
+      });
   };
 
   return (
@@ -151,8 +180,10 @@ function CampUserForm5() {
         </Grid>{" "}
         <Grid
           style={{
-            height: "14rem",
-            width: "58vw",
+            minHeight: "14rem",
+            minWidth: "58vw",
+            height: "auto",
+            width: "auto",
             border: "1px solid #ccc8c8",
           }}
         >
@@ -163,14 +194,7 @@ function CampUserForm5() {
             id="selectFile"
             onChange={onImageChange}
           />
-          <Grid container>
-            <Grid container xs={12} style={{ visibility: "hidden" }}>
-              .
-            </Grid>{" "}
-            <Grid container xs={12} style={{ visibility: "hidden" }}>
-              .
-            </Grid>{" "}
-          </Grid>
+
           <Grid container>
             <Grid item xs={1}></Grid>
             {imagePreviewUrl.map((img, index) => (
@@ -182,12 +206,14 @@ function CampUserForm5() {
                     style={{
                       height: "7rem",
                       border: "1px solid",
-                      minWidth: "5vw",
-                      maxWidth: "5vw",
+                      minWidth: "6rem",
+                      maxWidth: "6rem",
+                      marginTop: "4vh",
                     }}
                     id="profilePic"
                   />
                 </Grid>
+                <Grid item xs={1}></Grid>
               </>
             ))}
             <Grid
@@ -196,9 +222,10 @@ function CampUserForm5() {
               style={{
                 height: "7rem",
                 border: "1px solid",
-                minWidth: "5vw",
-                maxWidth: "5vw",
+                minWidth: "6rem",
+                maxWidth: "6rem",
                 textAlign: "center",
+                marginTop: "4vh",
                 alignItems: "center",
                 cursor: "pointer",
               }}
@@ -208,6 +235,9 @@ function CampUserForm5() {
             >
               <span style={{ fontSize: "4rem" }}> +</span>{" "}
             </Grid>
+            <Grid container xs={12} style={{ visibility: "hidden" }}>
+              .
+            </Grid>{" "}
           </Grid>
         </Grid>
       </Grid>
@@ -231,4 +261,40 @@ function CampUserForm5() {
   );
 }
 
-export default CampUserForm5;
+function mapStateToProps(state) {
+  return {
+    campActivities: state.campActivities,
+    campAccomodation: state.campAccomodation,
+    campAmenities: state.campAmenities,
+    campDetails: state.campDetails,
+    owner: state.owner,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setCampActivities: (data) => {
+      dispatch(setCampActivities(data));
+    },
+    setCampAccomodation: (data) => {
+      dispatch(setCampAccomodation(data));
+    },
+    setCampAmenities: (data) => {
+      dispatch(setCampAmenities(data));
+    },
+    setCampDetails: (data) => {
+      dispatch(setCampDetails(data));
+    },
+    setCampManagerDetails: (data) => {
+      dispatch(setCampManagerDetails(data));
+    },
+    setCampExtraDetails: (data) => {
+      dispatch(setCampExtraDetails(data));
+    },
+    setCampOwnerDetails: (data) => {
+      dispatch(setCampOwnerDetails(data));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CampUserForm5);

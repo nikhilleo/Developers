@@ -3,6 +3,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Bookings = require("../models/booking");
+const Camps = require("../models/camps");
 
 const camperSchema = new mongoose.Schema(
   {
@@ -52,12 +53,19 @@ const camperSchema = new mongoose.Schema(
       maxlength: 500,
       trim: true,
     },
-    bookings_made:[
+    bookings_made: [
       {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Bookings"
-      }
-    ]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Bookings",
+      },
+    ],
+    wishlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Camps",
+        default: [],
+      },
+    ],
   },
   { timestamp: true }
 );
@@ -71,35 +79,32 @@ camperSchema.pre("save", async function (next) {
   next();
 });
 
-
-camperSchema.pre('findOneAndUpdate', async function () {
-  this._update.password = await bcrypt.hash(this._update.password, 10)
+camperSchema.pre("findOneAndUpdate", async function () {
+  this._update.password = await bcrypt.hash(this._update.password, 10);
 });
 
 camperSchema.methods.genAuthToken = async function () {
   const user = this;
   console.log(user);
-  const token = await jwt.sign({_id: user._id },process.env.JWT_KEY,{ expiresIn: 3600 });
+  const token = await jwt.sign({ _id: user._id }, process.env.JWT_KEY, {
+    expiresIn: 3600,
+  });
   return token;
 };
 
-
-camperSchema.statics.findByCredentials = async function(email,pass){
-  const user = await Camper.findOne({email:email});
-  if(!user){
+camperSchema.statics.findByCredentials = async function (email, pass) {
+  const user = await Camper.findOne({ email: email });
+  if (!user) {
     throw new Error("No User Found");
-  }
-  else{
-    const match = await bcrypt.compare(pass, user.password) 
-    if(match){
+  } else {
+    const match = await bcrypt.compare(pass, user.password);
+    if (match) {
       return user;
-    }
-    else{
-      throw new Error("Invalid Credentials")
+    } else {
+      throw new Error("Invalid Credentials");
     }
   }
-}
-
+};
 
 const Camper = mongoose.model("Camper", camperSchema);
 module.exports = Camper;

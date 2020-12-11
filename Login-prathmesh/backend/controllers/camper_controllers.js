@@ -2,7 +2,9 @@ const Camp_User = require("../models/camper");
 const Camp = require("../models/camps");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { findByIdAndRemove } = require("../models/camper");
+const {
+  findByIdAndRemove
+} = require("../models/camper");
 const e = require("express");
 // const { default: validator } = require("validator");
 const validate = require("validator");
@@ -52,7 +54,11 @@ exports.login = async (req, res) => {
     const token = await user.genAuthToken();
     res
       .status(200)
-      .json({ Message: "Login Successfully", token: token, user: user });
+      .json({
+        Message: "Login Successfully",
+        token: token,
+        user: user
+      });
     console.log(user);
   } catch (error) {
     if (error.message == "No User Found") {
@@ -81,7 +87,9 @@ exports.update = async (req, res) => {
           throw new Error("Invalid Mobile Number");
         }
       }
-      const mobile_already = await Camp_User.find({ mobile: req.body.mobile });
+      const mobile_already = await Camp_User.find({
+        mobile: req.body.mobile
+      });
       if (mobile_already[0]) {
         console.log(
           "-------------------------------------------------------",
@@ -89,8 +97,9 @@ exports.update = async (req, res) => {
         );
         throw new Error("Mobile Number Already Exist");
       }
-      const email_already = await Camp_User.find({ email: req.body.email });
-      {
+      const email_already = await Camp_User.find({
+        email: req.body.email
+      }); {
         if (email_already[0]) {
           console.log(
             "-------------------------------------------------------",
@@ -100,14 +109,23 @@ exports.update = async (req, res) => {
         }
       }
       console.log("FrOM UPDATE", user);
-      const u = await Camp_User.findById({ _id: user._id }); //finding and updating
+      const u = await Camp_User.findById({
+        _id: user._id
+      }); //finding and updating
       console.log(u);
-      await u.updateOne(req.body, { runValidators: true });
+      await u.updateOne(req.body, {
+        runValidators: true
+      });
       await u.save();
 
-      const updated = await Camp_User.findById({ _id: user.id }); //finding Updated User
+      const updated = await Camp_User.findById({
+        _id: user.id
+      }); //finding Updated User
       const token = await updated.genAuthToken();
-      res.json({ updated, token });
+      res.json({
+        updated,
+        token
+      });
     } else {
       throw new Error("No User Found");
     }
@@ -136,8 +154,12 @@ exports.updatePassword = async (req, res) => {
     if (user) {
       const newPassword = req.body.password;
       console.log(user.password);
-      const u = await Camp_User.findOneAndUpdate({ _id: user._id }, req.body);
-      const updated = await Camp_User.findById({ _id: user.id });
+      const u = await Camp_User.findOneAndUpdate({
+        _id: user._id
+      }, req.body);
+      const updated = await Camp_User.findById({
+        _id: user.id
+      });
       await updated.save();
       res.send(updated);
     } else {
@@ -158,7 +180,9 @@ exports.delete_user = async (req, res) => {
   try {
     const user = req.profile;
     if (user) {
-      const del_user = await Camp_User.findByIdAndRemove({ _id: user._id });
+      const del_user = await Camp_User.findByIdAndRemove({
+        _id: user._id
+      });
       console.log(del_user);
       res.json({
         message: "user deleted",
@@ -194,11 +218,13 @@ exports.get_a_camp = async (req, res) => {
     if (!req.headers.camp_name) {
       throw new Error("Camp Name Required");
     }
-    const camp = await Camp.findOne({ camp_name: req.headers.camp_name });
+    const camp = await Camp.findOne({
+      camp_name: req.headers.camp_name
+    });
     if (!camp) {
       throw new Error("No Camp Found");
-    }
-    res.status(200).send(camp);
+    } else if (camp.status_of_camp == "Accepted")
+      res.status(200).send(camp);
   } catch (error) {
     if (error.message == "No Camp Found") {
       res.status(404).send("No Camp Found With Given Name");
@@ -209,6 +235,117 @@ exports.get_a_camp = async (req, res) => {
     }
   }
 };
+
+exports.get_pending_for_payment = async (req, res) => {
+  try {
+    const user = req.profile;
+    if (user) {
+      const bookings = await Camp_User.findOne({
+        _id: user._id
+      }).populate({
+        path: "bookings_made",
+        match: {
+          status: "Confirmed and Pending For Payment"
+        },
+      });
+
+      console.log(bookings);
+      res.send(bookings);
+    } else {
+      throw new Error("No User Found");
+    }
+  } catch (error) {
+    if (error.message == "No User Found") {
+      res.status(404).send("No user found");
+    } else {
+      res.status(404).send(error);
+    }
+  }
+};
+
+exports.get_payament_success = async (req, res) => {
+  try {
+    const user = req.profile;
+    if (user) {
+      const bookings = await Camp_User.findOne({
+        _id: user._id
+      }).populate({
+        path: "bookings_made",
+        match: {
+          payment_status: "success"
+        },
+      });
+
+      console.log(bookings);
+      res.send(bookings);
+    } else {
+      throw new Error("No User Found");
+    }
+  } catch (error) {
+    if (error.message == "No User Found") {
+      res.status(404).send("No user found");
+    } else {
+      res.status(404).send(error);
+    }
+  }
+};
+
+exports.add_to_wishlist = async (req, res) => {
+  try {
+    const user = req.profile;
+    if (!user) {
+      throw new Error("No User");
+    }
+    const camp = await Camp.findOne({
+      _id: req.headers.camp_name
+    });
+    if (!camp) {
+      throw new Error("No Camp Found");
+    }
+    user.wishlist.push(camp._id);
+    await user.save();
+  } catch (error) {
+    if (error.message == "No User") {
+      res.status(404).send("No User Found");
+    } else if (error.message == "No Camp Found") {
+      res.status(404).send("No Camp Found");
+    } else {
+      res.status(400).send(error.message);
+    }
+  }
+}
+
+
+exports.get_all_camps_from_wishlist = async (req, res) => {
+  try {
+    const user = req.profile;
+    if (!user) {
+      throw new Error("No User");
+    }
+    const wishlist = await Camp_User.findOne({_id: user._id}).populate({
+      path: "wishlist"
+    });
+    if(wishlist.length<1)
+    {
+      throw new Error("No Camps");
+    }
+    res.json(wishlist)
+  } catch (error) {
+    if(error.message=="No User")
+    {
+      res.status(404).send("No User Found");
+    }
+    else if(error.message =="No Camps" )
+    {
+      res.status(404).send("No Camps Found In Wishlist");
+    }
+    else
+    {
+      res.status(400).send(error.message);
+    }
+  }
+}
+
 
 //DONT TRY THIS
 

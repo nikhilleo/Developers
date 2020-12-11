@@ -61,11 +61,19 @@ function Index(props) {
           console.log(res);
           props.setAdmin(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
-          toast.info(`${res.data.Message}`, {
+          toast.info(`${res.data.message}`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 3000,
           });
-          history.push("/Admin__Booking");
+          setInput({
+            firstname: "",
+            lastname: "",
+            email: "",
+            password: "",
+            address: "",
+            mobile: "",
+          });
+          history.push("/Admin__Booking/Accepted");
         })
         .catch((err) => {
           console.log(err.response);
@@ -78,7 +86,6 @@ function Index(props) {
     if (type === "signIn") {
       let { eMail, Password } = input;
 
-      history.push("/Verifying");
       await axios
         .post("/admin/login", {
           email: eMail,
@@ -87,11 +94,20 @@ function Index(props) {
         })
         .then((res) => {
           console.log(res);
-          if (res.data.status == "open") {
+          if (res.data.otp.status == "open") {
             props.setAdmin({
               email: eMail,
               password: Password,
-              otp_id: res.data.otp_id,
+              otp_id: res.data.otp.otp_id,
+              mobile: res.data.user.mobile,
+            });
+            setInput({
+              firstname: "",
+              lastname: "",
+              email: "",
+              password: "",
+              address: "",
+              mobile: "",
             });
             history.push("/Verifying");
           }
@@ -108,17 +124,22 @@ function Index(props) {
           });
         });
     }
-    setInput({
-      firstname: "",
-      lastname: "",
-      email: "",
-      password: "",
-      address: "",
-      mobile: "",
-    });
   };
   return (
-    <div>
+    <div
+      style={{
+        minHeight: "100vh",
+        minWidth: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImage:
+          "url(https://images.wallpaperscraft.com/image/tent_camping_mountains_166927_1280x720.jpg)",
+        backgroundPosition: "center",
+        backgroundRepeat: "noRepeat",
+        backgroundSize: "cover",
+      }}
+    >
       <div id="Camp__Owner__popup">
         <form className="select__user__form">
           <div class="select__user__container" id="select__user__container">

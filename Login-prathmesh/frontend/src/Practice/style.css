@@ -1,8 +1,8 @@
-.main {
+/* .main {
   height: 100vh;
   width: 100vw;
 }
-.box {
+.boxPractice {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
   position: relative;
 }
 
-.box h2 {
+.boxPractice h2 {
   color: #f3f3f3;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@
     -30px 30px 0 rgba(255, 255, 255, 0.05);
 }
 
-.box h2 .zero {
+.boxPractice h2 .zero {
   position: relative;
   display: inline-block;
   width: 200px;
@@ -33,7 +33,7 @@
   box-shadow: -25px 25px 40px rgba(0, 0, 0, 0.5);
 }
 
-.box h2 .zero::before {
+.boxPractice h2 .zero::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -45,7 +45,7 @@
   border-radius: 50%;
 }
 
-.box h2 .zero::after {
+.boxPractice h2 .zero::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -67,4 +67,4 @@
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
   }
-}
+} */

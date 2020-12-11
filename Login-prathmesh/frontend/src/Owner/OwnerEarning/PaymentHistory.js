@@ -19,6 +19,7 @@ function Home() {
           height: "auto",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          minHeight: "100vh",
         }}
       >
         <Grid container xs={12} style={{ visibility: "hidden" }}>
@@ -56,26 +57,29 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
-      <Grid container style={{ visibility: "hidden" }}>
-        .
-      </Grid>
-      <Grid container style={{ visibility: "hidden" }}>
-        .
-      </Grid>
-      <Grid container xs={12} align="center">
-        <Grid item xs={12}>
-          <p style={{ fontSize: "23px", color: "black", fontWeight: "bolder" }}>
-            Payment History
-          </p>
+
+        <Grid container style={{ visibility: "hidden" }}>
+          .
         </Grid>
-      </Grid>
-      <Grid container style={{ visibility: "hidden" }}>
-        .
-      </Grid>
-      <Grid container style={{ visibility: "hidden" }}>
-        .
-      </Grid>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+        <Grid container xs={12} align="center">
+          <Grid item xs={12}>
+            <p
+              style={{ fontSize: "23px", color: "black", fontWeight: "bolder" }}
+            >
+              Payment History
+            </p>
+          </Grid>
+        </Grid>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+        <Grid container style={{ visibility: "hidden" }}>
+          .
+        </Grid>
+      </div>
     </div>
   );
 }

@@ -158,14 +158,19 @@ function Index(props) {
                             <h4 class="card-title">
                               {recentCamps[0]?.camp_name}
                             </h4>
-                            <p class="card-text" style={{}}>
-                              {recentCamps[0]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ height: "13rem", overflow: "hidden" }}
+                            >
+                              <p class="card-text" style={{}}>
+                                {recentCamps[0]?.camp_desc}
+                              </p>
+                            </div>
                             <button
                               type="button"
                               onClick={(e) =>
                                 handleClick(recentCamps[0]?.camp_name)
                               }
+                              style={{ marginTop: "1rem" }}
                               class="btn btn-warning"
                             >
                               Read More
@@ -184,12 +189,17 @@ function Index(props) {
                               {" "}
                               {recentCamps[1]?.camp_name}
                             </h4>
-                            <p class="card-text" style={{}}>
-                              {recentCamps[1]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              <p class="card-text" style={{}}>
+                                {recentCamps[1]?.camp_desc}
+                              </p>
+                            </div>
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(recentCamps[1]?.camp_name)
                               }
@@ -210,12 +220,18 @@ function Index(props) {
                               {" "}
                               {recentCamps[2]?.camp_name}
                             </h4>
-                            <p class="card-text" style={{}}>
-                              {recentCamps[2]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text" style={{}}>
+                                {recentCamps[2]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(recentCamps[2]?.camp_name)
                               }
@@ -240,11 +256,18 @@ function Index(props) {
                           <div class="card-body">
                             <h4 class="card-title">
                               {recentCamps[3]?.camp_name}
-                            </h4>
-                            <p class="card-text">{recentCamps[3]?.camp_desc}</p>
+                            </h4>{" "}
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              <p class="card-text">
+                                {recentCamps[3]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(recentCamps[3]?.camp_name)
                               }
@@ -264,10 +287,18 @@ function Index(props) {
                             <h4 class="card-title">
                               {recentCamps[4]?.camp_name}
                             </h4>
-                            <p class="card-text">{recentCamps[4]?.camp_desc}</p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text">
+                                {recentCamps[4]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(recentCamps[4]?.camp_name)
                               }
@@ -287,10 +318,18 @@ function Index(props) {
                             <h4 class="card-title">
                               {recentCamps[5]?.camp_name}
                             </h4>
-                            <p class="card-text">{recentCamps[5]?.camp_desc}</p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text">
+                                {recentCamps[5]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(recentCamps[5]?.camp_name)
                               }
@@ -342,12 +381,18 @@ function Index(props) {
                             <h4 class="card-title">
                               {trendingCamps[0]?.camp_name}
                             </h4>
-                            <p class="card-text" style={{}}>
-                              {trendingCamps[0]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text" style={{}}>
+                                {trendingCamps[0]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(trendingCamps[0]?.camp_name)
                               }
@@ -367,12 +412,18 @@ function Index(props) {
                             <h4 class="card-title">
                               {trendingCamps[1]?.camp_name}
                             </h4>
-                            <p class="card-text" style={{}}>
-                              {trendingCamps[1]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text" style={{}}>
+                                {trendingCamps[1]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(trendingCamps[1]?.camp_name)
                               }
@@ -393,12 +444,18 @@ function Index(props) {
                               {" "}
                               {trendingCamps[2]?.camp_name}
                             </h4>
-                            <p class="card-text" style={{}}>
-                              {trendingCamps[2]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text" style={{}}>
+                                {trendingCamps[2]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(trendingCamps[2]?.camp_name)
                               }
@@ -424,12 +481,18 @@ function Index(props) {
                             <h4 class="card-title">
                               {trendingCamps[3]?.camp_name}
                             </h4>
-                            <p class="card-text">
-                              {trendingCamps[3]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text">
+                                {trendingCamps[3]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(trendingCamps[3]?.camp_name)
                               }
@@ -449,12 +512,18 @@ function Index(props) {
                             <h4 class="card-title">
                               {trendingCamps[4]?.camp_name}
                             </h4>
-                            <p class="card-text">
-                              {trendingCamps[4]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text">
+                                {trendingCamps[4]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(trendingCamps[4]?.camp_name)
                               }
@@ -474,12 +543,18 @@ function Index(props) {
                             <h4 class="card-title">
                               {trendingCamps[5]?.camp_name}
                             </h4>
-                            <p class="card-text">
-                              {trendingCamps[5]?.camp_desc}
-                            </p>
+                            <div
+                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                            >
+                              {" "}
+                              <p class="card-text">
+                                {trendingCamps[5]?.camp_desc}
+                              </p>
+                            </div>{" "}
                             <button
                               type="button"
                               class="btn btn-warning"
+                              style={{ marginTop: "1rem" }}
                               onClick={(e) =>
                                 handleClick(trendingCamps[5]?.camp_name)
                               }

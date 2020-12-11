@@ -23,8 +23,9 @@ function VerifyOtp(props) {
       })
       .then((res) => {
         console.log(res);
+        localStorage.setItem("auth-token", res.data.token);
         props.setAdmin(res.data.user);
-        history.push("/Admin__Booking");
+        history.push("/Admin__Booking/Pending");
       })
       .catch((err) => {
         console.log("cata", err.response);
@@ -40,10 +41,11 @@ function VerifyOtp(props) {
       <form type="submit" className="verfiy__form" onSubmit={handleSubmit}>
         <h1 className="verify__form__h1">Veification Code</h1>
         <label className="verify__form__label">
-          Please type the verification code sent to +918454875487
+          Please type the verification code sent to +91
+          {props?.admin?.user?.mobile}
         </label>
         <span>
-          <input onChange={handleChange} name="otp" type="text" />
+          <input onChange={handleChange} name="otp" type="password" />
         </span>
         <button>submit</button>
         <button>Resend OTP</button>

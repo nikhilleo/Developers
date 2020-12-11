@@ -71,7 +71,7 @@ function Index(props) {
           props.clearCurrentUser();
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
-          toast.info(`${res.data.Message}`, {
+          toast.info(`Account Created`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 3000,
           });
@@ -107,7 +107,7 @@ function Index(props) {
           props.clearCurrentUser();
           props.setUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
-          toast.info(`${res.data.Message}`, {
+          toast.info(`Signed In`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 2000,
           });

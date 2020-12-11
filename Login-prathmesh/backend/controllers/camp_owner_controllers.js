@@ -51,7 +51,11 @@ exports.login = async (req, res) => {
       throw new Error("No User Found");
     }
     const token = await user.genAuthToken();
-    res.status(200).json({ Message: "Login Successfully", token, user: user });
+    res.status(200).json({
+      Message: "Login Successfully",
+      token,
+      user: user,
+    });
   } catch (error) {
     if (error.message == "No User Found") {
       res.status(404).send(error.message + " With Given Credentials");
@@ -79,7 +83,9 @@ exports.update = async (req, res) => {
           throw new Error("Invalid Mobile Number");
         }
       }
-      const mobile_already = await Camp_Owner.find({ mobile: req.body.mobile });
+      const mobile_already = await Camp_Owner.find({
+        mobile: req.body.mobile,
+      });
       if (mobile_already[0]) {
         console.log(
           "-------------------------------------------------------",
@@ -87,7 +93,9 @@ exports.update = async (req, res) => {
         );
         throw new Error("Mobile Number Already Exist");
       }
-      const email_already = await Camp_Owner.find({ email: req.body.email });
+      const email_already = await Camp_Owner.find({
+        email: req.body.email,
+      });
       {
         if (email_already[0]) {
           console.log(
@@ -98,14 +106,23 @@ exports.update = async (req, res) => {
         }
       }
       console.log("FrOM UPDATE", user);
-      const u = await Camp_Owner.findById({ _id: user._id }); //finding and updating
+      const u = await Camp_Owner.findById({
+        _id: user._id,
+      }); //finding and updating
       console.log(u);
-      await u.updateOne(req.body, { runValidators: true });
+      await u.updateOne(req.body, {
+        runValidators: true,
+      });
       await u.save();
 
-      const updated = await Camp_Owner.findById({ _id: user.id }); //finding Updated User
+      const updated = await Camp_Owner.findById({
+        _id: user.id,
+      }); //finding Updated User
       const token = await updated.genAuthToken();
-      res.json({ updated, token });
+      res.json({
+        updated,
+        token,
+      });
     } else {
       throw new Error("No User Found");
     }
@@ -134,8 +151,15 @@ exports.updatePassword = async (req, res) => {
     if (user) {
       const newPassword = req.body.password;
       console.log(user.password);
-      const u = await Camp_Owner.findOneAndUpdate({ _id: user._id }, req.body); //finding and updating
-      const updated = await Camp_Owner.findById({ _id: user.id }); //finding Updated User
+      const u = await Camp_Owner.findOneAndUpdate(
+        {
+          _id: user._id,
+        },
+        req.body
+      ); //finding and updating
+      const updated = await Camp_Owner.findById({
+        _id: user.id,
+      }); //finding Updated User
       await updated.save();
       res.send(updated);
     } else {
@@ -156,7 +180,9 @@ exports.delete_user = async (req, res) => {
   try {
     const user = req.profile;
     if (user) {
-      const del_user = await Camp_Owner.findByIdAndRemove({ _id: user._id });
+      const del_user = await Camp_Owner.findByIdAndRemove({
+        _id: user._id,
+      });
       console.log(del_user);
       res.json({
         message: "user deleted",
@@ -191,6 +217,7 @@ exports.find_specific_user = async function (req, res) {
 
 exports.create_a_camp = async (req, res) => {
   try {
+    const status_of_camp = "Incomplete";
     const camp_o = req.profile;
     const interesting_name = req.body.campDetails.interestingName;
     const camp_name = req.body.campDetails.originalName;
@@ -236,6 +263,7 @@ exports.create_a_camp = async (req, res) => {
       check_in,
       check_out,
       cancellation_policy,
+      status_of_camp,
     });
     await camp.save();
     camp_o.campsListed.push(camp._id);
@@ -271,11 +299,14 @@ exports.upload_image = async (req, res) => {
   console.log(req.files);
   // res.send("All Files");
   // console.log(path)
+  console.log(req.headers.camp_name);
   for (let i = 0; i < req.files.length; i++) {
     try {
       // const c_name = req.body.camp_name;
       // const camp = await Camps.findOne({camp_name:c_name});
-      const camp = await Camps.findOne({ camp_name: "prathmesh intresting" });
+      const camp = await Camps.findOne({
+        camp_name: req.headers.camp_name,
+      });
       // console.log(camp);
       if (!camp) {
         throw new Error("null");
@@ -290,13 +321,16 @@ exports.upload_image = async (req, res) => {
         }
       }
       camp.camp_images.push(result.url);
-      await camp.save();
       fs.unlink(path, (error) => {
         if (error) {
           console.error(err.message);
           res.send(err.message);
         } else {
           console.log("deleted ", path);
+          if (i == camp.camp_images.length) {
+            camp.status_of_camp = "complete";
+            camp.save();
+          }
         }
       });
     } catch (error) {
@@ -329,11 +363,68 @@ exports.get_pending_camps = async (req, res) => {
   try {
     const user = req.profile;
     if (user) {
-      const bookings = await Camp_Owner.findOne({ _id: user._id }).populate({
+      const bookings = await Camp_Owner.findOne({
+        _id: user._id,
+      }).populate({
         path: "camp_booking",
-        match: { status: "Pending For Confirmation" },
+        match: {
+          status: "Pending For Confirmation",
+        },
       });
 
+      console.log(bookings);
+      res.send(bookings);
+    } else {
+      throw new Error("No User Found");
+    }
+  } catch (error) {
+    if (error.message == "No User Found") {
+      res.status(404).send("No user found");
+    } else {
+      res.status(404).send(error);
+    }
+  }
+};
+
+exports.get_pending_for_payment = async (req, res) => {
+  try {
+    const user = req.profile;
+    if (user) {
+      const bookings = await Camp_Owner.findOne({
+        _id: user._id,
+      }).populate({
+        path: "camp_booking",
+        match: {
+          status: "Confirmed and Pending For Payment",
+        },
+      });
+
+      console.log(bookings);
+      res.send(bookings);
+    } else {
+      throw new Error("No User Found");
+    }
+  } catch (error) {
+    if (error.message == "No User Found") {
+      res.status(404).send("No user found");
+    } else {
+      res.status(404).send(error);
+    }
+  }
+};
+
+exports.get_payament_success = async (req, res) => {
+  try {
+    const user = req.profile;
+    if (user) {
+      const bookings = await Camp_Owner.findOne({
+        _id: user._id,
+      }).populate({
+        path: "camp_booking",
+        match: {
+          payment_status: "success",
+        },
+      });
       console.log(bookings);
       res.send(bookings);
     } else {
