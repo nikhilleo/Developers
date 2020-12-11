@@ -47,6 +47,7 @@ exports.create_a_booking = async (req, res) => {
 };
 
 exports.accept_a_booking = async (req, res) => {
+  console.log(req.headers.booking_id);
   try {
     const booking = await Bookings.findOne({ _id: req.headers.booking_id });
     if (!booking) {

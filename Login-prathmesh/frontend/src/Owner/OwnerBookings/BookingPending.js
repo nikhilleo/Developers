@@ -1,6 +1,6 @@
 import { Button, Divider, Grid } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Navbar from "../../Header/owner";
 import OwnerNavbar from "../OwnerNavbar/Navbar";
 import DoneIcon from "@material-ui/icons/Done";
@@ -8,8 +8,11 @@ import ClearIcon from "@material-ui/icons/Clear";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import axios from "../../axios";
 import "../style.css";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 function Home() {
+  const history = useHistory();
   var [campDetails, setCampDetails] = useState();
   useEffect(() => {
     let token = localStorage.getItem("auth-token");
@@ -36,11 +39,16 @@ function Home() {
       .get("/booking/accept_a_booking", {
         method: "GET",
         headers: {
-          booking_id: camp?._id,
+          booking_id: camp,
         },
       })
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
+        await toast.info(`Booking Accepted`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+        });
+        history.push("/Owner__Bookings/BookingPending");
       })
       .catch((err) => {
         console.log(err.response);
@@ -52,11 +60,15 @@ function Home() {
       .get("/booking/reject_a_booking", {
         method: "GET",
         headers: {
-          booking_id: camp?._id,
+          booking_id: camp,
         },
       })
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
+        await toast.info(`Booking Rejected`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+        });
       })
       .catch((err) => {
         console.log(err.response);
@@ -241,13 +253,13 @@ function Home() {
                         color: "white",
                         background: "transparent",
                       }}
+                      onClick={() => accpetBooking(item._id)}
                     >
                       <DoneIcon
                         style={{
                           cursor: "pointer",
                           color: "green",
                         }}
-                        onClick={() => accpetBooking(item)}
                       />
                       Accept
                     </button>
@@ -263,6 +275,7 @@ function Home() {
                         borderRadius: "22px",
                         background: "transparent",
                       }}
+                      onClick={() => rejectBooking(item._id)}
                     >
                       <ClearIcon
                         style={{
@@ -270,7 +283,6 @@ function Home() {
                           color: "red",
                           border: "none !important",
                         }}
-                        onClick={() => rejectBooking(item)}
                       />
                       Reject
                     </button>
@@ -361,7 +373,8 @@ function Home() {
                             Name:
                           </span>{" "}
                           <br />
-                          prathmesh kulkarni <br />{" "}
+                          {item?.camper_details?.firstname}&ensp;{" "}
+                          {item?.camper_details?.lastname} <br />{" "}
                           <span
                             style={{
                               fontSize: "20px",
@@ -371,8 +384,7 @@ function Home() {
                             {" "}
                             Address: <br />
                           </span>
-                          delhi gate,prathmesh apartment ahmednagar 414001 delhi
-                          gate,prathmesh apartment ahmednagar 414001 <br />{" "}
+                          {item?.camper_details?.address} <br />{" "}
                           <span
                             style={{
                               fontSize: "20px",
@@ -383,7 +395,7 @@ function Home() {
                             Mobile No:
                             <br />
                           </span>{" "}
-                          9511679830
+                          {item?.camper_details?.mobile}
                           {/* {`${item?.camper_details?.firstname} ${item?.camper_details?.lastname}`}
                           {item?.camper_details?.address} &emsp; &emsp;
                           {item?.camper_details?.mobile} */}

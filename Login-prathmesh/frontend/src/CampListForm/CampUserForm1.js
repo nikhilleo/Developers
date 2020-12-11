@@ -53,15 +53,15 @@ function Index(props) {
 
   console.log(camp);
 
-  useEffect(() => {
+  useEffect(async () => {
     console.log(props.campDetails);
     const data = localStorage.getItem("campUserForm1");
     console.log(data);
     if (data == undefined) return 0;
     else if (!data == undefined) {
-      setCamp(JSON.parse(data));
+      await setCamp(JSON.parse(data));
     }
-  }, []);
+  });
 
   const handleSelectChange = (e) => {
     setSelect(e.target.value);

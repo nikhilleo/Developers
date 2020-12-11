@@ -4,7 +4,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 
-function Index() {
+function Index(props) {
+  console.log(props.camp);
+  console.log(props?.camp?.manager_name);
   function loadScript(src) {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -33,7 +35,9 @@ function Index() {
       return;
     }
 
-    const result = await axios.post("payment/order");
+    const result = await axios.post("payment/order", {
+      booking_id: props?.camp?._id,
+    });
 
     if (!result) {
       toast.error(`Server error. Are you online?`, {
@@ -45,12 +49,12 @@ function Index() {
     }
 
     const { amount, id: order_id, currency } = result.data;
-
+    console.log(amount);
     const options = {
       key: "rzp_test_ofe3CfgKY0lM7M", // Enter the Key ID generated from the Dashboard
-      amount: amount.toString(),
+      amount: amount,
       currency: currency,
-      name: "Soumya Corp.",
+      name: props?.camp?.camp?.manager_name,
       description: "Test Transaction",
 
       order_id: order_id,
@@ -61,21 +65,34 @@ function Index() {
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
         };
-
-        const result = await axios.post("/payment/success", data);
-        console.log(result);
-        toast.info(`${result.data.msg}`, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
-        });
+        console.log(data);
+        await axios
+          .post("/payment/success", data, {
+            headers: {
+              booking_id: props?.camp?._id,
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            toast.info(
+              `Congratulations!! Payment is Accepted. See you at CampSite`,
+              {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 2000,
+              }
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       },
       prefill: {
-        name: "Soumya Dey",
-        email: "SoumyaDey@example.com",
-        contact: "9999999999",
+        name: props?.camp?.manager_name,
+        email: props?.camp?.manager_email,
+        contact: props?.camp?.manager_contact,
       },
       notes: {
-        address: "Soumya Dey Corporate Office",
+        address: props?.camp?.camp_location,
       },
       theme: {
         color: "#61dafb",
@@ -100,7 +117,7 @@ function Index() {
           className="App-link"
           onClick={displayRazorpay}
         >
-          Pay ₹500
+          Pay Rs.{props?.camp?.total_amount}
         </button>
       </header>
     </div>

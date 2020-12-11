@@ -1,10 +1,11 @@
 require("dotenv").config();
 const Razorpay = require("razorpay");
-const Bookings = require("../models/booking")
+const Bookings = require("../models/booking");
 
 exports.orders = async (req, res) => {
+  console.log(req.body.booking_id);
   try {
-    const booking = await Bookings.findOne({_id:req.body.booking_id});
+    const booking = await Bookings.findOne({ _id: req.body.booking_id });
     const instance = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID,
       key_secret: process.env.RAZORPAY_SECRET,
@@ -27,24 +28,28 @@ exports.orders = async (req, res) => {
 };
 
 exports.success = async (req, res) => {
+  console.log(req.headers);
   try {
-    const {orderCreationId,razorpayPaymentId,razorpayOrderId,razorpaySignature} = req.body;
-    const booking = await Bookings.findOne({_id:req.body.booking_id});
-    if(booking){
-      booking.payment_id = razorpayOrderId,
-      booking.payment_status = "success",
-      await booking.save();
-    }
-    else{
-      throw new Error("No Booking Found")
+    const {
+      orderCreationId,
+      razorpayPaymentId,
+      razorpayOrderId,
+      razorpaySignature,
+    } = req.body;
+    const booking = await Bookings.findOne({ _id: req.headers.booking_id });
+    if (booking) {
+      (booking.payment_id = razorpayOrderId),
+        (booking.payment_status = "success"),
+        await booking.save();
+    } else {
+      throw new Error("No Booking Found");
     }
     res.json({
       msg: "success",
       orderId: razorpayOrderId,
       paymentId: razorpayPaymentId,
     });
-  } 
-  catch (error) {
+  } catch (error) {
     res.status(500).send(error);
   }
 };

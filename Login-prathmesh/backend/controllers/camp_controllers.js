@@ -45,13 +45,14 @@ exports.get_all_camps = async (req, res) => {
 };
 
 exports.reject_a_camp = async (req, res) => {
+  console.log(req.body.camp_name);
   try {
     if (!req.body.camp_name) {
       throw new Error("Enter Camp Name");
     }
     const reject_camp = await Camp.find({ camp_name: req.body.camp_name });
     if (reject_camp.length >= 1) {
-      if (reject_camp[0].status_of_camp == "Pending") {
+      if (reject_camp[0].status_of_camp == "complete") {
         reject_camp[0].status_of_camp = "Reject";
         await reject_camp[0].save();
         res.send(reject_camp[0]);

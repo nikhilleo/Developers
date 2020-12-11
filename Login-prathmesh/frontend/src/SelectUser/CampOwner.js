@@ -112,7 +112,7 @@ function Index(props) {
         })
         .catch((err) => {
           console.log(err.response);
-          toast.error(`${err.response.data}`, {
+          toast.error(`User Not Found`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
           });

@@ -211,7 +211,7 @@ function Home() {
                         .
                       </Grid>{" "}
                       <Grid item xs={12} align="center">
-                        <PayButton />
+                        <PayButton camp={item} />
                       </Grid>
                     </Grid>
                     <Grid item xs={1}></Grid>

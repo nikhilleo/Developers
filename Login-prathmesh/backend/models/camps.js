@@ -64,7 +64,7 @@ const campSchema = new mongoose.Schema(
       type: Object,
     },
     camp_owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Array,
       ref: "Camp_Owner",
     },
     camp_images: {

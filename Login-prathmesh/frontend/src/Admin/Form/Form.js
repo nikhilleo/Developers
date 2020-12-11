@@ -109,6 +109,10 @@ function Index(props) {
               address: "",
               mobile: "",
             });
+            toast.info(`Otp is sent to your Mobile Number`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1000,
+            });
             history.push("/Verifying");
           }
           // props.setAdmin(res.data.user);
@@ -118,7 +122,7 @@ function Index(props) {
         })
         .catch((err) => {
           console.log(err.response);
-          toast.error(`${err.response.data}`, {
+          toast.error(`Please, Enter Valid Email & Password!!`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
           });

@@ -1,49 +1,72 @@
-import { Button, Divider, Grid } from "@material-ui/core";
+import { Button, Divider, Grid, responsiveFontSizes } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Navbar from "../../../../Header/admin";
 import OwnerNavbar from "../../../Navbar/Navbar";
 import DoneIcon from "@material-ui/icons/Done";
 import ClearIcon from "@material-ui/icons/Clear";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import axios from "../../../../axios";
+import "../../../style.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 function Home() {
   var [campDetails, setCampDetails] = useState();
   var [pendingCampData, setPendingCampData] = useState();
+  const history = useHistory();
   useEffect(() => {
     axios
       .get("/admin/get_pending_camps")
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
         setCampDetails(res.data);
       })
-      .catch((err) => {
+      .catch(async (err) => {
         console.log(err.response);
       });
   }, []);
   console.log(pendingCampData);
 
-  const handleAcceptCamp = (camp_name) => {
+  const handleAcceptCamp = async (camp_name) => {
     console.log(camp_name);
     axios
       .post("/admin/accept_camp", { camp_name: camp_name })
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
+        await toast.info(`Camp Accepted`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+        });
+        history.push("/Admin__Booking/Pending");
       })
-      .catch((err) => {
-        console.log(err.response);
+      .catch(async (err) => {
+        await toast.error(`Something Went Wrong`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
       });
   };
 
-  const handleRejectCamp = (camp_name) => {
+  const handleRejectCamp = async (camp_name) => {
+    console.log(camp_name);
     axios
       .post("/admin/reject_camp", { camp_name: camp_name })
       .then((res) => {
         console.log(res);
+        toast.info(`Camp Rejected`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+        });
+        history.push("/Admin__Booking/Pending");
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err);
+        toast.error(`Something Went Wrong`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
       });
   };
   console.log(campDetails);
@@ -203,30 +226,11 @@ function Home() {
             campDetails?.map?.((item, index) => {
               console.log(item);
               return (
-                <Grid container xs={12}>
+                <Grid container xs={12} style={{ fontFamily: "ui-serif" }}>
                   <Grid container xs={12} style={{ visibility: "hidden" }}>
                     .
                   </Grid>{" "}
-                  <Grid item xs={2}>
-                    <DoneIcon
-                      style={{
-                        cursor: "pointer",
-                        color: "green",
-                      }}
-                      onClick={() => {
-                        handleAcceptCamp(item.camp_name);
-                      }}
-                    />
-                    <Grid item xs={1}></Grid>
-                    <ClearIcon
-                      style={{
-                        cursor: "pointer",
-                        color: "red",
-                        border: "none !important",
-                      }}
-                      onClick={() => handleRejectCamp(item.camp_name)}
-                    />
-                  </Grid>
+                  <Grid item xs={2}></Grid>
                   <Grid item xs={2}>
                     <img
                       className="Owner__Dashboard__photos"
@@ -236,16 +240,69 @@ function Home() {
                     <Grid container xs={12} style={{ visibility: "hidden" }}>
                       .
                     </Grid>{" "}
+                    <button
+                      style={{
+                        padding: "7px",
+                        width: "8vw",
+                        borderRadius: "22px",
+                        color: "white",
+                        background: "transparent",
+                      }}
+                      onClick={() => handleAcceptCamp(item.camp_name)}
+                    >
+                      <DoneIcon
+                        style={{
+                          cursor: "pointer",
+                          color: "green",
+                          border: "none !important",
+                        }}
+                        className="buttonIcon"
+                      />
+                      Accept
+                    </button>
+                    <Grid container xs={12} style={{ visibility: "hidden" }}>
+                      .
+                    </Grid>{" "}
+                    <Grid item xs={1}></Grid>
+                    <button
+                      style={{
+                        padding: "7px",
+                        color: "white",
+                        width: "8vw",
+                        borderRadius: "22px",
+                        background: "transparent",
+                      }}
+                      onClick={() => handleRejectCamp(item.camp_name)}
+                    >
+                      <ClearIcon
+                        style={{
+                          cursor: "pointer",
+                          color: "red",
+                          border: "none !important",
+                        }}
+                        className="buttonIcon"
+                      />
+                      Reject
+                    </button>
+                    <Grid container xs={12} style={{ visibility: "hidden" }}>
+                      .
+                    </Grid>{" "}
                   </Grid>
                   <Grid item xs={1}></Grid>
-                  <Grid item xs={1}></Grid>
-                  <Grid container xs={2}>
+                  <Grid container xs={3}>
                     <Grid item xs={12}>
                       <Grid item xs={12}>
+                        <Grid
+                          item
+                          xs={12}
+                          style={{ fontWeight: "bolder", color: "#c2d2cf" }}
+                        >
+                          Camp Name:
+                        </Grid>
                         <span
                           style={{
                             fontWeight: "bolder",
-                            fontSize: "2rem",
+                            fontSize: "22px",
                             color: "white",
                             textOverflow: "ellipsis",
                             overflowWrap: "anywhere",
@@ -257,8 +314,21 @@ function Home() {
                       <Grid item xs={4} style={{ visibility: "hidden" }}>
                         ,
                       </Grid>
-                      <Grid item xs={12} style={{ color: "White" }}>
-                        <span>
+                      <Grid item xs={12} style={{ color: "#c2d2cf" }}>
+                        <Grid
+                          item
+                          xs={12}
+                          style={{ fontWeight: "bolder", color: "#c2d2cf" }}
+                        >
+                          Camp Location:
+                        </Grid>
+                        <span
+                          style={{
+                            fontSize: "22px",
+                            fontWeight: "bolder",
+                            color: "white",
+                          }}
+                        >
                           {item?.camp_location} ({item?.camp_state})
                         </span>
                       </Grid>
@@ -272,29 +342,64 @@ function Home() {
                         ,
                       </Grid>
                       <Grid item xs={12}>
-                        <span
+                        <Grid
+                          item
+                          xs={12}
+                          style={{ fontWeight: "bolder", color: "#c2d2cf" }}
+                        >
+                          Camper Information:
+                        </Grid>
+                        <div
                           style={{
                             fontWeight: "bolder",
-                            fontSize: "2rem",
+                            fontSize: "22px",
                             color: "white",
+                            textAlign: "center",
+                            height: "22vh",
+                            overflow: "hidden",
+                            overflowY: "auto",
+                            textAlign: "left",
                           }}
                         >
-                          {`${item?.manager_name}`}
-                        </span>
+                          <span
+                            style={{
+                              fontSize: "20px",
+                              color: "#b0d8d3",
+                            }}
+                          >
+                            {" "}
+                            Name:
+                          </span>{" "}
+                          <br />
+                          {item?.manager_name} <br />{" "}
+                          <span
+                            style={{
+                              fontSize: "20px",
+                              color: "#b0d8d3",
+                            }}
+                          >
+                            {" "}
+                            Camp Description: <br />
+                          </span>
+                          {item?.camp_desc} <br />{" "}
+                          <span
+                            style={{
+                              fontSize: "20px",
+                              color: "#b0d8d3",
+                            }}
+                          >
+                            {" "}
+                            Mobile No:
+                            <br />
+                          </span>{" "}
+                          9511679830
+                          {/* {`${item?.camper_details?.firstname} ${item?.camper_details?.lastname}`}
+                          {item?.camper_details?.address} &emsp; &emsp;
+                          {item?.camper_details?.mobile} */}
+                        </div>
                       </Grid>
                       <Grid item xs={4} style={{ visibility: "hidden" }}>
                         ,
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span style={{ color: "white" }}>{item?.address}</span>
-                      </Grid>
-                      <Grid item xs={4} style={{ visibility: "hidden" }}>
-                        ,
-                      </Grid>
-                      <Grid item xs={12}>
-                        <span style={{ color: "white" }}>
-                          {item?.manager_contact}
-                        </span>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -305,8 +410,8 @@ function Home() {
                         <span
                           style={{
                             fontWeight: "bolder",
-                            fontSize: "2rem",
-                            color: "white",
+                            fontSize: "19px",
+                            color: "#c2d2cf",
                           }}
                         >
                           Camping Dates
@@ -316,19 +421,41 @@ function Home() {
                         ,
                       </Grid>
                       <Grid item xs={12}>
-                        <span style={{ fontWeight: "bolder", color: "white" }}>
+                        <span
+                          style={{
+                            fontWeight: "bolder",
+                            color: "#b0d8d3",
+                          }}
+                        >
                           Check In Date: &emsp;&ensp;
                         </span>
-                        <span style={{ color: "white" }}>
+                        <span
+                          style={{
+                            color: "white",
+                            fontWeight: "bolder",
+                            fontSize: "20px",
+                          }}
+                        >
                           {" "}
                           {item?.check_in}
                         </span>
                       </Grid>
                       <Grid item xs={12}>
-                        <span style={{ fontWeight: "bolder", color: "white" }}>
-                          Check Out Date: &ensp;
+                        <span
+                          style={{
+                            fontWeight: "bolder",
+                            color: "#b0d8d3",
+                          }}
+                        >
+                          Check Out Date:&emsp;
                         </span>
-                        <span style={{ color: "white" }}>
+                        <span
+                          style={{
+                            color: "white",
+                            fontWeight: "bolder",
+                            fontSize: "20px",
+                          }}
+                        >
                           {" "}
                           {item?.check_out}{" "}
                         </span>
@@ -344,8 +471,8 @@ function Home() {
                         <span
                           style={{
                             fontWeight: "bolder",
-                            fontSize: "2rem",
-                            color: "white",
+                            fontSize: "19px",
+                            color: "#c2d2cf",
                           }}
                         >
                           Selected Types
@@ -370,7 +497,7 @@ function Home() {
                                 <span
                                   style={{
                                     fontWeight: "bolder",
-                                    color: "white",
+                                    color: "#b0d8d3",
                                   }}
                                 >
                                   Type: &emsp; &emsp; &emsp; &emsp; &emsp;
@@ -383,10 +510,10 @@ function Home() {
                                 <span
                                   style={{
                                     fontWeight: "bolder",
-                                    color: "white",
+                                    color: "#b0d8d3",
                                   }}
                                 >
-                                  No. Of People: &emsp; &ensp;
+                                  No. Of People: &emsp; &ensp;&ensp;
                                 </span>
                                 <span style={{ color: "white" }}>
                                   {item?.noOfPeople}{" "}
@@ -396,10 +523,10 @@ function Home() {
                                 <span
                                   style={{
                                     fontWeight: "bolder",
-                                    color: "white",
+                                    color: "#b0d8d3",
                                   }}
                                 >
-                                  Total Price:&emsp; &ensp; &ensp;&ensp;&ensp;
+                                  Total Price: &emsp; &ensp; &ensp;&emsp;
                                 </span>
                                 <span style={{ color: "white" }}>
                                   {item?.totalPrice}

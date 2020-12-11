@@ -64,12 +64,12 @@ function Index(props) {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log(bookingDetails, priceDetails);
 
-    props.setCampAccomodation(priceDetails);
+    await props.setCampAccomodation(priceDetails);
     props.setCampExtraDetails(bookingDetails);
-
+    console.log(props.campAccomodation);
     history.push("/CampUserForm4");
   };
 

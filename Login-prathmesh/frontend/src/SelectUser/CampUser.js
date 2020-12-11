@@ -123,7 +123,7 @@ function Index(props) {
         })
         .catch((err) => {
           console.log(err.response);
-          toast.error(`${err.response.data}`, {
+          toast.error(`Camp User Not Found`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
           });
