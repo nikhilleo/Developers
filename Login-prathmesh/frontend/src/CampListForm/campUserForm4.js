@@ -56,7 +56,7 @@ function Index(props) {
   }, []);
   console.log(contactDetails);
 
-  console.log(props.owner);
+  console.log(props.campDetails);
 
   const handleChange = (e) => {
     setContactDetails((prevState) => ({

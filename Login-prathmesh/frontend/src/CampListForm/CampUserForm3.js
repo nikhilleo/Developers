@@ -84,13 +84,14 @@ function Index(props) {
   };
 
   const handleSubmit = async () => {
-    console.log(bookingDetails, priceDetails);
+    console.log(Bookings, Prices);
 
-    localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
-    localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
+    localStorage.setItem("priceDetails", JSON.stringify(Prices));
+    localStorage.setItem("bookingDetails", JSON.stringify(Bookings));
 
-    await props.setCampAccomodation(priceDetails);
-    props.setCampExtraDetails(bookingDetails);
+    props.setCampAccomodation(Prices);
+    props.setCampExtraDetails(Bookings);
+
     console.log(props.campAccomodation);
     history.push("/CampUserForm4");
   };
