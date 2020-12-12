@@ -4,16 +4,19 @@ import axios from "../../axios";
 import { connect } from "react-redux";
 import actions from "../../Redux/Action";
 import { useHistory } from "react-router";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const { setAdmin } = actions;
 
 function VerifyOtp(props) {
   const history = useHistory();
   var [otp, setOtp] = useState();
-  console.log(props.admin);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(otp);
+
     axios
       .post("/admin/verify", {
         email: props.admin.user.email,
@@ -22,13 +25,19 @@ function VerifyOtp(props) {
         otp: otp,
       })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("auth-token", res.data.token);
         props.setAdmin(res.data.user);
+        toast.info(`Login Success`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
         history.push("/Admin__Booking/Pending");
       })
       .catch((err) => {
-        console.log("cata", err.response);
+        toast.error(`Otp Verification Failed`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
       });
   };
 
@@ -55,7 +64,6 @@ function VerifyOtp(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     admin: state.admin,
   };

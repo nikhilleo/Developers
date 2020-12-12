@@ -37,6 +37,7 @@ footer {
 }
 .main-content {
   display: flex;
+  min-height: 28rem;
 }
 .main-content .box {
   flex-basis: 50%;

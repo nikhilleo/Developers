@@ -58,7 +58,6 @@ function Index(props) {
       await axios
         .post("/admin/signup", input)
         .then((res) => {
-          console.log(res);
           props.setAdmin(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           toast.info(`${res.data.message}`, {
@@ -76,7 +75,6 @@ function Index(props) {
           history.push("/Admin__Booking/Accepted");
         })
         .catch((err) => {
-          console.log(err.response);
           toast.error(`${err.response.data}`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
@@ -93,7 +91,6 @@ function Index(props) {
           mobile: "918421723980",
         })
         .then((res) => {
-          console.log(res);
           if (res.data.otp.status == "open") {
             props.setAdmin({
               email: eMail,
@@ -121,7 +118,6 @@ function Index(props) {
           // history.push("/loggedInUser");
         })
         .catch((err) => {
-          console.log(err.response);
           toast.error(`Please, Enter Valid Email & Password!!`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
@@ -310,7 +306,6 @@ function Index(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     admin: state.admin,
   };

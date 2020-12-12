@@ -11,15 +11,9 @@ import axios from "../../../../axios";
 function Home() {
   var [campDetails, setCampDetails] = useState();
   useEffect(() => {
-    axios
-      .get("/admin/get_accepted_camps")
-      .then((res) => {
-        console.log(res);
-        setCampDetails(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    axios.get("/admin/get_accepted_camps").then((res) => {
+      setCampDetails(res.data);
+    });
   }, []);
   return (
     <div>
@@ -175,7 +169,6 @@ function Home() {
             </Grid>
           ) : (
             campDetails?.map?.((item, index) => {
-              console.log(item);
               return (
                 <Grid container xs={12} style={{ fontFamily: "ui-serif" }}>
                   <Grid container xs={12} style={{ visibility: "hidden" }}>
@@ -480,11 +473,11 @@ export default Home;
 //     axios
 //       .get("/admin/get_active_camps")
 //       .then((res) => {
-//         console.log(res);
+//
 //         setAcceptedCamps(res.data);
 //       })
 //       .catch((err) => {
-//         console.log(err.response);
+//
 //       });
 //   }, []);
 //   return (

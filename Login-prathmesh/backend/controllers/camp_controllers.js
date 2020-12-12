@@ -29,6 +29,7 @@ exports.accept_a_camp = async (req, res) => {
 };
 
 exports.get_all_camps = async (req, res) => {
+  console.log("rees");
   try {
     const camps = await Camp.find({
       status_of_camp: "Accepted",
@@ -167,7 +168,7 @@ exports.get_trending_camps = async (req, res) => {
   try {
     const camps = await Camp.find({
       status_of_camp: "Accepted",
-      status_of_camp: "Active",
+      state_of_camp: "Active",
     })
       .sort({ createdAt: -1 })
       .limit(6);

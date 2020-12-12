@@ -18,6 +18,7 @@ function Index(props) {
   const history = useHistory();
   var [recentCamps, setRecentCamps] = useState([]);
   var [trendingCamps, setTrendingCamps] = useState([]);
+  var [allCamps, setAllCamps] = useState([]);
   useEffect(() => {
     axios
       .get("/get_recent_camps")
@@ -35,6 +36,17 @@ function Index(props) {
       .then((res) => {
         console.log(res);
         setTrendingCamps(res.data);
+      })
+      .catch((err) => {
+        {
+          console.log(err.response);
+        }
+      });
+    axios
+      .get("/admin/get_all_camps")
+      .then((res) => {
+        console.log(res);
+        setAllCamps(res.data);
       })
       .catch((err) => {
         {
@@ -668,38 +680,37 @@ function Index(props) {
       </h1>
       <div className="allCamps">
         <div style={{ display: "flex", width: "59%", flexWrap: "wrap" }}>
-          <div class="col-sm-12 col-lg-4">
-            <div class="card ">
-              <img
-                src={trendingCamps[5]?.camp_images[0]}
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <h4
-                  class="card-title"
-                  style={{ maxHeight: "2rem", overflow: "hidden" }}
-                >
-                  {trendingCamps[5]?.camp_name}
-                </h4>
-                <div style={{ maxHeight: "12rem", overflow: "hidden" }}>
-                  <div
-                    class="card-text"
-                    dangerouslySetInnerHTML={{
-                      __html: trendingCamps[5]?.camp_desc,
-                    }}
-                  />
+          {allCamps.map((item) => (
+            <div class="col-sm-12 col-lg-4" style={{ marginTop: "2rem" }}>
+              <div class="card ">
+                <img src={item?.camp_images[0]} class="card-img-top" />
+                <div class="card-body">
+                  <h4
+                    class="card-title"
+                    style={{ maxHeight: "2rem", overflow: "hidden" }}
+                  >
+                    {item?.camp_name}
+                  </h4>
+                  <div style={{ maxHeight: "12rem", overflow: "hidden" }}>
+                    <div
+                      class="card-text"
+                      dangerouslySetInnerHTML={{
+                        __html: item?.camp_desc,
+                      }}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    style={{ marginTop: "1rem" }}
+                    onClick={(e) => handleClick(item?.camp_name)}
+                  >
+                    Read More
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  class="btn btn-warning"
-                  style={{ marginTop: "1rem" }}
-                  onClick={(e) => handleClick(trendingCamps[5]?.camp_name)}
-                >
-                  Read More
-                </button>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="mt-5">
