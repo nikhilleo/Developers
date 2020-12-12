@@ -260,6 +260,7 @@ function Home() {
                           cursor: "pointer",
                           color: "green",
                         }}
+                        id="acceptIcon"
                       />{" "}
                       &ensp; Accept
                     </button>
@@ -283,6 +284,7 @@ function Home() {
                           color: "red",
                           border: "none !important",
                         }}
+                        id="acceptIcon"
                       />{" "}
                       &ensp; Reject
                     </button>

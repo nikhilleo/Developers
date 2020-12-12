@@ -155,11 +155,14 @@ function Index(props) {
                             class="card-img-top photos"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {recentCamps[0]?.camp_name}
                             </h4>
                             <div
-                              style={{ height: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               <p class="card-text" style={{}}>
                                 {recentCamps[0]?.camp_desc}
@@ -185,12 +188,15 @@ function Index(props) {
                             class="card-img-top photos"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {" "}
                               {recentCamps[1]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               <p class="card-text" style={{}}>
                                 {recentCamps[1]?.camp_desc}
@@ -216,12 +222,15 @@ function Index(props) {
                             class="card-img-top photos"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {" "}
                               {recentCamps[2]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text" style={{}}>
@@ -254,11 +263,14 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {recentCamps[3]?.camp_name}
                             </h4>{" "}
                             <div
-                              style={{ height: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               <p class="card-text">
                                 {recentCamps[3]?.camp_desc}
@@ -284,11 +296,14 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {recentCamps[4]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text">
@@ -315,11 +330,14 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {recentCamps[5]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text">
@@ -378,11 +396,14 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {trendingCamps[0]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text" style={{}}>
@@ -409,11 +430,14 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {trendingCamps[1]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text" style={{}}>
@@ -440,12 +464,15 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {" "}
                               {trendingCamps[2]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text" style={{}}>
@@ -478,11 +505,14 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {trendingCamps[3]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text">
@@ -509,11 +539,14 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {trendingCamps[4]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text">
@@ -540,11 +573,14 @@ function Index(props) {
                             class="card-img-top"
                           />
                           <div class="card-body">
-                            <h4 class="card-title">
+                            <h4
+                              class="card-title"
+                              style={{ maxHeight: "2rem", overflow: "hidden" }}
+                            >
                               {trendingCamps[5]?.camp_name}
                             </h4>
                             <div
-                              style={{ minHeight: "13rem", overflow: "hidden" }}
+                              style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
                               <p class="card-text">
@@ -593,7 +629,7 @@ function Index(props) {
           color: "#e3e0f9",
         }}
       >
-        Trending Camps
+        All Camps
       </h1>
       <div style={{ color: "white" }} className="allCamps">
         <div style={{ display: "flex", width: "59%", flexWrap: "wrap" }}>
@@ -604,8 +640,13 @@ function Index(props) {
                 class="card-img-top"
               />
               <div class="card-body">
-                <h4 class="card-title">{trendingCamps[5]?.camp_name}</h4>
-                <div style={{ minHeight: "13rem", overflow: "hidden" }}>
+                <h4
+                  class="card-title"
+                  style={{ maxHeight: "2rem", overflow: "hidden" }}
+                >
+                  {trendingCamps[5]?.camp_name}
+                </h4>
+                <div style={{ maxHeight: "12rem", overflow: "hidden" }}>
                   {" "}
                   <p class="card-text">{trendingCamps[5]?.camp_desc}</p>
                 </div>{" "}

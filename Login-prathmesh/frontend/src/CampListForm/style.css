@@ -105,6 +105,8 @@
 input:focus::before::after:active {
   background: transparent;
 }
-input[type="text"]:focus {
+input[type="search"]:focus::before::after:active {
   background: transparent; /* oranges! yey */
+  border: none;
+  outline: none;
 }

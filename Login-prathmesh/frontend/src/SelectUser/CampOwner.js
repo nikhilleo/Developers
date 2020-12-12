@@ -142,6 +142,7 @@ function Index(props) {
                   position: "relative",
                   top: 8,
                   cursor: "pointer",
+                  padding: "10px",
                 }}
                 className="select__user__span"
                 onClick={handleClicks}
@@ -152,29 +153,10 @@ function Index(props) {
                 <h1 className="select__user__h1" style={{ color: "black" }}>
                   Create Account
                 </h1>
-                <div class="select__user__social-container">
-                  <a
-                    className="select__user__a"
-                    href="#"
-                    class="select__user__social__a"
-                  >
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                  <a
-                    className="select__user__a"
-                    href="#"
-                    class="select__user__social__a"
-                  >
-                    <i class="fab fa-google-plus-g"></i>
-                  </a>
-                  <a
-                    className="select__user__a"
-                    href="#"
-                    class="select__user__social__a"
-                  >
-                    <i class="fab fa-linkedin-in"></i>
-                  </a>
-                </div>
+                <br />
+                <br />
+                <br />
+                <br />
                 <span className="select__user__span">
                   or use your email for registration
                 </span>
@@ -237,6 +219,7 @@ function Index(props) {
                   position: "relative",
                   top: 8,
                   cursor: "pointer",
+                  right: 10,
                 }}
                 className="select__user__span"
                 onClick={handleClicks}
@@ -247,17 +230,9 @@ function Index(props) {
                 <h1 className="select__user__h1" style={{ color: "black" }}>
                   Sign in
                 </h1>
-                <div class="select__user__social-container">
-                  <a className="select__user__a select__user__social" href="#">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                  <a className="select__user__a select__user__social" href="#">
-                    <i class="fab fa-google-plus-g"></i>
-                  </a>
-                  <a className="select__user__a select__user__social" href="#">
-                    <i class="fab fa-linkedin-in"></i>
-                  </a>
-                </div>
+                <br />
+                <br />
+                <br />
                 <span className="select__user__span">or use your account</span>
                 <input
                   className="select__user__input"

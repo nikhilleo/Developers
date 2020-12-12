@@ -124,11 +124,12 @@ exports.get_pending_camps = async (req, res) => {
 
 exports.get_active_camps = async (req, res) => {
   try {
-    const camps = await Camp.find({ status_of_camp: "Active" });
+    const camps = await Camp.find({ status_of_camp: "Accepted" });
+    console.log(camps);
     if (camps.length == 0) {
       throw new Error("No Active Camps Found");
     } else {
-      res.status(200).send(camp);
+      res.status(200).send(camps);
     }
   } catch (error) {
     if (error.message == "No Active Camps Found") {

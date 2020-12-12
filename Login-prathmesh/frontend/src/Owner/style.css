@@ -13,3 +13,7 @@
 .MuiSvgIcon-root {
   border: none !important;
 }
+
+#acceptIcon {
+  border: none !important;
+}

@@ -171,18 +171,30 @@ function Index(props) {
           class="carousel slide"
           data-ride="carousel"
         >
-          <div class="carousel-inner ">
-            {props?.specificCamp?.specificCamp?.camp_images.map((item) => {
-              console.log(item);
-              return (
-                <>
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" src={item} alt="First slide" />
-                  </div>
-                </>
-              );
-            })}
+          <div class="carousel-inner" role="listbox">
+            {props?.specificCamp?.specificCamp?.camp_images.map(
+              (item, index) => {
+                console.log(item);
+                if (index == 0) {
+                  return (
+                    <div class="carousel-item active" key={index}>
+                      <div class="view " className={index}>
+                        <img class="d-block w-100 " src={item} />
+                      </div>
+                    </div>
+                  );
+                } else
+                  return (
+                    <div class="carousel-item" key={index}>
+                      <div class="view " className={index}>
+                        <img class="d-block w-100 " src={item} />
+                      </div>
+                    </div>
+                  );
+              }
+            )}
           </div>
+
           <a
             class="carousel-control-prev"
             href="#carouselExampleControls"
@@ -518,8 +530,7 @@ function Index(props) {
                             </p>
                             <div
                               style={{
-                                textOverflow: "inherit",
-                                overflowWrap: "anywhere",
+                                whiteSpace: "pre-wrap",
                               }}
                             >
                               {props.specificCamp?.specificCamp?.camp_desc}{" "}

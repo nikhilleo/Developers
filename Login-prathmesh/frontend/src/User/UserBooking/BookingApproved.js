@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     let token = localStorage.getItem("auth-token");
     axios
-      .get("/get_all_approved_bookings", {
+      .get("/booking/get_all_approved_bookings", {
         method: "GET",
         headers: { Authorization: token },
       })
@@ -175,7 +175,7 @@ function Home() {
               </Grid>{" "}
             </Grid>
             <Grid>
-              {campDetails?.camp_booking?.[0] == undefined ||
+              {campDetails?.bookings_made?.[0] == undefined ||
               campDetails == [] ? (
                 <Grid container xs={12} justify="center" alignItems="center">
                   <Grid container xs={12} style={{ visibility: "hidden" }}>
@@ -190,7 +190,7 @@ function Home() {
                   <Grid item xs={12} align="center">
                     <Link style={{ textDecoration: "none" }} to="/">
                       {" "}
-                      <h1>No booking Sent, Search for Some Camps!</h1>
+                      <h1>Nothing is here! Search for some camps</h1>
                     </Link>
                   </Grid>
                 </Grid>

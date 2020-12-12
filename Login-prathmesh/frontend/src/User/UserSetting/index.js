@@ -331,7 +331,7 @@ function Index(props) {
                     to="/User__Booking__Sent"
                     style={{ textDecoration: "none" }}
                   >
-                    <span className="mainHeader">Booking Sent</span>
+                    <span className="subHeader">Booking Sent</span>
                   </Link>
                 </li>
                 <li className="navbar__li">
@@ -344,7 +344,7 @@ function Index(props) {
                     to="/User__Account__settings"
                     style={{ textDecoration: "none" }}
                   >
-                    <span className="subHeader">Account Settings</span>
+                    <span className="mainHeader">Account Settings</span>
                   </Link>
                 </li>
               </div>
@@ -365,7 +365,7 @@ function Index(props) {
                 color: "white",
               }}
             >
-              Booking Pending
+              Account Settings
             </p>
           </Grid>
         </Grid>
@@ -375,30 +375,6 @@ function Index(props) {
         <Grid container style={{ visibility: "hidden" }}>
           .
         </Grid>{" "}
-        <Grid container xs={12} align="center">
-          <Grid item xs={4}></Grid>
-          <Grid item xs={2}>
-            <Link
-              to="/Owner__Bookings/Account__Settings"
-              style={{ textDecoration: "none" }}
-            >
-              <span
-                style={{
-                  cursor: "pointer",
-                  color: "white",
-                  fontSize: "18px",
-                  fontWeight: "bolder",
-                }}
-              >
-                Account Settings
-              </span>
-            </Link>
-          </Grid>
-          <Grid container style={{ visibility: "hidden" }}>
-            .
-          </Grid>{" "}
-        </Grid>
-        <Divider style={{ color: "black" }} />
         <Grid container xs={12} style={{ visibility: "hidden" }}>
           .
         </Grid>

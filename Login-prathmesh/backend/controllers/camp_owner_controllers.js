@@ -321,18 +321,22 @@ exports.upload_image = async (req, res) => {
         }
       }
       camp.camp_images.push(result.url);
+      await camp.save();
       fs.unlink(path, (error) => {
         if (error) {
           console.error(err.message);
           res.send(err.message);
         } else {
           console.log("deleted ", path);
-          if (i == camp.camp_images.length) {
+          if (i == req.files.length - 1) {
             camp.status_of_camp = "complete";
             camp.save();
           }
         }
       });
+      if (i == req.files.length - 1) {
+        res.send("uploaded");
+      }
     } catch (error) {
       const path = req.files[i].path;
       if (error.message == "Image Already Uploaded Try Another Image") {
@@ -356,8 +360,70 @@ exports.upload_image = async (req, res) => {
       }
     }
   }
-  res.send("upload");
 };
+// exports.upload_image = async (req, res) => {
+//   console.log(req.files);
+//   // res.send("All Files");
+//   // console.log(path)
+//   console.log(req.headers.camp_name);
+//   for (let i = 0; i < req.files.length; i++) {
+//     try {
+//       // const c_name = req.body.camp_name;
+//       // const camp = await Camps.findOne({camp_name:c_name});
+//       const camp = await Camps.findOne({
+//         camp_name: req.headers.camp_name,
+//       });
+//       // console.log(camp);
+//       if (!camp) {
+//         throw new Error("null");
+//       }
+//       const path = req.files[i].path;
+//       console.log(path);
+//       const result = await imgbbUploader(process.env.IMGBB_API_KEY, path);
+//       console.log(result);
+//       for (let i = 0; i < camp.camp_images.length; i++) {
+//         if (camp.camp_images[i] == result.url) {
+//           throw new Error("Image Already Uploaded Try Another Image");
+//         }
+//       }
+//       camp.camp_images.push(result.url);
+//       fs.unlink(path, (error) => {
+//         if (error) {
+//           console.error(err.message);
+//           res.send(err.message);
+//         } else {
+//           console.log("deleted ", path);
+//           if (i == camp.camp_images.length) {
+//             camp.status_of_camp = "complete";
+//             camp.save();
+//           }
+//         }
+//       });
+//     } catch (error) {
+//       const path = req.files[i].path;
+//       if (error.message == "Image Already Uploaded Try Another Image") {
+//         fs.unlink(path, (error) => {
+//           if (error) {
+//             console.error(err.message);
+//             res.send(err.message);
+//           }
+//         });
+//         res.status(409).send("Image Already Uploaded Try Another Image");
+//       } else if (error.message == "null") {
+//         fs.unlink(path, (error) => {
+//           if (error) {
+//             console.error(err.message);
+//             res.send(err.message);
+//           }
+//         });
+//         res.status(404).send("Camp Not Found");
+//       } else {
+//         res.send(error.message);
+//       }
+//     }
+//   }
+//   res.send("upload");
+// };
 
 exports.get_pending_camps = async (req, res) => {
   try {

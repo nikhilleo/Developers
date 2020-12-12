@@ -32,7 +32,7 @@ const campOwnerSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minlength:7
+      minlength: 7,
     },
     mobile: {
       type: String,
@@ -51,20 +51,21 @@ const campOwnerSchema = new mongoose.Schema(
       maxlength: 500,
       trim: true,
     },
-    campsListed:[
-        {
-            camp:{
-                type:mongoose.Schema.Types.ObjectId,
-                ref:"Camps"
-            }
-        }
-    ],
-    camp_booking:[
+    campsListed: [
       {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Bookings"
-      }
-    ]
+        camp: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Camps",
+        },
+      },
+    ],
+    camp_booking: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Bookings",
+        autopopulate: true,
+      },
+    ],
   },
   { timestamp: true }
 );
@@ -78,14 +79,16 @@ campOwnerSchema.pre("save", async function (next) {
   next();
 });
 
-campOwnerSchema.pre('findOneAndUpdate', async function () {
+campOwnerSchema.pre("findOneAndUpdate", async function () {
   this._update.password = await bcrypt.hash(this._update.password, 10);
-})
+});
 
 campOwnerSchema.methods.genAuthToken = async function () {
   const user = this;
   console.log(user);
-  const token = await jwt.sign({_id: user._id },process.env.JWT_KEY,{ expiresIn: 3600 });
+  const token = await jwt.sign({ _id: user._id }, process.env.JWT_KEY, {
+    expiresIn: 3600,
+  });
   return token;
 };
 
@@ -93,17 +96,16 @@ campOwnerSchema.statics.findByCredentials = async function (email, pass) {
   const user = await CampOwner.findOne({ email: email });
   if (!user) {
     throw new Error("No User Found");
-  }
-  else{
+  } else {
     const match = await bcrypt.compare(pass, user.password);
     if (!match) {
       throw new Error("Invalid Credentials");
-    }
-    else{
+    } else {
       return user;
     }
   }
 };
 
+campOwnerSchema.plugin(require("mongoose-autopopulate"));
 const CampOwner = mongoose.model("CampOwner", campOwnerSchema);
 module.exports = CampOwner;

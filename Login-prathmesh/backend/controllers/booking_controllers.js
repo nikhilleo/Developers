@@ -150,6 +150,32 @@ exports.get_all_accepted_bookings = async (req, res) => {
   }
 };
 
+exports.get_all_accepted_bookings_owner = async (req, res) => {
+  try {
+    const user = req.profile;
+    if (!user) {
+      throw new Error("No User Found");
+    }
+    const bookings = await CampOwner.findOne({ _id: user._id }).populate({
+      path: "camp_booking",
+      match: { status: "Confirmed and Pending For Payment" },
+    });
+    if (bookings.camp_booking.length < 1) {
+      throw new Error("No Accepted Bookings");
+    }
+    // console.log(bookings.bookings_made)
+    res.send(bookings);
+  } catch (error) {
+    if (error.message == "No User Found") {
+      res.status(404).send(error.message);
+    } else if (error.message == "No Accepted Bookings") {
+      res.status(404).send("No Bookings Found");
+    } else {
+      res.status(400).send(error.message);
+    }
+  }
+};
+
 exports.get_all_rejected_bookings = async (req, res) => {
   try {
     const user = req.profile;

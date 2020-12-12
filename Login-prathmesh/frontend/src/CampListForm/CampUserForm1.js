@@ -14,9 +14,15 @@ import { Link, useHistory } from "react-router-dom";
 import actions from "../Redux/Action";
 import axios from "../axios";
 import "./style.css";
-import Alert from "@material-ui/lab/Alert";
+import MarkdownIt from "markdown-it";
+import MdEditor from "react-markdown-editor-lite";
+// import style manually
+import "react-markdown-editor-lite/lib/index.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+import TextEditor2 from "./plugins";
+const mdParser = new MarkdownIt();
 
 const { setCampDetails } = actions;
 
@@ -77,6 +83,17 @@ function Index(props) {
       history.push("/CampUserForm2");
     }
   };
+
+  function handleEditorChange({ html, text }) {
+    console.log("handleEditorChange", html, text);
+  }
+  ClassicEditor.create(document.getElementById("prathmesh"), {
+    removePlugins: ["Bold", "Link"],
+    toolbar: ["italic", "bulletedList", "numberedList", "blockQuote"],
+  }).catch((error) => {
+    console.log(error);
+  });
+
   return (
     <div className="CampUserForm formBody">
       <Grid container className="Owner__Camp__Container" justify="center">
@@ -202,7 +219,7 @@ function Index(props) {
                 variant="outlined"
                 fullWidth
               /> */}
-              {/* <CKEditor
+              <CKEditor
                 editor={ClassicEditor}
                 onChange={(event, editor) => {
                   const data = editor.getData("text/plain");
@@ -218,9 +235,18 @@ function Index(props) {
                 }}
                 name="campDescription"
                 value="prara"
+                id="prathmesh"
+              />
+
+              {/* <MdEditor
+                style={{ height: "500px" }}
+                renderHTML={(text) => mdParser.render(text)}
+                onChange={handleEditorChange}
               /> */}
 
-              <textarea
+              {/* <TextEditor2 /> */}
+
+              {/* <textarea
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="off"
@@ -240,7 +266,7 @@ function Index(props) {
                 cols="50"
               >
                 Hello world
-              </textarea>
+              </textarea> */}
             </Grid>
           </Grid>
           <Grid container>

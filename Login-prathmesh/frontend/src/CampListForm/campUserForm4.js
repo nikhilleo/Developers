@@ -17,6 +17,7 @@ import {
 import actions from "../Redux/Action";
 import axios from "../axios";
 import Footer from "../Admin/Footer/Footer";
+import "./style.css";
 
 const {
   setCampAmenities,

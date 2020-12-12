@@ -256,9 +256,10 @@ function Home() {
                           color: "green",
                           border: "none !important",
                         }}
+                        id="acceptIcon"
                         className="buttonIcon"
                       />
-                      Accept
+                      &ensp;Accept
                     </button>
                     <Grid container xs={12} style={{ visibility: "hidden" }}>
                       .
@@ -280,9 +281,10 @@ function Home() {
                           color: "red",
                           border: "none !important",
                         }}
+                        id="acceptIcon"
                         className="buttonIcon"
-                      />
-                      Reject
+                      />{" "}
+                      &ensp;Reject
                     </button>
                     <Grid container xs={12} style={{ visibility: "hidden" }}>
                       .

@@ -87,9 +87,9 @@ function Index(props) {
           });
       },
       prefill: {
-        name: props?.camp?.manager_name,
-        email: props?.camp?.manager_email,
-        contact: props?.camp?.manager_contact,
+        name: "Lamp A Camp",
+        email: "admin@lampacamp.com",
+        contact: "8143143143",
       },
       notes: {
         address: props?.camp?.camp_location,

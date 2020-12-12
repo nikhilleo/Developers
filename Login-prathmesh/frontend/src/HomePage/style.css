@@ -27,6 +27,7 @@ h1 {
 
 .row img {
   width: 100%;
+  min-height: 15rem;
 }
 #spinner {
   display: flex;

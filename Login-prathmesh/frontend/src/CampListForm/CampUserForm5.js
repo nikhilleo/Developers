@@ -42,19 +42,19 @@ function CampUserForm5(props) {
   var [files, setFiles] = useState([]);
 
   async function onImageChange(e) {
-    console.log(e.target.result);
+    console.log(e?.target?.result);
     const reader = new FileReader();
-    reader.addEventListener("load", (event) => {
+    reader?.addEventListener("load", (event) => {
       setImagePreviewUrl((imagePreviewUrl) => [
         ...imagePreviewUrl,
-        event.target.result,
+        event?.target?.result,
       ]);
     });
-    reader.readAsDataURL(e.target.files[0]);
+    reader?.readAsDataURL(e?.target?.files[0]);
 
-    console.log(e.target.files[0]);
+    console.log(e?.target?.files[0]);
     let copy = [...files];
-    copy.push(e.target.files[0]);
+    copy.push(e?.target?.files[0]);
     console.log(copy);
     setFiles(copy);
   }

@@ -12,7 +12,7 @@ exports.orders = async (req, res) => {
     });
 
     const options = {
-      amount: booking.total_amount, // amount in smallest currency unit
+      amount: booking.total_amount * 100, // amount in smallest currency unit
       currency: "INR",
       receipt: "receipt_order_74394",
     };
