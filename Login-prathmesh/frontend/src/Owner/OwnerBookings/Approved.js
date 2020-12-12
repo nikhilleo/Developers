@@ -51,23 +51,26 @@ function Home() {
                     to="/Owner__Bookings/BookingPending"
                     style={{ textDecoration: "none" }}
                   >
-                    <span className="mainHeader">BOOKING</span>
+                    <button
+                      className="mainHeader"
+                      style={{ padding: 0, height: "5rem", width: "13rem" }}
+                    >
+                      BOOKING
+                    </button>
                   </Link>
                 </li>
-                <li className="navbar__li">
-                  <Link
-                    to="../Owner__Bookings/Payment__History"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <span className="subHeader">EARNINGS</span>
-                  </Link>
-                </li>
+
                 <li className="navbar__li">
                   <Link
                     to="../Owner__Bookings/Account__Settings"
                     style={{ textDecoration: "none" }}
                   >
-                    <span className="subHeader">ACCOUNT</span>
+                    <button
+                      className="subHeader"
+                      style={{ padding: 0, height: "5rem", width: "13rem" }}
+                    >
+                      ACCOUNT
+                    </button>
                   </Link>
                 </li>
               </div>

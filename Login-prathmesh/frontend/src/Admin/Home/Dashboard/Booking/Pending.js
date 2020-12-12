@@ -30,6 +30,7 @@ function Home() {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
         });
+        window.location.reload(false);
         history.push("/Admin__Booking/Pending");
       })
       .catch(async (err) => {
@@ -48,6 +49,7 @@ function Home() {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
         });
+        window.location.reload(false);
         history.push("/Admin__Booking/Pending");
       })
       .catch((err) => {
@@ -146,7 +148,7 @@ function Home() {
                   fontWeight: "bolder",
                 }}
               >
-                Camps
+                Pending Camps
               </span>
             </Link>
           </Grid>

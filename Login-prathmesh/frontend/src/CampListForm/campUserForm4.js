@@ -18,6 +18,9 @@ import actions from "../Redux/Action";
 import axios from "../axios";
 import Footer from "../Admin/Footer/Footer";
 import "./style.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const {
   setCampAmenities,
@@ -68,11 +71,26 @@ function Index(props) {
 
     localStorage.setItem("Manager", JSON.stringify(contactDetails));
 
-    axios.post("/owner/create_camp", props.campDetails, {
-      headers: { Authorization: token },
-    });
-
-    history.push("/CampUserForm5");
+    axios
+      .post("/owner/create_camp", props.campDetails, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        toast.info(
+          `Booking Details Accepted! Now Upload Images for your Camp`,
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1000,
+          }
+        );
+        history.push("/CampUserForm5");
+      })
+      .catch((err) => {
+        toast.error(`${err.response.data}`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
+      });
   };
 
   return (

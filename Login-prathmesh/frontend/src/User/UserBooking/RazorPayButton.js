@@ -2,6 +2,7 @@ import React from "react";
 import axios from "../../axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 toast.configure();
 
 function Index(props) {
@@ -78,6 +79,7 @@ function Index(props) {
                 autoClose: 2000,
               }
             );
+            window.location.reload(false);
           })
           .catch((err) => {});
       },
@@ -104,15 +106,17 @@ function Index(props) {
         <p>Buy React now!</p>
         <button
           style={{
-            background: " #0993e4",
+            background: "transparent",
             borderRadius: "20px",
-            width: "80%",
+            width: "50%",
             height: "3rem",
+            color: "wheat",
+            fontWeight: "bolder",
           }}
           className="App-link"
           onClick={displayRazorpay}
         >
-          Pay Rs.{props?.camp?.total_amount}
+          💰 Pay Rs.{props?.camp?.total_amount}
         </button>
       </header>
     </div>

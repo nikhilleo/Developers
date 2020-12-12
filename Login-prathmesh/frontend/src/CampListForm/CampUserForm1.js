@@ -20,6 +20,7 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import "./style.css";
 
 import TextEditor2 from "./plugins";
 const mdParser = new MarkdownIt();

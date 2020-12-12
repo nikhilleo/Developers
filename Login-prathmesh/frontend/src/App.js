@@ -226,8 +226,6 @@ const App = (props) => {
                     <UserAccountSetting />
                   </>
                 );
-              } else {
-                return <SelectUser />;
               }
             }}
           />
@@ -241,8 +239,6 @@ const App = (props) => {
                     <UserBookingSent />
                   </>
                 );
-              } else {
-                return <SelectUser />;
               }
             }}
           />
@@ -267,8 +263,6 @@ const App = (props) => {
                     <UserBookingRejected />
                   </>
                 );
-              } else {
-                return <SelectUser />;
               }
             }}
           />
@@ -282,8 +276,6 @@ const App = (props) => {
                     <UserPaymentPending />
                   </>
                 );
-              } else {
-                return <SelectUser />;
               }
             }}
           />
@@ -297,8 +289,6 @@ const App = (props) => {
                     <UserWishlist />
                   </>
                 );
-              } else {
-                return <SelectUser />;
               }
             }}
           />
@@ -312,8 +302,6 @@ const App = (props) => {
                     <UserBookingApproved />
                   </>
                 );
-              } else {
-                return <SelectUser />;
               }
             }}
           />

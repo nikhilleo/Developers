@@ -71,16 +71,15 @@
   font-size: 20px;
   cursor: pointer;
   color: black;
-  background: linear-gradient(45deg, #ffffff, #c4c4c4);
+  background: linear-gradient(45deg, #ffffff, transparent);
   padding: 13px;
   border-radius: 24px;
   border: 1px solid black;
-  text-decoration: none !important;
-  border-bottom: none !important;
 }
+
 .link1:focus:hover:visited:link:active,
 .link1 {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .subHeader {
@@ -94,7 +93,7 @@
 }
 
 .subHeader:hover {
-  background: linear-gradient(45deg, #ffffff, #c4c4c4);
+  background: linear-gradient(45deg, #ffffff, transparent);
 
   border: 1px solid black;
   color: black;
@@ -109,4 +108,12 @@ input[type="search"]:focus::before::after:active {
   background: transparent; /* oranges! yey */
   border: none;
   outline: none;
+}
+
+#spinner1 {
+  visibility: hidden;
+}
+
+#spinner1.active {
+  visibility: visible !important;
 }

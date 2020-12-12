@@ -296,7 +296,7 @@ function Index(props) {
           background:
             "url(https://images7.alphacoders.com/101/thumb-1920-1011523.jpg)",
           height: "auto",
-          minHeight: "120vh",
+          minHeight: "136vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
@@ -313,23 +313,26 @@ function Index(props) {
                     to="/Owner__Bookings/BookingPending"
                     style={{ textDecoration: "none" }}
                   >
-                    <span className="subHeader">BOOKING</span>
+                    <button
+                      className="subHeader"
+                      style={{ padding: 0, height: "5rem", width: "13rem" }}
+                    >
+                      BOOKING
+                    </button>
                   </Link>
                 </li>
-                <li className="navbar__li">
-                  <Link
-                    to="../Owner__Bookings/Payment__History"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <span className="subHeader">EARNINGS</span>
-                  </Link>
-                </li>
+
                 <li className="navbar__li">
                   <Link
                     to="../Owner__Bookings/Account__Settings"
                     style={{ textDecoration: "none" }}
                   >
-                    <span className="mainHeader">ACCOUNT</span>
+                    <button
+                      className="mainHeader"
+                      style={{ padding: 0, height: "5rem", width: "13rem" }}
+                    >
+                      ACCOUNT
+                    </button>
                   </Link>
                 </li>
               </div>

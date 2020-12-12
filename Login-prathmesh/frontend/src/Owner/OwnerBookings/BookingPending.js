@@ -10,6 +10,7 @@ import axios from "../../axios";
 import "../style.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 toast.configure();
 function Home() {
   const history = useHistory();
@@ -24,7 +25,6 @@ function Home() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setCampDetails(res.data);
       })
       .catch((err) => {});
@@ -39,16 +39,14 @@ function Home() {
         },
       })
       .then(async (res) => {
-        console.log(res.data);
         await toast.info(`Booking Accepted`, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
         });
+        window.location.reload(false);
         history.push("/Owner__Bookings/BookingPending");
       })
-      .catch((err) => {
-        console.log(err.response);
-      })
+      .catch((err) => {})
       .catch((err) => {});
   };
   const rejectBooking = (camp) => {
@@ -64,6 +62,7 @@ function Home() {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
         });
+        window.location.reload(false);
       })
       .catch((err) => {});
   };
@@ -94,23 +93,26 @@ function Home() {
                     to="/Owner__Bookings/BookingPending"
                     style={{ textDecoration: "none" }}
                   >
-                    <span className="mainHeader">BOOKING</span>
+                    <button
+                      className="mainHeader"
+                      style={{ padding: 0, height: "5rem", width: "13rem" }}
+                    >
+                      BOOKING
+                    </button>
                   </Link>
                 </li>
-                <li className="navbar__li">
-                  <Link
-                    to="../Owner__Bookings/Payment__History"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <span className="subHeader">EARNINGS</span>
-                  </Link>
-                </li>
+
                 <li className="navbar__li">
                   <Link
                     to="../Owner__Bookings/Account__Settings"
                     style={{ textDecoration: "none" }}
                   >
-                    <span className="subHeader">ACCOUNT</span>
+                    <button
+                      className="subHeader"
+                      style={{ padding: 0, height: "5rem", width: "13rem" }}
+                    >
+                      ACCOUNT
+                    </button>
                   </Link>
                 </li>
               </div>

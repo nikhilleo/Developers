@@ -34,7 +34,7 @@ function Index(props) {
       "camp_detail_select_name",
       props.specificCamp?.specificCamp?.camp_name
     );
-    console.log(props?.specificCamp?.specificCamp);
+
     props.specificCamp?.specificCamp?.camp_images?.map((item, index) => {
       copy[index] = { url: item };
     });
@@ -385,14 +385,11 @@ function Index(props) {
                                     shrink: true,
                                   }}
                                   onChange={(e) => {
-                                    console.log(e.target.value);
                                     if (e.target.value < 0) {
-                                      console.log("yes");
                                       e.target.value = 0;
                                       return false;
                                     } else {
                                       if (qty[index] === undefined) {
-                                        console.log("yes");
                                         let copy = [...qty];
                                         let obj = {};
                                         obj.name = e.target.name;
@@ -406,7 +403,6 @@ function Index(props) {
                                         copy.push(obj);
                                         setQty(copy);
                                       } else {
-                                        console.log("yes");
                                         let copy = [...qty];
                                         let obj = {};
                                         obj.name = e.target.name;

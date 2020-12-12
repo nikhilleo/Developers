@@ -50,9 +50,7 @@ class Map extends React.Component {
           state: state ? state : "",
         });
       },
-      (error) => {
-        console.error(error);
-      }
+      (error) => {}
     );
   }
   /**
@@ -201,9 +199,7 @@ class Map extends React.Component {
           state: state ? state : "",
         });
       },
-      (error) => {
-        console.error(error);
-      }
+      (error) => {}
     );
   };
   render() {

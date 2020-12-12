@@ -39,7 +39,12 @@ class NavbarPage extends Component {
           }}
         >
           <a href="/" style={{ color: "white", textDecoration: "none" }}>
-            Lamp A Camp
+            <img
+              style={{ width: "2rem", marginLeft: "16px" }}
+              src={
+                "https://crds-cms-uploads.imgix.net/content/images/crossroads-church-couples-camp-logo.png"
+              }
+            />
           </a>
 
           <MDBNavbarToggler onClick={this.toggleCollapse} />

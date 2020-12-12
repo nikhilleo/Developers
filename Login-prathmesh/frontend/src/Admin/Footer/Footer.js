@@ -11,17 +11,10 @@ function App() {
               <p style={{ position: "relative", top: "4vh" }}>
                 To us, camping is all about finding those extra-special places
                 to camp. We're more interested in the location, the view, the
-                ambience, and whether it allows campfires. We understand that
-                different people are looking for different camping experiences;
-                families need half-decent facilities and plenty of room for the
-                kids, couples need peace and quiet, walkers want to explore
-                straight from the tent, and who doesn't love glamping (luxury
-                camping) every now and then in a yurt, tipi or treehouse! But
-                whatever you're looking for, as long as you favour the
-                characterful rather than the commercial, smaller rather than
-                larger sites, and value location or views over pristine
-                facilities, then you're in the right place for discovering the
-                very best campsites in India.
+                ambience, and whether it allows campfires.While Camps isn’t
+                happening in 2020, we are going back to the drawing board to
+                plan experiences at Basecamp that are fun, impactful, and safe.
+                Please be on the lookout for more information later this summer.
               </p>
               <div class="social" style={{ position: "relative", top: "8vh" }}>
                 <a href="https://facebook.com/">

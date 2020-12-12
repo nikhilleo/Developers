@@ -204,6 +204,7 @@ function Home() {
                           height: "13em",
                           color: "#e85e5e",
                         }}
+                        id="acceptIcon"
                       />
                       <img
                         className="Owner__Dashboard__photos"

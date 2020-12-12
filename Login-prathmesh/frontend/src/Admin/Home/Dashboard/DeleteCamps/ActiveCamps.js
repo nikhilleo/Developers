@@ -19,7 +19,9 @@ function Home() {
   const deleteCamp = (camp_name) => {
     axios
       .post("/admin/inActive_a_camp", { camp_name: camp_name })
-      .then((res) => {});
+      .then((res) => {
+        window.location.reload(false);
+      });
   };
 
   return (
