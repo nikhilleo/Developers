@@ -304,6 +304,14 @@ exports.add_to_wishlist = async (req, res) => {
     if (!camp) {
       throw new Error("No Camp Found");
     }
+    for (let i = 0; i < user.wishlist.length; i++) {
+      console.log(user.wishlist[i]);
+      console.log(camp._id);
+      console.log(camp._id == user.wishlist[i]);
+      if (camp._id == user.wishlist[i]) {
+        throw new Error("Already Wishlisted");
+      }
+    }
     user.wishlist.push(camp._id);
     await user.save();
     res.status(200).send("added to wishlist");
@@ -312,12 +320,13 @@ exports.add_to_wishlist = async (req, res) => {
       res.status(404).send("No User Found");
     } else if (error.message == "No Camp Found") {
       res.status(404).send("No Camp Found");
+    } else if (error.message == "Already Wishlisted") {
+      res.status(400).send(error.message);
     } else {
       res.status(400).send(error.message);
     }
   }
 };
-
 exports.get_all_camps_from_wishlist = async (req, res) => {
   try {
     const user = req.profile;

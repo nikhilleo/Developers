@@ -605,10 +605,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[0]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[0].replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -631,10 +631,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[1]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[1]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -657,10 +657,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[2]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[2]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -683,10 +683,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[3]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[3]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -709,10 +709,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[4]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[4]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -735,10 +735,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[5]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[5]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -761,10 +761,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[6]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[6]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -787,10 +787,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[7]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[7]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -813,10 +813,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[8]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[8]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -839,10 +839,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[9]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[9]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -865,10 +865,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding strikethrough"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[10]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[10]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -891,10 +891,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding strikethrough"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[12]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[12]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -917,10 +917,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding strikethrough"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[14]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[14]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -943,10 +943,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding strikethrough"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[16]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[16]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -969,10 +969,10 @@ function Index(props) {
                                 ng-class="{'strikethrough': !amenity.checked}"
                                 class="ng-binding strikethrough"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.animities?.[18]
-                                }
+                                {props.specificCamp?.specificCamp?.animities?.[18]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -1078,10 +1078,10 @@ function Index(props) {
                                 style={{ paddingLeft: "12px" }}
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.activities[0]
-                                }
+                                {props.specificCamp?.specificCamp?.activities[0]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -1106,10 +1106,10 @@ function Index(props) {
                                 style={{ paddingLeft: "12px" }}
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.activities[1]
-                                }
+                                {props.specificCamp?.specificCamp?.activities[1]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -1134,10 +1134,10 @@ function Index(props) {
                                 style={{ paddingLeft: "12px" }}
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.activities[2]
-                                }
+                                {props.specificCamp?.specificCamp?.activities[2]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -1162,10 +1162,10 @@ function Index(props) {
                                 style={{ paddingLeft: "12px" }}
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.activities[3]
-                                }
+                                {props.specificCamp?.specificCamp?.activities[3]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -1190,10 +1190,10 @@ function Index(props) {
                                 style={{ paddingLeft: "12px" }}
                                 class="ng-binding"
                               >
-                                {
-                                  props.specificCamp?.specificCamp
-                                    ?.activities[4]
-                                }
+                                {props.specificCamp?.specificCamp?.activities[4]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>
@@ -1262,7 +1262,10 @@ function Index(props) {
                                 class="ng-binding"
                               >
                                 <Icons name={dynamicAccomodation?.[0]?.[0]} />
-                                {dynamicAccomodation?.[0]?.[0]}
+                                {dynamicAccomodation?.[0]?.[0]?.replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                               <span
                                 ng-if="accommodation.name==='Tent'"
@@ -1296,7 +1299,10 @@ function Index(props) {
                                 class="ng-binding"
                               >
                                 <Icons name={dynamicAccomodation?.[1]?.[0]} />
-                                {dynamicAccomodation?.[1]?.[0]}
+                                {dynamicAccomodation?.[1]?.[0].replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                               <span
                                 ng-if="accommodation.name==='BYOT'"
@@ -1329,7 +1335,10 @@ function Index(props) {
                                 trim-str-limit="15"
                                 class="ng-binding"
                               >
-                                {dynamicAccomodation?.[2]?.[0]}
+                                {dynamicAccomodation?.[2]?.[0].replace(
+                                  "_",
+                                  " "
+                                )}
                               </span>
                             </li>
                           </ul>

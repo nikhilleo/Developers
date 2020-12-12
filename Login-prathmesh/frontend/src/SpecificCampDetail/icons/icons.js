@@ -18,6 +18,8 @@ import LocalParkingIcon from "@material-ui/icons/LocalParking";
 import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
 import CallToActionIcon from "@material-ui/icons/CallToAction";
 import "../style.css";
+import AirlineSeatIndividualSuiteIcon from "@material-ui/icons/AirlineSeatIndividualSuite";
+import HomeWorkIcon from "@material-ui/icons/HomeWork";
 
 function Icons(props) {
   console.log(props);
@@ -80,26 +82,6 @@ function Icons(props) {
       case "Toilet": {
         console.log("yes");
         return <WcOutlinedIcon id="acceptIcon" />;
-      }
-      case "Tree House": {
-        console.log("yes");
-        return <HouseOutlinedIcon id="acceptIcon" />;
-      }
-      case "Tent": {
-        console.log("yes");
-        return <AccountBalanceIcon id="acceptIcon" />;
-      }
-      case "Villas": {
-        console.log("yes");
-        return <AccountBalanceIcon id="acceptIcon" />;
-      }
-      case "Park N Camp": {
-        console.log("yes");
-        return <LocalParkingIcon id="acceptIcon" />;
-      }
-      case "Mud House": {
-        console.log("yes");
-        return <CallToActionIcon id="acceptIcon" />;
       }
       default: {
         return null;

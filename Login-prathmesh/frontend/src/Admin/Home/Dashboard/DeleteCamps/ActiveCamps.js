@@ -24,6 +24,14 @@ function Home() {
 
   const deleteCamp = (camp_name) => {
     console.log(camp_name);
+    axios
+      .post("/admin/inActive_a_camp", { camp_name: camp_name })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

@@ -30,7 +30,10 @@ exports.accept_a_camp = async (req, res) => {
 
 exports.get_all_camps = async (req, res) => {
   try {
-    const camps = await Camp.find({ status_of_camp: "Accepted" });
+    const camps = await Camp.find({
+      status_of_camp: "Accepted",
+      state_of_camp: "Active",
+    });
     if (!camps) {
       throw new Error("No Camps Found");
     }
@@ -124,7 +127,7 @@ exports.get_pending_camps = async (req, res) => {
 
 exports.get_active_camps = async (req, res) => {
   try {
-    const camps = await Camp.find({ status_of_camp: "Accepted" });
+    const camps = await Camp.find({ state_of_camp: "Active" });
     console.log(camps);
     if (camps.length == 0) {
       throw new Error("No Active Camps Found");
@@ -142,7 +145,10 @@ exports.get_active_camps = async (req, res) => {
 
 exports.get_recent_camps = async (req, res) => {
   try {
-    const camps = await Camp.find({ status_of_camp: "Accepted" }).limit(6);
+    const camps = await Camp.find({
+      status_of_camp: "Accepted",
+      state_of_camp: "Active",
+    }).limit(6);
     if (camps.length >= 1) {
       res.send(camps);
     } else {
@@ -159,7 +165,10 @@ exports.get_recent_camps = async (req, res) => {
 
 exports.get_trending_camps = async (req, res) => {
   try {
-    const camps = await Camp.find({ status_of_camp: "Accepted" })
+    const camps = await Camp.find({
+      status_of_camp: "Accepted",
+      status_of_camp: "Active",
+    })
       .sort({ createdAt: -1 })
       .limit(6);
     if (camps.length >= 1) {
@@ -170,6 +179,50 @@ exports.get_trending_camps = async (req, res) => {
   } catch (error) {
     if (error.message == "No trending camps") {
       res.status(404).send("No trending camps");
+    } else {
+      res.status(400).send(error.message);
+    }
+  }
+};
+
+exports.get_inactive_camps = async (req, res) => {
+  try {
+    const camps = await Camp.find({ state_of_camp: "Inactive" });
+    if (camps.length >= 1) {
+      res.send(camps);
+    } else {
+      throw new Error("no camp found");
+    }
+  } catch (error) {
+    if (error.message == "no camp found") {
+      res.status(404).send(error.message);
+    } else {
+      res.status(400).send(error.message);
+    }
+  }
+};
+
+exports.mark_inactive_a_camp = async (req, res) => {
+  console.log(req.body.camp_name);
+  try {
+    if (!req.body.camp_name) {
+      throw new Error("Enter Camp Name");
+    }
+    const accept_camp = await Camp.findOne({ camp_name: req.body.camp_name });
+    if (accept_camp) {
+      if (accept_camp.state_of_camp == "Active") {
+        accept_camp.state_of_camp = "Inactive";
+        await accept_camp.save();
+        res.send(accept_camp);
+      }
+    } else {
+      throw new Error("no camp found");
+    }
+  } catch (error) {
+    if (error.message == "no camp found") {
+      res.status(404).send(error.message);
+    } else if (error.message == "Enter Camp Name") {
+      res.status(409).send("Enter Camp Name To Accept A Camp");
     } else {
       res.status(400).send(error.message);
     }

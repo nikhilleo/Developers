@@ -38,9 +38,10 @@ class NavbarPage extends Component {
             padding: "17px",
           }}
         >
-          <MDBNavbarBrand>
-            <strong className="white-text">Lamp A Camp</strong>
-          </MDBNavbarBrand>
+          <a href="/" style={{ color: "white", textDecoration: "none" }}>
+            Lamp A Camp
+          </a>
+
           <MDBNavbarToggler onClick={this.toggleCollapse} />
           <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
             <MDBNavbarNav right>
