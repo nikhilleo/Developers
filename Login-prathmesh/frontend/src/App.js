@@ -64,7 +64,6 @@ const App = (props) => {
         let tokenRes = await axios.get("/auth", {
           headers: { Authorization: token },
         });
-        console.log(tokenRes);
 
         if (tokenRes.data === "jwt expired") {
           localStorage.clear();
@@ -91,8 +90,6 @@ const App = (props) => {
           type = "admin";
         }
 
-        console.log(type);
-        console.log(type);
         if (type === "user") {
           await props.setUser(tokenRes.data);
         }
@@ -103,8 +100,6 @@ const App = (props) => {
           await props.setAdmin(tokenRes.data);
         }
       }
-      console.log(props.user);
-      console.log(props.owner);
     };
     checkLoggedIn();
   }, []);

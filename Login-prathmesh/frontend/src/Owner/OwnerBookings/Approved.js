@@ -14,19 +14,16 @@ function Home() {
   useEffect(() => {
     let token = localStorage.getItem("auth-token");
     axios
-      .get("/owner/pending_camps", {
+      .get("/owner/approved", {
         method: "GET",
         headers: {
           Authorization: token,
         },
       })
       .then((res) => {
-        console.log(res);
         setCampDetails(res.data);
       })
-      .catch((err) => {
-        console.log(err.response);
-      });
+      .catch((err) => {});
   }, []);
   return (
     <div>
@@ -182,7 +179,6 @@ function Home() {
             </Grid>
           ) : (
             campDetails?.camp_booking?.map?.((item, index) => {
-              console.log(item);
               return (
                 <Grid container xs={12} style={{ fontFamily: "ui-serif" }}>
                   <Grid container xs={12} style={{ visibility: "hidden" }}>

@@ -59,19 +59,13 @@ function Index(props) {
     const Accommodation = localStorage.getItem("Accommodation");
     const Amenities = localStorage.getItem("Amenities");
     const activities = localStorage.getItem("activities");
-    console.log(Accommodation, Amenities, activities);
+
     if (Accommodation || Amenities || activities) {
-      console.log("yes");
       setActivities(JSON.parse(activities));
       setAmenities(JSON.parse(Amenities));
       setAccommodation(JSON.parse(Accommodation));
     }
   }, []);
-
-  console.log(Accommodation);
-  console.log(activities);
-  console.log(Amenities);
-  console.log(Amenities);
 
   const handleChange = (e) => {
     setActivities((prevState) => ({
@@ -106,11 +100,10 @@ function Index(props) {
       (k) => Accommodation[k]
     );
     const final__amenities = Object.keys(Amenities).filter((k) => Amenities[k]);
-    console.log(props.final__accommodation);
+
     props.setCampAccomodation(final__accommodation);
     props.setCampActivities(final__activities);
     props.setCampAmenities(final__amenities);
-    console.log(props.campDetails);
 
     history.push("/CampUserForm3");
   };

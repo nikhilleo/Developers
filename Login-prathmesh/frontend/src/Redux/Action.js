@@ -35,7 +35,6 @@ const actions = {
   },
 
   setCampDetails: (data) => {
-    console.log(data);
     return {
       type: actions.CAMP__DETAILS,
       payload: data,
@@ -54,7 +53,6 @@ const actions = {
     };
   },
   setCampExtraDetails: (data) => {
-    console.log(data);
     return {
       type: actions.CAMP__EXTRA__DETAILS,
       payload: data,
@@ -76,7 +74,6 @@ const actions = {
   },
 
   setCampAccomodation: (data) => {
-    console.log(data);
     return {
       type: actions.CAMP__ACCOMODATION,
       payload: data,

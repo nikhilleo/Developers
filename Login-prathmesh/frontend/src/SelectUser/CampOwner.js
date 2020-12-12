@@ -66,12 +66,11 @@ function Index(props) {
       await axios
         .post("/owner/signup", input)
         .then((res) => {
-          console.log(res);
           props.clearUser();
           props.clearAdmin();
           props.clearCurrentUser();
           props.setOwner(res.data.user);
-          console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
+
           props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           toast.info(`${res.data.message}`, {
@@ -81,7 +80,6 @@ function Index(props) {
           history.push("/");
         })
         .catch((err) => {
-          console.log(err.response);
           toast.error(`${err.response.data}`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
@@ -96,12 +94,11 @@ function Index(props) {
           password: Password,
         })
         .then((res) => {
-          console.log(res);
           props.clearUser();
           props.clearAdmin();
           props.clearCurrentUser();
           props.setOwner(res.data.user);
-          console.log("hello evrgefdnkabnsiujdeb askjbn eiujqnbw");
+
           props.setCurrentUser(res.data.user);
           localStorage.setItem("auth-token", res.data.token);
           toast.info(`${res.data.Message}`, {
@@ -111,13 +108,11 @@ function Index(props) {
           history.push("/");
         })
         .catch((err) => {
-          console.log(err.response);
           toast.error(`User Not Found`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
           });
         });
-      console.log(res);
     }
     setInput({
       firstname: "",
@@ -302,7 +297,6 @@ function Index(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     owner: state.owner,
   };

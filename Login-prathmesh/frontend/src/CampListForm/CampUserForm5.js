@@ -42,7 +42,6 @@ function CampUserForm5(props) {
   var [files, setFiles] = useState([]);
 
   async function onImageChange(e) {
-    console.log(e?.target?.result);
     const reader = new FileReader();
     reader?.addEventListener("load", (event) => {
       setImagePreviewUrl((imagePreviewUrl) => [
@@ -52,10 +51,9 @@ function CampUserForm5(props) {
     });
     reader?.readAsDataURL(e?.target?.files[0]);
 
-    console.log(e?.target?.files[0]);
     let copy = [...files];
     copy.push(e?.target?.files[0]);
-    console.log(copy);
+
     setFiles(copy);
   }
 
@@ -68,9 +66,9 @@ function CampUserForm5(props) {
   }
 
   const handleSubmit = async () => {
-    // console.log(imagePreviewUrl);
+    //
     // axios.post("/owner/upload/image", imagePreviewUrl);
-    console.log();
+
     const data = new FormData();
     for (var x = 0; x < files.length; x++) {
       data.append("image", files[x]);
@@ -79,7 +77,6 @@ function CampUserForm5(props) {
     axios
       .post("/owner/upload/image", data, { headers: { camp_name: campName } })
       .then((res) => {
-        console.log(res);
         toast.info("Camp Created Successfully", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
@@ -94,7 +91,6 @@ function CampUserForm5(props) {
         history.push("/");
       })
       .catch((err) => {
-        console.log(err?.response);
         toast.error(`${err?.response?.message}`, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: false,

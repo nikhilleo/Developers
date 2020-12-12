@@ -26,7 +26,6 @@ function Index(props) {
     } else if (props.owner.user) {
       setClient(() => ({ type: "owner", user: props.owner.user }));
     }
-    console.log(client);
   }, []);
 
   const history = useHistory();
@@ -84,7 +83,6 @@ function Index(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     user: state.user,
     owner: state.owner,

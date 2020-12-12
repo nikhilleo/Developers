@@ -58,22 +58,18 @@ function Index(props) {
   }
 
   useEffect(() => {
-    console.log(props.campDetails);
     const data = localStorage.getItem("campUserForm1");
-    console.log(data);
+
     if (data == undefined) return 0;
     else if (data) {
-      console.log("yes");
       setCamp(JSON.parse(data));
     }
-    console.log(camp);
   }, []);
 
   const handleSelectChange = (e) => {
     setSelect(e.target.value);
   };
   const handleSubmit = () => {
-    console.log(camp);
     if (!handleValidation()) {
       return 0;
     } else {
@@ -84,14 +80,10 @@ function Index(props) {
     }
   };
 
-  function handleEditorChange({ html, text }) {
-    console.log("handleEditorChange", html, text);
-  }
+  function handleEditorChange({ html, text }) {}
   ClassicEditor.create(document.getElementById("prathmesh"), {
     removePlugins: ["Bold", "Link"],
     toolbar: ["italic", "bulletedList", "numberedList", "blockQuote"],
-  }).catch((error) => {
-    console.log(error);
   });
 
   return (

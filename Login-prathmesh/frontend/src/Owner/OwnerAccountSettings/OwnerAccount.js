@@ -28,8 +28,6 @@ function Index(props) {
     }
   }, []);
 
-  console.log(client);
-
   const handleClick = (e, type) => {
     if (type === "password") {
       setChange(undefined);
@@ -73,7 +71,6 @@ function Index(props) {
           handleClick("e", "close__update__form");
         })
         .catch((err) => {
-          console.log(err);
           toast.error(`Something Went Wrong`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
@@ -88,7 +85,6 @@ function Index(props) {
           headers: { Authorization: token },
         })
         .then((res) => {
-          console.log(res);
           toast.info(`${change} updated`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 2000,
@@ -98,7 +94,6 @@ function Index(props) {
           handleClick("e", "close__update__form");
         })
         .catch((err) => {
-          console.log(err);
           toast.error(`Something Went Wrong`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
@@ -113,7 +108,6 @@ function Index(props) {
           headers: { Authorization: token },
         })
         .then((res) => {
-          console.log(res);
           toast.info(`${change} updated`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 2000,
@@ -123,7 +117,6 @@ function Index(props) {
           handleClick("e", "close__update__form");
         })
         .catch((err) => {
-          console.log(err);
           toast.error(`Something Went Wrong`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
@@ -132,13 +125,10 @@ function Index(props) {
     }
   };
 
-  console.log(client);
-
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-    console.log(client);
+
     if (client.type == "user") {
-      console.log(input, confirm);
       if (input === confirm) {
         let pass = { password: input };
         let token = localStorage.getItem("auth-token");
@@ -169,7 +159,6 @@ function Index(props) {
       }
     }
     if (client.type == "owner") {
-      console.log(input, confirm);
       if (input === confirm) {
         let pass = { password: input };
         let token = localStorage.getItem("auth-token");
@@ -200,7 +189,6 @@ function Index(props) {
       }
     }
     if (client.type == "admin") {
-      console.log(input, confirm);
       if (input === confirm) {
         let pass = { password: input };
         let token = localStorage.getItem("auth-token");
@@ -242,7 +230,7 @@ function Index(props) {
   const handlePasswordChange = (e, type) => {
     e.preventDefault();
     const { value } = e.target;
-    console.log(value);
+
     if (type == 1) {
       setInput(value);
     }
@@ -263,9 +251,7 @@ function Index(props) {
           props.clearOwner();
           props.clearUser();
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     }
     if (client.type == "owner") {
       let token = localStorage.getItem("auth-token");
@@ -278,9 +264,7 @@ function Index(props) {
           props.clearOwner();
           props.clearUser();
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     }
     if (client.type == "admin") {
       let token = localStorage.getItem("auth-token");
@@ -293,9 +277,7 @@ function Index(props) {
           props.clearOwner();
           props.clearUser();
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     }
   };
 

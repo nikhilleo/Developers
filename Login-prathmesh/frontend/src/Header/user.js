@@ -15,7 +15,6 @@ function Navbar(props) {
     localStorage.clear();
     history.push("/");
   };
-  console.log(props?.user?.user);
 
   return (
     <div>
@@ -84,7 +83,6 @@ function Navbar(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state.user);
   return {
     user: state.user,
   };

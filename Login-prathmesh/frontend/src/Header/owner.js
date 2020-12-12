@@ -94,7 +94,6 @@ function Navbar(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state.owner);
   return {
     owner: state.owner,
   };

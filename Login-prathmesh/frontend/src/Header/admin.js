@@ -91,7 +91,6 @@ function Navbar(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state.owner);
   return {
     admin: state.admin,
   };

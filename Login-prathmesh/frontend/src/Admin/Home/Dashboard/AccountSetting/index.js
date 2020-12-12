@@ -298,7 +298,7 @@ function Index(props) {
           background:
             "url(https://images7.alphacoders.com/101/thumb-1920-1011523.jpg)",
           height: "auto",
-          minHeight: "120vh",
+          minHeight: "126vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}

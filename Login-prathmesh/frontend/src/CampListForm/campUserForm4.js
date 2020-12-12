@@ -48,16 +48,11 @@ function Index(props) {
 
   useEffect(() => {
     const managerDetails = localStorage.getItem("Manager");
-    console.log(managerDetails);
+
     if (managerDetails) {
-      console.log("yes");
       setContactDetails(JSON.parse(managerDetails));
     }
-    console.log(contactDetails);
   }, []);
-  console.log(contactDetails);
-
-  console.log(props.campDetails);
 
   const handleChange = (e) => {
     setContactDetails((prevState) => ({
@@ -69,22 +64,13 @@ function Index(props) {
   };
 
   const handleSubmit = async () => {
-    console.log(props.campDetails);
     let token = localStorage.getItem("auth-token");
-    console.log(token);
 
     localStorage.setItem("Manager", JSON.stringify(contactDetails));
 
-    axios
-      .post("/owner/create_camp", props.campDetails, {
-        headers: { Authorization: token },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    axios.post("/owner/create_camp", props.campDetails, {
+      headers: { Authorization: token },
+    });
 
     history.push("/CampUserForm5");
   };

@@ -19,12 +19,9 @@ function Home() {
         headers: { Authorization: token },
       })
       .then((res) => {
-        console.log(res);
         setCampDetails(res.data);
       })
-      .catch((err) => {
-        console.log(err.response);
-      });
+      .catch((err) => {});
   }, []);
   return (
     <div>
@@ -195,7 +192,6 @@ function Home() {
                 </Grid>
               ) : (
                 campDetails?.bookings_made?.map?.((item, index) => {
-                  console.log(item);
                   return (
                     <Grid container xs={12} style={{ fontFamily: "ui-serif" }}>
                       <Grid container xs={12} style={{ visibility: "hidden" }}>

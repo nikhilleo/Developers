@@ -11,27 +11,15 @@ import axios from "../../../../axios";
 function Home() {
   var [campDetails, setCampDetails] = useState();
   useEffect(() => {
-    axios
-      .get("/admin/get_active_camps")
-      .then((res) => {
-        console.log(res);
-        setCampDetails(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    axios.get("/admin/get_active_camps").then((res) => {
+      setCampDetails(res.data);
+    });
   }, []);
 
   const deleteCamp = (camp_name) => {
-    console.log(camp_name);
     axios
       .post("/admin/inActive_a_camp", { camp_name: camp_name })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => {});
   };
 
   return (
@@ -174,7 +162,6 @@ function Home() {
             </Grid>
           ) : (
             campDetails?.map?.((item, index) => {
-              console.log(item);
               return (
                 <Grid container xs={12} style={{ fontFamily: "ui-serif" }}>
                   <Grid container xs={12} style={{ visibility: "hidden" }}>

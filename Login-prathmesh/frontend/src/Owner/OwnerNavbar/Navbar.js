@@ -5,7 +5,6 @@ import "./navbar.css";
 
 function Navbar(props) {
   var { color1, color2, color3 } = { ...props };
-  console.log(color1, color2, color3);
   return (
     <div className="ownerMAinBody">
       <div style={{ display: "flex", justifyContent: "center" }}>

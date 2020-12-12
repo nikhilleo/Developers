@@ -89,7 +89,7 @@ const owner_reducer = (state = initialOwnerState, actions) => {
       return state;
   }
 };
-console.log("actions");
+
 const intialCampDetailsState = {
   campDetails: undefined,
   campActivities: undefined,
@@ -100,7 +100,6 @@ const intialCampDetailsState = {
   campExtraDetails: undefined,
 };
 const camp_reducer = (state = intialCampDetailsState, actions) => {
-  console.log(actions);
   switch (actions.type) {
     case action.CAMP__DETAILS:
       return {
@@ -138,7 +137,6 @@ const camp_reducer = (state = intialCampDetailsState, actions) => {
         campExtraDetails: actions.payload,
       };
     default: {
-      console.log("default");
       return state;
     }
   }

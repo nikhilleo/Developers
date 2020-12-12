@@ -24,17 +24,13 @@ function Home() {
         },
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setCampDetails(res.data);
       })
-      .catch((err) => {
-        console.log(err.response);
-      });
+      .catch((err) => {});
   }, []);
 
-  console.log(campDetails);
   const accpetBooking = (camp) => {
-    console.log(camp);
     axios
       .get("/booking/accept_a_booking", {
         method: "GET",
@@ -43,7 +39,7 @@ function Home() {
         },
       })
       .then(async (res) => {
-        console.log(res);
+        console.log(res.data);
         await toast.info(`Booking Accepted`, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
@@ -52,10 +48,10 @@ function Home() {
       })
       .catch((err) => {
         console.log(err.response);
-      });
+      })
+      .catch((err) => {});
   };
   const rejectBooking = (camp) => {
-    console.log(camp);
     axios
       .get("/booking/reject_a_booking", {
         method: "GET",
@@ -64,17 +60,14 @@ function Home() {
         },
       })
       .then(async (res) => {
-        console.log(res);
         await toast.info(`Booking Rejected`, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
         });
       })
-      .catch((err) => {
-        console.log(err.response);
-      });
+      .catch((err) => {});
   };
-  console.log(campDetails);
+
   return (
     <div>
       <Navbar />
@@ -229,7 +222,6 @@ function Home() {
             </Grid>
           ) : (
             campDetails?.camp_booking?.map?.((item, index) => {
-              console.log(item);
               return (
                 <Grid container xs={12} style={{ fontFamily: "ui-serif" }}>
                   <Grid container xs={12} style={{ visibility: "hidden" }}>

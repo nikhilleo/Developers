@@ -39,13 +39,13 @@ function Index(props) {
   //   const priceDetails = localStorage.getItem("priceDetails");
   //   const bookingDetails = localStorage.getItem("bookingDetails");
 
-  //   console.log(priceDetails, bookingDetails);
+  //
 
-  //   console.log(priceDetails, bookingDetails);
+  //
   //   if (priceDetails || bookingDetails) {
   //     if (bookingDetails) {
-  //       console.log(bookingDetails);
-  //       console.log("yes");
+  //
+  //
   //       setBookings(JSON.parse(bookingDetails));
   //     }
   //     if (priceDetails) {
@@ -54,25 +54,19 @@ function Index(props) {
   //   }
   // }, []);
 
-  console.log(Bookings);
-
   const handleChange = (e) => {
-    console.log(e.target);
     setBookings((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.log(bookingDetails);
-    console.log(props.campDetails);
   };
 
   const handlePriceChange = (e, itemName) => {
     let { name, value } = e.target;
     let copy = { ...priceDetails };
     copy = { ...copy, [name]: value };
-    console.log(copy);
+
     setPrices((prevState) => {
-      console.log(prevState?.[itemName]);
       return {
         ...prevState,
         [itemName]: {
@@ -84,15 +78,12 @@ function Index(props) {
   };
 
   const handleSubmit = async () => {
-    console.log(Bookings, Prices);
-
     localStorage.setItem("priceDetails", JSON.stringify(Prices));
     localStorage.setItem("bookingDetails", JSON.stringify(Bookings));
 
     props.setCampAccomodation(Prices);
     props.setCampExtraDetails(Bookings);
 
-    console.log(props.campAccomodation);
     history.push("/CampUserForm4");
   };
 
@@ -508,7 +499,6 @@ function Index(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     campActivities: state.campDetails.campActivities,
     campAccomodation: state.campDetails.campAccomodation,
@@ -518,7 +508,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  console.log(dispatch);
   return {
     setCampActivities: (data) => {
       dispatch(setCampActivities(data));

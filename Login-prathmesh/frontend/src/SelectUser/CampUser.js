@@ -65,7 +65,6 @@ function Index(props) {
       await axios
         .post("/signup", input)
         .then((res) => {
-          console.log(res);
           props.clearOwner();
           props.clearAdmin();
           props.clearCurrentUser();
@@ -86,7 +85,6 @@ function Index(props) {
           });
         })
         .catch((err) => {
-          console.log("errordas", err.response);
           toast.error(`${err.response.data}`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
@@ -101,7 +99,6 @@ function Index(props) {
           password: Password,
         })
         .then((res) => {
-          console.log(res);
           props.clearOwner();
           props.clearAdmin();
           props.clearCurrentUser();
@@ -122,7 +119,6 @@ function Index(props) {
           history.push("/");
         })
         .catch((err) => {
-          console.log(err.response);
           toast.error(`Camp User Not Found`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: false,
@@ -311,7 +307,6 @@ function Index(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     user: state.user,
   };

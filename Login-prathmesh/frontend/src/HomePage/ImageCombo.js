@@ -2,7 +2,6 @@ import React from "react";
 import "./style.css";
 
 function ImageCombo(props) {
-  console.log(props);
   return (
     <>
       <h1

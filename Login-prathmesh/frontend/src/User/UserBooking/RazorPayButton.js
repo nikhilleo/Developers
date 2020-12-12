@@ -5,8 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 
 function Index(props) {
-  console.log(props.camp);
-  console.log(props?.camp?.manager_name);
   function loadScript(src) {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -49,7 +47,7 @@ function Index(props) {
     }
 
     const { amount, id: order_id, currency } = result.data;
-    console.log(amount);
+
     const options = {
       key: "rzp_test_ofe3CfgKY0lM7M", // Enter the Key ID generated from the Dashboard
       amount: amount,
@@ -65,7 +63,7 @@ function Index(props) {
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
         };
-        console.log(data);
+
         await axios
           .post("/payment/success", data, {
             headers: {
@@ -73,7 +71,6 @@ function Index(props) {
             },
           })
           .then((res) => {
-            console.log(res);
             toast.info(
               `Congratulations!! Payment is Accepted. See you at CampSite`,
               {
@@ -82,9 +79,7 @@ function Index(props) {
               }
             );
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch((err) => {});
       },
       prefill: {
         name: "Lamp A Camp",

@@ -19,12 +19,9 @@ function Home() {
         headers: { Authorization: token },
       })
       .then((res) => {
-        console.log(res);
         setCampDetails(res.data);
       })
-      .catch((err) => {
-        console.log(err.response);
-      });
+      .catch((err) => {});
   }, []);
   return (
     <div>

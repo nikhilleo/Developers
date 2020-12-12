@@ -18,12 +18,9 @@ function Home() {
         headers: { Authorization: token },
       })
       .then((res) => {
-        console.log(res);
         setCampDetails(res.data.wishlist);
       })
-      .catch((err) => {
-        console.log(err.response);
-      });
+      .catch((err) => {});
   }, []);
   return (
     <div>
@@ -117,7 +114,6 @@ function Home() {
                   </Grid>
                 ) : (
                   campDetails?.map?.((item, index) => {
-                    console.log(item);
                     return (
                       <Grid
                         container
