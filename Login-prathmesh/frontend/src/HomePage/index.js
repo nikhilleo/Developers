@@ -164,9 +164,12 @@ function Index(props) {
                             <div
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
-                              <p class="card-text" style={{}}>
-                                {recentCamps[0]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: recentCamps[0]?.camp_desc,
+                                }}
+                              />
                             </div>
                             <button
                               type="button"
@@ -198,9 +201,12 @@ function Index(props) {
                             <div
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
-                              <p class="card-text" style={{}}>
-                                {recentCamps[1]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: recentCamps[1]?.camp_desc,
+                                }}
+                              />
                             </div>
                             <button
                               type="button"
@@ -233,9 +239,12 @@ function Index(props) {
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
-                              <p class="card-text" style={{}}>
-                                {recentCamps[2]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: recentCamps[2]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -272,9 +281,12 @@ function Index(props) {
                             <div
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
-                              <p class="card-text">
-                                {recentCamps[3]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: recentCamps[3]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -306,9 +318,12 @@ function Index(props) {
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
-                              <p class="card-text">
-                                {recentCamps[4]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: recentCamps[4]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -340,9 +355,12 @@ function Index(props) {
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
-                              <p class="card-text">
-                                {recentCamps[5]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: recentCamps[5]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -405,10 +423,12 @@ function Index(props) {
                             <div
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
-                              {" "}
-                              <p class="card-text" style={{}}>
-                                {trendingCamps[0]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: trendingCamps[0]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -440,9 +460,12 @@ function Index(props) {
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
-                              <p class="card-text" style={{}}>
-                                {trendingCamps[1]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: trendingCamps[1]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -475,9 +498,12 @@ function Index(props) {
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
-                              <p class="card-text" style={{}}>
-                                {trendingCamps[2]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: trendingCamps[2]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -515,9 +541,12 @@ function Index(props) {
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
-                              <p class="card-text">
-                                {trendingCamps[3]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: trendingCamps[3]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -549,9 +578,12 @@ function Index(props) {
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
-                              <p class="card-text">
-                                {trendingCamps[4]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: trendingCamps[4]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -583,9 +615,12 @@ function Index(props) {
                               style={{ maxHeight: "12rem", overflow: "hidden" }}
                             >
                               {" "}
-                              <p class="card-text">
-                                {trendingCamps[5]?.camp_desc}
-                              </p>
+                              <div
+                                class="card-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: trendingCamps[5]?.camp_desc,
+                                }}
+                              />
                             </div>{" "}
                             <button
                               type="button"
@@ -631,7 +666,7 @@ function Index(props) {
       >
         All Camps
       </h1>
-      <div style={{ color: "white" }} className="allCamps">
+      <div className="allCamps">
         <div style={{ display: "flex", width: "59%", flexWrap: "wrap" }}>
           <div class="col-sm-12 col-lg-4">
             <div class="card ">
@@ -647,9 +682,13 @@ function Index(props) {
                   {trendingCamps[5]?.camp_name}
                 </h4>
                 <div style={{ maxHeight: "12rem", overflow: "hidden" }}>
-                  {" "}
-                  <p class="card-text">{trendingCamps[5]?.camp_desc}</p>
-                </div>{" "}
+                  <div
+                    class="card-text"
+                    dangerouslySetInnerHTML={{
+                      __html: trendingCamps[5]?.camp_desc,
+                    }}
+                  />
+                </div>
                 <button
                   type="button"
                   class="btn btn-warning"

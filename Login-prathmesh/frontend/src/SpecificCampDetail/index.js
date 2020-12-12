@@ -76,19 +76,31 @@ function Index(props) {
 
   var handleClick = () => {
     let token = localStorage.getItem("auth-token");
-    axios
-      .get("/add_to_wishlist", {
-        headers: {
-          Authorization: token,
-          camp_name: props?.specificCamp?.specificCamp?._id,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (props.user.user) {
+      axios
+        .get("/add_to_wishlist", {
+          headers: {
+            Authorization: token,
+            camp_name: props?.specificCamp?.specificCamp?._id,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          toast.info("Added to WishList", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1000,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      toast.error("Sign In As User First", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
       });
+      return false;
+    }
   };
 
   var trimCheckInDate = String(checkInvalue);
@@ -132,7 +144,6 @@ function Index(props) {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,
       });
-      history.push("/CampUser");
       return false;
     }
 
@@ -532,9 +543,10 @@ function Index(props) {
                               style={{
                                 whiteSpace: "pre-wrap",
                               }}
-                            >
-                              {props.specificCamp?.specificCamp?.camp_desc}{" "}
-                            </div>
+                              dangerouslySetInnerHTML={{
+                                __html: `${props.specificCamp?.specificCamp?.camp_desc}`,
+                              }}
+                            />
                           </Grid>
                         </Grid>
 

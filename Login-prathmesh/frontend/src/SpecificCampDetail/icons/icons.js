@@ -16,78 +16,90 @@ import HouseOutlinedIcon from "@material-ui/icons/HouseOutlined";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import LocalParkingIcon from "@material-ui/icons/LocalParking";
 import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
+import CallToActionIcon from "@material-ui/icons/CallToAction";
+import "../style.css";
 
 function Icons(props) {
   console.log(props);
+  var str = props?.name?.replace("_", " ");
+  console.log(str);
   const SingleIcon = () => {
-    switch (props.name) {
+    switch (str) {
       case "Trekking": {
         console.log("yes");
-        return <DirectionsWalkIcon />;
+        return <DirectionsWalkIcon id="acceptIcon" />;
       }
       case "Off Roading": {
         console.log("yes");
-        return <DriveEtaIcon />;
+        return <DriveEtaIcon id="acceptIcon" />;
       }
       case "Climbing": {
         console.log("yes");
-        return <FilterHdrIcon />;
+        return <FilterHdrIcon id="acceptIcon" />;
       }
       case "White Water Rafting": {
         console.log("yes");
-        return <RowingIcon />;
+        return <RowingIcon id="acceptIcon" />;
       }
       case "Wildlife Watching": {
         console.log("yes");
-        return <PetsIcon />;
+        return <PetsIcon id="acceptIcon" />;
       }
       case "Pets Allowed": {
         console.log("yes");
-        return <PetsIcon />;
+        return <PetsIcon id="acceptIcon" />;
       }
       case "Cycling": {
         console.log("yes");
-        return <DirectionsBikeIcon />;
+        return <DirectionsBikeIcon id="acceptIcon" />;
       }
       case "Swimming": {
         console.log("yes");
-        return <PoolIcon />;
+        return <PoolIcon id="acceptIcon" />;
       }
-      case "Drinking Water": {
+      case "Drinking water": {
         console.log("yes");
-        return <LocalDrinkIcon />;
+        return <LocalDrinkIcon id="acceptIcon" />;
       }
       case "Charging Points": {
         console.log("yes");
-        return <BatteryChargingFullIcon />;
+        return <BatteryChargingFullIcon id="acceptIcon" />;
       }
       case "Covered Area": {
         console.log("yes");
-        return <CameraRearIcon />;
+        return <CameraRearIcon id="acceptIcon" />;
       }
       case "Campfire": {
         console.log("yes");
-        return <WhatshotOutlinedIcon />;
+        return <WhatshotOutlinedIcon id="acceptIcon" />;
       }
       case "Shower": {
         console.log("yes");
-        return <BathtubOutlinedIcon />;
+        return <BathtubOutlinedIcon id="acceptIcon" />;
       }
       case "Toilet": {
         console.log("yes");
-        return <WcOutlinedIcon />;
+        return <WcOutlinedIcon id="acceptIcon" />;
       }
       case "Tree House": {
         console.log("yes");
-        return <HouseOutlinedIcon />;
+        return <HouseOutlinedIcon id="acceptIcon" />;
       }
       case "Tent": {
         console.log("yes");
-        return <AccountBalanceIcon />;
+        return <AccountBalanceIcon id="acceptIcon" />;
+      }
+      case "Villas": {
+        console.log("yes");
+        return <AccountBalanceIcon id="acceptIcon" />;
       }
       case "Park N Camp": {
         console.log("yes");
-        return <LocalParkingIcon />;
+        return <LocalParkingIcon id="acceptIcon" />;
+      }
+      case "Mud House": {
+        console.log("yes");
+        return <CallToActionIcon id="acceptIcon" />;
       }
       default: {
         return null;
@@ -96,7 +108,7 @@ function Icons(props) {
   };
   return (
     <>
-      <SingleIcon />
+      <SingleIcon style={{ border: "none" }} />
       {/* <DirectionsBikeIcon />
       <DriveEtaIcon />
       <FilterHdrIcon />

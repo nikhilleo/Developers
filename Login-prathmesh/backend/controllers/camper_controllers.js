@@ -306,6 +306,7 @@ exports.add_to_wishlist = async (req, res) => {
     }
     user.wishlist.push(camp._id);
     await user.save();
+    res.status(200).send("added to wishlist");
   } catch (error) {
     if (error.message == "No User") {
       res.status(404).send("No User Found");

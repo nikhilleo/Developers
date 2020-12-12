@@ -121,6 +121,10 @@ user agent stylesheet div {
   color: white !important;
 }
 
+#singleIcon {
+  border: none !important;
+}
+
 #hearts {
   cursor: pointer;
 }
