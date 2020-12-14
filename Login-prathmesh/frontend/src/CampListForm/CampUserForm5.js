@@ -50,10 +50,10 @@ function CampUserForm5(props) {
         event?.target?.result,
       ]);
     });
-    reader?.readAsDataURL(e?.target?.files[0]);
+    reader?.readAsDataURL(e?.target?.files?.[0]);
 
     let copy = [...files];
-    copy.push(e?.target?.files[0]);
+    copy.push(e?.target?.files?.[0]);
 
     setFiles(copy);
   }

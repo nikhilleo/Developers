@@ -1,6 +1,38 @@
 import "./Footer.css";
+import axios from "../../axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+toast.configure();
+
+function Index() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("yes");
+    console.log(e.target[0].value);
+    console.log(e.target[1].value);
+    const email = e.target[0].value;
+    const message = e.target[1].value;
+    console.log(email);
+    console.log(message);
+    axios
+      .post("/contact/sendMessage", { email: email, message: message })
+      .then(async (res) => {
+        console.log("res");
+        await toast.info(`Message Sent`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+        });
+        document.getElementById("footerForm").reset();
+      })
+      .catch(async (err) => {
+        await toast.error(`Something Went Wrong`, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: false,
+        });
+      });
+  };
+  console.log("yes");
   return (
     <div className="Apsp">
       <footer>
@@ -61,13 +93,15 @@ function App() {
           <div class="right box">
             <h2>Contact us</h2>
             <div class="content">
-              <form action="#">
+              <form onSubmit={handleSubmit} id="footerForm">
                 <div class="email">
                   <div class="text">Email *</div>
-                  <input type="email" required />
+                  <input name="email" type="email" required />
                 </div>
                 <div class="msg">
-                  <div class="text">Message *</div>
+                  <div class="text" name="message">
+                    Message *
+                  </div>
                   <textarea id="msgForm" rows="2" cols="25" required></textarea>
                   <br />
                   <div class="btn">
@@ -83,4 +117,4 @@ function App() {
   );
 }
 
-export default App;
+export default Index;

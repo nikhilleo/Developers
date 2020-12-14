@@ -14,281 +14,18 @@ toast.configure();
 const { clearUser, clearOwner, clearAdmin } = actions;
 
 function Index(props) {
-  const [input, setInput] = useState();
-  const [confirm, setConfirm] = useState();
-  var [change, setChange] = useState("");
-  var [client, setClient] = useState();
-
+  var [messages, setMessages] = useState();
   useEffect(() => {
-    if (props.admin.user) {
-      setClient(() => ({ type: "admin", user: props.admin.user }));
-    } else if (props.user.user) {
-      setClient(() => ({ type: "user", user: props.user.user }));
-    } else if (props.owner.user) {
-      setClient(() => ({ type: "owner", user: props.owner.user }));
-    }
+    axios
+      .get("/contact/getAllMessages")
+      .then((res) => {
+        console.log(res);
+        setMessages(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
-
-  const handleClick = (e, type) => {
-    if (type === "password") {
-      setChange(undefined);
-    } else {
-      setChange(type);
-    }
-    setInput({
-      newDetail: "",
-      oldPassword: "",
-      password: "",
-      confirmPassword: "",
-    });
-    var blur = document.getElementById("Account__setting__blur");
-    blur.classList.toggle("active");
-    var popup = document.getElementById("Account__setting__popup");
-    popup.classList.toggle("active");
-
-    if (type == "delete") {
-      var blur = document.getElementById("Account__setting__blur");
-      blur.classList.toggle("active");
-      var popup__delete = document.getElementById("confirm__delete__popup");
-      popup__delete.classList.toggle("active__delete");
-    }
-  };
-  const handleSubmit = (e, type) => {
-    e.preventDefault();
-    if (client.type == "user") {
-      let token = localStorage.getItem("auth-token");
-
-      axios
-        .put("/update_profile", input, {
-          headers: { Authorization: token },
-        })
-        .then((res) => {
-          toast.info(`${change} updated`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 2000,
-          });
-          setChange("");
-          setInput("");
-          handleClick("e", "close__update__form");
-        })
-        .catch((err) => {
-          toast.error(`Something Went Wrong`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: false,
-          });
-        });
-    }
-    if (client.type == "owner") {
-      let token = localStorage.getItem("auth-token");
-
-      axios
-        .put("/owner/updateuser", input, {
-          headers: { Authorization: token },
-        })
-        .then((res) => {
-          toast.info(`${change} updated`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 2000,
-          });
-          setChange("");
-          setInput("");
-          handleClick("e", "close__update__form");
-        })
-        .catch((err) => {
-          toast.error(`Something Went Wrong`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: false,
-          });
-        });
-    }
-    if (client.type == "admin") {
-      let token = localStorage.getItem("auth-token");
-
-      axios
-        .put("/admin/updateuser", input, {
-          headers: { Authorization: token },
-        })
-        .then((res) => {
-          toast.info(`${change} updated`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 2000,
-          });
-          setChange("");
-          setInput("");
-          handleClick("e", "close__update__form");
-        })
-        .catch((err) => {
-          toast.error(`Something Went Wrong`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: false,
-          });
-        });
-    }
-  };
-
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
-
-    if (client.type == "user") {
-      if (input === confirm) {
-        let pass = { password: input };
-        let token = localStorage.getItem("auth-token");
-        axios
-          .put("/update_password", pass, {
-            headers: { Authorization: token },
-          })
-          .then((res) => {
-            toast.info(`Password Changed Successfullt`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 2000,
-            });
-            setChange("");
-            setInput("");
-            handleClick("e", "close__update__form");
-          })
-          .catch((err) => {
-            toast.error(`Something Went Wrong`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: false,
-            });
-          });
-      } else {
-        toast.error(`Password didn't match`, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: false,
-        });
-      }
-    }
-    if (client.type == "owner") {
-      if (input === confirm) {
-        let pass = { password: input };
-        let token = localStorage.getItem("auth-token");
-        axios
-          .put("/owner/updatepassword", pass, {
-            headers: { Authorization: token },
-          })
-          .then((res) => {
-            toast.info(`Password Changed Successfullt`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 2000,
-            });
-            setChange("");
-            setInput("");
-            handleClick("e", "close__update__form");
-          })
-          .catch((err) => {
-            toast.error(`Something Went Wrong`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: false,
-            });
-          });
-      } else {
-        toast.error(`Password didn't match`, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: false,
-        });
-      }
-    }
-    if (client.type == "admin") {
-      if (input === confirm) {
-        let pass = { password: input };
-        let token = localStorage.getItem("auth-token");
-        axios
-          .put("/admin/updatepassword", pass, {
-            headers: { Authorization: token },
-          })
-          .then((res) => {
-            toast.info(`Password Changed Successfullt`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 2000,
-            });
-            setChange("");
-            setInput("");
-            handleClick("e", "close__update__form");
-          })
-          .catch((err) => {
-            toast.error(`Something Went Wrong`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: false,
-            });
-          });
-      } else {
-        toast.error(`Password didn't match`, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: false,
-        });
-      }
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInput({
-      [change]: value,
-    });
-  };
-
-  const handlePasswordChange = (e, type) => {
-    e.preventDefault();
-    const { value } = e.target;
-
-    if (type == 1) {
-      setInput(value);
-    }
-    if (type == 2) {
-      setConfirm(value);
-    }
-  };
-
-  const deleteAccount = () => {
-    if (client.type == "user") {
-      let token = localStorage.getItem("auth-token");
-      axios
-        .delete("/delete_user", {
-          headers: { Authorization: token },
-        })
-        .then((res) => {
-          props.clearAdmin();
-          props.clearOwner();
-          props.clearUser();
-        })
-        .catch((err) => {});
-    }
-    if (client.type == "owner") {
-      let token = localStorage.getItem("auth-token");
-      axios
-        .delete("/owner/updateuser", {
-          headers: { Authorization: token },
-        })
-        .then((res) => {
-          props.clearAdmin();
-          props.clearOwner();
-          props.clearUser();
-        })
-        .catch((err) => {});
-    }
-    if (client.type == "admin") {
-      let token = localStorage.getItem("auth-token");
-      axios
-        .delete("/admin/updateuser", {
-          headers: { Authorization: token },
-        })
-        .then((res) => {
-          props.clearAdmin();
-          props.clearOwner();
-          props.clearUser();
-        })
-        .catch((err) => {});
-    }
-  };
-
-  const handleDeleteClick = () => {
-    var blur = document.getElementById("Account__setting__blur");
-    blur.classList.toggle("active");
-    var popup__delete = document.getElementById("confirm__delete__popup");
-    popup__delete.classList.toggle("active__delete");
-  };
-
   return (
     <>
       <Navbar />
@@ -400,20 +137,49 @@ function Index(props) {
               borderRadius: "20px",
             }}
           >
-            <span
-              style={{
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <span> Email:</span>
-              <span> prathmeshKulkarni98882@gmail.com </span>
-              <br />
-              <span> Message:</span>
-              <span> You are best in the world admin. </span>
-              <Divider col />
-            </span>
+            {messages?.map((item) => (
+              <span
+                style={{
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <span style={{ color: "rgb(194, 210, 207)", fontSize: "23px" }}>
+                  {" "}
+                  Email:
+                </span>
+                <span>{item.email} </span>
+                <br />
+                <span style={{ color: "rgb(194, 210, 207)", fontSize: "23px" }}>
+                  {" "}
+                  Message:
+                </span>
+                <span
+                  style={{
+                    maxWidth: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      maxWidth: "62%",
+                      maxHeight: "11vh",
+                      overflow: "auto",
+                    }}
+                  >
+                    {item?.message}
+                  </div>
+                </span>
+                <br />
+                <br />
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Divider style={{ background: "#566f6a", width: "80%" }} />
+                </div>
+              </span>
+            ))}
           </div>
         </div>
       </div>
