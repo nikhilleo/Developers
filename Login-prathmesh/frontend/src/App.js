@@ -18,6 +18,7 @@ import Booking__Admin from "./Admin/Home/Dashboard/Booking/Pending";
 import Active__Camps from "./Admin/Home/Dashboard/DeleteCamps/ActiveCamps";
 import Deleted__Camps from "./Admin/Home/Dashboard/DeleteCamps/DeletedCamps";
 import Account__Setting__Admin from "./Admin/Home/Dashboard/AccountSetting";
+import Contact_Page from "./Admin/Home/Dashboard/ContactPage";
 import Form from "./Admin/Form/Form";
 import VerifyOtp from "./Admin/Form/VerifyOtp";
 import axios from "./axios";
@@ -454,6 +455,19 @@ const App = (props) => {
                 return (
                   <>
                     <Account__Setting__Admin />
+                  </>
+                );
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/Messages"
+            render={() => {
+              if (props.user.user || props.owner.user || props.admin.user) {
+                return (
+                  <>
+                    <Contact_Page />
                   </>
                 );
               }

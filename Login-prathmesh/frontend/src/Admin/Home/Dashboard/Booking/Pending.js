@@ -105,6 +105,11 @@ function Home() {
                     <span className="subHeader">ACCOUNT</span>
                   </Link>
                 </li>
+                <li className="navbar__li">
+                  <Link to="/Messages" style={{ textDecoration: "none" }}>
+                    <span className="subHeader">MESSAGES</span>
+                  </Link>
+                </li>
               </div>
             </div>
           </div>

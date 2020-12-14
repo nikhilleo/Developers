@@ -91,14 +91,15 @@ function CampUserForm5(props) {
         await localStorage.removeItem("Accommodation");
         await localStorage.removeItem("campUserForm1");
         await localStorage.removeItem("bookingDetails");
-        await document.getElementById("spinner").classList.remove("active");
+        await document.getElementById("spinner1").classList.remove("active");
         await document.getElementById("formBody").classList.remove("active");
+        history.push("/");
       })
       .catch(async (err) => {
         await document.getElementById("spinner1").classList.remove("active");
         await document.getElementById("formBody").classList.remove("active");
+        console.log(err.response);
       });
-    history.push("/");
   };
 
   return (
